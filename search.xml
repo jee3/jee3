@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>《React——引领未来的用户界面开发框架》</title>
+    <url>/2020/01/22/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<p>所有代码示例：<a href="http://git.io/vlcpa" target="_blank" rel="noopener">http://git.io/vlcpa</a></p>
+<h1 id="4-数据流"><a href="#4-数据流" class="headerlink" title="4 数据流"></a>4 数据流</h1><h2 id="PropTypes"><a href="#PropTypes" class="headerlink" title="PropTypes"></a>PropTypes</h2><p>提供了一种验证 props 的方式</p>
+<h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><p>千万不能直接修改 this.state，永远记得要通过 this.setState 方法修改</p>
+<p>state 中应只保存最简单的数据，不要保存计算出的值</p>
+<p>不要尝试把 props 复制到 state 中，要尽可能将 props 当作数据源</p>
+<p>当不需要内部状态、refs 和生命周期函数时，将组件变成函数组件可以减少冗余和复杂性</p>
+<a id="more"></a>
+
+<h1 id="8-DOM-操作"><a href="#8-DOM-操作" class="headerlink" title="8 DOM 操作"></a>8 DOM 操作</h1><h2 id="ReactDOM-findDOMNode"><a href="#ReactDOM-findDOMNode" class="headerlink" title="ReactDOM.findDOMNode"></a>ReactDOM.findDOMNode</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line">ReactDOM.findDOMNode(ReactComponent);</span><br></pre></td></tr></table></figure>
+
+<p>在 componentDidMount 执行后，才能用</p>
+<h2 id="this-refs-xxx"><a href="#this-refs-xxx" class="headerlink" title="this.refs.xxx"></a>this.refs.xxx</h2><h2 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h2><h3 id="把要求传达清楚"><a href="#把要求传达清楚" class="headerlink" title="把要求传达清楚"></a>把要求传达清楚</h3><p>placeholder 尽量简短，不要有验证提示，验证提示在输入框外面</p>
+<h3 id="不断地反馈"><a href="#不断地反馈" class="headerlink" title="不断地反馈"></a>不断地反馈</h3><p>用户有时候会没有耐心，但是如果告诉他们程序正在处理他们的请求，他们就会变得耐心。所以要有一些诸如 加载中、进度条、信息提示等进行反馈</p>
+<h3 id="迅速响应"><a href="#迅速响应" class="headerlink" title="迅速响应"></a>迅速响应</h3><p>过渡动画过长，会让用户产生挫败感。</p>
+<p>eg：当用户点击“喜欢”的时候，可以在给服务器发送 AJAX 之前先增加喜欢数。如果 AJAX 调用要花费太长时间，这种方式会让用户感觉不到延迟。不过这种方式在错误处理方面会产生一些问题。</p>
+<h3 id="符合用户的预期"><a href="#符合用户的预期" class="headerlink" title="符合用户的预期"></a>符合用户的预期</h3><p>用户对事物如何工作有自己的预期，这种预期基于他们之前的经验，而不是来自于你的应用。</p>
+<p>如果你的应用长得像用户所在的平台，那么要尽量遵循平台的默认行为。另一种方式是从根本上改变你的用户界面，这样你的应用就不用模仿其他平台了。</p>
+<h3 id="可访问"><a href="#可访问" class="headerlink" title="可访问"></a>可访问</h3><p>视力受损</p>
+<h3 id="减少用户的输入"><a href="#减少用户的输入" class="headerlink" title="减少用户的输入"></a>减少用户的输入</h3><p>自动填充等</p>
+<h1 id="10-动画"><a href="#10-动画" class="headerlink" title="10 动画"></a>10 动画</h1><h2 id="ReactCSSTransitionGroup"><a href="#ReactCSSTransitionGroup" class="headerlink" title="ReactCSSTransitionGroup"></a>ReactCSSTransitionGroup</h2><h2 id="requestAnimationFrame-间隔渲染"><a href="#requestAnimationFrame-间隔渲染" class="headerlink" title="requestAnimationFrame 间隔渲染"></a>requestAnimationFrame 间隔渲染</h2><h2 id="react-motion"><a href="#react-motion" class="headerlink" title="react-motion"></a>react-motion</h2><p>spring animation</p>
+<h1 id="11-性能优化"><a href="#11-性能优化" class="headerlink" title="11 性能优化"></a>11 性能优化</h1><h2 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h2><p>方法会返回一个布尔值，如果返回 false 就是不要调用组件的渲染方法，并使用之前渲染好的虚拟 DOM，如果返回 true 则调用组件的渲染方法并计算出新的虚拟 DOM。（默认返回 true，因此组件总是会调用 render 方法）</p>
+<p>对于给定同样 props 和 state 总是渲染出同样结果的组件，可以用 react-addons-pure-render-mixin 插件来处理 shouldComponentUpdate</p>
+<p>使用 react-mixin 来提供 mixin 的支持，这也是为数不多应该使用 mixin 而不是高阶组件的地方</p>
+<h2 id="key"><a href="#key" class="headerlink" title="key"></a>key</h2><p>如果一个组件的 key 属性发生变化，那么 react 就会跳过 DOM diff，同时完全弃置 div 所有的子元素，并重新从头开始渲染。</p>
+<p>在渲染大型子树避免 diff 运算时，这样做很有用</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> items = sortBy(<span class="keyword">this</span>.state.sortingAlgorithm, <span class="keyword">this</span>.props.items);</span><br><span class="line"><span class="keyword">return</span> items.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;item.src&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果顺序改变，react 会对元素进行 diff 操作并确定最高效的操作时改变其中几个 img 元素的 src，这样可能会导致浏览器查询缓存，甚至会导致新的网络请求。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;item.src&#125;</span> <span class="attr">key</span>=<span class="string">&#123;item.id&#125;</span> /&gt;</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>这样 react 得出的结论就不是改变 src 的属性，而是使用 insertBefore 操作，而这个操作是移动 DOM 节点最高效的方式。</p>
+<blockquote>
+<p>单一级别约束对于指定的父组件，每个子组件的 key 必须是独一无二的。这同时也意味着从一个父组件移动到另一个父组件的情况是不会被处理的。</p>
+</blockquote>
+<p>尽管 key 看似作为一个属性被传入了，但是其实在组件的任何位置都无法实际获取到它</p>
+<h1 id="12-服务端渲染"><a href="#12-服务端渲染" class="headerlink" title="12 服务端渲染"></a>12 服务端渲染</h1><ul>
+<li>seo</li>
+<li>提升性能：因为在加载 js 脚本的时候，浏览器就可以进行页面渲染</li>
+</ul>
+<p>虚拟 DOM 作为内存中的 DOM 表现，为 React 再 Node.js 这类非浏览器环境下的运行提供了可能。</p>
+<p>React 可以从虚拟 DOM 中生成一个字符串，而不是更新真正的 DOM。这使得我们可以在客户端和服务端使用同一个 React 组件。</p>
+<p>React 提供了两个可用于服务端渲染组件的函数：React.renderToString 和 React.renderToStaticMarkup</p>
+<h2 id="渲染函数"><a href="#渲染函数" class="headerlink" title="渲染函数"></a>渲染函数</h2><p>服务端不存在 DOM，所以不能使用 React.render 方法</p>
+<h3 id="React-renderToString"><a href="#React-renderToString" class="headerlink" title="React.renderToString"></a>React.renderToString</h3><p>是一个快速的同步函数</p>
+<h3 id="React-renderToStaticMarkup"><a href="#React-renderToStaticMarkup" class="headerlink" title="React.renderToStaticMarkup"></a>React.renderToStaticMarkup</h3><p>除了不会包含 React 的 data 属性外，和 React.renderToString 没有区别</p>
+<p>当且仅当不打算在客户端渲染这个组件时才用：</p>
+<p>React 可以重用服务端提供的 DOM，所以它可以跳过生成 DOM 节点以及把它们挂载到文档中这两个昂贵的进程。</p>
+<p>渲染客户端的时候，如果 data-react-checksum 不匹配，React 会舍弃服务端提供的 DOM，然后生成新的 DOM 节点，并更新到文档中。此时，React 不再拥有服务器渲染带来的各种性能上的优势。</p>
+<h2 id="服务端组件生命周期"><a href="#服务端组件生命周期" class="headerlink" title="服务端组件生命周期"></a>服务端组件生命周期</h2><p>没有 componentDidMount 和 componentWillUnmount，只有 componentWillMount 在 client 和 server 渲染都有效。</p>
+<p>在 componentWillMount 内注册的所有事件监听器及定时器都有可能潜在地导致服务器内存泄漏。最佳做法是只在 componentDidMount 内部创建事件监听器和定时器，然后在 componentWillUnmount 内清除这两者。</p>
+<h2 id="设计组件"><a href="#设计组件" class="headerlink" title="设计组件"></a>设计组件</h2><ul>
+<li><strong>务必慎重考虑如何将组件的 state 传递到客户端</strong></li>
+<li><strong>在设计组件时，需要保证将同一个 props 传递到组件中时，总会输出相同的初始渲染结果</strong></li>
+</ul>
+<h2 id="异步状态"><a href="#异步状态" class="headerlink" title="异步状态"></a>异步状态</h2><p>问题：因为 React.renderToString 是同步的，所以没办法使用组件的任何一个生命周期方法来抓取异步的数据。</p>
+<p>解决方案：使用 statics 函数来抓取异步数据，然后把数据传递到组件中用于渲染。将 initialState 作为 props 值传递到客户端。使用组件生命周期方法来监听变化，然后使用同一个 statics 函数更新状态。</p>
+<h2 id="同构路由"><a href="#同构路由" class="headerlink" title="同构路由"></a>同构路由</h2><p>为了在服务端渲染出拥有路由的 React 应用，必须确保路由系统支持无 DOM 渲染。</p>
+<p>抓取异步数据是路由系统及其控制器的职责。</p>
+<h1 id="单例、实例及上下文"><a href="#单例、实例及上下文" class="headerlink" title="单例、实例及上下文"></a>单例、实例及上下文</h1><p>在服务端运行代码时，可能存在同一个应用的多个实例在相同作用域内同时运行的情况，就有可能出现两个实例都去更改单例状态的情况，这会导致异常的行为发生。</p>
+<p>Contextify 之类的包准许你在服务端彼此隔离地运行代码。一旦加载完代码，你就可以调用环境中的所有函数。这种方法可以让你随意地使用单例模式，而不用考虑性能上的花销，因为每次请求都对应一个全新的 Node.js V8 实例。</p>
+<p>React 不鼓励在组件树中传递上下文和实例。这种做法会降低组件的可移植性，并且应用内组件依赖的更改会对层级上的所有组件产生联动式影响。</p>
+<h1 id="13-开发工具"><a href="#13-开发工具" class="headerlink" title="13 开发工具"></a>13 开发工具</h1><h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p>当你移除某个组件的时候，他的所有依赖也会自动被移除。这意味着不会再有未被使用的 CSS 或者图片遗留在代码目录中</p>
+<p>多个 loader 通过！连接：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test:<span class="regexp">/\.(css)$/</span>,</span><br><span class="line">    loader:<span class="string">'style-loader!css-loader'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="14-测试"><a href="#14-测试" class="headerlink" title="14 测试"></a>14 测试</h1><p>测试驱动开发（TDD）</p>
+<p>边写代码边测试，就自然而然地被要求遵守<a href="https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html" target="_blank" rel="noopener">单一职责原则</a>，<a href="https://www2.ccs.neu.edu/research/demeter/demeter-method/LawOfDemeter/paper-boy/demeter.pdf" target="_blank" rel="noopener">迪米特法则</a>，并保持代码的模块化。</p>
+<p>自动化测试：单元测试，集成测试，功能测试，性能测试，安全测试 以及 <a href="https://www.youtube.com/watch?v=1wHr-O6gEfc" target="_blank" rel="noopener">视觉测试</a></p>
+<h1 id="16-不可变性"><a href="#16-不可变性" class="headerlink" title="16 不可变性"></a>16 不可变性</h1><h2 id="性能优势"><a href="#性能优势" class="headerlink" title="性能优势"></a>性能优势</h2><p>如果有 shouldComponentUpdate，只需要检查 porps 中的一个字段，就可以返回 true 或者 false。但是如果需要检查很多字段，有的字段还包含对象，性能就会降低。所以，判断两个可变对象的值是否相等就是问题的关键所在。</p>
+<p>这时，如果使用不可变的 state 和 props，就只需简单地比较 oldProps!==newProps 就可以了。（当使用不可变对象来表示 props 时，为了得到全新的 props，无法直接在当前的 props 修改，必须实例化新的不可变对象替代它）</p>
+<h2 id="性能消耗"><a href="#性能消耗" class="headerlink" title="性能消耗"></a>性能消耗</h2><p>可变对象改起来容易但不便做比较，反过来，不可变对象比较起来很快，但是更新就比较慢了。</p>
+<p>不可变类库不能再当前对象上进行变更，最少必须实例化一个新对象，修改它使之与原对象完全一致（除了改变了的这个字段不一样）。不单单更新过程需要花费时间，垃圾回收也需要，毕竟多余的对象必须被回收。权衡起来，对于大多数 React 应用还是值得的。别忘了简单的更新函数通常会调用大量的渲染函数，这些渲染函数在构造返回值的过程中需要实例化很多对象。牺牲一点更新的速度，以换取大量的渲染函数执行的损耗，这从性能的角度上来说是有优势的。</p>
+<p>除了性能，还要付出的一点代价就是无法使用 setState 和 setProp 这两个函数，只能用 replaceState 和 replaceProps 了</p>
+<h2 id="架构优势"><a href="#架构优势" class="headerlink" title="架构优势"></a>架构优势</h2><p>当把可变数据从一个函数传递到另外一个函数的时候，如果期望函数执行完后，数据不会被修改，通常要提前克隆要传递的数据，传递克隆对象。但是并没有不可变数据高效，不可修改的数据可以获得更快的克隆速度。借助贯穿始终的不可变数据将获得一致的可安全传递特性。</p>
+<h2 id="使用-Immutability-Helpers-Addon"><a href="#使用-Immutability-Helpers-Addon" class="headerlink" title="使用 Immutability Helpers Addon"></a>使用 Immutability Helpers Addon</h2><h2 id="使用-seamless-immutable"><a href="#使用-seamless-immutable" class="headerlink" title="使用 seamless-immutable"></a>使用 seamless-immutable</h2><h2 id="使用-Immutable-js"><a href="#使用-Immutable-js" class="headerlink" title="使用 Immutable.js"></a>使用 Immutable.js</h2><p><a href="https://github.com/facebook/immutable-js" target="_blank" rel="noopener">immutable-js</a></p>
+<h3 id="Immutable-Map"><a href="#Immutable-Map" class="headerlink" title="Immutable.Map"></a>Immutable.Map</h3><h3 id="Immutable-Vector"><a href="#Immutable-Vector" class="headerlink" title="Immutable.Vector"></a>Immutable.Vector</h3><h1 id="17-其他使用场景"><a href="#17-其他使用场景" class="headerlink" title="17 其他使用场景"></a>17 其他使用场景</h1><h2 id="桌面应用"><a href="#桌面应用" class="headerlink" title="桌面应用"></a>桌面应用</h2><p><a href="https://electronjs.org/docs" target="_blank" rel="noopener">electronjs</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 进阶</title>
+    <url>/2019/12/18/git-%E8%BF%9B%E9%98%B6/</url>
+    <content><![CDATA[<p>HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。</p>
+<h1 id="fatal-Could-not-read-from-remote-repository-的解决办法"><a href="#fatal-Could-not-read-from-remote-repository-的解决办法" class="headerlink" title="fatal: Could not read from remote repository.的解决办法:"></a>fatal: Could not read from remote repository.的解决办法:</h1><p>查看远端地址 git remote –v 查看配置 git config –list git status</p>
+<a id="more"></a>
+
+<h1 id="工作区与暂存区"><a href="#工作区与暂存区" class="headerlink" title="工作区与暂存区"></a>工作区与暂存区</h1><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576" target="_blank" rel="noopener">工作区和暂存区</a> command s ：工作区修改 git add：提交到暂存区 git commit：提交到本地库 git push：提交到远端</p>
+<h1 id="git-bare-init"><a href="#git-bare-init" class="headerlink" title="git -bare init"></a>git -bare init</h1><p><a href="http://blog.haohtml.com/archives/12265" target="_blank" rel="noopener">git -bare init 与 git init 有什么不同</a></p>
+<p>在初始化远程仓库时最好使用 git –bare init 而不要使用：git init。这样在使用 hooks 的时候，会有用处。</p>
+<p>如果使用了 git init 初始化，则远程仓库的目录下，也包含 work tree，当本地仓库向远程仓库 push 时, 如果远程仓库正在 push 的分支上（如果当时不在 push 的分支，就没有问题）, 那么 push 后的结果不会反应在 work tree 上, 也即在远程仓库的目录下对应的文件还是之前的内容，必须得使用 git reset –hard 才能看到 push 后的内容.</p>
+<h1 id="git-rm-xxx-r"><a href="#git-rm-xxx-r" class="headerlink" title="git rm xxx -r"></a>git rm xxx -r</h1><p>删除（递归），没有-r 会提示不安全</p>
+<h1 id="git-checkout-–-xxx"><a href="#git-checkout-–-xxx" class="headerlink" title="git checkout – xxx"></a>git checkout – xxx</h1><p>命令 git checkout – readme.txt 意思就是，把 readme.txt 文件在工作区的修改全部撤销，这里有两种情况：</p>
+<p>一种是 readme.txt 自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
+<p>一种是 readme.txt 已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
+<p>总之，就是让这个文件回到最近一次 git commit 或 git add 时的状态。</p>
+<h1 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h1><p>创建并切换到新的 dev 分支，可以使用：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b &lt;name&gt;  ||  git switch -c &lt;name&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h1><p>对于所有分支而言， 工作区和暂存区是公共的。因为未 add 的内容不属于任何一个分支，未 commit 的内容也不属于任何一个分支；要想在分支间切换， 又不想又上述影响，可以用 git stash。要注意，在当前分支 git stash 的内容， 在其他分支也可以 git stash pop 出来，为什么？ 因为：工作区和暂存区是公共的。</p>
+<h2 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h2><p>git stash 将现在的储存起来，git stash list 查看</p>
+<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><p>工作现场还在，Git 把 stash 内容存在某个地方了，但是需要恢复一下，有两个办法：</p>
+<ol>
+<li><p>一是用 git stash apply stash@{xxx}恢复，但是恢复后，stash 内容并不删除，你需要用 git stash drop 来删除；</p>
+</li>
+<li><p>另一种方式是用 git stash pop，恢复的同时把 stash 内容也删了</p>
+</li>
+</ol>
+<h1 id="git-merge-–no-ff-–squash"><a href="#git-merge-–no-ff-–squash" class="headerlink" title="git merge (||–no-ff||–squash)"></a>git merge (||–no-ff||–squash)</h1><p>通常，合并分支时，如果可能，Git 会用<strong>Fast forward</strong>模式，但这种模式下，<strong>删除分支后，会丢掉分支信息</strong>。 –no-ff：不使用 fast-forward 方式合并，保留分支的 commit 历史 –squash：使用 squash 方式合并，把多次分支 commit 历史压缩为一次</p>
+<h1 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h1><p>在 master 分支上修复的 bug，想要合并到当前 dev 分支，可以用 git cherry-pick <commit>命令，把 bug 提交的修改“复制”到当前分支，避免重复劳动。</p>
+<h1 id="git-branch-D"><a href="#git-branch-D" class="headerlink" title="git branch -D"></a>git branch -D</h1><p>如果要丢弃一个没有被合并过的分支，可以通过 git branch -D <name>强行删除</p>
+<h1 id="git-checkout-b-dev-origin-dev"><a href="#git-checkout-b-dev-origin-dev" class="headerlink" title="git checkout -b dev origin/dev"></a>git checkout -b dev origin/dev</h1><p>创建远程 origin 的 dev 到本地 dev</p>
+<p>git branch –set-upstream-to=origin/dev dev</p>
+<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>rebase 操作前后，最终的提交内容是一致的。</p>
+<p>把分叉的提交历史“整理”成一条直线，看上去更直观。缺点是本地的分叉提交已经被修改过了。</p>
+<p>rebase 操作可以把本地未 push 的分叉提交历史整理成直线；从不对已推送至别处的提交执行变基操作。 因为 rebase 会改变提交历史记录，这会影响到别人使用这一远程仓库。</p>
+<p>rebase 的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
+<p><a href="https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf" target="_blank" rel="noopener">git 列表</a></p>
+<p><a href="https://git-scm.com/" target="_blank" rel="noopener">Git 英文官网</a></p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《Javascript高级程序设计》</title>
+    <url>/2019/11/23/JS%E9%AB%98%E7%A8%8B/</url>
+    <content><![CDATA[<p>复制基本类型值的时候，会新创建一个。复制引用类型值的时候，只是复制指针，指针指向堆中同一个对象。</p>
+<h1 id="5-引用类型"><a href="#5-引用类型" class="headerlink" title="5 引用类型"></a>5 引用类型</h1><p>到底是不是数组，可以用.isArray()，instanceof 在多个框架（两个以上全局执行环境）就不好用了</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8mz1tcg1mj30ew0dg75n.jpg" alt=""></p>
+<p>array.push():添加到数组末尾，返回新长度 array.pop():返回数组最后一一项 array.shift():移除并返回第一项 array.unshift():前端添加任意项，返回新长度</p>
+<p>sort()排序会将‘15’放在‘5’前面，因为比较第一个字符。可以接收一个用于比较的函数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> value2 - value1;</span><br><span class="line">&#125;</span><br><span class="line">arr.sort(compare);</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>arr.concat()将参数（值或数组）添加到 arr 后面，并返回新数组，arr 不变。 arr.slice(1，4)也不会影响原数组，如果 arr.length=5,只会取到第 234 项，不会取到第 5 项。（不包括结尾元素）</p>
+<p>arr.splice()</p>
+<p>every(),filter(),forEach(),map(),some()</p>
+<p>reduce() reduceRight()</p>
+<p>Date.parse() Date.UTC()</p>
+<h2 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> re = <span class="literal">null</span>,</span><br><span class="line">	i;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">	re = <span class="regexp">/cat/g</span>;</span><br><span class="line">	re.test(<span class="string">'catastrophe'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">	re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'cat'</span>, <span class="string">'g'</span>);</span><br><span class="line">	re.test(<span class="string">'catastrophe'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="捕获组"><a href="#捕获组" class="headerlink" title="捕获组"></a>捕获组</h3><p>reg.exec()</p>
+<h2 id="5-5-Function-类型"><a href="#5-5-Function-类型" class="headerlink" title="5.5 Function 类型"></a>5.5 Function 类型</h2><p>解析器会先读取函数声明，并使其在任何代码之前可以访问，而函数表达式则必须到所在代码行才会被解释执行。</p>
+<p>caller</p>
+<p>使用 call 和 apply 来扩充作用域最大的好处就是，对象不需要与方法有任何的耦合。</p>
+<h2 id="5-6-基本包装类型"><a href="#5-6-基本包装类型" class="headerlink" title="5.6 基本包装类型"></a>5.6 基本包装类型</h2><p>用 new 操作符创建实例的时候，在执行流离开作用域之前都会一直保留；但是自动创建的基本包装类型的对象，只存在创建的一瞬间。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8oaidg2ldj30de09cdgy.jpg" alt=""></p>
+<p>基本类型的布尔值和 Boolean 对象不一样，后者不建议使用。</p>
+<p>num.toString(n)//将 num 转换为 n 进制 num.toFixed(n)//将 num 转换为 n 为小数</p>
+<h1 id="6-面向对象的程序设计"><a href="#6-面向对象的程序设计" class="headerlink" title="6 面向对象的程序设计"></a>6 面向对象的程序设计</h1><h2 id="对象的属性"><a href="#对象的属性" class="headerlink" title="对象的属性"></a>对象的属性</h2><p>属性包括数据属性和访问器属性。</p>
+<p>数据属性包含一个数据值的位置。访问器属性不包含数据值。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person, <span class="string">'name'</span>, &#123;</span><br><span class="line">	configurable: <span class="literal">false</span>, <span class="comment">//不能再改回true</span></span><br><span class="line">	writable: <span class="literal">false</span>,</span><br><span class="line">	enumerable: <span class="literal">true</span>,</span><br><span class="line">	value: <span class="string">'nicholas'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">	_year: <span class="number">2019</span>,<span class="comment">//加上_表示只能通过对象方法进行访问的属性</span></span><br><span class="line">	edition: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(book, <span class="string">'year'</span>, &#123;</span><br><span class="line">    <span class="comment">//get在读取属性的时候调用</span></span><br><span class="line">	<span class="keyword">get</span>: function() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>._year;</span><br><span class="line">	&#125;,</span><br><span class="line">    <span class="comment">//set在写入的时候调用</span></span><br><span class="line">	<span class="keyword">set</span>: function(newValue) &#123;</span><br><span class="line">		<span class="keyword">if</span> (newValue &gt; <span class="number">2019</span>) &#123;</span><br><span class="line">			<span class="keyword">this</span>._year = newValue;</span><br><span class="line">			<span class="keyword">this</span>.edition += newValue - <span class="number">2019</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">book.year = <span class="number">2020</span>;</span><br><span class="line"><span class="built_in">console</span>.log(book.edition);</span><br></pre></td></tr></table></figure>
+
+<p>同时修改多个属性用 Object.defineProperties()</p>
+<h2 id="6-2-创建对象"><a href="#6-2-创建对象" class="headerlink" title="6.2 创建对象"></a>6.2 创建对象</h2><h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><h3 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Person.prototype.name = <span class="string">'zhaosi'</span>;</span><br><span class="line">Person.prototype.age = <span class="string">'37'</span>;</span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
+
+<p>person1.hasOwnProperty(‘name’)：<strong>如果返回 true，则 name 存在于 person1 实例中，否则存在于原型中。</strong></p>
+<p>Object.keys(Person.prototype) 所有可枚举</p>
+<p>Object.getOwnPropertyNames() 所有可枚举不可枚举</p>
+<h4 id="更简单的原型语法"><a href="#更简单的原型语法" class="headerlink" title="更简单的原型语法"></a>更简单的原型语法</h4><p>如果把上述代码改成 Person.prototype={}对象字面量的形式，因为这种写法本质上完全重写了默认的 prototype 函数，constructor 不再指向 Person 了</p>
+<p>如果 constructor 属性很重要，那么</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Person.prototype=&#123;</span><br><span class="line">    name:<span class="string">''</span>,</span><br><span class="line">    <span class="keyword">constructor</span>:Person    //确保通过该属性访问到适当的值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：这种方法会使 constructor 变成可枚举，可以通过 defineProperty 变成不可枚举</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(Person.prototype, <span class="string">'constructor'</span>, &#123;</span><br><span class="line">	enumerable: <span class="literal">false</span>,</span><br><span class="line">	value: Person</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8qkym49joj30vi0sy78y.jpg" alt=""></p>
+<p><strong>更好的方式是组合使用构造函数模式和原型模式，构造函数用来定义实例属性，原型定义方法和共享的属性</strong></p>
+<h4 id="动态原型（很完美）"><a href="#动态原型（很完美）" class="headerlink" title="动态原型（很完美）"></a>动态原型（很完美）</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.sayName != <span class="string">'function'</span>) &#123;</span><br><span class="line">		Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> friend = <span class="keyword">new</span> Person(<span class="string">'zhaosi'</span>, <span class="number">29</span>);</span><br><span class="line">friend.sayName();</span><br></pre></td></tr></table></figure>
+
+<h3 id="寄生构造函数模式"><a href="#寄生构造函数模式" class="headerlink" title="寄生构造函数模式"></a>寄生构造函数模式</h3><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h3><p><strong>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。</strong> <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g93bzcjanrj30w40u0tex.jpg" alt=""></p>
+<h3 id="借用构造函数（伪造对象-或-经典继承）"><a href="#借用构造函数（伪造对象-或-经典继承）" class="headerlink" title="借用构造函数（伪造对象 或 经典继承）"></a>借用构造函数（伪造对象 或 经典继承）</h3><h3 id="组合继承（最常用）"><a href="#组合继承（最常用）" class="headerlink" title="组合继承（最常用）"></a>组合继承（最常用）</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">	SuperType.call(<span class="keyword">this</span>, name);</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line">SubType.prototype.constructor = SubType;</span><br><span class="line">SubType.prototype.sayAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h3><h3 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h3><p>不能做到函数复用，与构造函数模式相似</p>
+<h3 id="寄生组合式继承（最理想）"><a href="#寄生组合式继承（最理想）" class="headerlink" title="寄生组合式继承（最理想）"></a>寄生组合式继承（最理想）</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">	SuperType.call(<span class="keyword">this</span>, name);</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inheritPrototype</span>(<span class="params">subType, superType</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> prototype = <span class="built_in">Object</span>(superType.prototype); <span class="comment">//创建超类型原型的一个副本</span></span><br><span class="line">	prototype.constructor = subType; <span class="comment">//为创建的副本添加constructor属性（重写原型失去了默认的constructor属性）</span></span><br><span class="line">	subType.prototype = prototype; <span class="comment">//将创建的副本赋值给子类型的原型</span></span><br><span class="line">&#125;</span><br><span class="line">inheritPrototype(SubType, SuperType);</span><br><span class="line"></span><br><span class="line">SubType.prototype.sayAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g9800bhvrlj31600sotfk.jpg" alt=""></p>
+<h1 id="7-函数表达式"><a href="#7-函数表达式" class="headerlink" title="7 函数表达式"></a>7 函数表达式</h1><h2 id="7-2-闭包"><a href="#7-2-闭包" class="headerlink" title="7.2 闭包"></a>7.2 闭包</h2><p>闭包是指有权访问另一个函数作用域中的变量的函数</p>
+<p>不足：多查找作用域链中的一个层次，就会在一定程度上影响查找速度。</p>
+<h2 id="7-4"><a href="#7-4" class="headerlink" title="7.4"></a>7.4</h2><h3 id="7-4-0-特权方法"><a href="#7-4-0-特权方法" class="headerlink" title="7.4.0 特权方法"></a>7.4.0 特权方法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PrivateObject</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> privateVariable = <span class="number">10</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'11'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">this</span>.publicMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		privateVariable++;</span><br><span class="line">		<span class="keyword">return</span> privateFunction;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> newPublic = <span class="keyword">new</span> PrivateObject();</span><br><span class="line"><span class="built_in">console</span>.log(newPublic.publicMethod());</span><br></pre></td></tr></table></figure>
+
+<p>每个实例都会创建同一组新方法</p>
+<h3 id="7-4-1-静态私有变量"><a href="#7-4-1-静态私有变量" class="headerlink" title="7.4.1 静态私有变量"></a>7.4.1 静态私有变量</h3><p>在原型上添加方法，会导致每个实例都没有自己的私有变量。</p>
+<h3 id="7-4-2-模块模式"><a href="#7-4-2-模块模式" class="headerlink" title="7.4.2 模块模式"></a>7.4.2 模块模式</h3><h1 id="10-DOM"><a href="#10-DOM" class="headerlink" title="10 DOM"></a>10 DOM</h1><p>每个节点都有一个 childNodes 属性，其中保存着一个 NodeList 对象（动态，随着 DOM 改变而改变）</p>
+<h1 id="节点层次"><a href="#节点层次" class="headerlink" title="节点层次"></a>节点层次</h1><h2 id="node"><a href="#node" class="headerlink" title="node"></a>node</h2><p>hasChildNodes() ownerDocument</p>
+<p>appendChild(newNode)//添加至最后 insertBefore(newNode,targetNode) replaceChild(newNode,targetNode) removeChild(targetNode) cloneNode(true||false)//true:深复制，复制节点和整个子节点树；false:浅复制，只复制节点</p>
+<h2 id="document"><a href="#document" class="headerlink" title="document"></a>document</h2><p>var html=document.documentElement //<html> var body=document.body//<body> var doctype=document.doctype//&lt;!DOCTYPE&gt;</p>
+<p>document.domain: loose &amp;&amp; tight</p>
+<h1 id="11-DOM-扩展"><a href="#11-DOM-扩展" class="headerlink" title="11 DOM 扩展"></a>11 DOM 扩展</h1><h2 id="querySelector-amp-amp-querySelectorAll"><a href="#querySelector-amp-amp-querySelectorAll" class="headerlink" title="querySelector() &amp;&amp; querySelectorAll()"></a>querySelector() &amp;&amp; querySelectorAll()</h2><p>前者返回与模式匹配的<strong>第一个元素</strong>，后者是一个 NodeList 实例</p>
+<h2 id="mathesSelector"><a href="#mathesSelector" class="headerlink" title="mathesSelector()"></a>mathesSelector()</h2><h2 id="childElementCount-amp-amp-firstElementChild-amp-amp-previousElementSibling-amp-amp-nextElementSibling"><a href="#childElementCount-amp-amp-firstElementChild-amp-amp-previousElementSibling-amp-amp-nextElementSibling" class="headerlink" title="childElementCount &amp;&amp; firstElementChild &amp;&amp; previousElementSibling &amp;&amp; nextElementSibling"></a>childElementCount &amp;&amp; firstElementChild &amp;&amp; previousElementSibling &amp;&amp; nextElementSibling</h2><p>相比于 firstChild，添加‘element‘之后，就不会纠结元素间的空格了</p>
+<h2 id="classList"><a href="#classList" class="headerlink" title="classList"></a>classList</h2><p>someElement.classList.add(value)||contains(value)||remove(value)||toggle(value)</p>
+<p>toggle 是存在则删除，不存在则添加</p>
+<h2 id="document-activeElement-amp-amp-document-hasFocus"><a href="#document-activeElement-amp-amp-document-hasFocus" class="headerlink" title="document.activeElement &amp;&amp; document.hasFocus()"></a>document.activeElement &amp;&amp; document.hasFocus()</h2><h2 id="scrollIntoView"><a href="#scrollIntoView" class="headerlink" title="scrollIntoView()"></a>scrollIntoView()</h2><h1 id="DOM2-和-DOM3"><a href="#DOM2-和-DOM3" class="headerlink" title="DOM2 和 DOM3"></a>DOM2 和 DOM3</h1><h2 id="setUserData"><a href="#setUserData" class="headerlink" title="setUserData()"></a>setUserData()</h2><h2 id="getPropertyValue"><a href="#getPropertyValue" class="headerlink" title="getPropertyValue()"></a>getPropertyValue()</h2><h2 id="document-defaultView-getComputedStyle"><a href="#document-defaultView-getComputedStyle" class="headerlink" title="document.defaultView.getComputedStyle()"></a>document.defaultView.getComputedStyle()</h2><h1 id="13-事件"><a href="#13-事件" class="headerlink" title="13 事件"></a>13 事件</h1><h2 id="13-2-事件处理"><a href="#13-2-事件处理" class="headerlink" title="13.2 事件处理"></a>13.2 事件处理</h2><p>addEventListener() 和 removeEventListener()：三个参数：要处理的事件名，函数，布尔值（true 为捕获阶段调用函数，默认 false 为冒泡）</p>
+<p>event.currentTarget &amp;&amp; event.target &amp;&amp; this</p>
+<p>preventDefault()</p>
+<h2 id="13-4-事件类型"><a href="#13-4-事件类型" class="headerlink" title="13.4 事件类型"></a>13.4 事件类型</h2><p>clientX(clientY) &amp;&amp; pageX(pageY) &amp;&amp; screenX(screenY)</p>
+<p>视口 &amp;&amp; 页面（没有滚动的时候 页面==视口） &amp;&amp;相对于整个屏幕</p>
+<p>keydown:任意键触发，按住不放会重复触发 keypress:字符键触发，按住不放会重复触发（esc 也会触发） keyup:释放触发</p>
+<p>textInput:可编辑区域才能触发；输入实际字符才能触发（退格不能）</p>
+<p>inputMethod:表示把文本输入到文本框的方式（键盘输入，粘贴，拖放等）</p>
+<h3 id="13-4-5-复合事件"><a href="#13-4-5-复合事件" class="headerlink" title="13.4.5 复合事件"></a>13.4.5 复合事件</h3><p><strong>IME（Input Method Editor 输入法编辑器）可以让用户输入在物理键盘上找不到的字符，eg 日文</strong> compositionstart compositionupdate（插入新字符） compositionend</p>
+<h3 id="13-4-7-HTML5-事件"><a href="#13-4-7-HTML5-事件" class="headerlink" title="13.4.7 HTML5 事件"></a>13.4.7 HTML5 事件</h3><p>contextmenu</p>
+<p>beforeunload(卸载页面）</p>
+<p>DOMContentLoaded:形成 DOM 树就会触发，不会管 JS CSS 文件，让用户尽早与页面交互</p>
+<p>event.preventDefault()取消默认行为</p>
+<h2 id="13-5-内存和性能"><a href="#13-5-内存和性能" class="headerlink" title="13.5 内存和性能"></a>13.5 内存和性能</h2><h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> list = <span class="built_in">document</span>.getElementById(<span class="string">'ul'</span>);</span><br><span class="line">EventUtil.addHandler(list, <span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">	event = EventUtil.getEvent(event);</span><br><span class="line">	<span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line">	<span class="keyword">switch</span> (target.id) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'doSomething'</span>:</span><br><span class="line">			<span class="built_in">document</span>.title = <span class="string">'doSomething'</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'goSomewhere'</span>:</span><br><span class="line">			<span class="built_in">document</span>.title = <span class="string">'goSomewhere'</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="13-6-模拟事件"><a href="#13-6-模拟事件" class="headerlink" title="13.6 模拟事件"></a>13.6 模拟事件</h2><p>initMouseEvent</p>
+<p>initKeyboardEvent</p>
+<h1 id="14-表单脚本"><a href="#14-表单脚本" class="headerlink" title="14 表单脚本"></a>14 表单脚本</h1><h2 id="14-2-文本框脚本"><a href="#14-2-文本框脚本" class="headerlink" title="14.2 文本框脚本"></a>14.2 文本框脚本</h2><p>访问剪切板 clipboardData 对象有三个方法：getData(),setData(),clearData()</p>
+<p>eg:如果一个文本框只接受数值，就要检测粘贴过来的值</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">EventUtil.addHandler(textbox, <span class="string">'paste'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">	event = EventUtil.getEvent(event);</span><br><span class="line">	<span class="keyword">var</span> text = EventUtil.getClipboardText(event);</span><br><span class="line">	<span class="keyword">if</span> (!<span class="regexp">/^\d*$/</span>.test(text)) &#123;</span><br><span class="line">		EventUtil.preventDefault(event);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>检测表单是否有效（require 没填，pattern 不符合等等），可以用 checkValidity()方法，而 validity 则会告诉你为什么无效</p>
+<h2 id="14-4-表单序列化"><a href="#14-4-表单序列化" class="headerlink" title="14.4 表单序列化"></a>14.4 表单序列化</h2><h1 id="20-JSON"><a href="#20-JSON" class="headerlink" title="20 JSON"></a>20 JSON</h1><h2 id="20-2-解析与序列化"><a href="#20-2-解析与序列化" class="headerlink" title="20.2 解析与序列化"></a>20.2 解析与序列化</h2><p>toJSON()</p>
+<h1 id="21-Ajax-与-Comet"><a href="#21-Ajax-与-Comet" class="headerlink" title="21 Ajax 与 Comet"></a>21 Ajax 与 Comet</h1><h2 id="21-1-XMLHttpRequest-对象"><a href="#21-1-XMLHttpRequest-对象" class="headerlink" title="21.1 XMLHttpRequest 对象"></a>21.1 XMLHttpRequest 对象</h2><h3 id="open"><a href="#open" class="headerlink" title="open"></a>open</h3><p>xhr.open(“get”,”example.php”,false)</p>
+<p>fasle 代表同步，true 代表异步</p>
+<h3 id="readyState"><a href="#readyState" class="headerlink" title="readyState"></a>readyState</h3><blockquote>
+<p>xhr.readyState: 0：未初始化。尚未调用 open() 1：启动。调用了 open()，但是未调用 send() 2：发送。调用 send(),但是未收到响应 3：接收。收到部分响应数据。 4：完成。收到全部响应数据。</p>
+</blockquote>
+<h3 id="setRequestHeader"><a href="#setRequestHeader" class="headerlink" title="setRequestHeader"></a>setRequestHeader</h3><p>xhr.open(“get”,”example.php”,true) xhr.setRequestHeader(‘MyHeader’,”MyHeaderValue”) xhr.send(null)</p>
+<h3 id="getAllResponseHeaders"><a href="#getAllResponseHeaders" class="headerlink" title="getAllResponseHeaders"></a>getAllResponseHeaders</h3><p>xhr.getAllResponseHeaders()</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addUrlParam</span>(<span class="params">url, param, value</span>) </span>&#123;</span><br><span class="line">	url += url.indexOf(<span class="string">'?'</span>) == <span class="number">-1</span> ? <span class="string">'?'</span> : <span class="string">'&amp;'</span>;</span><br><span class="line">	url += <span class="built_in">encodeURIComponent</span>(param) + <span class="string">'='</span> + <span class="built_in">encodeURIComponent</span>(value);</span><br><span class="line">	<span class="built_in">console</span>.log(url);</span><br><span class="line">	<span class="keyword">return</span> url;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">addUrlParam(<span class="string">'example.php'</span>, <span class="string">'book'</span>, <span class="string">'Professional JavaScript'</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8uj5dcsvij31880madka.jpg" alt=""></p>
+<h2 id="21-2-XMLHttpRequest-2-级"><a href="#21-2-XMLHttpRequest-2-级" class="headerlink" title="21.2 XMLHttpRequest 2 级"></a>21.2 XMLHttpRequest 2 级</h2><h3 id="21-2-1-FormData"><a href="#21-2-1-FormData" class="headerlink" title="21.2.1 FormData"></a>21.2.1 FormData</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="keyword">new</span> FormData();</span><br><span class="line">data.append(<span class="string">'name'</span>, <span class="string">'Nicholas'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="21-4-跨资源共享"><a href="#21-4-跨资源共享" class="headerlink" title="21.4 跨资源共享"></a>21.4 跨资源共享</h2><p>CORS：Cross-Origin Resource Sharing</p>
+<h2 id="21-5-其他跨域技术"><a href="#21-5-其他跨域技术" class="headerlink" title="21.5 其他跨域技术"></a>21.5 其他跨域技术</h2><h3 id="21-5-1-图像-Ping"><a href="#21-5-1-图像-Ping" class="headerlink" title="21.5.1 图像 Ping"></a>21.5.1 图像 Ping</h3><h3 id="21-5-2-JSONP"><a href="#21-5-2-JSONP" class="headerlink" title="21.5.2 JSONP"></a>21.5.2 JSONP</h3><p>JSONP：JSON with padding（参数式 JSON）</p>
+<h3 id="21-5-3-Comet"><a href="#21-5-3-Comet" class="headerlink" title="21.5.3 Comet"></a>21.5.3 Comet</h3><p>Ajax 是页面向服务器请求数据，Comet 是 S 向 C 推送数据</p>
+<p>Comet：长轮询和 HTTP 流</p>
+<h3 id="21-5-4-服务求发送事件"><a href="#21-5-4-服务求发送事件" class="headerlink" title="21.5.4 服务求发送事件"></a>21.5.4 服务求发送事件</h3><p>SSE</p>
+<h3 id="21-5-5-Web-Sockets"><a href="#21-5-5-Web-Sockets" class="headerlink" title="21.5.5 Web Sockets"></a>21.5.5 Web Sockets</h3><p>ws wss</p>
+<p>对于 CSRF 攻击，发送 post 而不是 get||检查 url||基于 cookie 验证都没有用，很容易伪造</p>
+<h1 id="22-高级技巧"><a href="#22-高级技巧" class="headerlink" title="22 高级技巧"></a>22 高级技巧</h1><h2 id="22-1-高级函数"><a href="#22-1-高级函数" class="headerlink" title="22.1 高级函数"></a>22.1 高级函数</h2><p>Object.prototype.toString.call(value)==’[object Function]’ 或者 Array 或者 RegExp 等等</p>
+<p>使用构造函数创建实例的时候，如果没有用 new 创建，而是直接调用构造函数 Person()，Person 函数里面的 this 会指向全局。</p>
+<h3 id="22-1-3-惰性载入"><a href="#22-1-3-惰性载入" class="headerlink" title="22.1.3 惰性载入"></a>22.1.3 惰性载入</h3><h2 id="22-3-高级定时器"><a href="#22-3-高级定时器" class="headerlink" title="22.3 高级定时器"></a>22.3 高级定时器</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	setTimeout(<span class="built_in">arguments</span>.callee, interval);</span><br><span class="line">&#125;, interval);</span><br></pre></td></tr></table></figure>
+
+<p>在前一个定时器执行完代码之前，不会向队列中插入新的定时器代码，确保不会有任何缺失的间隔；还可以保证在下一次定时器代码执行之前，至少要等待指定的间隔，避免了连续的运行。</p>
+<h3 id="22-3-3-节流"><a href="#22-3-3-节流" class="headerlink" title="22.3.3 节流"></a>22.3.3 节流</h3><h3 id="22-4-自定义事件"><a href="#22-4-自定义事件" class="headerlink" title="22.4 自定义事件"></a>22.4 自定义事件</h3><h1 id="23-离线应用与客户端存储"><a href="#23-离线应用与客户端存储" class="headerlink" title="23 离线应用与客户端存储"></a>23 离线应用与客户端存储</h1><h2 id="23-3-数据存储"><a href="#23-3-数据存储" class="headerlink" title="23.3 数据存储"></a>23.3 数据存储</h2><h3 id="23-3-1-cookie-与-子-cookie"><a href="#23-3-1-cookie-与-子-cookie" class="headerlink" title="23.3.1 cookie 与 子 cookie"></a>23.3.1 cookie 与 子 cookie</h3><h3 id="23-3-3-Web-存储机制"><a href="#23-3-3-Web-存储机制" class="headerlink" title="23.3.3 Web 存储机制"></a>23.3.3 Web 存储机制</h3><p>存在 sessionStorage 中的数据可以<strong>跨页面刷新而存在</strong>，浏览器崩溃后重启依然可用（ie 除外）</p>
+<p>因为 sessionStorage 对象绑定于<strong>某个服务器会话</strong>，所以当文件在本地运行的时候是不可用的。</p>
+<p>存在 sessionStorage 中的数据只能<strong>由最初给对象存储数据的页面</strong>访问到，所以<strong>对多页面应用有限制</strong></p>
+<p>sessionStorage 中的 setItem()和 getItem()</p>
+<p>针对会话的小段数据的存储：sessionStorage</p>
+<p>跨越会话的存储要用 localStorage</p>
+<h1 id="24-最佳实践"><a href="#24-最佳实践" class="headerlink" title="24 最佳实践"></a>24 最佳实践</h1><h2 id="24-2-1-注意作用域"><a href="#24-2-1-注意作用域" class="headerlink" title="24.2.1 注意作用域"></a>24.2.1 注意作用域</h2><h3 id="减少全局查找"><a href="#减少全局查找" class="headerlink" title="减少全局查找"></a>减少全局查找</h3><p>用 var doc=document 将 document 存起来，再用 document.getElementByID。。。</p>
+<h3 id="避免-with-语句"><a href="#避免-with-语句" class="headerlink" title="避免 with 语句"></a>避免 with 语句</h3><p>with 会创建自己的作用域，所以会增加其中执行代码的作用域链长度</p>
+<h2 id="24-2-2-选择正确的方法"><a href="#24-2-2-选择正确的方法" class="headerlink" title="24.2.2 选择正确的方法"></a>24.2.2 选择正确的方法</h2><h3 id="减少属性查找"><a href="#减少属性查找" class="headerlink" title="减少属性查找"></a>减少属性查找</h3><p>对象上的任何<strong>属性查找</strong>都要比访<strong>问变量或者数组</strong>花费更长时间</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">10</span> + value;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">5</span>, <span class="number">10</span>];</span><br><span class="line"><span class="keyword">var</span> sum = values[<span class="number">0</span>] + values[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> values = &#123; <span class="attr">first</span>: <span class="number">5</span>, <span class="attr">second</span>: <span class="number">10</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> sum = values.first + values.second;</span><br></pre></td></tr></table></figure>
+
+<p>前两种要比第三种好</p>
+<h3 id="优化循环"><a href="#优化循环" class="headerlink" title="优化循环"></a>优化循环</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; values.length; i++) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = values.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二行比第一行好</p>
+<p>do-while 比 for 和 while 好，因为可以避免最初终止条件的计算</p>
+<p>还有循环体内，也要优化</p>
+<p>Duff 装置技术:(升级版）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> iterations = <span class="built_in">Math</span>.floor(values.length / <span class="number">8</span>);</span><br><span class="line"><span class="keyword">var</span> leftover = values.length % <span class="number">8</span>;</span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (leftover &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		ProcessingInstruction(values[i++]);</span><br><span class="line">	&#125; <span class="keyword">while</span> (--leftover &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">&#125; <span class="keyword">while</span> (--iterations &gt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="避免双重解释"><a href="#避免双重解释" class="headerlink" title="避免双重解释"></a>避免双重解释</h3><p>实例化一个新的解释器有不容忽视的开销</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>用原生方法，而不是自己写（如 Math 要快得多）</p>
+<p>switch 比 if-else 快，最好将 case 按照最可能到最不可能排序</p>
+<p>位运算比布尔和算数运算快。</p>
+<h3 id="最小化语句数"><a href="#最小化语句数" class="headerlink" title="最小化语句数"></a>最小化语句数</h3><h2 id="优化-dom"><a href="#优化-dom" class="headerlink" title="优化 dom"></a>优化 dom</h2><h3 id="最小化现场更新"><a href="#最小化现场更新" class="headerlink" title="最小化现场更新"></a>最小化现场更新</h3><h3 id="使用-innerHTML"><a href="#使用-innerHTML" class="headerlink" title="使用 innerHTML"></a>使用 innerHTML</h3><p>使用 innerHTML 比使用标准 DOM 快得多（构建好一个 innerHTML 字符串，然后一次性调用）</p>
+<h3 id="HTMLCollection"><a href="#HTMLCollection" class="headerlink" title="HTMLCollection"></a>HTMLCollection</h3><blockquote>
+<p>返回 HTMLCollection 对象 1 进行了对 getElementsByTagName()调用 2 获取了元素 childNodes 属性 3 获取了元素 attributes 属性 4 访问了特殊的集合 document.forms,document.images 等</p>
+</blockquote>
+<h1 id="25-新兴的-API"><a href="#25-新兴的-API" class="headerlink" title="25 新兴的 API"></a>25 新兴的 API</h1><h2 id="25-2-Page-Visibility-API"><a href="#25-2-Page-Visibility-API" class="headerlink" title="25.2 Page Visibility API"></a>25.2 Page Visibility API</h2><p>document.hidden document.visibilityState</p>
+<h2 id="25-3-Geolocation-API"><a href="#25-3-Geolocation-API" class="headerlink" title="25.3 Geolocation API"></a>25.3 Geolocation API</h2><p>navigator.geolocation 对象，包含 3 个方法 getCurrentPosition()</p>
+<h2 id="25-4-File-API"><a href="#25-4-File-API" class="headerlink" title="25.4 File API"></a>25.4 File API</h2><h3 id="FileReader-类型"><a href="#FileReader-类型" class="headerlink" title="FileReader 类型"></a>FileReader 类型</h3><h3 id="webkitSlice-读取部分内容"><a href="#webkitSlice-读取部分内容" class="headerlink" title="webkitSlice() 读取部分内容"></a>webkitSlice() 读取部分内容</h3><h3 id="用-XHR-上传文件"><a href="#用-XHR-上传文件" class="headerlink" title="用 XHR 上传文件"></a>用 XHR 上传文件</h3><h2 id="Web-Timing"><a href="#Web-Timing" class="headerlink" title="Web Timing"></a>Web Timing</h2><h2 id="Web-Worker"><a href="#Web-Worker" class="headerlink" title="Web Worker"></a>Web Worker</h2><p><code>var worker=new Worker(&#39;stufftodo.js&#39;)</code></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>JS基础</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>JS基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS单位</title>
+    <url>/2019/11/03/CSS%E5%8D%95%E4%BD%8D/</url>
+    <content><![CDATA[<h1 id="px"><a href="#px" class="headerlink" title="px"></a>px</h1><p>像素</p>
+<h1 id="em"><a href="#em" class="headerlink" title="em"></a>em</h1><p>参考物是父元素的 font-size（浏览器默认是 16px），如果自身定义了 font-size，就按自身的来算。</p>
+<h1 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h1><p>相对于根元素（html）</p>
+<h1 id=""><a href="#" class="headerlink" title="%"></a>%</h1><ul>
+<li>对于普通元素：相对于父元素</li>
+<li>对于 position: absolute 的元素：相对于已定位的父元素</li>
+<li>对于 position: fixed 的元素：相对于 ViewPort（可视窗口）</li>
+</ul>
+<h1 id="vw-amp-vh"><a href="#vw-amp-vh" class="headerlink" title="vw &amp; vh"></a>vw &amp; vh</h1><p>css3 新元素，view width 和 view height（可视宽高）</p>
+<p>浏览器宽度 1200px，1vw=1200px/100=12px</p>
+<blockquote>
+<p>如何使 1rem=10px？在设置 HTML{font-size：62.5%；}即可</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/weixin_42192534/article/details/80289782" target="_blank" rel="noopener">参考</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flex布局</title>
+    <url>/2019/10/28/Flex%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<h1 id="Flex-基本概念"><a href="#Flex-基本概念" class="headerlink" title="Flex 基本概念"></a>Flex 基本概念</h1><p>flex：弹性布局</p>
+<p>行内元素也可以用 flex，webkit 内核的要加上-webkit</p>
+<p><strong>注意，设为 Flex 布局以后，子元素自动成为 flex item，并且其 float、clear 和 vertical-align 属性将失效。</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89lw0kne6j30fn099dgi.jpg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h1><h2 id="flex-direction-column-reverse-column-row-default-row-reverse"><a href="#flex-direction-column-reverse-column-row-default-row-reverse" class="headerlink" title="flex-direction:column-reverse|column|row(default)|row-reverse"></a>flex-direction:column-reverse|column|row(default)|row-reverse</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89mc8iehlj30m405n74l.jpg" alt=""></p>
+<h2 id="flex-wrap-nowrap-default-wrap-wrap-reverse"><a href="#flex-wrap-nowrap-default-wrap-wrap-reverse" class="headerlink" title="flex-wrap:nowrap(default) | wrap | wrap-reverse;"></a>flex-wrap:nowrap(default) | wrap | wrap-reverse;</h2><p>不换行|换行|换行，第一行在下面</p>
+<h2 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h2><p>flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap。</p>
+<h2 id="justify-content：flex-start-default-flex-end-center-space-between-space-around"><a href="#justify-content：flex-start-default-flex-end-center-space-between-space-around" class="headerlink" title="justify-content：flex-start(default)|flex-end|center|space-between|space-around"></a>justify-content：flex-start(default)|flex-end|center|space-between|space-around</h2><p>定义了项目在<strong>主轴</strong>上的对齐方式 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aamszweyj30hp0l70u3.jpg" alt=""></p>
+<h2 id="align-items：flex-start-flex-end-center-stretch（default-baseline"><a href="#align-items：flex-start-flex-end-center-stretch（default-baseline" class="headerlink" title="align-items：flex-start | flex-end | center | stretch（default)| baseline;"></a>align-items：flex-start | flex-end | center | stretch（default)| baseline;</h2><p>项目在<strong>交叉轴</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aatkq4cgj30h50lujsr.jpg" alt=""> baseline:项目的第一行文字的基线对齐。 stretch：如果项目未设置高度或设为 auto，将占满整个容器的高度。</p>
+<h2 id="align-content-flex-start-flex-end-center-stretch-default-space-between-space-around"><a href="#align-content-flex-start-flex-end-center-stretch-default-space-between-space-around" class="headerlink" title="align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;"></a>align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;</h2><p>项目在<strong>多根轴线</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aavwyo41j30h80ludhq.jpg" alt=""> 多根轴线</p>
+<p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
+<p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
+<h1 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h1><h2 id="order：integer-default-0"><a href="#order：integer-default-0" class="headerlink" title="order：integer(default:0)"></a>order：integer(default:0)</h2><p>数字越小越靠前 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhl5degj30kv0dcmxz.jpg" alt=""></p>
+<h2 id="flex-grow：integer-default-0"><a href="#flex-grow：integer-default-0" class="headerlink" title="flex-grow：integer(default:0)"></a>flex-grow：integer(default:0)</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhfdy55j30ma05v74o.jpg" alt=""> 定义放大比例：如果所有都是 1，则等分，有个项目是 2 的话，即 2 倍距离。</p>
+<p><strong>0 的意思是：即使存在剩余空间，也不放大</strong></p>
+<h2 id="flex-shrink：integer-default-1"><a href="#flex-shrink：integer-default-1" class="headerlink" title="flex-shrink：integer(default:1)"></a>flex-shrink：integer(default:1)</h2><p>定义缩小比例：如果都是 1，则一起缩小；如果有一个是 0，1 缩小，0 不缩小。</p>
+<p><strong>不可取负值</strong></p>
+<p><strong>1 的意思是：若空间不足，则缩小</strong></p>
+<h2 id="flex-basis：-auto"><a href="#flex-basis：-auto" class="headerlink" title="flex-basis：  | auto"></a>flex-basis： <length> | auto</h2><p>定义了：在分配多余空间之前，项目占据主轴空间（main size），默认值为 auto，即项目本来大小。</p>
+<p><strong>它可以设为跟 width 或 height 属性一样的值（比如 350px），则项目将占据固定空间。</strong></p>
+<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><p>flex 属性是 flex-grow、flex-shrink、flex-basis 的简写，默认为 0 1 auto（后两个可选）</p>
+<p>该属性有两个快捷值:auto（1 1 auto）和 none（0 0 auto）</p>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h2 id="align-self：auto-default-flex-start-flex-end-center-baseline-stretch"><a href="#align-self：auto-default-flex-start-flex-end-center-baseline-stretch" class="headerlink" title="align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;"></a>align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;</h2><p>允许自己和其他项目不一样的对齐方式；</p>
+<p>auto:继承父元素的 align-items，如果没有父元素，则等同于 stretch；</p>
+<p>除 auto 外其他属性和 align-items 一样</p>
+<h2 id="flex-垂直居中"><a href="#flex-垂直居中" class="headerlink" title="flex 垂直居中"></a>flex 垂直居中</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">    vertical-align: center;</span><br><span class="line">    flex-wrap: wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实例中网格布局之后的内容 稍后再整理</strong></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">参考阮一峰语法篇</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">参考阮一峰实例篇</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>CSS</category>
+        <category>Flex</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>CSS</tag>
+        <tag>Flex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS基础</title>
+    <url>/2019/10/28/CSS%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g870k95k7zj31a60naae8.jpg" alt=""></p>
+<h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1><h2 id="IE-盒模型"><a href="#IE-盒模型" class="headerlink" title="IE 盒模型"></a>IE 盒模型</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8beap40nbj30xw0lewgw.jpg" alt=""></p>
+<h2 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a>标准盒模型</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8beaz5fvzj30zk0l1tb5.jpg" alt=""></p>
+<a id="more"></a>
+
+<h2 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h2><p>box-sizing：content-box（默认：标准盒模型）</p>
+<p>box-sizing：border-box（怪异模式：width = border + padding + 内容的 width）</p>
+<blockquote>
+<p>当你想让两个子容器 float:left，宽度各 50%，然后给一点 padding，最后让子容器并排充满父容器，一切想的挺美好，然而结果并不是这样。</p>
+<p>因为子容器的盒子宽度已经超出了父容器的一半，导致了折行，于是，width 就不能 50%了，只能是 50%再减去 padding 的像素值</p>
+</blockquote>
+<h2 id="弹性盒模型"><a href="#弹性盒模型" class="headerlink" title="弹性盒模型"></a>弹性盒模型</h2><p>弹性盒子由弹性容器和弹性子元素组成；</p>
+<p>通过 display：flex 或者 inline-flex 定义为弹性</p>
+<h1 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h1><p><code>animation: name duration timing-function delay iteration-count direction;</code></p>
+<h2 id="animation-name-绑定到选择器的-keyframe-名称"><a href="#animation-name-绑定到选择器的-keyframe-名称" class="headerlink" title="animation-name:绑定到选择器的 keyframe 名称;"></a>animation-name:绑定到选择器的 keyframe 名称;</h2><h2 id="animation-duration-规定完成动画所花费的时间，以秒或毫秒计"><a href="#animation-duration-规定完成动画所花费的时间，以秒或毫秒计" class="headerlink" title="animation-duration:规定完成动画所花费的时间，以秒或毫秒计;"></a>animation-duration:规定完成动画所花费的时间，以秒或毫秒计;</h2><h2 id="animation-timing-function-规定动画的速度曲线。"><a href="#animation-timing-function-规定动画的速度曲线。" class="headerlink" title="animation-timing-function:规定动画的速度曲线。"></a>animation-timing-function:规定动画的速度曲线。</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8728e1epzj319u0ni0wv.jpg" alt=""></p>
+<h2 id="animation-delay-规定在动画开始之前的延迟。"><a href="#animation-delay-规定在动画开始之前的延迟。" class="headerlink" title="animation-delay:规定在动画开始之前的延迟。"></a>animation-delay:规定在动画开始之前的延迟。</h2><p>注意：允许负值，-2s 使动画马上开始，但跳过 2 秒进入动画。</p>
+<p>注意：此处虽然跳过 2 秒，但同样是完整的动画，不是从动画的 2s 处开始执行</p>
+<h2 id="animation-iteration-count-规定动画应该播放的次数。"><a href="#animation-iteration-count-规定动画应该播放的次数。" class="headerlink" title="animation-iteration-count:规定动画应该播放的次数。"></a>animation-iteration-count:规定动画应该播放的次数。</h2><p>infinite:无限次</p>
+<h2 id="animation-direction-规定是否应该轮流反向播放动画。"><a href="#animation-direction-规定是否应该轮流反向播放动画。" class="headerlink" title="animation-direction:规定是否应该轮流反向播放动画。"></a>animation-direction:规定是否应该轮流反向播放动画。</h2><p>animation-direction: normal|alternate;//正|反</p>
+<h2 id="animation-play-state：暂停-播放"><a href="#animation-play-state：暂停-播放" class="headerlink" title="animation-play-state：暂停/播放"></a>animation-play-state：暂停/播放</h2><p>paused, running</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">div</span><br><span class="line">&#123;</span><br><span class="line">width:100px;</span><br><span class="line">height:100px;</span><br><span class="line">background:red;</span><br><span class="line">position:relative;</span><br><span class="line">animation:mymove 2s infinite;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@keyframes mymove</span><br><span class="line">&#123;</span><br><span class="line">0% &#123;left:0px;&#125;</span><br><span class="line">50% &#123;left:200px;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在动画进行到 50%的时候，进行 200px 位移，这里的 50%就是上面定义动画时的 2s 的 50%，也就是 1s。</p>
+<h1 id="CSS-Sprite"><a href="#CSS-Sprite" class="headerlink" title="CSS Sprite"></a>CSS Sprite</h1><p><a href="https://css-tricks.com/css-sprites/" target="_blank" rel="noopener">使用 css Sprite</a></p>
+<p><a href="https://www.npmjs.com/package/sprity" target="_blank" rel="noopener">npm 的 cssSprite 库 sprity</a></p>
+<p>用 gulp 的话：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var gulp &#x3D; require(&#39;gulp&#39;);</span><br><span class="line">var gulpif &#x3D; require(&#39;gulp-if&#39;);</span><br><span class="line">var sprity &#x3D; require(&#39;sprity&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; generate sprite.png and _sprite.scss</span><br><span class="line">gulp.task(&#39;sprites&#39;, function () &#123;</span><br><span class="line">  return sprity.src(&#123;</span><br><span class="line">    src: &#39;.&#x2F;src&#x2F;images&#x2F;**&#x2F;*.&#123;png,jpg&#125;&#39;,</span><br><span class="line">    style: &#39;.&#x2F;sprite.css&#39;,</span><br><span class="line">    &#x2F;&#x2F; ... other optional options</span><br><span class="line">    &#x2F;&#x2F; for example if you want to generate scss instead of css</span><br><span class="line">    processor: &#39;sass&#39;, &#x2F;&#x2F; make sure you have installed sprity-sass</span><br><span class="line">  &#125;)</span><br><span class="line">  .pipe(gulpif(&#39;*.png&#39;, gulp.dest(&#39;.&#x2F;dist&#x2F;img&#x2F;&#39;), gulp.dest(&#39;.&#x2F;dist&#x2F;css&#x2F;&#39;)))</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="伪类和伪元素"><a href="#伪类和伪元素" class="headerlink" title="伪类和伪元素"></a>伪类和伪元素</h1><blockquote>
+<p>MDN：伪类连同伪元素一起，他们允许你不仅仅是根据文档 DOM 树中的内容对元素应用样式，而且还允许你根据诸如像导航历史这样的外部因素来应用样式（例如 :visited），同样的，可以根据内容的状态（例如在一些表单元素上的 :checked），或者鼠标的位置（例如 :hover 让你知道是否鼠标在一个元素上悬浮）来应用样式。</p>
+</blockquote>
+<blockquote>
+<p>注意： 与伪类相反，伪元素可被用于为一个元素的<strong>特定部分</strong>应用样式。</p>
+</blockquote>
+<blockquote>
+<p>注意：与伪元素比较，伪类能够根据状态改变元素样式。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">selector::pseudo-element &#123;</span><br><span class="line">  property: value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：一个选择器中只能使用一个伪元素。伪元素必须紧跟在语句中的简单选择器/基础选择器之后。</p>
+<p>注意：按照规范，伪类用单冒号，伪元素用双冒号</p>
+<p>之所以叫伪元素，是因为他修饰不在文档树中的部分；不是真实存在的。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g885erl98hj30k00abwfb.jpg" alt=""></p>
+<h2 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h2><p><strong>如果一个父元素的所有子元素如果都是浮动的，那么这个父元素是没有高度的，但是父元素并没有脱离正常的文档流，仍然占据正常文档流的空间</strong> 那么：</p>
+<ol>
+<li>如果这个父元素的<strong>相邻元素是行内元素</strong>，那么这个行内元素将会在这个父元素的区域内见缝插针，找到一块放得下它的地方</li>
+<li>如果相邻的元素<strong>是一个块级元素</strong>，那么设置这个块级元素的 margin-top 将会以这个<strong>父元素的起始位置作为起点</strong>。</li>
+</ol>
+<p><a href="https://zhuanlan.zhihu.com/p/31256701" target="_blank" rel="noopener">参考 1:伪元素实用小技巧</a></p>
+<p><a href="https://juejin.im/post/5c6d6c566fb9a049aa6faba7" target="_blank" rel="noopener">参考 2:前端盒模型</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS中New操作符做了什么</title>
+    <url>/2019/10/22/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<h1 id="例-1"><a href="#例-1" class="headerlink" title="例 1"></a>例 1</h1><p>由以下两段代码可以看出，new 关键字帮我们做了：</p>
+<ol>
+<li>创建 obj 对象</li>
+<li>把新建的 obj 对象的_ _ proto__指向构造函数 Common 的 prototype</li>
+<li>构造函数的作用域会指向实例本身（新对象），this 也指向新对象</li>
+<li><strong>执行构造函数内部的代码，将属性添加给 person 中的 this 对象。</strong></li>
+<li>不用手动 return，会自动返回新对象<a id="more"></a>
+
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Common</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line">	obj.__proto__=Common.prototype;</span><br><span class="line">	obj.id=id;</span><br><span class="line">	<span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line">Common.prototype.makeFun=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'想要重复使用的方法'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    arr.push(Common(i))</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Common</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.id=id;</span><br><span class="line">&#125;</span><br><span class="line">Common.prototype.makeFun=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'想要重复使用的方法'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    arr.push(<span class="keyword">new</span> Common(i))</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
+
+<h1 id="例-2"><a href="#例-2" class="headerlink" title="例 2"></a>例 2</h1><p><code>var obj = new Base();</code> <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g83m2mht9yj30b705rmxc.jpg" alt=""></p>
+<p>new 操作符具体干了什么呢?其实很简单，就干了三件事情：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;&#125;</span><br><span class="line">obj.__proto__=Base.prototype</span><br><span class="line">Base.call(obj)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>创建一个空对象 obj</li>
+<li>把空对象的_ _ proto__成员指向了 Base 对象的 prototype 成员对象</li>
+<li>把 Base 函数对象的 this 指针替换成 obj，然后再调用 Base 函数，于是我们就给 obj 对象赋值了一个 id 成员变量，这个变量的值是 base</li>
+</ol>
+<p>如果给 Base.prototype 的对象添加一些函数：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Base.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">this</span>.id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么当我们使用 new 创建一个新对象的时候，根据_ _ proto__的特性，toString 这个方法也可以做新对象的方法被访问到。于是我们看到了：</p>
+<p>构造子中，我们来设置“类”的成员变量（例如：例子中的 id），构造子对象 prototype 中我们来设置‘类’的公共方法。于是通过函数对象和 Javascript 特有的_ _ proto__与 prototype 成员及 new 操作符，模拟出类和类实例化的效果。</p>
+<h1 id="例-3"><a href="#例-3" class="headerlink" title="例 3"></a>例 3</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.job = job;</span><br><span class="line">    <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">"tom"</span>, <span class="number">21</span>, <span class="string">"WEB"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(person.name)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line">person._proto_ = Person.prototype;<span class="comment">//引用构造函数的原型对象</span></span><br><span class="line">Person.call(person);<span class="comment">//将构造函数的作用域给person,即：this值指向person</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Function</span>.method(<span class="string">"new"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> <span class="comment">//新创建一个对象，它继承了构造器的原型对象。</span></span><br><span class="line"> <span class="keyword">var</span> that = <span class="built_in">Object</span>.create(<span class="keyword">this</span>.prototype); <span class="comment">//此时，this是指向Function构造器的。</span></span><br><span class="line"> <span class="comment">//调用构造器，绑定this对象到新对象that上</span></span><br><span class="line"> <span class="keyword">var</span> other = <span class="keyword">this</span>.apply(that, argument); <span class="comment">//此时，this对象指向that对象。</span></span><br><span class="line"> <span class="comment">//如果它的返回值不是一个对象，就返回新的对象。</span></span><br><span class="line"> <span class="keyword">return</span> (<span class="keyword">typeof</span> other === <span class="string">"object"</span> &amp;&amp; other) || that;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>通过 new 关键字创建某构造函数的新实例对象，就是将原型链与实例的 this 联系起来，<strong>this 指向这个新对象，同时也指向这个构造函数</strong>，并且 this 对象还是这个构造函数的实例。</p>
+<p>如果没有使用 new 操作符，直接用构造函数创建新实例对象，那么 this 对象就指向了 window 对象，不会指向这个新对象的，不管给这个新对象添加什么属性，都没有用，是直接添加到了 window 对象上了。</p>
+<p><a href="https://blog.csdn.net/qq_33505829/article/details/88537110" target="_blank" rel="noopener">参考 1</a> <a href="https://www.jianshu.com/p/db4ae33d1e53" target="_blank" rel="noopener">参考 2</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>JS基础</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>JS基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript原型链</title>
+    <url>/2019/10/20/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/</url>
+    <content><![CDATA[<h1 id="原型链属性"><a href="#原型链属性" class="headerlink" title="原型链属性"></a>原型链属性</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">name</span>: <span class="string">'obj'</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>obj 有两个属性：一个是添加的 name 属性，一个是自带的_ _proto__属性，指向 window.Object.prototype。如下图所示。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g84posdw50j30u00xvq8q.jpg" alt=""></p>
+<a id="more"></a>
+
+<h2 id="示意图"><a href="#示意图" class="headerlink" title="示意图"></a>示意图</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g84pusm9yqj30k00eb74r.jpg" alt=""></p>
+<h2 id="window-Object-prototype"><a href="#window-Object-prototype" class="headerlink" title="window.Object.prototype"></a>window.Object.prototype</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g84qm6iw50j30u20jotcr.jpg" alt=""></p>
+<p>这样你在调用 obj.toString() 的时候，obj 本身没有 toString，就去 obj._ _ proro__ 上面去找 toString。所以你调用 <strong>obj.toString</strong> 的时候，实际上调用的是 <strong>window.Object.prototype.toString</strong></p>
+<blockquote>
+<p>那么 window.Object.prototype.toString 是怎么获取 obj 的内容的呢？</p>
+</blockquote>
+<blockquote>
+<p>那是因为 obj.toString() 等价于 obj.toString.call(obj)</p>
+</blockquote>
+<blockquote>
+<p>同时 obj.toString.call(obj) 等价于 window.Object.prototype.toString.call(obj)这句话把 obj 传给 toString 了</p>
+</blockquote>
+<h1 id="array-push"><a href="#array-push" class="headerlink" title="array.push"></a>array.push</h1><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g84ucbsv8zj30uy0u0gtl.jpg" alt=""> <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g84uhe0j3jj30qo0xs7ai.jpg" alt=""></p>
+<p>这样你在调用 arr.push 的时候，arr 自身没有 push 属性，就去 arr._ _ proto__ 上找 push 因此 arr.push 实际上是 window.Array.prototype.push</p>
+<p>arr.push(1) 等价与 arr.push.call(arr,1)</p>
+<p>arr.push.call(arr,1) 等价于 window.Array.prototype.push.call(arr, 1)</p>
+<h1 id="共享原型链"><a href="#共享原型链" class="headerlink" title="共享原型链"></a>共享原型链</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj2 = &#123; <span class="attr">name</span>: <span class="string">'obj2'</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g84pv5sf6bj30k00ee3z9.jpg" alt=""> 如果我们改写 obj2._ _ proto__.toString，那么 obj.toString 其实也会变！</p>
+<h1 id="差异化"><a href="#差异化" class="headerlink" title="差异化"></a>差异化</h1><p>如果我们想让 obj.toString 和 obj2.toString 的行为不同怎么做呢？</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">obj.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="string">'新的 toString 方法'</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g84qcwj9hqj30k00e9wfa.jpg" alt=""></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>“读”属性时会沿着原型链搜索。</p>
+<p>“新增”属性时不会去看原型链</p>
+<p><strong>prototype 指向一块内存，这个内存里面有共用属性，_ _ proto__ 指向同一块内存</strong></p>
+<p>prototype 和 _ _ proto_ _ 的不同点在于： <strong>prototype 是构造函数的属性</strong>，而 <strong>*_ _ proto_ _ 是对象的属性</strong></p>
+<p>难点在于……构造函数也是对象！</p>
+<p><strong>如果没有 prototype，那么共用属性就没有立足之地，如果没有 _ _ proto_ _，那么一个对象就不知道自己的共用属性有哪些。</strong></p>
+<p><strong>1. prototype 是构造函数的一个属性。</strong></p>
+<p><strong>2. _ _ proto_ _是实例的属性，一般意义上的【实例的原型】。</strong></p>
+<p><strong>3. 开发人员对构造函数属性 prototype 的操作，最终会反应到该构造函数的实例上。</strong></p>
+<p><a href="https://zhuanlan.zhihu.com/p/23090041?refer=study-fe" target="_blank" rel="noopener">参考 1</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>JS基础</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>JS基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Javascript中的遍历</title>
+    <url>/2019/10/19/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/</url>
+    <content><![CDATA[<p>ES5 具有遍历数组功能的有 forEach、map、filter、some、every、reduce、reduceRight</p>
+<h1 id="foreach："><a href="#foreach：" class="headerlink" title="foreach："></a>foreach：</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> sum=<span class="number">0</span>；</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value,index,array</span>)</span>&#123;</span><br><span class="line">    array[index] == value;    <span class="comment">//结果为true</span></span><br><span class="line">    sum+=value;</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="built_in">console</span>.log(sum);    <span class="comment">//结果为 10</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g82mwnsv7zj30kk0qewhk.jpg" alt=""></p>
+<a id="more"></a>
+
+<p><strong>但是使用 foreach 遍历数组的话，使用 break 不能中断循环，使用 return 也不能返回到外层函数。</strong></p>
+<h1 id="set-和-map"><a href="#set-和-map" class="headerlink" title="set 和 map"></a>set 和 map</h1><p>遍历 map 对象时适合用解构,例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> [key, value] <span class="keyword">of</span> phoneBookMap) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(key + <span class="string">"'s phone number is: "</span> + value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g82mzt4kg8j30lk0m6jtg.jpg" alt=""></p>
+<h1 id="for-in"><a href="#for-in" class="headerlink" title="for-in"></a>for-in</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.method=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　<span class="built_in">console</span>.log(<span class="keyword">this</span>.length);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> myArray=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line">myArray.name=<span class="string">"数组"</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> index <span class="keyword">in</span> myArray) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(myArray[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>index 索引为字符串型数字，不能直接进行几何运算</li>
+<li>遍历顺序有可能不是按照实际数组的内部顺序</li>
+<li>for in 会遍历所有可枚举属性，包括原型。包括上述的 name 和 method</li>
+</ol>
+<p><strong>通常用 for in 来遍历对象的键名，如果对象是个数组的话，也会只返回键名</strong> <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g82n1my7c6j30ko0iuq4c.jpg" alt=""></p>
+<h1 id="for-of"><a href="#for-of" class="headerlink" title="for of"></a>for of</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.method=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　<span class="built_in">console</span>.log(<span class="keyword">this</span>.length);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> myArray=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line">myArray.name=<span class="string">"数组"</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> value <span class="keyword">of</span> myArray) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g82mwx6y36j30o20yctbv.jpg" alt=""></p>
+<p><strong>注意：for in 遍历的是数组的索引（即键名），而 for of 遍历的是数组元素值。</strong></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>for..of 适用遍历数/数组对象/字符串/map/set 等拥有迭代器对象的集合.但是不能遍历对象,因为没有迭代器对象.与 forEach()不同的是，它可以正确响应 break、continue 和 return 语句</li>
+<li>for-of 循环不支持普通对象，但如果你想迭代一个对象的属性，你可以用 for-in 循环（这也是它的本职工作）或内建的 Object.keys()方法：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(someObject)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">": "</span> + someObject[key]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.cnblogs.com/zjx304/p/10687017.html" target="_blank" rel="noopener">参考 1</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>JS基础</category>
+        <category>ES6</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>JS基础</tag>
+        <tag>ES6</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《大话数据结构》</title>
+    <url>/2019/09/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7egtyc6bxj318s0pon25.jpg" alt=""></p>
+<a id="more"></a>
+
+<p><a href="https://www.cnblogs.com/cj723/archive/2011/02/06/1949498.html" target="_blank" rel="noopener">《大话数据结构》</a></p>
+<h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><p>对于第 i 个数据元素 ai 的存储位置： LOC(ai)=LOC(a1)+(i-1)*c //c 是每个数据元素占据的存储单元</p>
+<p>如上公式所示，存取时间性能为 O(1),通常这一存储结构叫做随机存取结构</p>
+<h2 id="线性表的顺序存储结构："><a href="#线性表的顺序存储结构：" class="headerlink" title="线性表的顺序存储结构："></a>线性表的顺序存储结构：</h2><p>存、读数据时，O(1);</p>
+<p>插入、删除数据时，O(n)；</p>
+<h2 id="线性表的链式存储："><a href="#线性表的链式存储：" class="headerlink" title="线性表的链式存储："></a>线性表的链式存储：</h2><p>结点包括数据域(信息和数据,头结点可以为空)和指针域(指向下一个)</p>
+<p>单链表的读取、插入删除：都是 O(n)</p>
+<p>用数组描述的链表叫静态链表，或者叫游标实现法。即数组的元素都是由两个数据域组成，其中一个就相当于指针。</p>
+<h2 id="头插法和尾插法"><a href="#头插法和尾插法" class="headerlink" title="头插法和尾插法"></a>头插法和尾插法</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7ei0g4cucj30u00xgdqy.jpg" alt=""></p>
+<p>头指针为 L，插入的是 p，则：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">p-&gt;next=(*L)-&gt;next</span><br><span class="line">(*L)-&gt;next=p;</span><br></pre></td></tr></table></figure>
+
+<h1 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h1><h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>某出栈元素前面比它小的元素，一定是非入栈顺序，比如 123 入栈，出栈顺序就不能是 312；12345 入栈，出栈顺序不能是 34512；因为 5 大于 1、2，而 12 是入栈顺序，不可以。（此处感谢堃哥）</p>
+<h3 id="两栈共享空间"><a href="#两栈共享空间" class="headerlink" title="两栈共享空间"></a>两栈共享空间</h3><p>通常用于两个栈的空间需求有相反关系的时候，也就是一个栈增长一个栈减少。</p>
+<p>使用：一个栈的栈地为数组的 0 处，另一个栈为数组的 n-1 处。这样两个栈如果增加元素，就是两端点向中间延伸。当 top1+1==top2 的时候，栈满。</p>
+<h3 id="逆波兰式："><a href="#逆波兰式：" class="headerlink" title="逆波兰式："></a>逆波兰式：</h3><p>9➕（3➖1）✖️3➕10➗2</p>
+<p>逆波兰式：9 3 1 - 3 x + 10 2/ +</p>
+<p>遇到优先级高的再写符号，比如 3-1 最先，要写 9 3 1➖，然后是和 3✖️，此时再和 9 相加，➗ 的优先级高于 ➕，最后再加一起。</p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h3><p>判断队满：</p>
+<ol>
+<li>设置标志变量 flag，当 front==rear &amp;&amp; flag==0 时，队为空；front==rear &amp;&amp;flag==1 的时候，队为满。</li>
+<li>队列空的时候，front==rear；但当队列满的时候，我们将修改其条件，保留一个元素空间（也就是说，队列满的时候，数组中还有一个空闲单元）。设队列的最大尺寸为 QueueSize，则：</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">(rear+<span class="number">1</span>)% QueueSize == front      <span class="comment">//队满</span></span><br><span class="line">(rear-front+QueueSize)% QueueSize  <span class="comment">//通用的队列长度计算公式</span></span><br></pre></td></tr></table></figure>
+
+<p>链队列和循环队列基本操作都是 O(1)的。循环队列事先申请好空间，使用期间不释放，链队列每次申请和释放有一定的时间开销。但是循环队列的长度固定，所以链队列更灵活。</p>
+<h1 id="串"><a href="#串" class="headerlink" title="串"></a>串</h1><h1 id="KMP-模式匹配算法"><a href="#KMP-模式匹配算法" class="headerlink" title="KMP 模式匹配算法"></a>KMP 模式匹配算法</h1><p>当模式与主串之间存在许多“部分匹配”的情况下才能体现出它的优势，否则两者差异并不明显</p>
+<p>主串 S=“abcdefgab”，要匹配的 T=“abcdex”，因为 T 的 a 和后面 bcdex 都不相等，也就是 a 不与自己后面子串中任何一个字符相等，那么第一次 T 与 S 匹配中 T 的 abcde 和 S 的 abcde，那么 T 的首字符 a 就不可能与 S 中的 bcde 相等了。不需要做此匹配判断。</p>
+<h1 id="KMP-算法改进"><a href="#KMP-算法改进" class="headerlink" title="KMP 算法改进"></a>KMP 算法改进</h1><h1 id="树："><a href="#树：" class="headerlink" title="树："></a>树：</h1><h2 id="表示法"><a href="#表示法" class="headerlink" title="表示法"></a>表示法</h2><p>双亲表示法，孩子表示法，孩子兄弟表示法</p>
+<h2 id="特殊的树"><a href="#特殊的树" class="headerlink" title="特殊的树"></a>特殊的树</h2><p>斜树，满二叉树，完全二叉树</p>
+<h2 id="二叉树性质："><a href="#二叉树性质：" class="headerlink" title="二叉树性质："></a>二叉树性质：</h2><ol>
+<li>在二叉树的第 i 层最多有 2^(i-1)个结点</li>
+<li>深度为 k 的二叉树最多有 2^k-1 个结点</li>
+<li>二叉树中，叶子结点为 n0，度为 2 的点为 n2，那么 n0=n2+1</li>
+<li>具有 n 个结点的完全二叉树的深度为[log2n]+1([x]表示不大于 x 的最大整数）</li>
+</ol>
+<h2 id="遍历二叉树"><a href="#遍历二叉树" class="headerlink" title="遍历二叉树"></a>遍历二叉树</h2><p>前序中序后序</p>
+<p><strong>已知前序和后序是不能确定一棵二叉树的</strong></p>
+<h2 id="线索二叉树"><a href="#线索二叉树" class="headerlink" title="线索二叉树"></a>线索二叉树</h2><p>指向前驱和后继</p>
+<h2 id="树和森林转换"><a href="#树和森林转换" class="headerlink" title="树和森林转换"></a>树和森林转换</h2><p>右子树为原来的兄弟 左子树为原来的孩子</p>
+<h2 id="赫夫曼树"><a href="#赫夫曼树" class="headerlink" title="赫夫曼树"></a>赫夫曼树</h2><p>树的路径长度就是从树的根结点到每一个结点的路径长度之和</p>
+<p>带权路径长度 WPL 最小的是赫夫曼树</p>
+<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><p>有权值的图叫网</p>
+<h2 id="图的存储"><a href="#图的存储" class="headerlink" title="图的存储"></a>图的存储</h2><h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><h3 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h3><h3 id="十字链表（难）"><a href="#十字链表（难）" class="headerlink" title="十字链表（难）"></a>十字链表（难）</h3><p>对于有向图来说，可以将邻接表和逆邻接表结合起来，方便找到以 Vi 为头和尾的弧，因而可以快速求得顶点的入度和出度。（很好用）</p>
+<p>顶点表结点结构：</p>
+<table>
+<thead>
+<tr>
+<th>data</th>
+<th>firstin</th>
+<th>firstout</th>
+</tr>
+</thead>
+</table>
+<p>firstin 表示<strong>入边</strong>表头指针，指向该顶点的入边表的第一个结点。firstout 表示“出”。</p>
+<p>边表结点结构：</p>
+<table>
+<thead>
+<tr>
+<th>tailvex</th>
+<th>headvex</th>
+<th>headlink</th>
+<th>tailink</th>
+</tr>
+</thead>
+</table>
+<p>tailvex 表示<strong>弧起点</strong>在顶点表的下标，headvex 表示<strong>弧终点</strong>在顶点表中的下标，headlink 指入边表指针域，指向终点相同的下一条边，tailink 指边表指针域，指向起点相同的下一条边。如果是网，还可以加一个 weight 域表示权重。</p>
+<h3 id="邻接多重表（难）"><a href="#邻接多重表（难）" class="headerlink" title="邻接多重表（难）"></a>邻接多重表（难）</h3><table>
+<thead>
+<tr>
+<th>ivex</th>
+<th>ilink</th>
+<th>jvex</th>
+<th>jlink</th>
+</tr>
+</thead>
+</table>
+<p><strong>ivex 和 jvex 是与某条边依附的两个顶点在顶点表中的下标。ilink 指向依附顶点 ivex 的下一条边，jlink 指向依附顶点 jvex 的下一条边。这就是邻接多重表结构</strong></p>
+<p><strong>ilink 指向的结点的 jvex 一定要和它本身的 ivex 的值相同</strong></p>
+<h3 id="边集数组"><a href="#边集数组" class="headerlink" title="边集数组"></a>边集数组</h3><p>应用：克鲁斯卡尔算法。适合对边进行操作，而不是对顶点。</p>
+<h2 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h2><h3 id="深度优先"><a href="#深度优先" class="headerlink" title="深度优先"></a>深度优先</h3><h3 id="广度优先"><a href="#广度优先" class="headerlink" title="广度优先"></a>广度优先</h3><h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><h3 id="普里姆（Prim）算法"><a href="#普里姆（Prim）算法" class="headerlink" title="普里姆（Prim）算法"></a>普里姆（Prim）算法</h3><p>以某个顶点为起点，遍历所有相邻边，选最小权值的边的下一个顶点，加入目前的数组，并将现有的所有点视为整体。算法的时间复杂度是 O(n^2)</p>
+<h3 id="克鲁斯卡尔（Kruskal）算法"><a href="#克鲁斯卡尔（Kruskal）算法" class="headerlink" title="克鲁斯卡尔（Kruskal）算法"></a>克鲁斯卡尔（Kruskal）算法</h3><p>首先令最小生成树的初始状态为只有 n 个顶点而无边的非连通图 T，每个点自成一个连通分量，直接找最小权值的边，若该边依附的顶点落在 T 中不同的连通分量上，将其加入到 T 中，否则舍去。直到 T 中所有点都在一个连通分量上。时间复杂度是 O(eloge)</p>
+<h2 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h2><h3 id="迪杰斯特拉（Dijkstra）算法"><a href="#迪杰斯特拉（Dijkstra）算法" class="headerlink" title="迪杰斯特拉（Dijkstra）算法"></a>迪杰斯特拉（Dijkstra）算法</h3><p><a href="https://www.bilibili.com/video/av52374596?from=search&seid=15217270412527198048" target="_blank" rel="noopener">B 站讲 Dijsktra</a></p>
+<p>首先用一个数组保存最短路径长度（一开始是无穷大，为 65535），点集 S 只有 v0 点，然后遍历所有和 v0 相连点，选最短的 v1 加入 S 集，更新数组中 0 到剩余顶点的长度；再把 v2、v3……加入 S 集，更新相应的数组数据即可。</p>
+<h3 id="弗洛伊德（Floyd）算法"><a href="#弗洛伊德（Floyd）算法" class="headerlink" title="弗洛伊德（Floyd）算法"></a>弗洛伊德（Floyd）算法</h3><p>适合求所有顶点到所有顶点的最短路径。</p>
+<p>时间复杂度为 O(n^3)</p>
+<p>对于对应顶点的最小路径的前驱矩阵，如果不可达，则为 0</p>
+<p><a href="https://www.youtube.com/watch?v=V9mNMr0iRU8" target="_blank" rel="noopener">YouTube 大佬的讲解</a>（很明白）</p>
+<h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p>图中没有回路叫无环。</p>
+<p>用顶点表示活动的网，叫 AOV 网（Activity On Vertex Network），AOV 网无环。</p>
+<p>拓扑排序：选一个入度为 0 的点，输出并删去，然后输出并删除之后的顶点，直到输出全部顶点或者 AOV 网中不存在入度为 0 的点。</p>
+<h2 id="关键路径"><a href="#关键路径" class="headerlink" title="关键路径"></a>关键路径</h2><h3 id="AOE-网（Activity-On-Edge-Network）"><a href="#AOE-网（Activity-On-Edge-Network）" class="headerlink" title="AOE 网（Activity On Edge Network）"></a>AOE 网（Activity On Edge Network）</h3><p>路径上各个活动所持续的时间之和叫做路径长度，从源点到汇点具有<strong>最大长度的路径</strong>叫做关键路径，在关键路径上的活动叫关键活动</p>
+<h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><h2 id="顺序表查找"><a href="#顺序表查找" class="headerlink" title="顺序表查找"></a>顺序表查找</h2><h2 id="有序表查找"><a href="#有序表查找" class="headerlink" title="有序表查找"></a>有序表查找</h2><h3 id="折半查找（二分查找）"><a href="#折半查找（二分查找）" class="headerlink" title="折半查找（二分查找）"></a>折半查找（二分查找）</h3><p>利用二叉树</p>
+<h3 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h3><p>折半中的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mid&#x3D;（low+high）&#x2F;2</span><br></pre></td></tr></table></figure>
+
+<p>而插值查找中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mid&#x3D;low+（high-low）*（key-a[low]）&#x2F;（a[high]-a[low]）    &#x2F;&#x2F;key就是要查的关键字</span><br></pre></td></tr></table></figure>
+
+<h3 id="斐波那契查找"><a href="#斐波那契查找" class="headerlink" title="斐波那契查找"></a>斐波那契查找</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mid&#x3D;low+F[k-1]-1   &#x2F;&#x2F;F为斐波那契数组</span><br></pre></td></tr></table></figure>
+
+<p>折半用的是加法和除法，插值用的是四则，斐波那契用的是加减法，会略微影响效率。</p>
+<p>斐波那契查找也是查找关键字在待查数组的位置，要优于二分查找。以上三种查找方式只是在分割点上选择不同，各有优劣。</p>
+<h2 id="线性索引查找"><a href="#线性索引查找" class="headerlink" title="线性索引查找"></a>线性索引查找</h2><h3 id="稠密索引"><a href="#稠密索引" class="headerlink" title="稠密索引"></a>稠密索引</h3><h3 id="分块索引"><a href="#分块索引" class="headerlink" title="分块索引"></a>分块索引</h3><h3 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h3><h2 id="二叉排序树（重点）"><a href="#二叉排序树（重点）" class="headerlink" title="二叉排序树（重点）"></a>二叉排序树（重点）</h2><p>又称二叉查找树，左子树不空则其所有结点均小于根结点的值；右子树不空，则其所有结点均大于根结点。</p>
+<h3 id="平衡二叉树（AVL-树）（重点）"><a href="#平衡二叉树（AVL-树）（重点）" class="headerlink" title="平衡二叉树（AVL 树）（重点）"></a>平衡二叉树（AVL 树）（重点）</h3><p>左子树的深度减去右子树的深度的值称为平衡因子 BF，AVL 树的 BF 只能为-1、0、1</p>
+<p>构造 AVL 树时，如果根结点和子结点的 BF 符号不统一，要先转到统一再左右旋。</p>
+<p>查找的时间复杂度是 O(logn),插入和删除也是 O(logn)</p>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>红黑树与 AVL 树同属于二叉排序树，各有优劣</p>
+<h2 id="多路查找树"><a href="#多路查找树" class="headerlink" title="多路查找树"></a>多路查找树</h2><p>其每一个结点的孩子数可以多于两个，且每一个结点处可以存储多个元素。</p>
+<h3 id="2-3-树（3-阶-B-树）"><a href="#2-3-树（3-阶-B-树）" class="headerlink" title="2-3 树（3 阶 B 树）"></a>2-3 树（3 阶 B 树）</h3><p>每一个结点都有 2 个孩子（2 结点）或者 3 个孩子（3 结点）</p>
+<p>一个 2 结点包含 1 个元素（父亲）和 2 个孩子（或者没有孩子），整体称为一个结点。<strong>不会只有一个孩子</strong></p>
+<p>一个 3 结点包含 2 个元素（父亲）和 3 个孩子（或者没有孩子）</p>
+<h4 id="2-3-树的插入与删除"><a href="#2-3-树的插入与删除" class="headerlink" title="2-3 树的插入与删除"></a>2-3 树的插入与删除</h4><h3 id="2-3-4-树（4-阶-B-树）"><a href="#2-3-4-树（4-阶-B-树）" class="headerlink" title="2-3-4 树（4 阶 B 树）"></a>2-3-4 树（4 阶 B 树）</h3><p>一个 4 结点包含 3 个元素（父亲）和 4 个孩子（或者没有孩子）</p>
+<h3 id="B-树"><a href="#B-树" class="headerlink" title="B 树"></a>B 树</h3><p>B 树是一种平衡的多路查找树，2-3 树和 2-3-4 树都是 B 树的特例。结点最大的孩子数目叫做 B 树的阶。</p>
+<p>要处理的硬盘数据量很大时，无法一次全部装入内存；就会对 B 树调整，使得 B 树的阶数与硬盘存储的页面大小相匹配。</p>
+<p>eg，一个结点包含 1000 个关键字，高度为 2，可以储存 10 亿个关键字，只要让根结点永久在内存中，那么在这棵树上，寻找某个关键字就只需要读 2 次硬盘。</p>
+<p>由于 B 树每结点可以具有比二叉树多得多的元素，所以可以减少必须访问的结点和数据块的数量。</p>
+<p>B 树的数据结构就是为了内外存的数据交互准备的。</p>
+<h3 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h3><p>将 B 树的父亲结点放在相应的叶子节点处，并将所有叶子结点连接在一起</p>
+<h2 id="散列表查找（哈希表）"><a href="#散列表查找（哈希表）" class="headerlink" title="散列表查找（哈希表）"></a>散列表查找（哈希表）</h2><p>记录存储位置和关键字之间的确定的对应关系。</p>
+<h3 id="散列表构造"><a href="#散列表构造" class="headerlink" title="散列表构造"></a>散列表构造</h3><h4 id="直接定址"><a href="#直接定址" class="headerlink" title="直接定址"></a>直接定址</h4><h4 id="平方取中"><a href="#平方取中" class="headerlink" title="平方取中"></a>平方取中</h4><h4 id="折叠法"><a href="#折叠法" class="headerlink" title="折叠法"></a>折叠法</h4><h4 id="除留余数法"><a href="#除留余数法" class="headerlink" title="除留余数法"></a>除留余数法</h4><h4 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h4><h3 id="处理散列冲突"><a href="#处理散列冲突" class="headerlink" title="处理散列冲突"></a>处理散列冲突</h3><h4 id="开放定址"><a href="#开放定址" class="headerlink" title="开放定址"></a>开放定址</h4><p>冲突了就找下一个空的散列地址</p>
+<h4 id="二次探测法"><a href="#二次探测法" class="headerlink" title="二次探测法"></a>二次探测法</h4><p>增加平方运算，不让关键字都聚集在一块区域</p>
+<h4 id="随机探测法"><a href="#随机探测法" class="headerlink" title="随机探测法"></a>随机探测法</h4><p>设置相同的<strong>随机种子</strong>，则不断调用随机函数可以省车给你不会重复的数列</p>
+<p>随机种子：一般计算机的随机数都是伪随机数，以一个真随机数（种子）作为初始条件，然后用一定的算法不停迭代产生随机数。</p>
+<h4 id="再散列函数法"><a href="#再散列函数法" class="headerlink" title="再散列函数法"></a>再散列函数法</h4><p>用以上方法再散列</p>
+<h4 id="链地址法"><a href="#链地址法" class="headerlink" title="链地址法"></a>链地址法</h4><p>散列表中只存储同义词子表的头指针，有冲突只是在当前位置给单链表加结点而已</p>
+<h4 id="公共溢出区"><a href="#公共溢出区" class="headerlink" title="公共溢出区"></a>公共溢出区</h4><p>凡是冲突的都存储到溢出表中</p>
+<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7egtyc6bxj318s0pon25.jpg" alt=""></p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(SqList *L)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;L-&gt;length;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=L-&gt;length<span class="number">-1</span>;j&gt;=i;j--)&#123;</span><br><span class="line">			<span class="keyword">if</span>(L-&gt;r[j]&gt;L-&gt;r[j+<span class="number">1</span>])&#123;</span><br><span class="line">				swap(L,j,j+<span class="number">1</span>)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优化（如果已经有序，则不需要后续的循环）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 对顺序表L作改进冒泡算法 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BubbleSort2</span><span class="params">(SqList *L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	Status flag=TRUE;	<span class="comment">/* flag用来作为标记 */</span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;L-&gt;length &amp;&amp; flag;i++) <span class="comment">/* 若flag为true说明有过数据交换，否则停止循环 */</span></span><br><span class="line">	&#123;</span><br><span class="line">		flag=FALSE;				<span class="comment">/* 初始为False */</span></span><br><span class="line">		<span class="keyword">for</span>(j=L-&gt;length<span class="number">-1</span>;j&gt;=i;j--)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(L-&gt;r[j]&gt;L-&gt;r[j+<span class="number">1</span>])</span><br><span class="line">			&#123;</span><br><span class="line">				 swap(L,j,j+<span class="number">1</span>);	<span class="comment">/* 交换L-&gt;r[j]与L-&gt;r[j+1]的值 */</span></span><br><span class="line">				 flag=TRUE;		<span class="comment">/* 如果有数据交换，则flag为true */</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="简单选择"><a href="#简单选择" class="headerlink" title="简单选择"></a>简单选择</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SelectSort</span><span class="params">(SqList *L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,<span class="built_in">min</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;L-&gt;length;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">min</span> = i;						<span class="comment">/* 将当前下标定义为最小值下标 */</span></span><br><span class="line">		<span class="keyword">for</span> (j = i+<span class="number">1</span>;j&lt;=L-&gt;length;j++)<span class="comment">/* 循环之后的数据 */</span></span><br><span class="line">        &#123;</span><br><span class="line">			<span class="keyword">if</span> (L-&gt;r[<span class="built_in">min</span>]&gt;L-&gt;r[j])	<span class="comment">/* 如果有小于当前最小值的关键字 */</span></span><br><span class="line">                <span class="built_in">min</span> = j;				<span class="comment">/* 将此关键字的下标赋值给min */</span></span><br><span class="line">        &#125;</span><br><span class="line">		<span class="keyword">if</span>(i!=<span class="built_in">min</span>)						<span class="comment">/* 若min不等于i，说明找到最小值，交换 */</span></span><br><span class="line">			swap(L,i,<span class="built_in">min</span>);				<span class="comment">/* 交换L-&gt;r[i]与L-&gt;r[min]的值 */</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="直接插入"><a href="#直接插入" class="headerlink" title="直接插入"></a>直接插入</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(SqList *L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=L-&gt;length;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (L-&gt;r[i]&lt;L-&gt;r[i<span class="number">-1</span>]) <span class="comment">/* 需将L-&gt;r[i]插入有序子表 */</span></span><br><span class="line">		&#123;</span><br><span class="line">			L-&gt;r[<span class="number">0</span>]=L-&gt;r[i]; <span class="comment">/* 设置哨兵 */</span></span><br><span class="line">			<span class="keyword">for</span>(j=i<span class="number">-1</span>;L-&gt;r[j]&gt;L-&gt;r[<span class="number">0</span>];j--)</span><br><span class="line">				L-&gt;r[j+<span class="number">1</span>]=L-&gt;r[j]; <span class="comment">/* 记录后移 */</span></span><br><span class="line">			L-&gt;r[j+<span class="number">1</span>]=L-&gt;r[<span class="number">0</span>]; <span class="comment">/* 插入到正确位置 */</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="希尔"><a href="#希尔" class="headerlink" title="希尔"></a>希尔</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShellSort</span><span class="params">(SqList *L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,k=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> increment=L-&gt;length;</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">	&#123;</span><br><span class="line">		increment=increment/<span class="number">3</span>+<span class="number">1</span>;<span class="comment">/* 增量序列 */</span></span><br><span class="line">		<span class="keyword">for</span>(i=increment+<span class="number">1</span>;i&lt;=L-&gt;length;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (L-&gt;r[i]&lt;L-&gt;r[i-increment])<span class="comment">/*  需将L-&gt;r[i]插入有序增量子表 */</span></span><br><span class="line">			&#123;</span><br><span class="line">				L-&gt;r[<span class="number">0</span>]=L-&gt;r[i]; <span class="comment">/*  暂存在L-&gt;r[0] */</span></span><br><span class="line">				<span class="keyword">for</span>(j=i-increment;j&gt;<span class="number">0</span> &amp;&amp; L-&gt;r[<span class="number">0</span>]&lt;L-&gt;r[j];j-=increment)</span><br><span class="line">					L-&gt;r[j+increment]=L-&gt;r[j]; <span class="comment">/*  记录后移，查找插入位置 */</span></span><br><span class="line">				L-&gt;r[j+increment]=L-&gt;r[<span class="number">0</span>]; <span class="comment">/*  插入 */</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"	第%d趟排序结果: "</span>,++k);</span><br><span class="line">		<span class="built_in">print</span>(*L);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(increment&gt;<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 已知L-&gt;r[s..m]中记录的关键字除L-&gt;r[s]之外均满足堆的定义， */</span></span><br><span class="line"><span class="comment">/* 本函数调整L-&gt;r[s]的关键字,使L-&gt;r[s..m]成为一个大顶堆 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapAdjust</span><span class="params">(SqList *L,<span class="keyword">int</span> s,<span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp,j;</span><br><span class="line">	temp=L-&gt;r[s];</span><br><span class="line">	<span class="keyword">for</span>(j=<span class="number">2</span>*s;j&lt;=m;j*=<span class="number">2</span>) <span class="comment">/* 沿关键字较大的孩子结点向下筛选 */</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(j&lt;m &amp;&amp; L-&gt;r[j]&lt;L-&gt;r[j+<span class="number">1</span>])</span><br><span class="line">			++j; <span class="comment">/* j为关键字中较大的记录的下标 */</span></span><br><span class="line">		<span class="keyword">if</span>(temp&gt;=L-&gt;r[j])</span><br><span class="line">			<span class="keyword">break</span>; <span class="comment">/* rc应插入在位置s上 */</span></span><br><span class="line">		L-&gt;r[s]=L-&gt;r[j];</span><br><span class="line">		s=j;</span><br><span class="line">	&#125;</span><br><span class="line">	L-&gt;r[s]=temp; <span class="comment">/* 插入 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*  对顺序表L进行堆排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">(SqList *L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=L-&gt;length/<span class="number">2</span>;i&gt;<span class="number">0</span>;i--) <span class="comment">/*  把L中的r构建成一个大根堆 */</span></span><br><span class="line">		 HeapAdjust(L,i,L-&gt;length);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=L-&gt;length;i&gt;<span class="number">1</span>;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		 swap(L,<span class="number">1</span>,i); <span class="comment">/* 将堆顶记录和当前未经排序子序列的最后一个记录交换 */</span></span><br><span class="line">		 HeapAdjust(L,<span class="number">1</span>,i<span class="number">-1</span>); <span class="comment">/*  将L-&gt;r[1..i-1]重新调整为大根堆 */</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* 归并排序********************************** */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 将有序的SR[i..m]和SR[m+1..n]归并为有序的TR[i..n] */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span> SR[],<span class="keyword">int</span> TR[],<span class="keyword">int</span> i,<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> j,k,l;</span><br><span class="line">	<span class="keyword">for</span>(j=m+<span class="number">1</span>,k=i;i&lt;=m &amp;&amp; j&lt;=n;k++)	<span class="comment">/* 将SR中记录由小到大地并入TR */</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (SR[i]&lt;SR[j])</span><br><span class="line">			TR[k]=SR[i++];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			TR[k]=SR[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(i&lt;=m)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(l=<span class="number">0</span>;l&lt;=m-i;l++)</span><br><span class="line">			TR[k+l]=SR[i+l];		<span class="comment">/* 将剩余的SR[i..m]复制到TR */</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(j&lt;=n)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(l=<span class="number">0</span>;l&lt;=n-j;l++)</span><br><span class="line">			TR[k+l]=SR[j+l];		<span class="comment">/* 将剩余的SR[j..n]复制到TR */</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 递归法 */</span></span><br><span class="line"><span class="comment">/* 将SR[s..t]归并排序为TR1[s..t] */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MSort</span><span class="params">(<span class="keyword">int</span> SR[],<span class="keyword">int</span> TR1[],<span class="keyword">int</span> s, <span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m;</span><br><span class="line">	<span class="keyword">int</span> TR2[MAXSIZE+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">if</span>(s==t)</span><br><span class="line">		TR1[s]=SR[s];</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		m=(s+t)/<span class="number">2</span>;				<span class="comment">/* 将SR[s..t]平分为SR[s..m]和SR[m+1..t] */</span></span><br><span class="line">		MSort(SR,TR2,s,m);		<span class="comment">/* 递归地将SR[s..m]归并为有序的TR2[s..m] */</span></span><br><span class="line">		MSort(SR,TR2,m+<span class="number">1</span>,t);	<span class="comment">/* 递归地将SR[m+1..t]归并为有序的TR2[m+1..t] */</span></span><br><span class="line">		Merge(TR2,TR1,s,m,t);	<span class="comment">/* 将TR2[s..m]和TR2[m+1..t]归并到TR1[s..t] */</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 对顺序表L作归并排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(SqList *L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> 	MSort(L-&gt;r,L-&gt;r,<span class="number">1</span>,L-&gt;length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 非递归法 */</span></span><br><span class="line"><span class="comment">/* 将SR[]中相邻长度为s的子序列两两归并到TR[] */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergePass</span><span class="params">(<span class="keyword">int</span> SR[],<span class="keyword">int</span> TR[],<span class="keyword">int</span> s,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> j;</span><br><span class="line">	<span class="keyword">while</span>(i &lt;= n<span class="number">-2</span>*s+<span class="number">1</span>)</span><br><span class="line">	&#123;<span class="comment">/* 两两归并 */</span></span><br><span class="line">		Merge(SR,TR,i,i+s<span class="number">-1</span>,i+<span class="number">2</span>*s<span class="number">-1</span>);</span><br><span class="line">		i=i+<span class="number">2</span>*s;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(i&lt;n-s+<span class="number">1</span>) <span class="comment">/* 归并最后两个序列 */</span></span><br><span class="line">		Merge(SR,TR,i,i+s<span class="number">-1</span>,n);</span><br><span class="line">	<span class="keyword">else</span> <span class="comment">/* 若最后只剩下单个子序列 */</span></span><br><span class="line">		<span class="keyword">for</span>(j =i;j &lt;= n;j++)</span><br><span class="line">			TR[j] = SR[j];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 对顺序表L作归并非递归排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeSort2</span><span class="params">(SqList *L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* TR=(<span class="keyword">int</span>*)<span class="built_in">malloc</span>(L-&gt;length * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));<span class="comment">/* 申请额外空间 */</span></span><br><span class="line">    <span class="keyword">int</span> k=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k&lt;L-&gt;length)</span><br><span class="line">	&#123;</span><br><span class="line">		MergePass(L-&gt;r,TR,k,L-&gt;length);</span><br><span class="line">		k=<span class="number">2</span>*k;<span class="comment">/* 子序列长度加倍 */</span></span><br><span class="line">		MergePass(TR,L-&gt;r,k,L-&gt;length);</span><br><span class="line">		k=<span class="number">2</span>*k;<span class="comment">/* 子序列长度加倍 */</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>非递归的迭代方法，避免了递归时深度为 log2n 的栈空间，只是申请到临时用的 TR 数组，空间复杂度为 O(n)，时间性能上也有提升。所以，归并时最好使用非递归</p>
+<h2 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g7u7eblogaj30an09iq3p.jpg" alt=""></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* 交换顺序表L中子表的记录，使枢轴记录到位，并返回其所在位置 */</span></span><br><span class="line"><span class="comment">/* 此时在它之前(后)的记录均不大(小)于它。 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Partition</span><span class="params">(SqList *L,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> pivotkey;</span><br><span class="line"></span><br><span class="line">	pivotkey=L-&gt;r[low]; <span class="comment">/* 用子表的第一个记录作枢轴记录 */</span></span><br><span class="line">	<span class="keyword">while</span>(low&lt;high) <span class="comment">/*  从表的两端交替地向中间扫描 */</span></span><br><span class="line">	&#123;</span><br><span class="line">		 <span class="keyword">while</span>(low&lt;high&amp;&amp;L-&gt;r[high]&gt;=pivotkey)</span><br><span class="line">			high--;</span><br><span class="line">		 swap(L,low,high);<span class="comment">/* 将比枢轴记录小的记录交换到低端 */</span></span><br><span class="line">		 <span class="keyword">while</span>(low&lt;high&amp;&amp;L-&gt;r[low]&lt;=pivotkey)</span><br><span class="line">			low++;</span><br><span class="line">		 swap(L,low,high);<span class="comment">/* 将比枢轴记录大的记录交换到高端 */</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> low; <span class="comment">/* 返回枢轴所在位置 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 对顺序表L中的子序列L-&gt;r[low..high]作快速排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QSort</span><span class="params">(SqList *L,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> pivot;</span><br><span class="line">	<span class="keyword">if</span>(low&lt;high)</span><br><span class="line">	&#123;</span><br><span class="line">			pivot=Partition(L,low,high); <span class="comment">/*  将L-&gt;r[low..high]一分为二，算出枢轴值pivot */</span></span><br><span class="line">			QSort(L,low,pivot<span class="number">-1</span>);		<span class="comment">/*  对低子表递归排序 */</span></span><br><span class="line">			QSort(L,pivot+<span class="number">1</span>,high);		<span class="comment">/*  对高子表递归排序 */</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 对顺序表L作快速排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(SqList *L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	QSort(L,<span class="number">1</span>,L-&gt;length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* **************************************** */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 改进后快速排序******************************** */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 快速排序优化算法 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Partition1</span><span class="params">(SqList *L,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> pivotkey;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> m = low + (high - low) / <span class="number">2</span>; <span class="comment">/* 计算数组中间的元素的下标 */</span></span><br><span class="line">	<span class="keyword">if</span> (L-&gt;r[low]&gt;L-&gt;r[high])</span><br><span class="line">		swap(L,low,high);	<span class="comment">/* 交换左端与右端数据，保证左端较小 */</span></span><br><span class="line">	<span class="keyword">if</span> (L-&gt;r[m]&gt;L-&gt;r[high])</span><br><span class="line">		swap(L,high,m);		<span class="comment">/* 交换中间与右端数据，保证中间较小 */</span></span><br><span class="line">	<span class="keyword">if</span> (L-&gt;r[m]&gt;L-&gt;r[low])</span><br><span class="line">		swap(L,m,low);		<span class="comment">/* 交换中间与左端数据，保证左端较小 */</span></span><br><span class="line"></span><br><span class="line">	pivotkey=L-&gt;r[low]; <span class="comment">/* 用子表的第一个记录作枢轴记录 */</span></span><br><span class="line">	L-&gt;r[<span class="number">0</span>]=pivotkey;  <span class="comment">/* 将枢轴关键字备份到L-&gt;r[0] */</span></span><br><span class="line">	<span class="keyword">while</span>(low&lt;high) <span class="comment">/*  从表的两端交替地向中间扫描 */</span></span><br><span class="line">	&#123;</span><br><span class="line">		 <span class="keyword">while</span>(low&lt;high&amp;&amp;L-&gt;r[high]&gt;=pivotkey)</span><br><span class="line">			high--;</span><br><span class="line">		 L-&gt;r[low]=L-&gt;r[high];</span><br><span class="line">		 <span class="keyword">while</span>(low&lt;high&amp;&amp;L-&gt;r[low]&lt;=pivotkey)</span><br><span class="line">			low++;</span><br><span class="line">		 L-&gt;r[high]=L-&gt;r[low];</span><br><span class="line">	&#125;</span><br><span class="line">	L-&gt;r[low]=L-&gt;r[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">return</span> low; <span class="comment">/* 返回枢轴所在位置 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QSort1</span><span class="params">(SqList *L,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> pivot;</span><br><span class="line">	<span class="keyword">if</span>((high-low)&gt;MAX_LENGTH_INSERT_SORT)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(low&lt;high)</span><br><span class="line">		&#123;</span><br><span class="line">			pivot=Partition1(L,low,high); <span class="comment">/*  将L-&gt;r[low..high]一分为二，算出枢轴值pivot */</span></span><br><span class="line">			QSort1(L,low,pivot<span class="number">-1</span>);		<span class="comment">/*  对低子表递归排序 */</span></span><br><span class="line">			<span class="comment">/* QSort(L,pivot+1,high);		/*  对高子表递归排序 */</span></span><br><span class="line">			low=pivot+<span class="number">1</span>;	<span class="comment">/* 尾递归 */</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		InsertSort(L);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 对顺序表L作快速排序 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuickSort1</span><span class="params">(SqList *L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	QSort1(L,<span class="number">1</span>,L-&gt;length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript中的双波浪线是什么意思？</title>
+    <url>/2019/09/24/JavaScript%E4%B8%AD%E7%9A%84%E5%8F%8C%E6%B3%A2%E6%B5%AA%E7%BA%BF/</url>
+    <content><![CDATA[<h1 id="按位操作符"><a href="#按位操作符" class="headerlink" title="按位操作符"></a>按位操作符</h1><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators" target="_blank" rel="noopener">按位操作符的 MDN 讲解</a></p>
+<p>按位操作符（Bitwise operators）将其操作数（operands）当作 32 位的比特序列（由 0 和 1 组成），而不是十进制、十六进制或八进制数值。例如，十进制数 9，用二进制表示则为 1001。按位操作符操作数字的二进制形式，但是返回值依然是标准的 JavaScript 数值。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7avoqt54fj32fr0u0qgz.jpg" alt=""></p>
+<p><strong>tips：异或 ⊕ 和同或 ⨀ 是反函数（异或是俩不一样为 1，同或就是俩一样为 1）</strong></p>
+<p><strong>OR 或，AND 与，XOR 异或，NOR 或非，NAND 与非，XNOR 异或非</strong></p>
+<a id="more"></a>
+
+<p>它会删除小数点后的所有内容，因为按位运算符会将其操作数隐式转换为带符号的 32 位整数。无论操作数是（浮点）数字还是字符串，这都有效，并且结果是数字。</p>
+<p>换句话说:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">Math</span>.ceil(x);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">Math</span>.floor(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>仅当 x 在-2^31 和 2^31-1 之间。否则，将发生溢出并且数字将“wrap around”。</p>
+<p>将函数的字符串参数转换为数字可能被认为是有用的，但是由于存在溢出的可能性，并且不适合与非整数一起使用，因此我不以这种方式使用它，除了“code golf”（即无意义地从程序源代码中修剪字节，以牺牲可读性和健壮性为代价）。我会用+x 或者 Number(x)代替。</p>
+<h2 id="取反的取反是什么意思："><a href="#取反的取反是什么意思：" class="headerlink" title="取反的取反是什么意思："></a>取反的取反是什么意思：</h2><p>例如：-43.2 的二进制数为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-43.2₁₀ &#x3D; 11111111111111111111111111010101₂</span><br></pre></td></tr></table></figure>
+
+<p>作为有符号（二进制补码）的 32 位二进制数。（JavaScript 忽略小数点后的内容）将这些位取反可以得到：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NOT -43₁₀&#x3D; 00000000000000000000000000101010₂&#x3D; 42₁₀</span><br></pre></td></tr></table></figure>
+
+<p>再次反转得到：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NOT 42₁₀ &#x3D; 11111111111111111111111111010101₂&#x3D; -43₁₀</span><br></pre></td></tr></table></figure>
+
+<p>区别<strong>Math.floor(-43.2)在于负数四舍五入趋向于零，而不是趋向于负无穷</strong>。（等于-44 的 floor 函数始终向下舍入到下一个较小的整数，而不管该数字是正数还是负数。Math.floor(-43.2) //向下取整 -44）</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Math.round()       四舍五入</span><br><span class="line">Math.ceil()        向上取整</span><br><span class="line">Math.floor()       向下取整</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Math-trunc"><a href="#Math-trunc" class="headerlink" title="Math.trunc()"></a>Math.trunc()</h1><p>Math.trunc() 方法会将数字的小数部分去掉，只保留整数部分。</p>
+<h2 id="Math-trunc-与-parseInt-比较"><a href="#Math-trunc-与-parseInt-比较" class="headerlink" title="Math.trunc() 与 parseInt()比较"></a>Math.trunc() 与 parseInt()比较</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">'13.14g'</span>)); <span class="comment">//13</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.trunc(<span class="string">'13.14g'</span>)); <span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="number">6.022e23</span>)); <span class="comment">//6</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.trunc(<span class="number">6.022e23</span>)); <span class="comment">//6.022e+23</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="number">0.0000006</span>)); <span class="comment">//6</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.trunc(<span class="number">0.0000006</span>)); <span class="comment">//0</span></span><br></pre></td></tr></table></figure>
+
+<p>如果出现连续的超过 6 个及以上连续的 6 个 0 会自动改成科学计数法： 0.00000060 就会变成 6e-7，parseInt(6e-7)结果也就是 6 了 parseInt 函数将其第一个参数转换为字符串，解析它，并返回一个整数或 NaN。如果不是 NaN，返回的值将是作为指定基数中的数字的第一个参数的整数。</p>
+<h2 id="Math-trunc-相对于-Math-ceil-和-Math-floor-的优点"><a href="#Math-trunc-相对于-Math-ceil-和-Math-floor-的优点" class="headerlink" title="Math.trunc()相对于 Math.ceil()和 Math.floor()的优点"></a>Math.trunc()相对于 Math.ceil()和 Math.floor()的优点</h2><p>在想要去掉小数部分时，对于数值的正负情况不一样时不用分别考虑了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x&lt;0?Math.ceil(x):Math.floor(x)  &#x2F;&#x2F;before</span><br><span class="line">Math.trunc(x)                  &#x2F;&#x2F;now</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a href="https://stackoverflow.com/questions/4055633/what-does-double-tilde-do-in-javascript" target="_blank" rel="noopener">双波浪线参考</a> <a href="https://blog.csdn.net/qq_37016928/article/details/80667247" target="_blank" rel="noopener">math.trunc 参考 1</a> <a href="https://stackoverflow.com/questions/14/difference-between-math-floor-and-math-truncate" target="_blank" rel="noopener">math.trunc 参考 2</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>JS基础</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>JS基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>assetsPublicPath</title>
+    <url>/2019/08/07/assets-public-path/</url>
+    <content><![CDATA[<h1 id="assetsPublicPath-相关配置"><a href="#assetsPublicPath-相关配置" class="headerlink" title="assetsPublicPath 相关配置"></a>assetsPublicPath 相关配置</h1><ul>
+<li>当打包之后页面空白，字体图标和 mock 数据无法正常加载时，可能是 assetsPublicPath:’/‘的问题，先来了解一下配置属性的基本含义</li>
+</ul>
+<a id="more"></a>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">index: path.resolve(__dirname, <span class="string">'../dist/index.html'</span>),</span><br><span class="line">assetsRoot: path.resolve(__dirname, <span class="string">'../dist'</span>),</span><br><span class="line">assetsSubDirectory: <span class="string">'static'</span>,</span><br><span class="line">assetsPublicPath: <span class="string">'./'</span>,</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li>index: 模板</li>
+<li>assetRoot: 打包后文件要存放的路径</li>
+<li>assetsSubDirectory: 除了 index.html 之外的静态资源要存放的路径，</li>
+<li>assetsPublicPath: 代表打包后，index.html 里面引用资源的的相对地址</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">index: path.resolve(__dirname, <span class="string">'../dist/index.html'</span>), <span class="comment">// Paths</span></span><br><span class="line">assetsRoot: path.resolve(__dirname, <span class="string">'../dist'</span>),</span><br><span class="line">assetsSubDirectory: <span class="string">'./assets/'</span>,</span><br><span class="line">assetsPublicPath: <span class="string">'./hello/'</span>,</span><br><span class="line"></span><br><span class="line">打包后为</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"./hello/assets/js/manifest.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">" src="</span>./hello/assets/js/vendor.js<span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;script type="</span>text/javascript<span class="string">" src="</span>./hello/assets/js/app.js<span class="string">"&gt;&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>所以可以说明</p>
+<ul>
+<li>assetsRoot : 在当前目录的上一级的 dist 目录下输出资源文件</li>
+<li>assetsSubDirectory: 把所有的静态资源打包到 dist 下的 assets 文件夹下</li>
+<li>assetsPublicPath :代表生成的 index.html 文件，里面引入资源时，路径前面要加上 ./hello/,也就是 assetsPublicPath 的值</li>
+</ul>
+<hr>
+<p>由此可见 ，我们可以<em>直接设置 assetsPublicPath 为绝对路径</em>，比如自己的线上路径前缀<a href="https://www.yourdomain.com/，则" target="_blank" rel="noopener">https://www.yourdomain.com/，则</a><em>打包后的路径，全部会加上这个前缀</em>，如果配置 package.json 的一些参数，就可以放心的把自己 html 里面的内容复制出来，放在任何地方都可以用了（前提是资源要先上线）</p>
+<hr>
+<p>此外，线上发布的时候一般都会使用 nginx 反向代理，所以使用./是最靠谱的，但是 vue-cli <em>dev 中的 assetsPublicPath 不能配置成”./“</em>,而 build 中的却可以配置，并可以正常访问，虽然不影响发布但是影响开发效率。</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>可以将 webpack.dev.conf.js 中的 publicPath 的值改成 “/“ 就行了</p>
+<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><ul>
+<li>publicPath 总是以斜杠(/)开头和结尾,所以 publicPath 不能配置为./ 所以访问时会报错</li>
+<li>devServer.publicPath 路径下的打包文件可在浏览器中访问。假设服务器运行在 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 并且 output.filename 被设置为 bundle.js。默认 publicPath 是 “/“，所以你的包(bundle)可以通过 <a href="http://localhost:8080/bundle.js" target="_blank" rel="noopener">http://localhost:8080/bundle.js</a> 访问。</li>
+</ul>
+<p>可以修改 publicPath，将 bundle 放在一个目录：publicPath:”/assets/“ 你的包现在可以通过 <a href="http://localhost:8080/assets/bundle.js" target="_blank" rel="noopener">http://localhost:8080/assets/bundle.js</a> 访问。</p>
+<p><em>确保 publicPath 总是以斜杠(/)开头和结尾。也可以使用一个完整的 URL。这是模块热替换所必需的。</em> 这里是重点</p>
+<p>publicPath: “<a href="http://localhost:8080/assets/”" target="_blank" rel="noopener">http://localhost:8080/assets/”</a></p>
+<p>bundle 可以通过 <a href="http://localhost:8080/assets/bundle.js" target="_blank" rel="noopener">http://localhost:8080/assets/bundle.js</a> 访问。</p>
+<hr>
+<p>参考链接：<a href="https://juejin.im/post/5bd9838df265da393c06033a" target="_blank" rel="noopener">https://juejin.im/post/5bd9838df265da393c06033a</a></p>
+<p><a href="https://blog.csdn.net/isyoungboy/article/details/84350256" target="_blank" rel="noopener">https://blog.csdn.net/isyoungboy/article/details/84350256</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>vue</category>
+        <category>webpack</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git常用命令</title>
+    <url>/2018/09/06/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="git-常用命令"><a href="#git-常用命令" class="headerlink" title="git 常用命令"></a>git 常用命令</h1><p>git 命令备忘录(文末有彩蛋!!!)</p>
+<h2 id="git-设置"><a href="#git-设置" class="headerlink" title="git 设置"></a>git 设置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line">$ git config --global user.email <span class="string">"email@example.com"</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://blog.haohtml.com/archives/12265" target="_blank" rel="noopener">用 git –bare init 更好?</a></p>
+<h2 id="把文件添加到仓库"><a href="#把文件添加到仓库" class="headerlink" title="把文件添加到仓库"></a>把文件添加到仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add readme.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="把文件提交到仓库"><a href="#把文件提交到仓库" class="headerlink" title="把文件提交到仓库"></a>把文件提交到仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"wrote a readme file"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看-difference"><a href="#查看-difference" class="headerlink" title="查看 difference"></a>查看 difference</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git diff readme.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看历史记录-简化"><a href="#查看历史记录-简化" class="headerlink" title="查看历史记录(简化)"></a>查看历史记录(简化)</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=oneline</span><br></pre></td></tr></table></figure>
+
+<h2 id="回退版本"><a href="#回退版本" class="headerlink" title="回退版本"></a>回退版本</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset --hard HEAD^       //上个版本</span><br><span class="line">$ git reset --hard HEAD^^      //上上个版本</span><br><span class="line">$ git reset --hard HEAD~100    //上100个版本</span><br><span class="line">$ git reset --hard 1094a       //版本号为 1094axxxxxxx 的版本（前几位即可）</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看命令历史"><a href="#查看命令历史" class="headerlink" title="查看命令历史"></a>查看命令历史</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reflog //找不到版本号的时候</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看工作区和版本库里面最新版本的区别"><a href="#查看工作区和版本库里面最新版本的区别" class="headerlink" title="查看工作区和版本库里面最新版本的区别"></a>查看工作区和版本库里面最新版本的区别</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git diff HEAD -<span class="comment">## readme.txt</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="丢弃工作区的修改"><a href="#丢弃工作区的修改" class="headerlink" title="丢弃工作区的修改"></a>丢弃工作区的修改</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -- readme.txt       //把 readme.txt 文件在工作区的修改全部撤销</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一种是 readme.txt 自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</li>
+<li>一种是 readme.txt 已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</li>
+<li>总之，就是让这个文件回到最近一次 git commit 或 git add 时的状态。</li>
+</ul>
+<h2 id="可以把暂存区的修改撤销掉（unstage），重新放回工作区"><a href="#可以把暂存区的修改撤销掉（unstage），重新放回工作区" class="headerlink" title="可以把暂存区的修改撤销掉（unstage），重新放回工作区"></a>可以把暂存区的修改撤销掉（unstage），重新放回工作区</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset HEAD readme.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="在文件管理器中删除文件"><a href="#在文件管理器中删除文件" class="headerlink" title="在文件管理器中删除文件"></a>在文件管理器中删除文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rm test.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="从版本库中删除该文件"><a href="#从版本库中删除该文件" class="headerlink" title="从版本库中删除该文件"></a>从版本库中删除该文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git rm test.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建-SSH-key"><a href="#创建-SSH-key" class="headerlink" title="创建 SSH key"></a>创建 SSH key</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></span><br></pre></td></tr></table></figure>
+
+<p>如果一切顺利的话，可以在用户主目录里找到.ssh 目录，里面有 id_rsa 和 id_rsa.pub 两个文件这两个就是 SSH Key 的秘钥对，id_rsa 是私钥，不能泄露出去，id_rsa.pub 是公钥，可以放心地告诉任何人。</p>
+<h2 id="关联远程库"><a href="#关联远程库" class="headerlink" title="关联远程库"></a>关联远程库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote add origin git@xxxx.git</span><br></pre></td></tr></table></figure>
+
+<p>如果有两个以上的远程库就不要用 origin 了，比如用 github 和 gitee</p>
+<h2 id="把本地库的所有内容推送到远程库上"><a href="#把本地库的所有内容推送到远程库上" class="headerlink" title="把本地库的所有内容推送到远程库上"></a>把本地库的所有内容推送到远程库上</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<p>我们第一次推送 master 分支时，加上了-u 参数 Git 会把本地的 master 分支和远程的 master 分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<h2 id="克隆远程库"><a href="#克隆远程库" class="headerlink" title="克隆远程库"></a>克隆远程库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@xxxx.git</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch dev          //创建分支</span><br><span class="line">$ git checkout dev        //切换分支</span><br><span class="line">$ git checkout -b dev     //创建并切换分支</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看当前分支"><a href="#查看当前分支" class="headerlink" title="查看当前分支"></a>查看当前分支</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch</span><br></pre></td></tr></table></figure>
+
+<h2 id="合并指定分支到当前分支-master"><a href="#合并指定分支到当前分支-master" class="headerlink" title="合并指定分支到当前分支(master)"></a>合并指定分支到当前分支(master)</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git merge dev</span><br></pre></td></tr></table></figure>
+
+<p>用领先的分支去合并落后的分支，是不可行的</p>
+<h2 id="删除-dev-分支"><a href="#删除-dev-分支" class="headerlink" title="删除 dev 分支"></a>删除 dev 分支</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch -d dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="看分支合并图-–graph"><a href="#看分支合并图-–graph" class="headerlink" title="看分支合并图(–graph)"></a>看分支合并图(–graph)</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --graph --pretty=oneline --abbrev-commit</span><br></pre></td></tr></table></figure>
+
+<h2 id="禁用-Fast-forward"><a href="#禁用-Fast-forward" class="headerlink" title="禁用 Fast forward"></a>禁用 Fast forward</h2><p>(fast forward 指的是直接把 master 指向 dev 的当前提交，删除分支后，会丢掉分支信息)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git merge --no-ff -m <span class="string">"merge with no-ff"</span> dev</span><br></pre></td></tr></table></figure>
+
+<p>强制禁用 Fast forward 模式，Git 就会在 merge 时生成一个新的 commit 这样，从分支历史上就可以看出分支信息</p>
+<h2 id="工作现场"><a href="#工作现场" class="headerlink" title="工作现场"></a>工作现场</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git stash          //<span class="string">"储存"</span>工作现场</span><br><span class="line">$ git stash list     //查看工作现场</span><br><span class="line">$ git stash apply    //恢复后，stash内容并不删除，你需要用git stash drop来删除</span><br><span class="line">$ git stash pop      //恢复的同时把 stash 内容也删了</span><br><span class="line">$ git stash apply stash@&#123;0&#125; //指定</span><br></pre></td></tr></table></figure>
+
+<h2 id="强行删除-用-D-dev"><a href="#强行删除-用-D-dev" class="headerlink" title="强行删除(用-D)dev"></a>强行删除(用-D)dev</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch -D dev</span><br></pre></td></tr></table></figure>
+
+<p>丢弃一个没有被合并过的分支,要用-D</p>
+<h2 id="显示远程库详细的信息"><a href="#显示远程库详细的信息" class="headerlink" title="显示远程库详细的信息"></a>显示远程库详细的信息</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git remote -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="把远程库的-dev-拷贝到本地的-dev"><a href="#把远程库的-dev-拷贝到本地的-dev" class="headerlink" title="把远程库的 dev 拷贝到本地的 dev"></a>把远程库的 dev 拷贝到本地的 dev</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout -b dev origin/dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="如果-git-pull-提示-no-tracking-information-说明没有创建链接"><a href="#如果-git-pull-提示-no-tracking-information-说明没有创建链接" class="headerlink" title="如果 git pull 提示 no tracking information,说明没有创建链接"></a>如果 git pull 提示 no tracking information,说明没有创建链接</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git branch --<span class="built_in">set</span>-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="把分叉的提交历史“整理”成一条直线，缺点是本地的分叉提交已经被修改过了"><a href="#把分叉的提交历史“整理”成一条直线，缺点是本地的分叉提交已经被修改过了" class="headerlink" title="把分叉的提交历史“整理”成一条直线，缺点是本地的分叉提交已经被修改过了"></a>把分叉的提交历史“整理”成一条直线，缺点是本地的分叉提交已经被修改过了</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git rebase</span><br></pre></td></tr></table></figure>
+
+<h2 id="切换到分支上，打一个新标签"><a href="#切换到分支上，打一个新标签" class="headerlink" title="切换到分支上，打一个新标签"></a>切换到分支上，打一个新标签</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git tag v1.0</span><br><span class="line">$ git tag v0.9 f52c633 //对 commit id 是 f52c633 打标签</span><br><span class="line">$ git show v0.9        //查看标签信息</span><br><span class="line">$ git tag -a v0.1 -m <span class="string">"version 0.1 released"</span> 1094adb               //用-a 指定标签名，-m 指定说明文字</span><br><span class="line">$ git tag             //可以看到所有标签</span><br></pre></td></tr></table></figure>
+
+<h2 id="操作标签"><a href="#操作标签" class="headerlink" title="操作标签"></a>操作标签</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git tag -d v0.1 //删除</span><br></pre></td></tr></table></figure>
+
+<h2 id="推送标签到远程"><a href="#推送标签到远程" class="headerlink" title="推送标签到远程"></a>推送标签到远程</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git push origin v1.0       //一个标签</span><br><span class="line">$ git push origin --tags     //一次性推送全部尚未推送到远程的本地标签</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除远程标签"><a href="#删除远程标签" class="headerlink" title="删除远程标签"></a>删除远程标签</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git tag -d v0.9               //先从本地删除</span><br><span class="line">$ git push origin :refs/tags/v0.9 //远程删除</span><br></pre></td></tr></table></figure>
+
+<h2 id="让-Git-显示颜色"><a href="#让-Git-显示颜色" class="headerlink" title="让 Git 显示颜色"></a>让 Git 显示颜色</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global color.ui <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="文件被-gitignore-忽略"><a href="#文件被-gitignore-忽略" class="headerlink" title="文件被.gitignore 忽略"></a>文件被.gitignore 忽略</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add -f App.class      //强制添加</span><br></pre></td></tr></table></figure>
+
+<h2 id="彩蛋-试试就知道啦"><a href="#彩蛋-试试就知道啦" class="headerlink" title="彩蛋!(试试就知道啦)"></a>彩蛋!(试试就知道啦)</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global alias.lg <span class="string">"log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue-cli 3.0 新特性及各参数详解</title>
+    <url>/2018/09/02/vue-cli3-0%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<ul>
+<li>最近公司任务让我研究一下 vue-cli3.0，我就顺势简单写一些。vue-cli 3.0 相比于 2.0，最为直观的就是“0 配置”了，没有 build 和 config，使用 vue.config.js 来进行配置。下图是 3.0 与 2.0 项目目录对比：<img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g6s1vmrbfdj31ey0riadg.jpg" alt=""></li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>更方便地管理插件(vue-cli-plugin-)</p>
+</li>
+<li><p>图形化界面管理工程，命令行 vue ui 启动</p>
+</li>
+<li><p>安装命令也变了，由 vue init &lt; template-name&gt; &lt; project-name&gt;变成了 yarn global add @vue/cli 或者 npm install -g @vue/cli</p>
+</li>
+<li><p><a href="https://github.com/jee3/vue-cli3.0" target="_blank" rel="noopener">本工程的 GitHub</a></p>
+</li>
+<li><p>以下在 vue.config.js 配置的一些参数只是为了说明而存在。“可以，但没必要”</p>
+</li>
+</ul>
+<h2 id="配置说明"><a href="#配置说明" class="headerlink" title="配置说明"></a>配置说明</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">	<span class="comment">// EG:baseUrl:'/myapp/', type:string，默认为'/'</span></span><br><span class="line">	<span class="comment">//若设置成' '，则为相对路径</span></span><br><span class="line">	<span class="comment">//生成的 CSS 文件要始终放在输出路径的根部，以确保 CSS 中的 URL 正常工作。</span></span><br><span class="line">	<span class="comment">// 把开发服务器放在根目录</span></span><br><span class="line">	baseUrl:</span><br><span class="line">		process.env.NODE_ENV === <span class="string">'production'</span> ? <span class="string">'/production-sub-path/'</span> : <span class="string">'/'</span>,</span><br><span class="line">	<span class="comment">//outputDir,生产环境目录</span></span><br><span class="line">	<span class="comment">//Default: 'dist'</span></span><br><span class="line">	outputDir: <span class="string">'distribution'</span>,</span><br><span class="line">	<span class="comment">//放置生成的静态资源的 (相对于 outputDir 的) 目录,</span></span><br><span class="line">	<span class="comment">//Default: ''</span></span><br><span class="line">	assetsDir: <span class="string">'./static'</span>,</span><br><span class="line">	<span class="comment">//指定生成 index.html 的输出路径（相对于 outputDir），也可以是绝对路径</span></span><br><span class="line">	<span class="comment">//Default: 'index.html'</span></span><br><span class="line">	indexPath: <span class="string">'./index/index.html'</span>,</span><br><span class="line">	<span class="comment">//文件名是否含 hash，默认为 true</span></span><br><span class="line">	filenameHashing: <span class="literal">false</span>,</span><br><span class="line">	<span class="comment">//在 multi-page 模式下构建应用。</span></span><br><span class="line">	<span class="comment">//Type: Object</span></span><br><span class="line">	pages: &#123;</span><br><span class="line">		index: &#123;</span><br><span class="line">			<span class="comment">//page 的入口，必选项</span></span><br><span class="line">			entry: <span class="string">'src/main.js'</span>,</span><br><span class="line">			<span class="comment">//模板来源</span></span><br><span class="line">			template: <span class="string">'public/index.html'</span>,</span><br><span class="line">			<span class="comment">//在 outputDir/index.html 的输出</span></span><br><span class="line">			filename: <span class="string">'index.html'</span>,</span><br><span class="line">			<span class="comment">//使用 title 选项时，template 中的 title 需要使用 htmlWebpackPlugin</span></span><br><span class="line">			title: <span class="string">'Index Page'</span>,</span><br><span class="line">			<span class="comment">//包含的块默认情况下会包含提取出来的 通用 chunk 和 vendor chunk</span></span><br><span class="line">			chunks: [<span class="string">'chunk-vendors'</span>, <span class="string">'chunk-common'</span>, <span class="string">'index'</span>]</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="comment">// 当使用只有入口的字符串格式时，</span></span><br><span class="line">		<span class="comment">// 模板会被推导为 `public/subpage.html`</span></span><br><span class="line">		<span class="comment">// 并且如果找不到的话，就回退到 `public/index.html`</span></span><br><span class="line">		<span class="comment">// 输出文件名会被推导为 `subpage.html`</span></span><br><span class="line">		subpage: <span class="string">'src/main.js'</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">//Type: boolean | 'error'</span></span><br><span class="line">	<span class="comment">//只有安装 @vue/cli-plugin-eslint 才会生效，默认为 true，输出警告</span></span><br><span class="line">	<span class="comment">//若想将错误强制输出到浏览器，请设置成'error'</span></span><br><span class="line">	<span class="comment">//生产时禁用 eslint-loader</span></span><br><span class="line">	<span class="comment">//lintOnSave:process.env.NODE_ENV !=='production',</span></span><br><span class="line">	lintOnSave: <span class="literal">false</span>,</span><br><span class="line">	<span class="comment">//设置浏览器 overlay 可以同时显示错误和警告</span></span><br><span class="line">	devServer: &#123;</span><br><span class="line">		overlay: &#123;</span><br><span class="line">			warnings: <span class="literal">false</span>,</span><br><span class="line">			error: <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">//默认为 false，改为 true 后可以在 vue 组件中使用 template，但会增加 10kb</span></span><br><span class="line">	<span class="comment">//比如传入一个字符串给 template 或挂载到一个元素上</span></span><br><span class="line">	<span class="comment">//并以其 DOM 内部的 HTML 作为模板，则需要完整版</span></span><br><span class="line">	runtimeCompiler: <span class="literal">false</span>,</span><br><span class="line">	<span class="comment">//Type: Array&lt;string | RegExp&gt;</span></span><br><span class="line">	<span class="comment">//默认为[]，babel-loader 忽略所有 node_modules 中的文件</span></span><br><span class="line">	transpileDependencies: [<span class="string">'html-webpack-plugin'</span>],</span><br><span class="line">	<span class="comment">//如果你不需要生产环境的 source map，</span></span><br><span class="line">	<span class="comment">//可以将其设置为 false 以加速生产环境构建，默认为 true</span></span><br><span class="line">	productionSourceMap: <span class="literal">false</span>,</span><br><span class="line">	<span class="comment">//Type: string</span></span><br><span class="line">	<span class="comment">//设置 crossorigin 属性，默认为 undefined。</span></span><br><span class="line">	<span class="comment">//仅影响由 html-webpack-plugin 注入的标签，不影响直接写在模板里的标签</span></span><br><span class="line">	<span class="comment">//默认情况下根本不使用 CORS;</span></span><br><span class="line">	<span class="comment">//为 anonymous 时，意味着不会通过 Cookie、客户端 SSL 证书或 HTTP 身份验证交换用户凭据;</span></span><br><span class="line">	<span class="comment">//为 use-credentials 时，请求将提供凭据</span></span><br><span class="line">	<span class="comment">//无效关键字和空字符串将作为 anonymous 关键字处理。</span></span><br><span class="line">	crossorigin: <span class="literal">undefined</span>,</span><br><span class="line">	<span class="comment">//Type: boolean</span></span><br><span class="line">	<span class="comment">//是否启用 SRI。若要部署到 cdn 上，启用该选项将提供额外的安全性，默认为 false</span></span><br><span class="line">	<span class="comment">//同样仅影响由 html-webpack-plugin 注入的标签，不影响直接写在模板里的标签</span></span><br><span class="line">	<span class="comment">//当启用 SRI 时，preload resource hints 会被禁用</span></span><br><span class="line">	integrity: <span class="literal">false</span>,</span><br><span class="line">	<span class="comment">//Type: Object | Function</span></span><br><span class="line">	<span class="comment">//用于调整 webpack 配置</span></span><br><span class="line">	<span class="comment">//如果这个值是一个对象，则会通过 webpack-merge 合并到最终的配置中。</span></span><br><span class="line">	<span class="comment">//如果这个值是一个函数，则会接收被解析的配置作为参数。</span></span><br><span class="line">	<span class="comment">//该函数及可以修改配置并不返回任何东西，也可以返回一个被克隆或合并过的配置版本。</span></span><br><span class="line">	configureWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'production'</span>) &#123;</span><br><span class="line">			<span class="comment">//为生产环境修改配置</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">//为开发环境修改配置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">//对内部的 webpack 配置进行更细粒度的修改(链式操作)</span></span><br><span class="line">	<span class="comment">//需要熟悉 webpack-chain 的 API 并阅读一些源码以最大程度利用好这个选项</span></span><br><span class="line">	<span class="comment">//但是比起直接修改 webpack 配置，它的表达能力更强，也更为安全。</span></span><br><span class="line">	<span class="comment">//eg:替换一个 loader</span></span><br><span class="line">	chainWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">const</span> svgRule = config.module.rule(<span class="string">'svg'</span>);</span><br><span class="line">		<span class="comment">// 清除已有的所有 loader。</span></span><br><span class="line">		<span class="comment">// 否则接下来的 loader 会附加在该规则现有的 loader 之后。</span></span><br><span class="line">		svgRule.uses.clear();</span><br><span class="line">		<span class="comment">//添加替换的 loader</span></span><br><span class="line">		svgRule.use(<span class="string">'vue-svg-loader'</span>).loader(<span class="string">'vue-svg-loader'</span>);</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	css: &#123;</span><br><span class="line">		<span class="comment">//可以去掉文件名中的.module</span></span><br><span class="line">		<span class="comment">//并将所有的 *.(css|scss|sass|less|styl(us)?)文件视为 CSS Modules 模块</span></span><br><span class="line">		<span class="comment">//默认为 false</span></span><br><span class="line">		modules: <span class="literal">true</span>,</span><br><span class="line">		<span class="comment">//Type: boolean | Object</span></span><br><span class="line">		<span class="comment">//Default: 生产环境下是 true，开发环境下是 false</span></span><br><span class="line">		<span class="comment">//是否将组件中的 CSS 提取至一个独立的 CSS 文件中</span></span><br><span class="line">		<span class="comment">//(而不是动态注入到 JavaScript 中的 inline 代码)。</span></span><br><span class="line">		<span class="comment">//当作为一个库构建时，你也可以将其设置为 false 免得用户自己导入 CSS。</span></span><br><span class="line">		<span class="comment">//提取 CSS 在开发环境模式下是默认不开启的，因为它和 CSS 热重载不兼容</span></span><br><span class="line">		extract: <span class="literal">true</span>,</span><br><span class="line">		<span class="comment">//是否为 CSS 开启 source map。设置为 true 之后可能会影响构建的性能。</span></span><br><span class="line">		<span class="comment">//default:false</span></span><br><span class="line">		sourceMap: <span class="literal">false</span>,</span><br><span class="line">		<span class="comment">//向 CSS 相关的 loader 传递选项</span></span><br><span class="line">		<span class="comment">//支持的 loader 有 css-loader postcss-loader sass-loader less-loader stylus-loader</span></span><br><span class="line">		loaderOptions: &#123;</span><br><span class="line">			css: &#123;</span><br><span class="line">				<span class="comment">//这里的选项会传递给 css-loader</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">//修改 webpack-dev-server</span></span><br><span class="line">	devServer: &#123;</span><br><span class="line">		port: <span class="number">8080</span></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Default: false</span></span><br><span class="line">	<span class="comment">//是否为 Babel 或 TypeScript 使用 thread-loader（详情见 webpack）</span></span><br><span class="line">	parallel: <span class="literal">false</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><ol>
+<li>lintOnSave 是在开发环境下通过 eslint-loader 在每次保存时 lint 代码，不保存不会执行</li>
+<li>lintOnSave 为 false 的时候，会有”error”字样出现在”warning”里面了，没注意看，还以为是 error 了。</li>
+<li>webpack4 用两个新的配置选项(optimization.splitChunks and optimization.runtimeChunk)替代了 CommonsChunkPlugin</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes" target="_blank" rel="noopener">crossorigin</a><code>&lt;script src=&quot;https://xxx.js&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</code></li>
+<li>当启用<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" target="_blank" rel="noopener">SRI</a> 时，preload resource hints 会被禁用，因为<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=677022" target="_blank" rel="noopener">Chrome 的一个 bug</a> 会导致文件被下载两次。</li>
+<li><a href="https://cli.vuejs.org/zh/guide/webpack.html#%E7%AE%80%E5%8D%95%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F" target="_blank" rel="noopener">configureWebpack：配合 webpack&gt;简单的配置方式</a></li>
+<li><a href="https://cli.vuejs.org/zh/guide/webpack.html#%E9%93%BE%E5%BC%8F%E6%93%8D%E4%BD%9C-%E9%AB%98%E7%BA%A7" target="_blank" rel="noopener">chainWebpack：webpack 链式操作</a></li>
+<li><a href="https://nodejs.org/api/os.html#os_os_cpus" target="_blank" rel="noopener">os.cpus()</a> 返回一个对象数组，包含所安装的每个 CPU/内核的信息</li>
+<li><a href="https://webpack.docschina.org/loaders/thread-loader/" target="_blank" rel="noopener">webpack 的 thread-loader</a></li>
+<li><a href="http://blog.airdwing.com/posts/2017/willin-cluster-in-nodejs/" target="_blank" rel="noopener">node cpu 调度优化</a></li>
+</ol>
+<p>to be continued…</p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>vue</category>
+        <category>webpack</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>vue</tag>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS 常用函数</title>
+    <url>/2018/08/07/JS%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="string"><a href="#string" class="headerlink" title="string"></a>string</h1><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g769vgqkhpj31950u0nib.jpg" alt=""></p>
+<a id="more"></a>
+
+<h2 id="string-trim"><a href="#string-trim" class="headerlink" title="string.trim()"></a>string.trim()</h2><p>trim() 方法用于删除字符串的头尾空格</p>
+<p>trim() 方法不会改变原始字符串</p>
+<hr>
+<h1 id="array"><a href="#array" class="headerlink" title="array"></a>array</h1><h2 id="array-find"><a href="#array-find" class="headerlink" title="array.find()"></a>array.find()</h2><p>array.find() <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g769uup4gcj30x20pljv3.jpg" alt=""></p>
+<h2 id="arrayObject-reverse-用于颠倒数组中元素的顺序"><a href="#arrayObject-reverse-用于颠倒数组中元素的顺序" class="headerlink" title="arrayObject.reverse() 用于颠倒数组中元素的顺序"></a>arrayObject.reverse() 用于颠倒数组中元素的顺序</h2><hr>
+<h1 id="url"><a href="#url" class="headerlink" title="url"></a>url</h1><h2 id="url-parse-urlStr-parseQueryString-slashesDenoteHost"><a href="#url-parse-urlStr-parseQueryString-slashesDenoteHost" class="headerlink" title="url.parse(urlStr,[parseQueryString],[slashesDenoteHost])"></a>url.parse(urlStr,[parseQueryString],[slashesDenoteHost])</h2><p>将 url 字符串变成 url 对象</p>
+<h2 id="url-format-urlObj"><a href="#url-format-urlObj" class="headerlink" title="url.format(urlObj)"></a>url.format(urlObj)</h2><p>将 url 对象变成字符串</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">var</span> urlStr = <span class="string">'http://user:pass@host.com:80/resource/path:query=string#hash'</span>;</span><br><span class="line"><span class="keyword">var</span> urlObj = url.parse(urlStr, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">urlString = url.format(urlObj);</span><br></pre></td></tr></table></figure>
+
+<h2 id="url-resolve-from-to-解析到新的位置"><a href="#url-resolve-from-to-解析到新的位置" class="headerlink" title="url.resolve(from,to) 解析到新的位置"></a>url.resolve(from,to) 解析到新的位置</h2><hr>
+<h1 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h1><h2 id="Math-round-四舍五入"><a href="#Math-round-四舍五入" class="headerlink" title="Math.round() 四舍五入"></a>Math.round() 四舍五入</h2><h2 id="Math-ceil-向上取整"><a href="#Math-ceil-向上取整" class="headerlink" title="Math.ceil() 向上取整"></a>Math.ceil() 向上取整</h2><h2 id="Math-floor-向下取整"><a href="#Math-floor-向下取整" class="headerlink" title="Math.floor() 向下取整"></a>Math.floor() 向下取整</h2><h2 id="Math-trunc-方法会将数字的小数部分去掉，只保留整数部分。"><a href="#Math-trunc-方法会将数字的小数部分去掉，只保留整数部分。" class="headerlink" title="Math.trunc() 方法会将数字的小数部分去掉，只保留整数部分。"></a>Math.trunc() 方法会将数字的小数部分去掉，只保留整数部分。</h2>]]></content>
+      <categories>
+        <category>FE</category>
+        <category>JS基础</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2018/01/01/hello-world/</url>
+    <content><![CDATA[<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<a id="more"></a>
+
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+</search>

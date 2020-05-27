@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Vue-cli 3.0 新特性及各参数详解 |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  
+  <canvas width="1777" height="841" style="position: fixed; left: 0px; top: 0px; z-index: 999; pointer-events: none;"></canvas>
+  
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-vue-cli3-0配置详解" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Vue-cli 3.0 新特性及各参数详解
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2018/09/02/vue-cli3-0%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2018-09-01T16:00:00.000Z" itemprop="datePublished">2018-09-02</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/vue/">vue</a> / <a class="article-category-link" href="/categories/FE/webpack/">webpack</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">6 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <ul>
+<li>最近公司任务让我研究一下 vue-cli3.0，我就顺势简单写一些。vue-cli 3.0 相比于 2.0，最为直观的就是“0 配置”了，没有 build 和 config，使用 vue.config.js 来进行配置。下图是 3.0 与 2.0 项目目录对比：<img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g6s1vmrbfdj31ey0riadg.jpg" alt=""></li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>更方便地管理插件(vue-cli-plugin-)</p>
+</li>
+<li><p>图形化界面管理工程，命令行 vue ui 启动</p>
+</li>
+<li><p>安装命令也变了，由 vue init &lt; template-name&gt; &lt; project-name&gt;变成了 yarn global add @vue/cli 或者 npm install -g @vue/cli</p>
+</li>
+<li><p><a href="https://github.com/jee3/vue-cli3.0" target="_blank" rel="noopener">本工程的 GitHub</a></p>
+</li>
+<li><p>以下在 vue.config.js 配置的一些参数只是为了说明而存在。“可以，但没必要”</p>
+</li>
+</ul>
+<h2 id="配置说明"><a href="#配置说明" class="headerlink" title="配置说明"></a>配置说明</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">	<span class="comment">// EG:baseUrl:'/myapp/', type:string，默认为'/'</span></span><br><span class="line">	<span class="comment">//若设置成' '，则为相对路径</span></span><br><span class="line">	<span class="comment">//生成的 CSS 文件要始终放在输出路径的根部，以确保 CSS 中的 URL 正常工作。</span></span><br><span class="line">	<span class="comment">// 把开发服务器放在根目录</span></span><br><span class="line">	baseUrl:</span><br><span class="line">		process.env.NODE_ENV === <span class="string">'production'</span> ? <span class="string">'/production-sub-path/'</span> : <span class="string">'/'</span>,</span><br><span class="line">	<span class="comment">//outputDir,生产环境目录</span></span><br><span class="line">	<span class="comment">//Default: 'dist'</span></span><br><span class="line">	outputDir: <span class="string">'distribution'</span>,</span><br><span class="line">	<span class="comment">//放置生成的静态资源的 (相对于 outputDir 的) 目录,</span></span><br><span class="line">	<span class="comment">//Default: ''</span></span><br><span class="line">	assetsDir: <span class="string">'./static'</span>,</span><br><span class="line">	<span class="comment">//指定生成 index.html 的输出路径（相对于 outputDir），也可以是绝对路径</span></span><br><span class="line">	<span class="comment">//Default: 'index.html'</span></span><br><span class="line">	indexPath: <span class="string">'./index/index.html'</span>,</span><br><span class="line">	<span class="comment">//文件名是否含 hash，默认为 true</span></span><br><span class="line">	filenameHashing: <span class="literal">false</span>,</span><br><span class="line">	<span class="comment">//在 multi-page 模式下构建应用。</span></span><br><span class="line">	<span class="comment">//Type: Object</span></span><br><span class="line">	pages: &#123;</span><br><span class="line">		index: &#123;</span><br><span class="line">			<span class="comment">//page 的入口，必选项</span></span><br><span class="line">			entry: <span class="string">'src/main.js'</span>,</span><br><span class="line">			<span class="comment">//模板来源</span></span><br><span class="line">			template: <span class="string">'public/index.html'</span>,</span><br><span class="line">			<span class="comment">//在 outputDir/index.html 的输出</span></span><br><span class="line">			filename: <span class="string">'index.html'</span>,</span><br><span class="line">			<span class="comment">//使用 title 选项时，template 中的 title 需要使用 htmlWebpackPlugin</span></span><br><span class="line">			title: <span class="string">'Index Page'</span>,</span><br><span class="line">			<span class="comment">//包含的块默认情况下会包含提取出来的 通用 chunk 和 vendor chunk</span></span><br><span class="line">			chunks: [<span class="string">'chunk-vendors'</span>, <span class="string">'chunk-common'</span>, <span class="string">'index'</span>]</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="comment">// 当使用只有入口的字符串格式时，</span></span><br><span class="line">		<span class="comment">// 模板会被推导为 `public/subpage.html`</span></span><br><span class="line">		<span class="comment">// 并且如果找不到的话，就回退到 `public/index.html`</span></span><br><span class="line">		<span class="comment">// 输出文件名会被推导为 `subpage.html`</span></span><br><span class="line">		subpage: <span class="string">'src/main.js'</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">//Type: boolean | 'error'</span></span><br><span class="line">	<span class="comment">//只有安装 @vue/cli-plugin-eslint 才会生效，默认为 true，输出警告</span></span><br><span class="line">	<span class="comment">//若想将错误强制输出到浏览器，请设置成'error'</span></span><br><span class="line">	<span class="comment">//生产时禁用 eslint-loader</span></span><br><span class="line">	<span class="comment">//lintOnSave:process.env.NODE_ENV !=='production',</span></span><br><span class="line">	lintOnSave: <span class="literal">false</span>,</span><br><span class="line">	<span class="comment">//设置浏览器 overlay 可以同时显示错误和警告</span></span><br><span class="line">	devServer: &#123;</span><br><span class="line">		overlay: &#123;</span><br><span class="line">			warnings: <span class="literal">false</span>,</span><br><span class="line">			error: <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">//默认为 false，改为 true 后可以在 vue 组件中使用 template，但会增加 10kb</span></span><br><span class="line">	<span class="comment">//比如传入一个字符串给 template 或挂载到一个元素上</span></span><br><span class="line">	<span class="comment">//并以其 DOM 内部的 HTML 作为模板，则需要完整版</span></span><br><span class="line">	runtimeCompiler: <span class="literal">false</span>,</span><br><span class="line">	<span class="comment">//Type: Array&lt;string | RegExp&gt;</span></span><br><span class="line">	<span class="comment">//默认为[]，babel-loader 忽略所有 node_modules 中的文件</span></span><br><span class="line">	transpileDependencies: [<span class="string">'html-webpack-plugin'</span>],</span><br><span class="line">	<span class="comment">//如果你不需要生产环境的 source map，</span></span><br><span class="line">	<span class="comment">//可以将其设置为 false 以加速生产环境构建，默认为 true</span></span><br><span class="line">	productionSourceMap: <span class="literal">false</span>,</span><br><span class="line">	<span class="comment">//Type: string</span></span><br><span class="line">	<span class="comment">//设置 crossorigin 属性，默认为 undefined。</span></span><br><span class="line">	<span class="comment">//仅影响由 html-webpack-plugin 注入的标签，不影响直接写在模板里的标签</span></span><br><span class="line">	<span class="comment">//默认情况下根本不使用 CORS;</span></span><br><span class="line">	<span class="comment">//为 anonymous 时，意味着不会通过 Cookie、客户端 SSL 证书或 HTTP 身份验证交换用户凭据;</span></span><br><span class="line">	<span class="comment">//为 use-credentials 时，请求将提供凭据</span></span><br><span class="line">	<span class="comment">//无效关键字和空字符串将作为 anonymous 关键字处理。</span></span><br><span class="line">	crossorigin: <span class="literal">undefined</span>,</span><br><span class="line">	<span class="comment">//Type: boolean</span></span><br><span class="line">	<span class="comment">//是否启用 SRI。若要部署到 cdn 上，启用该选项将提供额外的安全性，默认为 false</span></span><br><span class="line">	<span class="comment">//同样仅影响由 html-webpack-plugin 注入的标签，不影响直接写在模板里的标签</span></span><br><span class="line">	<span class="comment">//当启用 SRI 时，preload resource hints 会被禁用</span></span><br><span class="line">	integrity: <span class="literal">false</span>,</span><br><span class="line">	<span class="comment">//Type: Object | Function</span></span><br><span class="line">	<span class="comment">//用于调整 webpack 配置</span></span><br><span class="line">	<span class="comment">//如果这个值是一个对象，则会通过 webpack-merge 合并到最终的配置中。</span></span><br><span class="line">	<span class="comment">//如果这个值是一个函数，则会接收被解析的配置作为参数。</span></span><br><span class="line">	<span class="comment">//该函数及可以修改配置并不返回任何东西，也可以返回一个被克隆或合并过的配置版本。</span></span><br><span class="line">	configureWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'production'</span>) &#123;</span><br><span class="line">			<span class="comment">//为生产环境修改配置</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">//为开发环境修改配置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">//对内部的 webpack 配置进行更细粒度的修改(链式操作)</span></span><br><span class="line">	<span class="comment">//需要熟悉 webpack-chain 的 API 并阅读一些源码以最大程度利用好这个选项</span></span><br><span class="line">	<span class="comment">//但是比起直接修改 webpack 配置，它的表达能力更强，也更为安全。</span></span><br><span class="line">	<span class="comment">//eg:替换一个 loader</span></span><br><span class="line">	chainWebpack: <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">const</span> svgRule = config.module.rule(<span class="string">'svg'</span>);</span><br><span class="line">		<span class="comment">// 清除已有的所有 loader。</span></span><br><span class="line">		<span class="comment">// 否则接下来的 loader 会附加在该规则现有的 loader 之后。</span></span><br><span class="line">		svgRule.uses.clear();</span><br><span class="line">		<span class="comment">//添加替换的 loader</span></span><br><span class="line">		svgRule.use(<span class="string">'vue-svg-loader'</span>).loader(<span class="string">'vue-svg-loader'</span>);</span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	css: &#123;</span><br><span class="line">		<span class="comment">//可以去掉文件名中的.module</span></span><br><span class="line">		<span class="comment">//并将所有的 *.(css|scss|sass|less|styl(us)?)文件视为 CSS Modules 模块</span></span><br><span class="line">		<span class="comment">//默认为 false</span></span><br><span class="line">		modules: <span class="literal">true</span>,</span><br><span class="line">		<span class="comment">//Type: boolean | Object</span></span><br><span class="line">		<span class="comment">//Default: 生产环境下是 true，开发环境下是 false</span></span><br><span class="line">		<span class="comment">//是否将组件中的 CSS 提取至一个独立的 CSS 文件中</span></span><br><span class="line">		<span class="comment">//(而不是动态注入到 JavaScript 中的 inline 代码)。</span></span><br><span class="line">		<span class="comment">//当作为一个库构建时，你也可以将其设置为 false 免得用户自己导入 CSS。</span></span><br><span class="line">		<span class="comment">//提取 CSS 在开发环境模式下是默认不开启的，因为它和 CSS 热重载不兼容</span></span><br><span class="line">		extract: <span class="literal">true</span>,</span><br><span class="line">		<span class="comment">//是否为 CSS 开启 source map。设置为 true 之后可能会影响构建的性能。</span></span><br><span class="line">		<span class="comment">//default:false</span></span><br><span class="line">		sourceMap: <span class="literal">false</span>,</span><br><span class="line">		<span class="comment">//向 CSS 相关的 loader 传递选项</span></span><br><span class="line">		<span class="comment">//支持的 loader 有 css-loader postcss-loader sass-loader less-loader stylus-loader</span></span><br><span class="line">		loaderOptions: &#123;</span><br><span class="line">			css: &#123;</span><br><span class="line">				<span class="comment">//这里的选项会传递给 css-loader</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">//修改 webpack-dev-server</span></span><br><span class="line">	devServer: &#123;</span><br><span class="line">		port: <span class="number">8080</span></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Default: false</span></span><br><span class="line">	<span class="comment">//是否为 Babel 或 TypeScript 使用 thread-loader（详情见 webpack）</span></span><br><span class="line">	parallel: <span class="literal">false</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><ol>
+<li>lintOnSave 是在开发环境下通过 eslint-loader 在每次保存时 lint 代码，不保存不会执行</li>
+<li>lintOnSave 为 false 的时候，会有”error”字样出现在”warning”里面了，没注意看，还以为是 error 了。</li>
+<li>webpack4 用两个新的配置选项(optimization.splitChunks and optimization.runtimeChunk)替代了 CommonsChunkPlugin</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes" target="_blank" rel="noopener">crossorigin</a><code>&lt;script src=&quot;https://xxx.js&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</code></li>
+<li>当启用<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" target="_blank" rel="noopener">SRI</a> 时，preload resource hints 会被禁用，因为<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=677022" target="_blank" rel="noopener">Chrome 的一个 bug</a> 会导致文件被下载两次。</li>
+<li><a href="https://cli.vuejs.org/zh/guide/webpack.html#%E7%AE%80%E5%8D%95%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F" target="_blank" rel="noopener">configureWebpack：配合 webpack&gt;简单的配置方式</a></li>
+<li><a href="https://cli.vuejs.org/zh/guide/webpack.html#%E9%93%BE%E5%BC%8F%E6%93%8D%E4%BD%9C-%E9%AB%98%E7%BA%A7" target="_blank" rel="noopener">chainWebpack：webpack 链式操作</a></li>
+<li><a href="https://nodejs.org/api/os.html#os_os_cpus" target="_blank" rel="noopener">os.cpus()</a> 返回一个对象数组，包含所安装的每个 CPU/内核的信息</li>
+<li><a href="https://webpack.docschina.org/loaders/thread-loader/" target="_blank" rel="noopener">webpack 的 thread-loader</a></li>
+<li><a href="http://blog.airdwing.com/posts/2017/willin-cluster-in-nodejs/" target="_blank" rel="noopener">node cpu 调度优化</a></li>
+</ol>
+<p>to be continued…</p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        Donate
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>Copyright： </strong>
+              Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2018/09/02/vue-cli3-0%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2018/09/06/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Git常用命令
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2018/08/07/JS%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">JS 常用函数</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'ccNTxVj0sBlfohKD1x5IfyLd-gzGzoHsz',
+        app_key: 'C2FnlKRVOOAiYilY6155uULB',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: '请洒潘江，各倾陆海云尔',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> Jee
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt=""></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>如果您觉得此文章帮助到了您，请作者喝杯咖啡吧～</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpeg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechatpay.jpeg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['桃李不言，下自成蹊', '', ''],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom -->
+
+
+<script src="/js/clickBoom.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1297941&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":170,"height":170},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+
+</html>
