@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    《React——引领未来的用户界面开发框架》 |  
+    《React——引领未来的用户界面开发框架》总结 |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -40,8 +40,6 @@
 
 <body>
   
-  <canvas width="1777" height="841" style="position: fixed; left: 0px; top: 0px; z-index: 999; pointer-events: none;"></canvas>
-  
   <div id="app">
     <main class="content on">
       <section class="outer">
@@ -53,7 +51,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  《React——引领未来的用户界面开发框架》
+  《React——引领未来的用户界面开发框架》总结
 </h1>
  
 
@@ -136,7 +134,7 @@
 <p>使用 react-mixin 来提供 mixin 的支持，这也是为数不多应该使用 mixin 而不是高阶组件的地方</p>
 <h2 id="key"><a href="#key" class="headerlink" title="key"></a>key</h2><p>如果一个组件的 key 属性发生变化，那么 react 就会跳过 DOM diff，同时完全弃置 div 所有的子元素，并重新从头开始渲染。</p>
 <p>在渲染大型子树避免 diff 运算时，这样做很有用</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items = sortBy(<span class="keyword">this</span>.state.sortingAlgorithm, <span class="keyword">this</span>.props.items);</span><br><span class="line"><span class="keyword">return</span> items.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;item.src&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items = sortBy(<span class="keyword">this</span>.state.sortingAlgorithm, <span class="keyword">this</span>.props.items);</span><br><span class="line"><span class="keyword">return</span> items.map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;item.src&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>如果顺序改变，react 会对元素进行 diff 操作并确定最高效的操作时改变其中几个 img 元素的 src，这样可能会导致浏览器查询缓存，甚至会导致新的网络请求。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;item.src&#125;</span> <span class="attr">key</span>=<span class="string">&#123;item.id&#125;</span> /&gt;</span></span>;</span><br></pre></td></tr></table></figure>
@@ -273,6 +271,15 @@
   
   <nav class="article-nav">
     
+      <a href="/2020/05/29/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%82%A3%E4%BA%9B%E5%9D%91/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            文件上传那些坑
+          
+        </div>
+      </a>
+    
     
       <a href="/2019/12/18/git-%E8%BF%9B%E9%98%B6/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
@@ -299,8 +306,8 @@
         app_id: 'ccNTxVj0sBlfohKD1x5IfyLd-gzGzoHsz',
         app_key: 'C2FnlKRVOOAiYilY6155uULB',
         path: window.location.pathname,
-        notify: 'false',
-        verify: 'false',
+        notify: false,
+        verify: false,
         avatar: 'monsterid',
         placeholder: '请洒潘江，各倾陆海云尔',
         recordIP: true
@@ -357,12 +364,6 @@
     </ul>
     <ul>
       <li>
-        
-        
-        
-        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
-        <span class="division">|</span>
-        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
         
       </li>
     </ul>
@@ -466,13 +467,13 @@
   <div class="reward-box">
     
     <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpeg">
+      <img class="reward-img" src="/images/alipay2.jpeg">
       <span class="reward-type">支付宝</span>
     </div>
     
     
     <div class="reward-item">
-      <img class="reward-img" src="/images/wechatpay.jpeg">
+      <img class="reward-img" src="/images/wechatpay2.jpeg">
       <span class="reward-type">微信</span>
     </div>
     
@@ -489,7 +490,7 @@
 <script>
   try {
     var typed = new Typed("#subtitle", {
-      strings: ['桃李不言，下自成蹊', '', ''],
+      strings: ['桃李不言，下自成蹊', '先行其言而后从之', ''],
       startDelay: 0,
       typeSpeed: 200,
       loop: true,
@@ -647,11 +648,11 @@
 
 <!-- ClickLove -->
 
+
+<script src="/js/clickLove.js"></script>
+
+
 <!-- ClickBoom -->
-
-
-<script src="/js/clickBoom.js"></script>
-
 
 <!-- CodeCopy -->
 
@@ -716,24 +717,7 @@
 
 
     
-    <div id="music">
-    
-    
-    
-    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
-        src="//music.163.com/outchain/player?type=2&id=1297941&auto=0&height=32"></iframe>
-</div>
-
-<style>
-    #music {
-        position: fixed;
-        right: 15px;
-        bottom: 0;
-        z-index: 998;
-    }
-</style>
-    
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":170,"height":170},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":170,"height":170},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
 
 </html>

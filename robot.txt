@@ -1,0 +1,10 @@
+User-agent: * Allow: /
+Allow: /archives/
+Disallow: /vendors/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /vendors/
+Disallow: /fancybox/
+Sitemap: http://jee3.github.io/sitemap.xml
+Sitemap: http://jee3.github.io/baidusitemap.xml

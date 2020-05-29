@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-23T01:08:35.693Z</updated>
+  <updated>2020-05-29T07:48:39.830Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>《React——引领未来的用户界面开发框架》</title>
+    <title>文件上传那些坑</title>
+    <link href="http://yoursite.com/2020/05/29/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%82%A3%E4%BA%9B%E5%9D%91/"/>
+    <id>http://yoursite.com/2020/05/29/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%82%A3%E4%BA%9B%E5%9D%91/</id>
+    <published>2020-05-29T07:48:39.000Z</published>
+    <updated>2020-05-29T07:48:39.830Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>《React——引领未来的用户界面开发框架》总结</title>
     <link href="http://yoursite.com/2020/01/22/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/"/>
     <id>http://yoursite.com/2020/01/22/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/</id>
     <published>2020-01-21T16:00:00.000Z</published>
-    <updated>2020-01-23T01:08:35.693Z</updated>
+    <updated>2020-05-27T11:15:49.865Z</updated>
     
     <summary type="html">
     
@@ -51,12 +74,12 @@
     <link href="http://yoursite.com/2019/12/18/git-%E8%BF%9B%E9%98%B6/"/>
     <id>http://yoursite.com/2019/12/18/git-%E8%BF%9B%E9%98%B6/</id>
     <published>2019-12-17T16:00:00.000Z</published>
-    <updated>2019-12-22T07:57:23.094Z</updated>
+    <updated>2020-05-29T07:37:25.451Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。&lt;/p&gt;
-&lt;h1 id=&quot;fatal-Could-not-read-from-remote-repository-的解决办法&quot;&gt;&lt;a href=&quot;#fatal-Could-not-read-from-remote-repository-的解决办法&quot; class=&quot;headerlink&quot; title=&quot;fatal: Could not read from remote repository.的解决办法:&quot;&gt;&lt;/a&gt;fatal: Could not read from remote repository.的解决办法:&lt;/h1&gt;&lt;p&gt;查看远端地址 git remote –v 查看配置 git config –list git status&lt;/p&gt;
+&lt;h1 id=&quot;fatal-Could-not-read-from-remote-repository-的解决办法&quot;&gt;&lt;a href=&quot;#fatal-Could-not-read-from-remote-repository-的解决办法&quot; class=&quot;headerlink&quot; title=&quot;fatal: Could not read from remote repository.的解决办法:&quot;&gt;&lt;/a&gt;fatal: Could not read from remote repository.的解决办法:&lt;/h1&gt;&lt;p&gt;查看远端地址 &lt;code&gt;git remote –v&lt;/code&gt; 查看配置 &lt;code&gt;git config --list&lt;/code&gt; &lt;code&gt;git status&lt;/code&gt;&lt;/p&gt;
     
     </summary>
     
@@ -69,11 +92,11 @@
   </entry>
   
   <entry>
-    <title>《Javascript高级程序设计》</title>
+    <title>《Javascript高级程序设计》总结</title>
     <link href="http://yoursite.com/2019/11/23/JS%E9%AB%98%E7%A8%8B/"/>
     <id>http://yoursite.com/2019/11/23/JS%E9%AB%98%E7%A8%8B/</id>
     <published>2019-11-22T16:00:00.000Z</published>
-    <updated>2020-01-23T00:53:16.155Z</updated>
+    <updated>2020-05-27T11:25:12.862Z</updated>
     
     <summary type="html">
     
@@ -131,6 +154,33 @@
   </entry>
   
   <entry>
+    <title>CSS基础</title>
+    <link href="http://yoursite.com/2019/10/28/CSS%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2019/10/28/CSS%E5%9F%BA%E7%A1%80/</id>
+    <published>2019-10-27T16:00:00.000Z</published>
+    <updated>2019-10-28T08:58:01.546Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;position&quot;&gt;&lt;a href=&quot;#position&quot; class=&quot;headerlink&quot; title=&quot;position&quot;&gt;&lt;/a&gt;position&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g870k95k7zj31a60naae8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;盒模型&quot;&gt;&lt;a href=&quot;#盒模型&quot; class=&quot;headerlink&quot; title=&quot;盒模型&quot;&gt;&lt;/a&gt;盒模型&lt;/h1&gt;&lt;h2 id=&quot;IE-盒模型&quot;&gt;&lt;a href=&quot;#IE-盒模型&quot; class=&quot;headerlink&quot; title=&quot;IE 盒模型&quot;&gt;&lt;/a&gt;IE 盒模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g8beap40nbj30xw0lewgw.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;标准盒模型&quot;&gt;&lt;a href=&quot;#标准盒模型&quot; class=&quot;headerlink&quot; title=&quot;标准盒模型&quot;&gt;&lt;/a&gt;标准盒模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g8beaz5fvzj30zk0l1tb5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="FE" scheme="http://yoursite.com/categories/FE/"/>
+    
+      <category term="CSS" scheme="http://yoursite.com/categories/FE/CSS/"/>
+    
+    
+      <category term="FE" scheme="http://yoursite.com/tags/FE/"/>
+    
+      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Flex布局</title>
     <link href="http://yoursite.com/2019/10/28/Flex%E5%B8%83%E5%B1%80/"/>
     <id>http://yoursite.com/2019/10/28/Flex%E5%B8%83%E5%B1%80/</id>
@@ -159,33 +209,6 @@
       <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
     
       <category term="Flex" scheme="http://yoursite.com/tags/Flex/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSS基础</title>
-    <link href="http://yoursite.com/2019/10/28/CSS%E5%9F%BA%E7%A1%80/"/>
-    <id>http://yoursite.com/2019/10/28/CSS%E5%9F%BA%E7%A1%80/</id>
-    <published>2019-10-27T16:00:00.000Z</published>
-    <updated>2019-10-28T08:58:01.546Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;position&quot;&gt;&lt;a href=&quot;#position&quot; class=&quot;headerlink&quot; title=&quot;position&quot;&gt;&lt;/a&gt;position&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g870k95k7zj31a60naae8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;盒模型&quot;&gt;&lt;a href=&quot;#盒模型&quot; class=&quot;headerlink&quot; title=&quot;盒模型&quot;&gt;&lt;/a&gt;盒模型&lt;/h1&gt;&lt;h2 id=&quot;IE-盒模型&quot;&gt;&lt;a href=&quot;#IE-盒模型&quot; class=&quot;headerlink&quot; title=&quot;IE 盒模型&quot;&gt;&lt;/a&gt;IE 盒模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g8beap40nbj30xw0lewgw.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;标准盒模型&quot;&gt;&lt;a href=&quot;#标准盒模型&quot; class=&quot;headerlink&quot; title=&quot;标准盒模型&quot;&gt;&lt;/a&gt;标准盒模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g8beaz5fvzj30zk0l1tb5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="FE" scheme="http://yoursite.com/categories/FE/"/>
-    
-      <category term="CSS" scheme="http://yoursite.com/categories/FE/CSS/"/>
-    
-    
-      <category term="FE" scheme="http://yoursite.com/tags/FE/"/>
-    
-      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
     
   </entry>
   

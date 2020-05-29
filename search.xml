@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>《React——引领未来的用户界面开发框架》</title>
+    <title>文件上传那些坑</title>
+    <url>/2020/05/29/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%82%A3%E4%BA%9B%E5%9D%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+  </entry>
+  <entry>
+    <title>《React——引领未来的用户界面开发框架》总结</title>
     <url>/2020/01/22/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/</url>
     <content><![CDATA[<p>所有代码示例：<a href="http://git.io/vlcpa" target="_blank" rel="noopener">http://git.io/vlcpa</a></p>
 <h1 id="4-数据流"><a href="#4-数据流" class="headerlink" title="4 数据流"></a>4 数据流</h1><h2 id="PropTypes"><a href="#PropTypes" class="headerlink" title="PropTypes"></a>PropTypes</h2><p>提供了一种验证 props 的方式</p>
@@ -28,7 +33,7 @@
 <p>使用 react-mixin 来提供 mixin 的支持，这也是为数不多应该使用 mixin 而不是高阶组件的地方</p>
 <h2 id="key"><a href="#key" class="headerlink" title="key"></a>key</h2><p>如果一个组件的 key 属性发生变化，那么 react 就会跳过 DOM diff，同时完全弃置 div 所有的子元素，并重新从头开始渲染。</p>
 <p>在渲染大型子树避免 diff 运算时，这样做很有用</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> items = sortBy(<span class="keyword">this</span>.state.sortingAlgorithm, <span class="keyword">this</span>.props.items);</span><br><span class="line"><span class="keyword">return</span> items.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;item.src&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> items = sortBy(<span class="keyword">this</span>.state.sortingAlgorithm, <span class="keyword">this</span>.props.items);</span><br><span class="line"><span class="keyword">return</span> items.map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;item.src&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>如果顺序改变，react 会对元素进行 diff 操作并确定最高效的操作时改变其中几个 img 元素的 src，这样可能会导致浏览器查询缓存，甚至会导致新的网络请求。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;item.src&#125;</span> <span class="attr">key</span>=<span class="string">&#123;item.id&#125;</span> /&gt;</span></span>;</span><br></pre></td></tr></table></figure>
@@ -92,36 +97,36 @@
   <entry>
     <title>Git 进阶</title>
     <url>/2019/12/18/git-%E8%BF%9B%E9%98%B6/</url>
-    <content><![CDATA[<p>HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。</p>
-<h1 id="fatal-Could-not-read-from-remote-repository-的解决办法"><a href="#fatal-Could-not-read-from-remote-repository-的解决办法" class="headerlink" title="fatal: Could not read from remote repository.的解决办法:"></a>fatal: Could not read from remote repository.的解决办法:</h1><p>查看远端地址 git remote –v 查看配置 git config –list git status</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。</p>
+<h1 id="fatal-Could-not-read-from-remote-repository-的解决办法"><a href="#fatal-Could-not-read-from-remote-repository-的解决办法" class="headerlink" title="fatal: Could not read from remote repository.的解决办法:"></a>fatal: Could not read from remote repository.的解决办法:</h1><p>查看远端地址 <code>git remote –v</code> 查看配置 <code>git config --list</code> <code>git status</code></p>
 <a id="more"></a>
 
-<h1 id="工作区与暂存区"><a href="#工作区与暂存区" class="headerlink" title="工作区与暂存区"></a>工作区与暂存区</h1><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576" target="_blank" rel="noopener">工作区和暂存区</a> command s ：工作区修改 git add：提交到暂存区 git commit：提交到本地库 git push：提交到远端</p>
+<h1 id="工作区与暂存区"><a href="#工作区与暂存区" class="headerlink" title="工作区与暂存区"></a>工作区与暂存区</h1><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576" target="_blank" rel="noopener">工作区和暂存区</a> command s ：工作区修改 <code>git add</code>：提交到暂存区 <code>git commit</code>：提交到本地库 <code>git push</code>：提交到远端</p>
 <h1 id="git-bare-init"><a href="#git-bare-init" class="headerlink" title="git -bare init"></a>git -bare init</h1><p><a href="http://blog.haohtml.com/archives/12265" target="_blank" rel="noopener">git -bare init 与 git init 有什么不同</a></p>
-<p>在初始化远程仓库时最好使用 git –bare init 而不要使用：git init。这样在使用 hooks 的时候，会有用处。</p>
-<p>如果使用了 git init 初始化，则远程仓库的目录下，也包含 work tree，当本地仓库向远程仓库 push 时, 如果远程仓库正在 push 的分支上（如果当时不在 push 的分支，就没有问题）, 那么 push 后的结果不会反应在 work tree 上, 也即在远程仓库的目录下对应的文件还是之前的内容，必须得使用 git reset –hard 才能看到 push 后的内容.</p>
+<p>在初始化远程仓库时最好使用 <code>git –bare init</code> 而不要使用：<code>git init</code>。这样在使用 hooks 的时候，会有用处。</p>
+<p>如果使用了 <code>git init</code> 初始化，则远程仓库的目录下，也包含 work tree，当本地仓库向远程仓库 push 时, 如果远程仓库正在 push 的分支上（如果当时不在 push 的分支，就没有问题）, 那么 push 后的结果不会反应在 work tree 上, 也即在远程仓库的目录下对应的文件还是之前的内容，必须得使用 <code>git reset –hard</code> 才能看到 push 后的内容.</p>
 <h1 id="git-rm-xxx-r"><a href="#git-rm-xxx-r" class="headerlink" title="git rm xxx -r"></a>git rm xxx -r</h1><p>删除（递归），没有-r 会提示不安全</p>
-<h1 id="git-checkout-–-xxx"><a href="#git-checkout-–-xxx" class="headerlink" title="git checkout – xxx"></a>git checkout – xxx</h1><p>命令 git checkout – readme.txt 意思就是，把 readme.txt 文件在工作区的修改全部撤销，这里有两种情况：</p>
+<h1 id="git-checkout-–-xxx"><a href="#git-checkout-–-xxx" class="headerlink" title="git checkout – xxx"></a>git checkout – xxx</h1><p>命令 <code>git checkout -- readme.txt</code> 意思就是，把 readme.txt 文件在工作区的修改全部撤销，这里有两种情况：</p>
 <p>一种是 readme.txt 自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
 <p>一种是 readme.txt 已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
-<p>总之，就是让这个文件回到最近一次 git commit 或 git add 时的状态。</p>
+<p>总之，就是让这个文件回到最近一次 <code>git commit</code> 或 <code>git add</code> 时的状态。</p>
 <h1 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h1><p>创建并切换到新的 dev 分支，可以使用：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b &lt;name&gt;  ||  git switch -c &lt;name&gt;</span><br></pre></td></tr></table></figure>
 
-<h1 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h1><p>对于所有分支而言， 工作区和暂存区是公共的。因为未 add 的内容不属于任何一个分支，未 commit 的内容也不属于任何一个分支；要想在分支间切换， 又不想又上述影响，可以用 git stash。要注意，在当前分支 git stash 的内容， 在其他分支也可以 git stash pop 出来，为什么？ 因为：工作区和暂存区是公共的。</p>
-<h2 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h2><p>git stash 将现在的储存起来，git stash list 查看</p>
+<h1 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h1><p>对于所有分支而言， 工作区和暂存区是公共的。因为未 add 的内容不属于任何一个分支，未 commit 的内容也不属于任何一个分支；要想在分支间切换， 又不想又上述影响，可以用 <code>git stash</code>。要注意，在当前分支 <code>git stash</code> 的内容， 在其他分支也可以 <code>git stash pop</code> 出来，为什么？ 因为：<strong>工作区和暂存区是公共的</strong>。</p>
+<h2 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h2><p><code>git stash</code> 将现在的储存起来，<code>git stash list</code> 查看</p>
 <h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><p>工作现场还在，Git 把 stash 内容存在某个地方了，但是需要恢复一下，有两个办法：</p>
 <ol>
-<li><p>一是用 git stash apply stash@{xxx}恢复，但是恢复后，stash 内容并不删除，你需要用 git stash drop 来删除；</p>
+<li><p>一是用 <code>git stash apply stash@{xxx}</code>恢复，但是恢复后，stash 内容并不删除，你需要用 <code>git stash drop</code>来删除；</p>
 </li>
-<li><p>另一种方式是用 git stash pop，恢复的同时把 stash 内容也删了</p>
+<li><p>另一种方式是用 <code>git stash pop</code>，恢复的同时把 stash 内容也删了</p>
 </li>
 </ol>
 <h1 id="git-merge-–no-ff-–squash"><a href="#git-merge-–no-ff-–squash" class="headerlink" title="git merge (||–no-ff||–squash)"></a>git merge (||–no-ff||–squash)</h1><p>通常，合并分支时，如果可能，Git 会用<strong>Fast forward</strong>模式，但这种模式下，<strong>删除分支后，会丢掉分支信息</strong>。 –no-ff：不使用 fast-forward 方式合并，保留分支的 commit 历史 –squash：使用 squash 方式合并，把多次分支 commit 历史压缩为一次</p>
-<h1 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h1><p>在 master 分支上修复的 bug，想要合并到当前 dev 分支，可以用 git cherry-pick <commit>命令，把 bug 提交的修改“复制”到当前分支，避免重复劳动。</p>
-<h1 id="git-branch-D"><a href="#git-branch-D" class="headerlink" title="git branch -D"></a>git branch -D</h1><p>如果要丢弃一个没有被合并过的分支，可以通过 git branch -D <name>强行删除</p>
+<h1 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h1><p>在 master 分支上修复的 bug，想要合并到当前 dev 分支，可以用 <code>git cherry-pick &lt;commit&gt;</code>命令，把 bug 提交的修改“复制”到当前分支，避免重复劳动。</p>
+<h1 id="git-branch-D"><a href="#git-branch-D" class="headerlink" title="git branch -D"></a>git branch -D</h1><p>如果要丢弃一个没有被合并过的分支，可以通过 <code>git branch -D &lt;name&gt;</code>强行删除</p>
 <h1 id="git-checkout-b-dev-origin-dev"><a href="#git-checkout-b-dev-origin-dev" class="headerlink" title="git checkout -b dev origin/dev"></a>git checkout -b dev origin/dev</h1><p>创建远程 origin 的 dev 到本地 dev</p>
-<p>git branch –set-upstream-to=origin/dev dev</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch --<span class="built_in">set</span>-upstream-to=origin/dev dev</span><br></pre></td></tr></table></figure>
 <h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>rebase 操作前后，最终的提交内容是一致的。</p>
 <p>把分叉的提交历史“整理”成一条直线，看上去更直观。缺点是本地的分叉提交已经被修改过了。</p>
 <p>rebase 操作可以把本地未 push 的分叉提交历史整理成直线；从不对已推送至别处的提交执行变基操作。 因为 rebase 会改变提交历史记录，这会影响到别人使用这一远程仓库。</p>
@@ -137,7 +142,7 @@
       </tags>
   </entry>
   <entry>
-    <title>《Javascript高级程序设计》</title>
+    <title>《Javascript高级程序设计》总结</title>
     <url>/2019/11/23/JS%E9%AB%98%E7%A8%8B/</url>
     <content><![CDATA[<p>复制基本类型值的时候，会新创建一个。复制引用类型值的时候，只是复制指针，指针指向堆中同一个对象。</p>
 <h1 id="5-引用类型"><a href="#5-引用类型" class="headerlink" title="5 引用类型"></a>5 引用类型</h1><p>到底是不是数组，可以用.isArray()，instanceof 在多个框架（两个以上全局执行环境）就不好用了</p>
@@ -165,12 +170,12 @@
 <p>num.toString(n)//将 num 转换为 n 进制 num.toFixed(n)//将 num 转换为 n 为小数</p>
 <h1 id="6-面向对象的程序设计"><a href="#6-面向对象的程序设计" class="headerlink" title="6 面向对象的程序设计"></a>6 面向对象的程序设计</h1><h2 id="对象的属性"><a href="#对象的属性" class="headerlink" title="对象的属性"></a>对象的属性</h2><p>属性包括数据属性和访问器属性。</p>
 <p>数据属性包含一个数据值的位置。访问器属性不包含数据值。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person, <span class="string">'name'</span>, &#123;</span><br><span class="line">	configurable: <span class="literal">false</span>, <span class="comment">//不能再改回true</span></span><br><span class="line">	writable: <span class="literal">false</span>,</span><br><span class="line">	enumerable: <span class="literal">true</span>,</span><br><span class="line">	value: <span class="string">'nicholas'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person, <span class="string">'name'</span>, &#123;</span><br><span class="line">	configurable: <span class="literal">false</span>, <span class="comment">//不能再改回true</span></span><br><span class="line">	writable: <span class="literal">false</span>,</span><br><span class="line">	enumerable: <span class="literal">true</span>,</span><br><span class="line">	value: <span class="string">'nicholas'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">	_year: <span class="number">2019</span>,<span class="comment">//加上_表示只能通过对象方法进行访问的属性</span></span><br><span class="line">	edition: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(book, <span class="string">'year'</span>, &#123;</span><br><span class="line">    <span class="comment">//get在读取属性的时候调用</span></span><br><span class="line">	<span class="keyword">get</span>: function() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>._year;</span><br><span class="line">	&#125;,</span><br><span class="line">    <span class="comment">//set在写入的时候调用</span></span><br><span class="line">	<span class="keyword">set</span>: function(newValue) &#123;</span><br><span class="line">		<span class="keyword">if</span> (newValue &gt; <span class="number">2019</span>) &#123;</span><br><span class="line">			<span class="keyword">this</span>._year = newValue;</span><br><span class="line">			<span class="keyword">this</span>.edition += newValue - <span class="number">2019</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">book.year = <span class="number">2020</span>;</span><br><span class="line"><span class="built_in">console</span>.log(book.edition);</span><br></pre></td></tr></table></figure>
 
 <p>同时修改多个属性用 Object.defineProperties()</p>
-<h2 id="6-2-创建对象"><a href="#6-2-创建对象" class="headerlink" title="6.2 创建对象"></a>6.2 创建对象</h2><h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><h3 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Person.prototype.name = <span class="string">'zhaosi'</span>;</span><br><span class="line">Person.prototype.age = <span class="string">'37'</span>;</span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
+<h2 id="6-2-创建对象"><a href="#6-2-创建对象" class="headerlink" title="6.2 创建对象"></a>6.2 创建对象</h2><h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><h3 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Person.prototype.name = <span class="string">'zhaosi'</span>;</span><br><span class="line">Person.prototype.age = <span class="string">'37'</span>;</span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
 
 <p>person1.hasOwnProperty(‘name’)：<strong>如果返回 true，则 name 存在于 person1 实例中，否则存在于原型中。</strong></p>
 <p>Object.keys(Person.prototype) 所有可枚举</p>
@@ -187,15 +192,15 @@
 <h4 id="动态原型（很完美）"><a href="#动态原型（很完美）" class="headerlink" title="动态原型（很完美）"></a>动态原型（很完美）</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.sayName != <span class="string">'function'</span>) &#123;</span><br><span class="line">		Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> friend = <span class="keyword">new</span> Person(<span class="string">'zhaosi'</span>, <span class="number">29</span>);</span><br><span class="line">friend.sayName();</span><br></pre></td></tr></table></figure>
 
 <h3 id="寄生构造函数模式"><a href="#寄生构造函数模式" class="headerlink" title="寄生构造函数模式"></a>寄生构造函数模式</h3><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h3><p><strong>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。</strong> <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g93bzcjanrj30w40u0tex.jpg" alt=""></p>
-<h3 id="借用构造函数（伪造对象-或-经典继承）"><a href="#借用构造函数（伪造对象-或-经典继承）" class="headerlink" title="借用构造函数（伪造对象 或 经典继承）"></a>借用构造函数（伪造对象 或 经典继承）</h3><h3 id="组合继承（最常用）"><a href="#组合继承（最常用）" class="headerlink" title="组合继承（最常用）"></a>组合继承（最常用）</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">	SuperType.call(<span class="keyword">this</span>, name);</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line">SubType.prototype.constructor = SubType;</span><br><span class="line">SubType.prototype.sayAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="借用构造函数（伪造对象-或-经典继承）"><a href="#借用构造函数（伪造对象-或-经典继承）" class="headerlink" title="借用构造函数（伪造对象 或 经典继承）"></a>借用构造函数（伪造对象 或 经典继承）</h3><h3 id="组合继承（最常用）"><a href="#组合继承（最常用）" class="headerlink" title="组合继承（最常用）"></a>组合继承（最常用）</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">	SuperType.call(<span class="keyword">this</span>, name);</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line">SubType.prototype.constructor = SubType;</span><br><span class="line">SubType.prototype.sayAge = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h3 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h3><h3 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h3><p>不能做到函数复用，与构造函数模式相似</p>
-<h3 id="寄生组合式继承（最理想）"><a href="#寄生组合式继承（最理想）" class="headerlink" title="寄生组合式继承（最理想）"></a>寄生组合式继承（最理想）</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">	SuperType.call(<span class="keyword">this</span>, name);</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inheritPrototype</span>(<span class="params">subType, superType</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> prototype = <span class="built_in">Object</span>(superType.prototype); <span class="comment">//创建超类型原型的一个副本</span></span><br><span class="line">	prototype.constructor = subType; <span class="comment">//为创建的副本添加constructor属性（重写原型失去了默认的constructor属性）</span></span><br><span class="line">	subType.prototype = prototype; <span class="comment">//将创建的副本赋值给子类型的原型</span></span><br><span class="line">&#125;</span><br><span class="line">inheritPrototype(SubType, SuperType);</span><br><span class="line"></span><br><span class="line">SubType.prototype.sayAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="寄生组合式继承（最理想）"><a href="#寄生组合式继承（最理想）" class="headerlink" title="寄生组合式继承（最理想）"></a>寄生组合式继承（最理想）</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">	SuperType.call(<span class="keyword">this</span>, name);</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inheritPrototype</span>(<span class="params">subType, superType</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> prototype = <span class="built_in">Object</span>(superType.prototype); <span class="comment">//创建超类型原型的一个副本</span></span><br><span class="line">	prototype.constructor = subType; <span class="comment">//为创建的副本添加constructor属性（重写原型失去了默认的constructor属性）</span></span><br><span class="line">	subType.prototype = prototype; <span class="comment">//将创建的副本赋值给子类型的原型</span></span><br><span class="line">&#125;</span><br><span class="line">inheritPrototype(SubType, SuperType);</span><br><span class="line"></span><br><span class="line">SubType.prototype.sayAge = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g9800bhvrlj31600sotfk.jpg" alt=""></p>
 <h1 id="7-函数表达式"><a href="#7-函数表达式" class="headerlink" title="7 函数表达式"></a>7 函数表达式</h1><h2 id="7-2-闭包"><a href="#7-2-闭包" class="headerlink" title="7.2 闭包"></a>7.2 闭包</h2><p>闭包是指有权访问另一个函数作用域中的变量的函数</p>
 <p>不足：多查找作用域链中的一个层次，就会在一定程度上影响查找速度。</p>
-<h2 id="7-4"><a href="#7-4" class="headerlink" title="7.4"></a>7.4</h2><h3 id="7-4-0-特权方法"><a href="#7-4-0-特权方法" class="headerlink" title="7.4.0 特权方法"></a>7.4.0 特权方法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PrivateObject</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> privateVariable = <span class="number">10</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'11'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">this</span>.publicMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		privateVariable++;</span><br><span class="line">		<span class="keyword">return</span> privateFunction;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> newPublic = <span class="keyword">new</span> PrivateObject();</span><br><span class="line"><span class="built_in">console</span>.log(newPublic.publicMethod());</span><br></pre></td></tr></table></figure>
+<h2 id="7-4"><a href="#7-4" class="headerlink" title="7.4"></a>7.4</h2><h3 id="7-4-0-特权方法"><a href="#7-4-0-特权方法" class="headerlink" title="7.4.0 特权方法"></a>7.4.0 特权方法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PrivateObject</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> privateVariable = <span class="number">10</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'11'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">this</span>.publicMethod = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		privateVariable++;</span><br><span class="line">		<span class="keyword">return</span> privateFunction;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> newPublic = <span class="keyword">new</span> PrivateObject();</span><br><span class="line"><span class="built_in">console</span>.log(newPublic.publicMethod());</span><br></pre></td></tr></table></figure>
 
 <p>每个实例都会创建同一组新方法</p>
 <h3 id="7-4-1-静态私有变量"><a href="#7-4-1-静态私有变量" class="headerlink" title="7.4.1 静态私有变量"></a>7.4.1 静态私有变量</h3><p>在原型上添加方法，会导致每个实例都没有自己的私有变量。</p>
@@ -328,54 +333,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Flex布局</title>
-    <url>/2019/10/28/Flex%E5%B8%83%E5%B1%80/</url>
-    <content><![CDATA[<h1 id="Flex-基本概念"><a href="#Flex-基本概念" class="headerlink" title="Flex 基本概念"></a>Flex 基本概念</h1><p>flex：弹性布局</p>
-<p>行内元素也可以用 flex，webkit 内核的要加上-webkit</p>
-<p><strong>注意，设为 Flex 布局以后，子元素自动成为 flex item，并且其 float、clear 和 vertical-align 属性将失效。</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89lw0kne6j30fn099dgi.jpg" alt=""></p>
-<a id="more"></a>
-
-<h1 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h1><h2 id="flex-direction-column-reverse-column-row-default-row-reverse"><a href="#flex-direction-column-reverse-column-row-default-row-reverse" class="headerlink" title="flex-direction:column-reverse|column|row(default)|row-reverse"></a>flex-direction:column-reverse|column|row(default)|row-reverse</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89mc8iehlj30m405n74l.jpg" alt=""></p>
-<h2 id="flex-wrap-nowrap-default-wrap-wrap-reverse"><a href="#flex-wrap-nowrap-default-wrap-wrap-reverse" class="headerlink" title="flex-wrap:nowrap(default) | wrap | wrap-reverse;"></a>flex-wrap:nowrap(default) | wrap | wrap-reverse;</h2><p>不换行|换行|换行，第一行在下面</p>
-<h2 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h2><p>flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap。</p>
-<h2 id="justify-content：flex-start-default-flex-end-center-space-between-space-around"><a href="#justify-content：flex-start-default-flex-end-center-space-between-space-around" class="headerlink" title="justify-content：flex-start(default)|flex-end|center|space-between|space-around"></a>justify-content：flex-start(default)|flex-end|center|space-between|space-around</h2><p>定义了项目在<strong>主轴</strong>上的对齐方式 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aamszweyj30hp0l70u3.jpg" alt=""></p>
-<h2 id="align-items：flex-start-flex-end-center-stretch（default-baseline"><a href="#align-items：flex-start-flex-end-center-stretch（default-baseline" class="headerlink" title="align-items：flex-start | flex-end | center | stretch（default)| baseline;"></a>align-items：flex-start | flex-end | center | stretch（default)| baseline;</h2><p>项目在<strong>交叉轴</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aatkq4cgj30h50lujsr.jpg" alt=""> baseline:项目的第一行文字的基线对齐。 stretch：如果项目未设置高度或设为 auto，将占满整个容器的高度。</p>
-<h2 id="align-content-flex-start-flex-end-center-stretch-default-space-between-space-around"><a href="#align-content-flex-start-flex-end-center-stretch-default-space-between-space-around" class="headerlink" title="align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;"></a>align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;</h2><p>项目在<strong>多根轴线</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aavwyo41j30h80ludhq.jpg" alt=""> 多根轴线</p>
-<p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
-<p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
-<h1 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h1><h2 id="order：integer-default-0"><a href="#order：integer-default-0" class="headerlink" title="order：integer(default:0)"></a>order：integer(default:0)</h2><p>数字越小越靠前 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhl5degj30kv0dcmxz.jpg" alt=""></p>
-<h2 id="flex-grow：integer-default-0"><a href="#flex-grow：integer-default-0" class="headerlink" title="flex-grow：integer(default:0)"></a>flex-grow：integer(default:0)</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhfdy55j30ma05v74o.jpg" alt=""> 定义放大比例：如果所有都是 1，则等分，有个项目是 2 的话，即 2 倍距离。</p>
-<p><strong>0 的意思是：即使存在剩余空间，也不放大</strong></p>
-<h2 id="flex-shrink：integer-default-1"><a href="#flex-shrink：integer-default-1" class="headerlink" title="flex-shrink：integer(default:1)"></a>flex-shrink：integer(default:1)</h2><p>定义缩小比例：如果都是 1，则一起缩小；如果有一个是 0，1 缩小，0 不缩小。</p>
-<p><strong>不可取负值</strong></p>
-<p><strong>1 的意思是：若空间不足，则缩小</strong></p>
-<h2 id="flex-basis：-auto"><a href="#flex-basis：-auto" class="headerlink" title="flex-basis：  | auto"></a>flex-basis： <length> | auto</h2><p>定义了：在分配多余空间之前，项目占据主轴空间（main size），默认值为 auto，即项目本来大小。</p>
-<p><strong>它可以设为跟 width 或 height 属性一样的值（比如 350px），则项目将占据固定空间。</strong></p>
-<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><p>flex 属性是 flex-grow、flex-shrink、flex-basis 的简写，默认为 0 1 auto（后两个可选）</p>
-<p>该属性有两个快捷值:auto（1 1 auto）和 none（0 0 auto）</p>
-<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
-<h2 id="align-self：auto-default-flex-start-flex-end-center-baseline-stretch"><a href="#align-self：auto-default-flex-start-flex-end-center-baseline-stretch" class="headerlink" title="align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;"></a>align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;</h2><p>允许自己和其他项目不一样的对齐方式；</p>
-<p>auto:继承父元素的 align-items，如果没有父元素，则等同于 stretch；</p>
-<p>除 auto 外其他属性和 align-items 一样</p>
-<h2 id="flex-垂直居中"><a href="#flex-垂直居中" class="headerlink" title="flex 垂直居中"></a>flex 垂直居中</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">    vertical-align: center;</span><br><span class="line">    flex-wrap: wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>实例中网格布局之后的内容 稍后再整理</strong></p>
-<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">参考阮一峰语法篇</a></p>
-<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">参考阮一峰实例篇</a></p>
-]]></content>
-      <categories>
-        <category>FE</category>
-        <category>CSS</category>
-        <category>Flex</category>
-      </categories>
-      <tags>
-        <tag>FE</tag>
-        <tag>CSS</tag>
-        <tag>Flex</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS基础</title>
     <url>/2019/10/28/CSS%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g870k95k7zj31a60naae8.jpg" alt=""></p>
@@ -436,6 +393,54 @@
       <tags>
         <tag>FE</tag>
         <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flex布局</title>
+    <url>/2019/10/28/Flex%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<h1 id="Flex-基本概念"><a href="#Flex-基本概念" class="headerlink" title="Flex 基本概念"></a>Flex 基本概念</h1><p>flex：弹性布局</p>
+<p>行内元素也可以用 flex，webkit 内核的要加上-webkit</p>
+<p><strong>注意，设为 Flex 布局以后，子元素自动成为 flex item，并且其 float、clear 和 vertical-align 属性将失效。</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89lw0kne6j30fn099dgi.jpg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h1><h2 id="flex-direction-column-reverse-column-row-default-row-reverse"><a href="#flex-direction-column-reverse-column-row-default-row-reverse" class="headerlink" title="flex-direction:column-reverse|column|row(default)|row-reverse"></a>flex-direction:column-reverse|column|row(default)|row-reverse</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89mc8iehlj30m405n74l.jpg" alt=""></p>
+<h2 id="flex-wrap-nowrap-default-wrap-wrap-reverse"><a href="#flex-wrap-nowrap-default-wrap-wrap-reverse" class="headerlink" title="flex-wrap:nowrap(default) | wrap | wrap-reverse;"></a>flex-wrap:nowrap(default) | wrap | wrap-reverse;</h2><p>不换行|换行|换行，第一行在下面</p>
+<h2 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h2><p>flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap。</p>
+<h2 id="justify-content：flex-start-default-flex-end-center-space-between-space-around"><a href="#justify-content：flex-start-default-flex-end-center-space-between-space-around" class="headerlink" title="justify-content：flex-start(default)|flex-end|center|space-between|space-around"></a>justify-content：flex-start(default)|flex-end|center|space-between|space-around</h2><p>定义了项目在<strong>主轴</strong>上的对齐方式 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aamszweyj30hp0l70u3.jpg" alt=""></p>
+<h2 id="align-items：flex-start-flex-end-center-stretch（default-baseline"><a href="#align-items：flex-start-flex-end-center-stretch（default-baseline" class="headerlink" title="align-items：flex-start | flex-end | center | stretch（default)| baseline;"></a>align-items：flex-start | flex-end | center | stretch（default)| baseline;</h2><p>项目在<strong>交叉轴</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aatkq4cgj30h50lujsr.jpg" alt=""> baseline:项目的第一行文字的基线对齐。 stretch：如果项目未设置高度或设为 auto，将占满整个容器的高度。</p>
+<h2 id="align-content-flex-start-flex-end-center-stretch-default-space-between-space-around"><a href="#align-content-flex-start-flex-end-center-stretch-default-space-between-space-around" class="headerlink" title="align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;"></a>align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;</h2><p>项目在<strong>多根轴线</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aavwyo41j30h80ludhq.jpg" alt=""> 多根轴线</p>
+<p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
+<p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
+<h1 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h1><h2 id="order：integer-default-0"><a href="#order：integer-default-0" class="headerlink" title="order：integer(default:0)"></a>order：integer(default:0)</h2><p>数字越小越靠前 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhl5degj30kv0dcmxz.jpg" alt=""></p>
+<h2 id="flex-grow：integer-default-0"><a href="#flex-grow：integer-default-0" class="headerlink" title="flex-grow：integer(default:0)"></a>flex-grow：integer(default:0)</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhfdy55j30ma05v74o.jpg" alt=""> 定义放大比例：如果所有都是 1，则等分，有个项目是 2 的话，即 2 倍距离。</p>
+<p><strong>0 的意思是：即使存在剩余空间，也不放大</strong></p>
+<h2 id="flex-shrink：integer-default-1"><a href="#flex-shrink：integer-default-1" class="headerlink" title="flex-shrink：integer(default:1)"></a>flex-shrink：integer(default:1)</h2><p>定义缩小比例：如果都是 1，则一起缩小；如果有一个是 0，1 缩小，0 不缩小。</p>
+<p><strong>不可取负值</strong></p>
+<p><strong>1 的意思是：若空间不足，则缩小</strong></p>
+<h2 id="flex-basis：-auto"><a href="#flex-basis：-auto" class="headerlink" title="flex-basis：  | auto"></a>flex-basis： <length> | auto</h2><p>定义了：在分配多余空间之前，项目占据主轴空间（main size），默认值为 auto，即项目本来大小。</p>
+<p><strong>它可以设为跟 width 或 height 属性一样的值（比如 350px），则项目将占据固定空间。</strong></p>
+<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><p>flex 属性是 flex-grow、flex-shrink、flex-basis 的简写，默认为 0 1 auto（后两个可选）</p>
+<p>该属性有两个快捷值:auto（1 1 auto）和 none（0 0 auto）</p>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h2 id="align-self：auto-default-flex-start-flex-end-center-baseline-stretch"><a href="#align-self：auto-default-flex-start-flex-end-center-baseline-stretch" class="headerlink" title="align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;"></a>align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;</h2><p>允许自己和其他项目不一样的对齐方式；</p>
+<p>auto:继承父元素的 align-items，如果没有父元素，则等同于 stretch；</p>
+<p>除 auto 外其他属性和 align-items 一样</p>
+<h2 id="flex-垂直居中"><a href="#flex-垂直居中" class="headerlink" title="flex 垂直居中"></a>flex 垂直居中</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">    vertical-align: center;</span><br><span class="line">    flex-wrap: wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实例中网格布局之后的内容 稍后再整理</strong></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">参考阮一峰语法篇</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">参考阮一峰实例篇</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>CSS</category>
+        <category>Flex</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>CSS</tag>
+        <tag>Flex</tag>
       </tags>
   </entry>
   <entry>
