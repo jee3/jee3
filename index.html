@@ -77,7 +77,7 @@
     
     
     
-    <article id="post-文件上传那些坑" class="article article-type-post" itemscope
+    <article id="post-React中如何避免子组件的循环渲染" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -85,8 +85,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%82%A3%E4%BA%9B%E5%9D%91/"
-    >文件上传那些坑</a> 
+  <a class="article-title" href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/"
+    >React中如何避免子组件的循环渲染</a> 
 </h2>
  
 
@@ -95,12 +95,12 @@
 
     
     <div class="article-meta">
-      <a href="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%82%A3%E4%BA%9B%E5%9D%91/" class="article-date">
-  <time datetime="2020-05-29T07:48:39.000Z" itemprop="datePublished">2020-05-29</time>
+      <a href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/" class="article-date">
+  <time datetime="2020-05-12T02:12:55.000Z" itemprop="datePublished">2020-05-12</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/Antd/">Antd</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
   </div>
 
       
@@ -117,9 +117,11 @@
       
 
       
-      <h1 id="file-type-和-file-name"><a href="#file-type-和-file-name" class="headerlink" title="file.type 和 file.name"></a>file.type 和 file.name</h1><p>项目中我开发的时候用<code>file.type=&#39;application/zip&#39;</code>来判断是否是 zip 文件，但是同事的电脑上却没有效果，于是我想到了是操作系统的问题，于是查了一下，确实如此。 windows 系统中的浏览器（支持 html5 的），不能用 file.type 来判断文件类型，mac 可以。所以要兼容两种操作系统的浏览器时，要通过 file.name 获取后缀名来判断。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fileName = file.name;</span><br><span class="line"><span class="keyword">const</span> fileType = fileName.substring(fileName.lastIndexOf(<span class="string">'.'</span>));</span><br><span class="line"><span class="keyword">if</span> (fileType !== <span class="string">'.zip'</span>) &#123;</span><br><span class="line">	message.error(<span class="string">'请上传zip文件'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+      <p>在 React 开发中，有时候会遇到子组件循环渲染导致闪屏的问题，那如何避免呢？</p>
+<p>以下代码实现了通过点击父表格某一行的按钮，弹出子表格的模态框以显示子表格及其数据（原代码是父表格有两个按钮，分别弹出不同的子表格，不是本节重点，所以代码没有写那一部分）</p>
+      
+      <a class="article-more-link" href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/">阅读更多...</a>
+      
       
       <!-- reward -->
       
@@ -150,7 +152,7 @@
 
 </article>
     
-    <article id="post-React中如何避免子组件的循环渲染" class="article article-type-post" itemscope
+    <article id="post-Upload组件-文件选择后不立即上传" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -158,8 +160,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/"
-    >React中如何避免子组件的循环渲染</a> 
+  <a class="article-title" href="/Upload%E7%BB%84%E4%BB%B6-%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E4%B8%8A%E4%BC%A0/"
+    >Upload组件-文件选择后不立即上传</a> 
 </h2>
  
 
@@ -168,12 +170,12 @@
 
     
     <div class="article-meta">
-      <a href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/" class="article-date">
-  <time datetime="2020-05-12T02:12:55.000Z" itemprop="datePublished">2020-05-12</time>
+      <a href="/Upload%E7%BB%84%E4%BB%B6-%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E4%B8%8A%E4%BC%A0/" class="article-date">
+  <time datetime="2020-05-07T07:53:37.000Z" itemprop="datePublished">2020-05-07</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/Antd/">Antd</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
   </div>
 
       
@@ -190,10 +192,10 @@
       
 
       
-      <p>在 React 开发中，有时候会遇到子组件循环渲染导致闪屏的问题，那如何避免呢？</p>
-<p>以下代码实现了通过点击父表格某一行的按钮，弹出子表格的模态框以显示子表格及其数据（原代码是父表格有两个按钮，分别弹出不同的子表格，不是本节重点，所以代码没有写那一部分）</p>
+      <p>很多时候我们在用 Upload 组件上传文件的时候，选择文件后<strong>并不想立刻上传</strong>，而是要<strong>等待其他表单内容一起上传</strong>。方法就是不在 action 里面写上传地址，先将文件对象存起来，等 submit 按钮点击事件触发的时候再一起提交到请求地址里面。</p>
+<p>直接上代码</p>
       
-      <a class="article-more-link" href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/">阅读更多...</a>
+      <a class="article-more-link" href="/Upload%E7%BB%84%E4%BB%B6-%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E4%B8%8A%E4%BC%A0/">阅读更多...</a>
       
       
       <!-- reward -->
