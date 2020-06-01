@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    《Javascript高级程序设计》总结 |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-JS高程" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  《Javascript高级程序设计》总结
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/JS%E9%AB%98%E7%A8%8B/" class="article-date">
+  <time datetime="2019-11-22T16:00:00.000Z" itemprop="datePublished">2019-11-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">3.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">13 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>复制基本类型值的时候，会新创建一个。复制引用类型值的时候，只是复制指针，指针指向堆中同一个对象。</p>
+<h1 id="5-引用类型"><a href="#5-引用类型" class="headerlink" title="5 引用类型"></a>5 引用类型</h1><p>到底是不是数组，可以用.isArray()，instanceof 在多个框架（两个以上全局执行环境）就不好用了</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8mz1tcg1mj30ew0dg75n.jpg" alt=""></p>
+<p>array.push():添加到数组末尾，返回新长度 array.pop():返回数组最后一一项 array.shift():移除并返回第一项 array.unshift():前端添加任意项，返回新长度</p>
+<p>sort()排序会将‘15’放在‘5’前面，因为比较第一个字符。可以接收一个用于比较的函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> value2 - value1;</span><br><span class="line">&#125;</span><br><span class="line">arr.sort(compare);</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>arr.concat()将参数（值或数组）添加到 arr 后面，并返回新数组，arr 不变。 arr.slice(1，4)也不会影响原数组，如果 arr.length=5,只会取到第 234 项，不会取到第 5 项。（不包括结尾元素）</p>
+<p>arr.splice()</p>
+<p>every(),filter(),forEach(),map(),some()</p>
+<p>reduce() reduceRight()</p>
+<p>Date.parse() Date.UTC()</p>
+<h2 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re = <span class="literal">null</span>,</span><br><span class="line">	i;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">	re = <span class="regexp">/cat/g</span>;</span><br><span class="line">	re.test(<span class="string">'catastrophe'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">	re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'cat'</span>, <span class="string">'g'</span>);</span><br><span class="line">	re.test(<span class="string">'catastrophe'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="捕获组"><a href="#捕获组" class="headerlink" title="捕获组"></a>捕获组</h3><p>reg.exec()</p>
+<h2 id="5-5-Function-类型"><a href="#5-5-Function-类型" class="headerlink" title="5.5 Function 类型"></a>5.5 Function 类型</h2><p>解析器会先读取函数声明，并使其在任何代码之前可以访问，而函数表达式则必须到所在代码行才会被解释执行。</p>
+<p>caller</p>
+<p>使用 call 和 apply 来扩充作用域最大的好处就是，对象不需要与方法有任何的耦合。</p>
+<h2 id="5-6-基本包装类型"><a href="#5-6-基本包装类型" class="headerlink" title="5.6 基本包装类型"></a>5.6 基本包装类型</h2><p>用 new 操作符创建实例的时候，在执行流离开作用域之前都会一直保留；但是自动创建的基本包装类型的对象，只存在创建的一瞬间。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8oaidg2ldj30de09cdgy.jpg" alt=""></p>
+<p>基本类型的布尔值和 Boolean 对象不一样，后者不建议使用。</p>
+<p>num.toString(n)//将 num 转换为 n 进制 num.toFixed(n)//将 num 转换为 n 为小数</p>
+<h1 id="6-面向对象的程序设计"><a href="#6-面向对象的程序设计" class="headerlink" title="6 面向对象的程序设计"></a>6 面向对象的程序设计</h1><h2 id="对象的属性"><a href="#对象的属性" class="headerlink" title="对象的属性"></a>对象的属性</h2><p>属性包括数据属性和访问器属性。</p>
+<p>数据属性包含一个数据值的位置。访问器属性不包含数据值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person, <span class="string">'name'</span>, &#123;</span><br><span class="line">	configurable: <span class="literal">false</span>, <span class="comment">//不能再改回true</span></span><br><span class="line">	writable: <span class="literal">false</span>,</span><br><span class="line">	enumerable: <span class="literal">true</span>,</span><br><span class="line">	value: <span class="string">'nicholas'</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">	_year: <span class="number">2019</span>,<span class="comment">//加上_表示只能通过对象方法进行访问的属性</span></span><br><span class="line">	edition: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(book, <span class="string">'year'</span>, &#123;</span><br><span class="line">    <span class="comment">//get在读取属性的时候调用</span></span><br><span class="line">	<span class="keyword">get</span>: function() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>._year;</span><br><span class="line">	&#125;,</span><br><span class="line">    <span class="comment">//set在写入的时候调用</span></span><br><span class="line">	<span class="keyword">set</span>: function(newValue) &#123;</span><br><span class="line">		<span class="keyword">if</span> (newValue &gt; <span class="number">2019</span>) &#123;</span><br><span class="line">			<span class="keyword">this</span>._year = newValue;</span><br><span class="line">			<span class="keyword">this</span>.edition += newValue - <span class="number">2019</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">book.year = <span class="number">2020</span>;</span><br><span class="line"><span class="built_in">console</span>.log(book.edition);</span><br></pre></td></tr></table></figure>
+
+<p>同时修改多个属性用 Object.defineProperties()</p>
+<h2 id="6-2-创建对象"><a href="#6-2-创建对象" class="headerlink" title="6.2 创建对象"></a>6.2 创建对象</h2><h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><h3 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Person.prototype.name = <span class="string">'zhaosi'</span>;</span><br><span class="line">Person.prototype.age = <span class="string">'37'</span>;</span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
+
+<p>person1.hasOwnProperty(‘name’)：<strong>如果返回 true，则 name 存在于 person1 实例中，否则存在于原型中。</strong></p>
+<p>Object.keys(Person.prototype) 所有可枚举</p>
+<p>Object.getOwnPropertyNames() 所有可枚举不可枚举</p>
+<h4 id="更简单的原型语法"><a href="#更简单的原型语法" class="headerlink" title="更简单的原型语法"></a>更简单的原型语法</h4><p>如果把上述代码改成 Person.prototype={}对象字面量的形式，因为这种写法本质上完全重写了默认的 prototype 函数，constructor 不再指向 Person 了</p>
+<p>如果 constructor 属性很重要，那么</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype=&#123;</span><br><span class="line">    name:<span class="string">''</span>,</span><br><span class="line">    <span class="keyword">constructor</span>:Person    //确保通过该属性访问到适当的值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：这种方法会使 constructor 变成可枚举，可以通过 defineProperty 变成不可枚举</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(Person.prototype, <span class="string">'constructor'</span>, &#123;</span><br><span class="line">	enumerable: <span class="literal">false</span>,</span><br><span class="line">	value: Person</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8qkym49joj30vi0sy78y.jpg" alt=""></p>
+<p><strong>更好的方式是组合使用构造函数模式和原型模式，构造函数用来定义实例属性，原型定义方法和共享的属性</strong></p>
+<h4 id="动态原型（很完美）"><a href="#动态原型（很完美）" class="headerlink" title="动态原型（很完美）"></a>动态原型（很完美）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.sayName != <span class="string">'function'</span>) &#123;</span><br><span class="line">		Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> friend = <span class="keyword">new</span> Person(<span class="string">'zhaosi'</span>, <span class="number">29</span>);</span><br><span class="line">friend.sayName();</span><br></pre></td></tr></table></figure>
+
+<h3 id="寄生构造函数模式"><a href="#寄生构造函数模式" class="headerlink" title="寄生构造函数模式"></a>寄生构造函数模式</h3><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h3><p><strong>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。</strong> <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g93bzcjanrj30w40u0tex.jpg" alt=""></p>
+<h3 id="借用构造函数（伪造对象-或-经典继承）"><a href="#借用构造函数（伪造对象-或-经典继承）" class="headerlink" title="借用构造函数（伪造对象 或 经典继承）"></a>借用构造函数（伪造对象 或 经典继承）</h3><h3 id="组合继承（最常用）"><a href="#组合继承（最常用）" class="headerlink" title="组合继承（最常用）"></a>组合继承（最常用）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">	SuperType.call(<span class="keyword">this</span>, name);</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line">SubType.prototype.constructor = SubType;</span><br><span class="line">SubType.prototype.sayAge = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h3><h3 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h3><p>不能做到函数复用，与构造函数模式相似</p>
+<h3 id="寄生组合式继承（最理想）"><a href="#寄生组合式继承（最理想）" class="headerlink" title="寄生组合式继承（最理想）"></a>寄生组合式继承（最理想）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">	SuperType.call(<span class="keyword">this</span>, name);</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inheritPrototype</span>(<span class="params">subType, superType</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> prototype = <span class="built_in">Object</span>(superType.prototype); <span class="comment">//创建超类型原型的一个副本</span></span><br><span class="line">	prototype.constructor = subType; <span class="comment">//为创建的副本添加constructor属性（重写原型失去了默认的constructor属性）</span></span><br><span class="line">	subType.prototype = prototype; <span class="comment">//将创建的副本赋值给子类型的原型</span></span><br><span class="line">&#125;</span><br><span class="line">inheritPrototype(SubType, SuperType);</span><br><span class="line"></span><br><span class="line">SubType.prototype.sayAge = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g9800bhvrlj31600sotfk.jpg" alt=""></p>
+<h1 id="7-函数表达式"><a href="#7-函数表达式" class="headerlink" title="7 函数表达式"></a>7 函数表达式</h1><h2 id="7-2-闭包"><a href="#7-2-闭包" class="headerlink" title="7.2 闭包"></a>7.2 闭包</h2><p>闭包是指有权访问另一个函数作用域中的变量的函数</p>
+<p>不足：多查找作用域链中的一个层次，就会在一定程度上影响查找速度。</p>
+<h2 id="7-4"><a href="#7-4" class="headerlink" title="7.4"></a>7.4</h2><h3 id="7-4-0-特权方法"><a href="#7-4-0-特权方法" class="headerlink" title="7.4.0 特权方法"></a>7.4.0 特权方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PrivateObject</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> privateVariable = <span class="number">10</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'11'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">this</span>.publicMethod = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		privateVariable++;</span><br><span class="line">		<span class="keyword">return</span> privateFunction;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> newPublic = <span class="keyword">new</span> PrivateObject();</span><br><span class="line"><span class="built_in">console</span>.log(newPublic.publicMethod());</span><br></pre></td></tr></table></figure>
+
+<p>每个实例都会创建同一组新方法</p>
+<h3 id="7-4-1-静态私有变量"><a href="#7-4-1-静态私有变量" class="headerlink" title="7.4.1 静态私有变量"></a>7.4.1 静态私有变量</h3><p>在原型上添加方法，会导致每个实例都没有自己的私有变量。</p>
+<h3 id="7-4-2-模块模式"><a href="#7-4-2-模块模式" class="headerlink" title="7.4.2 模块模式"></a>7.4.2 模块模式</h3><h1 id="10-DOM"><a href="#10-DOM" class="headerlink" title="10 DOM"></a>10 DOM</h1><p>每个节点都有一个 childNodes 属性，其中保存着一个 NodeList 对象（动态，随着 DOM 改变而改变）</p>
+<h1 id="节点层次"><a href="#节点层次" class="headerlink" title="节点层次"></a>节点层次</h1><h2 id="node"><a href="#node" class="headerlink" title="node"></a>node</h2><p>hasChildNodes() ownerDocument</p>
+<p>appendChild(newNode)//添加至最后 insertBefore(newNode,targetNode) replaceChild(newNode,targetNode) removeChild(targetNode) cloneNode(true||false)//true:深复制，复制节点和整个子节点树；false:浅复制，只复制节点</p>
+<h2 id="document"><a href="#document" class="headerlink" title="document"></a>document</h2><p>var html=document.documentElement //<html> var body=document.body//<body> var doctype=document.doctype//&lt;!DOCTYPE&gt;</p>
+<p>document.domain: loose &amp;&amp; tight</p>
+<h1 id="11-DOM-扩展"><a href="#11-DOM-扩展" class="headerlink" title="11 DOM 扩展"></a>11 DOM 扩展</h1><h2 id="querySelector-amp-amp-querySelectorAll"><a href="#querySelector-amp-amp-querySelectorAll" class="headerlink" title="querySelector() &amp;&amp; querySelectorAll()"></a>querySelector() &amp;&amp; querySelectorAll()</h2><p>前者返回与模式匹配的<strong>第一个元素</strong>，后者是一个 NodeList 实例</p>
+<h2 id="mathesSelector"><a href="#mathesSelector" class="headerlink" title="mathesSelector()"></a>mathesSelector()</h2><h2 id="childElementCount-amp-amp-firstElementChild-amp-amp-previousElementSibling-amp-amp-nextElementSibling"><a href="#childElementCount-amp-amp-firstElementChild-amp-amp-previousElementSibling-amp-amp-nextElementSibling" class="headerlink" title="childElementCount &amp;&amp; firstElementChild &amp;&amp; previousElementSibling &amp;&amp; nextElementSibling"></a>childElementCount &amp;&amp; firstElementChild &amp;&amp; previousElementSibling &amp;&amp; nextElementSibling</h2><p>相比于 firstChild，添加‘element‘之后，就不会纠结元素间的空格了</p>
+<h2 id="classList"><a href="#classList" class="headerlink" title="classList"></a>classList</h2><p>someElement.classList.add(value)||contains(value)||remove(value)||toggle(value)</p>
+<p>toggle 是存在则删除，不存在则添加</p>
+<h2 id="document-activeElement-amp-amp-document-hasFocus"><a href="#document-activeElement-amp-amp-document-hasFocus" class="headerlink" title="document.activeElement &amp;&amp; document.hasFocus()"></a>document.activeElement &amp;&amp; document.hasFocus()</h2><h2 id="scrollIntoView"><a href="#scrollIntoView" class="headerlink" title="scrollIntoView()"></a>scrollIntoView()</h2><h1 id="DOM2-和-DOM3"><a href="#DOM2-和-DOM3" class="headerlink" title="DOM2 和 DOM3"></a>DOM2 和 DOM3</h1><h2 id="setUserData"><a href="#setUserData" class="headerlink" title="setUserData()"></a>setUserData()</h2><h2 id="getPropertyValue"><a href="#getPropertyValue" class="headerlink" title="getPropertyValue()"></a>getPropertyValue()</h2><h2 id="document-defaultView-getComputedStyle"><a href="#document-defaultView-getComputedStyle" class="headerlink" title="document.defaultView.getComputedStyle()"></a>document.defaultView.getComputedStyle()</h2><h1 id="13-事件"><a href="#13-事件" class="headerlink" title="13 事件"></a>13 事件</h1><h2 id="13-2-事件处理"><a href="#13-2-事件处理" class="headerlink" title="13.2 事件处理"></a>13.2 事件处理</h2><p>addEventListener() 和 removeEventListener()：三个参数：要处理的事件名，函数，布尔值（true 为捕获阶段调用函数，默认 false 为冒泡）</p>
+<p>event.currentTarget &amp;&amp; event.target &amp;&amp; this</p>
+<p>preventDefault()</p>
+<h2 id="13-4-事件类型"><a href="#13-4-事件类型" class="headerlink" title="13.4 事件类型"></a>13.4 事件类型</h2><p>clientX(clientY) &amp;&amp; pageX(pageY) &amp;&amp; screenX(screenY)</p>
+<p>视口 &amp;&amp; 页面（没有滚动的时候 页面==视口） &amp;&amp;相对于整个屏幕</p>
+<p>keydown:任意键触发，按住不放会重复触发 keypress:字符键触发，按住不放会重复触发（esc 也会触发） keyup:释放触发</p>
+<p>textInput:可编辑区域才能触发；输入实际字符才能触发（退格不能）</p>
+<p>inputMethod:表示把文本输入到文本框的方式（键盘输入，粘贴，拖放等）</p>
+<h3 id="13-4-5-复合事件"><a href="#13-4-5-复合事件" class="headerlink" title="13.4.5 复合事件"></a>13.4.5 复合事件</h3><p><strong>IME（Input Method Editor 输入法编辑器）可以让用户输入在物理键盘上找不到的字符，eg 日文</strong> compositionstart compositionupdate（插入新字符） compositionend</p>
+<h3 id="13-4-7-HTML5-事件"><a href="#13-4-7-HTML5-事件" class="headerlink" title="13.4.7 HTML5 事件"></a>13.4.7 HTML5 事件</h3><p>contextmenu</p>
+<p>beforeunload(卸载页面）</p>
+<p>DOMContentLoaded:形成 DOM 树就会触发，不会管 JS CSS 文件，让用户尽早与页面交互</p>
+<p>event.preventDefault()取消默认行为</p>
+<h2 id="13-5-内存和性能"><a href="#13-5-内存和性能" class="headerlink" title="13.5 内存和性能"></a>13.5 内存和性能</h2><h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = <span class="built_in">document</span>.getElementById(<span class="string">'ul'</span>);</span><br><span class="line">EventUtil.addHandler(list, <span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">	event = EventUtil.getEvent(event);</span><br><span class="line">	<span class="keyword">var</span> target = EventUtil.getTarget(event);</span><br><span class="line">	<span class="keyword">switch</span> (target.id) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'doSomething'</span>:</span><br><span class="line">			<span class="built_in">document</span>.title = <span class="string">'doSomething'</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'goSomewhere'</span>:</span><br><span class="line">			<span class="built_in">document</span>.title = <span class="string">'goSomewhere'</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="13-6-模拟事件"><a href="#13-6-模拟事件" class="headerlink" title="13.6 模拟事件"></a>13.6 模拟事件</h2><p>initMouseEvent</p>
+<p>initKeyboardEvent</p>
+<h1 id="14-表单脚本"><a href="#14-表单脚本" class="headerlink" title="14 表单脚本"></a>14 表单脚本</h1><h2 id="14-2-文本框脚本"><a href="#14-2-文本框脚本" class="headerlink" title="14.2 文本框脚本"></a>14.2 文本框脚本</h2><p>访问剪切板 clipboardData 对象有三个方法：getData(),setData(),clearData()</p>
+<p>eg:如果一个文本框只接受数值，就要检测粘贴过来的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">EventUtil.addHandler(textbox, <span class="string">'paste'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">	event = EventUtil.getEvent(event);</span><br><span class="line">	<span class="keyword">var</span> text = EventUtil.getClipboardText(event);</span><br><span class="line">	<span class="keyword">if</span> (!<span class="regexp">/^\d*$/</span>.test(text)) &#123;</span><br><span class="line">		EventUtil.preventDefault(event);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>检测表单是否有效（require 没填，pattern 不符合等等），可以用 checkValidity()方法，而 validity 则会告诉你为什么无效</p>
+<h2 id="14-4-表单序列化"><a href="#14-4-表单序列化" class="headerlink" title="14.4 表单序列化"></a>14.4 表单序列化</h2><h1 id="20-JSON"><a href="#20-JSON" class="headerlink" title="20 JSON"></a>20 JSON</h1><h2 id="20-2-解析与序列化"><a href="#20-2-解析与序列化" class="headerlink" title="20.2 解析与序列化"></a>20.2 解析与序列化</h2><p>toJSON()</p>
+<h1 id="21-Ajax-与-Comet"><a href="#21-Ajax-与-Comet" class="headerlink" title="21 Ajax 与 Comet"></a>21 Ajax 与 Comet</h1><h2 id="21-1-XMLHttpRequest-对象"><a href="#21-1-XMLHttpRequest-对象" class="headerlink" title="21.1 XMLHttpRequest 对象"></a>21.1 XMLHttpRequest 对象</h2><h3 id="open"><a href="#open" class="headerlink" title="open"></a>open</h3><p>xhr.open(“get”,”example.php”,false)</p>
+<p>fasle 代表同步，true 代表异步</p>
+<h3 id="readyState"><a href="#readyState" class="headerlink" title="readyState"></a>readyState</h3><blockquote>
+<p>xhr.readyState: 0：未初始化。尚未调用 open() 1：启动。调用了 open()，但是未调用 send() 2：发送。调用 send(),但是未收到响应 3：接收。收到部分响应数据。 4：完成。收到全部响应数据。</p>
+</blockquote>
+<h3 id="setRequestHeader"><a href="#setRequestHeader" class="headerlink" title="setRequestHeader"></a>setRequestHeader</h3><p>xhr.open(“get”,”example.php”,true) xhr.setRequestHeader(‘MyHeader’,”MyHeaderValue”) xhr.send(null)</p>
+<h3 id="getAllResponseHeaders"><a href="#getAllResponseHeaders" class="headerlink" title="getAllResponseHeaders"></a>getAllResponseHeaders</h3><p>xhr.getAllResponseHeaders()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addUrlParam</span>(<span class="params">url, param, value</span>) </span>&#123;</span><br><span class="line">	url += url.indexOf(<span class="string">'?'</span>) == <span class="number">-1</span> ? <span class="string">'?'</span> : <span class="string">'&amp;'</span>;</span><br><span class="line">	url += <span class="built_in">encodeURIComponent</span>(param) + <span class="string">'='</span> + <span class="built_in">encodeURIComponent</span>(value);</span><br><span class="line">	<span class="built_in">console</span>.log(url);</span><br><span class="line">	<span class="keyword">return</span> url;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">addUrlParam(<span class="string">'example.php'</span>, <span class="string">'book'</span>, <span class="string">'Professional JavaScript'</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8uj5dcsvij31880madka.jpg" alt=""></p>
+<h2 id="21-2-XMLHttpRequest-2-级"><a href="#21-2-XMLHttpRequest-2-级" class="headerlink" title="21.2 XMLHttpRequest 2 级"></a>21.2 XMLHttpRequest 2 级</h2><h3 id="21-2-1-FormData"><a href="#21-2-1-FormData" class="headerlink" title="21.2.1 FormData"></a>21.2.1 FormData</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="keyword">new</span> FormData();</span><br><span class="line">data.append(<span class="string">'name'</span>, <span class="string">'Nicholas'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="21-4-跨资源共享"><a href="#21-4-跨资源共享" class="headerlink" title="21.4 跨资源共享"></a>21.4 跨资源共享</h2><p>CORS：Cross-Origin Resource Sharing</p>
+<h2 id="21-5-其他跨域技术"><a href="#21-5-其他跨域技术" class="headerlink" title="21.5 其他跨域技术"></a>21.5 其他跨域技术</h2><h3 id="21-5-1-图像-Ping"><a href="#21-5-1-图像-Ping" class="headerlink" title="21.5.1 图像 Ping"></a>21.5.1 图像 Ping</h3><h3 id="21-5-2-JSONP"><a href="#21-5-2-JSONP" class="headerlink" title="21.5.2 JSONP"></a>21.5.2 JSONP</h3><p>JSONP：JSON with padding（参数式 JSON）</p>
+<h3 id="21-5-3-Comet"><a href="#21-5-3-Comet" class="headerlink" title="21.5.3 Comet"></a>21.5.3 Comet</h3><p>Ajax 是页面向服务器请求数据，Comet 是 S 向 C 推送数据</p>
+<p>Comet：长轮询和 HTTP 流</p>
+<h3 id="21-5-4-服务求发送事件"><a href="#21-5-4-服务求发送事件" class="headerlink" title="21.5.4 服务求发送事件"></a>21.5.4 服务求发送事件</h3><p>SSE</p>
+<h3 id="21-5-5-Web-Sockets"><a href="#21-5-5-Web-Sockets" class="headerlink" title="21.5.5 Web Sockets"></a>21.5.5 Web Sockets</h3><p>ws wss</p>
+<p>对于 CSRF 攻击，发送 post 而不是 get||检查 url||基于 cookie 验证都没有用，很容易伪造</p>
+<h1 id="22-高级技巧"><a href="#22-高级技巧" class="headerlink" title="22 高级技巧"></a>22 高级技巧</h1><h2 id="22-1-高级函数"><a href="#22-1-高级函数" class="headerlink" title="22.1 高级函数"></a>22.1 高级函数</h2><p>Object.prototype.toString.call(value)==’[object Function]’ 或者 Array 或者 RegExp 等等</p>
+<p>使用构造函数创建实例的时候，如果没有用 new 创建，而是直接调用构造函数 Person()，Person 函数里面的 this 会指向全局。</p>
+<h3 id="22-1-3-惰性载入"><a href="#22-1-3-惰性载入" class="headerlink" title="22.1.3 惰性载入"></a>22.1.3 惰性载入</h3><h2 id="22-3-高级定时器"><a href="#22-3-高级定时器" class="headerlink" title="22.3 高级定时器"></a>22.3 高级定时器</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	setTimeout(<span class="built_in">arguments</span>.callee, interval);</span><br><span class="line">&#125;, interval);</span><br></pre></td></tr></table></figure>
+
+<p>在前一个定时器执行完代码之前，不会向队列中插入新的定时器代码，确保不会有任何缺失的间隔；还可以保证在下一次定时器代码执行之前，至少要等待指定的间隔，避免了连续的运行。</p>
+<h3 id="22-3-3-节流"><a href="#22-3-3-节流" class="headerlink" title="22.3.3 节流"></a>22.3.3 节流</h3><h3 id="22-4-自定义事件"><a href="#22-4-自定义事件" class="headerlink" title="22.4 自定义事件"></a>22.4 自定义事件</h3><h1 id="23-离线应用与客户端存储"><a href="#23-离线应用与客户端存储" class="headerlink" title="23 离线应用与客户端存储"></a>23 离线应用与客户端存储</h1><h2 id="23-3-数据存储"><a href="#23-3-数据存储" class="headerlink" title="23.3 数据存储"></a>23.3 数据存储</h2><h3 id="23-3-1-cookie-与-子-cookie"><a href="#23-3-1-cookie-与-子-cookie" class="headerlink" title="23.3.1 cookie 与 子 cookie"></a>23.3.1 cookie 与 子 cookie</h3><h3 id="23-3-3-Web-存储机制"><a href="#23-3-3-Web-存储机制" class="headerlink" title="23.3.3 Web 存储机制"></a>23.3.3 Web 存储机制</h3><p>存在 sessionStorage 中的数据可以<strong>跨页面刷新而存在</strong>，浏览器崩溃后重启依然可用（ie 除外）</p>
+<p>因为 sessionStorage 对象绑定于<strong>某个服务器会话</strong>，所以当文件在本地运行的时候是不可用的。</p>
+<p>存在 sessionStorage 中的数据只能<strong>由最初给对象存储数据的页面</strong>访问到，所以<strong>对多页面应用有限制</strong></p>
+<p>sessionStorage 中的 setItem()和 getItem()</p>
+<p>针对会话的小段数据的存储：sessionStorage</p>
+<p>跨越会话的存储要用 localStorage</p>
+<h1 id="24-最佳实践"><a href="#24-最佳实践" class="headerlink" title="24 最佳实践"></a>24 最佳实践</h1><h2 id="24-2-1-注意作用域"><a href="#24-2-1-注意作用域" class="headerlink" title="24.2.1 注意作用域"></a>24.2.1 注意作用域</h2><h3 id="减少全局查找"><a href="#减少全局查找" class="headerlink" title="减少全局查找"></a>减少全局查找</h3><p>用 var doc=document 将 document 存起来，再用 document.getElementByID。。。</p>
+<h3 id="避免-with-语句"><a href="#避免-with-语句" class="headerlink" title="避免 with 语句"></a>避免 with 语句</h3><p>with 会创建自己的作用域，所以会增加其中执行代码的作用域链长度</p>
+<h2 id="24-2-2-选择正确的方法"><a href="#24-2-2-选择正确的方法" class="headerlink" title="24.2.2 选择正确的方法"></a>24.2.2 选择正确的方法</h2><h3 id="减少属性查找"><a href="#减少属性查找" class="headerlink" title="减少属性查找"></a>减少属性查找</h3><p>对象上的任何<strong>属性查找</strong>都要比访<strong>问变量或者数组</strong>花费更长时间</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">10</span> + value;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">5</span>, <span class="number">10</span>];</span><br><span class="line"><span class="keyword">var</span> sum = values[<span class="number">0</span>] + values[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = &#123; <span class="attr">first</span>: <span class="number">5</span>, <span class="attr">second</span>: <span class="number">10</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> sum = values.first + values.second;</span><br></pre></td></tr></table></figure>
+
+<p>前两种要比第三种好</p>
+<h3 id="优化循环"><a href="#优化循环" class="headerlink" title="优化循环"></a>优化循环</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; values.length; i++) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = values.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二行比第一行好</p>
+<p>do-while 比 for 和 while 好，因为可以避免最初终止条件的计算</p>
+<p>还有循环体内，也要优化</p>
+<p>Duff 装置技术:(升级版）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iterations = <span class="built_in">Math</span>.floor(values.length / <span class="number">8</span>);</span><br><span class="line"><span class="keyword">var</span> leftover = values.length % <span class="number">8</span>;</span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (leftover &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		ProcessingInstruction(values[i++]);</span><br><span class="line">	&#125; <span class="keyword">while</span> (--leftover &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">	process(values[i++]);</span><br><span class="line">&#125; <span class="keyword">while</span> (--iterations &gt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="避免双重解释"><a href="#避免双重解释" class="headerlink" title="避免双重解释"></a>避免双重解释</h3><p>实例化一个新的解释器有不容忽视的开销</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>用原生方法，而不是自己写（如 Math 要快得多）</p>
+<p>switch 比 if-else 快，最好将 case 按照最可能到最不可能排序</p>
+<p>位运算比布尔和算数运算快。</p>
+<h3 id="最小化语句数"><a href="#最小化语句数" class="headerlink" title="最小化语句数"></a>最小化语句数</h3><h2 id="优化-dom"><a href="#优化-dom" class="headerlink" title="优化 dom"></a>优化 dom</h2><h3 id="最小化现场更新"><a href="#最小化现场更新" class="headerlink" title="最小化现场更新"></a>最小化现场更新</h3><h3 id="使用-innerHTML"><a href="#使用-innerHTML" class="headerlink" title="使用 innerHTML"></a>使用 innerHTML</h3><p>使用 innerHTML 比使用标准 DOM 快得多（构建好一个 innerHTML 字符串，然后一次性调用）</p>
+<h3 id="HTMLCollection"><a href="#HTMLCollection" class="headerlink" title="HTMLCollection"></a>HTMLCollection</h3><blockquote>
+<p>返回 HTMLCollection 对象 1 进行了对 getElementsByTagName()调用 2 获取了元素 childNodes 属性 3 获取了元素 attributes 属性 4 访问了特殊的集合 document.forms,document.images 等</p>
+</blockquote>
+<h1 id="25-新兴的-API"><a href="#25-新兴的-API" class="headerlink" title="25 新兴的 API"></a>25 新兴的 API</h1><h2 id="25-2-Page-Visibility-API"><a href="#25-2-Page-Visibility-API" class="headerlink" title="25.2 Page Visibility API"></a>25.2 Page Visibility API</h2><p>document.hidden document.visibilityState</p>
+<h2 id="25-3-Geolocation-API"><a href="#25-3-Geolocation-API" class="headerlink" title="25.3 Geolocation API"></a>25.3 Geolocation API</h2><p>navigator.geolocation 对象，包含 3 个方法 getCurrentPosition()</p>
+<h2 id="25-4-File-API"><a href="#25-4-File-API" class="headerlink" title="25.4 File API"></a>25.4 File API</h2><h3 id="FileReader-类型"><a href="#FileReader-类型" class="headerlink" title="FileReader 类型"></a>FileReader 类型</h3><h3 id="webkitSlice-读取部分内容"><a href="#webkitSlice-读取部分内容" class="headerlink" title="webkitSlice() 读取部分内容"></a>webkitSlice() 读取部分内容</h3><h3 id="用-XHR-上传文件"><a href="#用-XHR-上传文件" class="headerlink" title="用 XHR 上传文件"></a>用 XHR 上传文件</h3><h2 id="Web-Timing"><a href="#Web-Timing" class="headerlink" title="Web Timing"></a>Web Timing</h2><h2 id="Web-Worker"><a href="#Web-Worker" class="headerlink" title="Web Worker"></a>Web Worker</h2><p><code>var worker=new Worker(&#39;stufftodo.js&#39;)</code></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        Donate
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>Copyright： </strong>
+              Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/JS%E9%AB%98%E7%A8%8B/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag">JS基础</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/git-%E8%BF%9B%E9%98%B6/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Git 进阶
+          
+        </div>
+      </a>
+    
+    
+      <a href="/CSS%E5%8D%95%E4%BD%8D/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">CSS单位</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'ccNTxVj0sBlfohKD1x5IfyLd-gzGzoHsz',
+        app_key: 'C2FnlKRVOOAiYilY6155uULB',
+        path: window.location.pathname,
+        notify: false,
+        verify: false,
+        avatar: 'monsterid',
+        placeholder: '请洒潘江，各倾陆海云尔',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> Jee
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt=""></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>如果您觉得此文章帮助到了您，请作者喝杯咖啡吧～</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay2.jpeg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechatpay2.jpeg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['桃李不言，下自成蹊', '先行其言而后从之', ''],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":170,"height":170},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+
+</html>

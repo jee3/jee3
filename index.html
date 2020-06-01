@@ -85,7 +85,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/05/29/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%82%A3%E4%BA%9B%E5%9D%91/"
+  <a class="article-title" href="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%82%A3%E4%BA%9B%E5%9D%91/"
     >文件上传那些坑</a> 
 </h2>
  
@@ -95,10 +95,14 @@
 
     
     <div class="article-meta">
-      <a href="/2020/05/29/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%82%A3%E4%BA%9B%E5%9D%91/" class="article-date">
+      <a href="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%82%A3%E4%BA%9B%E5%9D%91/" class="article-date">
   <time datetime="2020-05-29T07:48:39.000Z" itemprop="datePublished">2020-05-29</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
+  </div>
+
       
       
       
@@ -113,6 +117,83 @@
       
 
       
+      <h1 id="file-type-和-file-name"><a href="#file-type-和-file-name" class="headerlink" title="file.type 和 file.name"></a>file.type 和 file.name</h1><p>项目中我开发的时候用<code>file.type=&#39;application/zip&#39;</code>来判断是否是 zip 文件，但是同事的电脑上却没有效果，于是我想到了是操作系统的问题，于是查了一下，确实如此。 windows 系统中的浏览器（支持 html5 的），不能用 file.type 来判断文件类型，mac 可以。所以要兼容两种操作系统的浏览器时，要通过 file.name 获取后缀名来判断。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fileName = file.name;</span><br><span class="line"><span class="keyword">const</span> fileType = fileName.substring(fileName.lastIndexOf(<span class="string">'.'</span>));</span><br><span class="line"><span class="keyword">if</span> (fileType !== <span class="string">'.zip'</span>) &#123;</span><br><span class="line">	message.error(<span class="string">'请上传zip文件'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Antd/" rel="tag">Antd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-React中如何避免子组件的循环渲染" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/"
+    >React中如何避免子组件的循环渲染</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/" class="article-date">
+  <time datetime="2020-05-12T02:12:55.000Z" itemprop="datePublished">2020-05-12</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>在 React 开发中，有时候会遇到子组件循环渲染导致闪屏的问题，那如何避免呢？</p>
+<p>以下代码实现了通过点击父表格某一行的按钮，弹出子表格的模态框以显示子表格及其数据（原代码是父表格有两个按钮，分别弹出不同的子表格，不是本节重点，所以代码没有写那一部分）</p>
+      
+      <a class="article-more-link" href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -125,6 +206,8 @@
     <footer class="article-footer">
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Antd/" rel="tag">Antd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
 
     </footer>
 
@@ -150,7 +233,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/01/22/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/"
+  <a class="article-title" href="/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/"
     >《React——引领未来的用户界面开发框架》总结</a> 
 </h2>
  
@@ -160,7 +243,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/01/22/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="article-date">
+      <a href="/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="article-date">
   <time datetime="2020-01-21T16:00:00.000Z" itemprop="datePublished">2020-01-22</time>
 </a>
       
@@ -189,7 +272,7 @@
 <p>不要尝试把 props 复制到 state 中，要尽可能将 props 当作数据源</p>
 <p>当不需要内部状态、refs 和生命周期函数时，将组件变成函数组件可以减少冗余和复杂性</p>
       
-      <a class="article-more-link" href="/2020/01/22/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/">阅读更多...</a>
+      <a class="article-more-link" href="/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -229,7 +312,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/12/18/git-%E8%BF%9B%E9%98%B6/"
+  <a class="article-title" href="/git-%E8%BF%9B%E9%98%B6/"
     >Git 进阶</a> 
 </h2>
  
@@ -239,12 +322,12 @@
 
     
     <div class="article-meta">
-      <a href="/2019/12/18/git-%E8%BF%9B%E9%98%B6/" class="article-date">
+      <a href="/git-%E8%BF%9B%E9%98%B6/" class="article-date">
   <time datetime="2019-12-17T16:00:00.000Z" itemprop="datePublished">2019-12-18</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/git/">git</a>
+    <a class="article-category-link" href="/categories/Git/">Git</a>
   </div>
 
       
@@ -264,7 +347,7 @@
       <p>HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。</p>
 <h1 id="fatal-Could-not-read-from-remote-repository-的解决办法"><a href="#fatal-Could-not-read-from-remote-repository-的解决办法" class="headerlink" title="fatal: Could not read from remote repository.的解决办法:"></a>fatal: Could not read from remote repository.的解决办法:</h1><p>查看远端地址 <code>git remote –v</code> 查看配置 <code>git config --list</code> <code>git status</code></p>
       
-      <a class="article-more-link" href="/2019/12/18/git-%E8%BF%9B%E9%98%B6/">阅读更多...</a>
+      <a class="article-more-link" href="/git-%E8%BF%9B%E9%98%B6/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -277,7 +360,7 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
 
 
     </footer>
@@ -304,7 +387,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/11/23/JS%E9%AB%98%E7%A8%8B/"
+  <a class="article-title" href="/JS%E9%AB%98%E7%A8%8B/"
     >《Javascript高级程序设计》总结</a> 
 </h2>
  
@@ -314,7 +397,7 @@
 
     
     <div class="article-meta">
-      <a href="/2019/11/23/JS%E9%AB%98%E7%A8%8B/" class="article-date">
+      <a href="/JS%E9%AB%98%E7%A8%8B/" class="article-date">
   <time datetime="2019-11-22T16:00:00.000Z" itemprop="datePublished">2019-11-23</time>
 </a>
       
@@ -343,7 +426,7 @@
 <p>sort()排序会将‘15’放在‘5’前面，因为比较第一个字符。可以接收一个用于比较的函数</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> value2 - value1;</span><br><span class="line">&#125;</span><br><span class="line">arr.sort(compare);</span><br></pre></td></tr></table></figure>
       
-      <a class="article-more-link" href="/2019/11/23/JS%E9%AB%98%E7%A8%8B/">阅读更多...</a>
+      <a class="article-more-link" href="/JS%E9%AB%98%E7%A8%8B/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -383,7 +466,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/11/03/CSS%E5%8D%95%E4%BD%8D/"
+  <a class="article-title" href="/CSS%E5%8D%95%E4%BD%8D/"
     >CSS单位</a> 
 </h2>
  
@@ -393,7 +476,7 @@
 
     
     <div class="article-meta">
-      <a href="/2019/11/03/CSS%E5%8D%95%E4%BD%8D/" class="article-date">
+      <a href="/CSS%E5%8D%95%E4%BD%8D/" class="article-date">
   <time datetime="2019-11-02T16:00:00.000Z" itemprop="datePublished">2019-11-03</time>
 </a>
       
@@ -468,7 +551,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/10/28/CSS%E5%9F%BA%E7%A1%80/"
+  <a class="article-title" href="/CSS%E5%9F%BA%E7%A1%80/"
     >CSS基础</a> 
 </h2>
  
@@ -478,7 +561,7 @@
 
     
     <div class="article-meta">
-      <a href="/2019/10/28/CSS%E5%9F%BA%E7%A1%80/" class="article-date">
+      <a href="/CSS%E5%9F%BA%E7%A1%80/" class="article-date">
   <time datetime="2019-10-27T16:00:00.000Z" itemprop="datePublished">2019-10-28</time>
 </a>
       
@@ -504,7 +587,7 @@
 <h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1><h2 id="IE-盒模型"><a href="#IE-盒模型" class="headerlink" title="IE 盒模型"></a>IE 盒模型</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8beap40nbj30xw0lewgw.jpg" alt=""></p>
 <h2 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a>标准盒模型</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8beaz5fvzj30zk0l1tb5.jpg" alt=""></p>
       
-      <a class="article-more-link" href="/2019/10/28/CSS%E5%9F%BA%E7%A1%80/">阅读更多...</a>
+      <a class="article-more-link" href="/CSS%E5%9F%BA%E7%A1%80/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -544,7 +627,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/10/28/Flex%E5%B8%83%E5%B1%80/"
+  <a class="article-title" href="/Flex%E5%B8%83%E5%B1%80/"
     >Flex布局</a> 
 </h2>
  
@@ -554,7 +637,7 @@
 
     
     <div class="article-meta">
-      <a href="/2019/10/28/Flex%E5%B8%83%E5%B1%80/" class="article-date">
+      <a href="/Flex%E5%B8%83%E5%B1%80/" class="article-date">
   <time datetime="2019-10-27T16:00:00.000Z" itemprop="datePublished">2019-10-28</time>
 </a>
       
@@ -581,7 +664,7 @@
 <p><strong>注意，设为 Flex 布局以后，子元素自动成为 flex item，并且其 float、clear 和 vertical-align 属性将失效。</strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89lw0kne6j30fn099dgi.jpg" alt=""></p>
       
-      <a class="article-more-link" href="/2019/10/28/Flex%E5%B8%83%E5%B1%80/">阅读更多...</a>
+      <a class="article-more-link" href="/Flex%E5%B8%83%E5%B1%80/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -621,7 +704,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/10/22/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/"
+  <a class="article-title" href="/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/"
     >JS中New操作符做了什么</a> 
 </h2>
  
@@ -631,7 +714,7 @@
 
     
     <div class="article-meta">
-      <a href="/2019/10/22/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/" class="article-date">
+      <a href="/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/" class="article-date">
   <time datetime="2019-10-21T16:00:00.000Z" itemprop="datePublished">2019-10-22</time>
 </a>
       
@@ -661,7 +744,7 @@
 <li><strong>执行构造函数内部的代码，将属性添加给 person 中的 this 对象。</strong></li>
 <li>不用手动 return，会自动返回新对象
       
-      <a class="article-more-link" href="/2019/10/22/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/">阅读更多...</a>
+      <a class="article-more-link" href="/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -701,7 +784,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/10/20/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/"
+  <a class="article-title" href="/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/"
     >Javascript原型链</a> 
 </h2>
  
@@ -711,7 +794,7 @@
 
     
     <div class="article-meta">
-      <a href="/2019/10/20/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="article-date">
+      <a href="/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="article-date">
   <time datetime="2019-10-19T16:00:00.000Z" itemprop="datePublished">2019-10-20</time>
 </a>
       
@@ -738,7 +821,7 @@
 <p>obj 有两个属性：一个是添加的 name 属性，一个是自带的_ _proto__属性，指向 window.Object.prototype。如下图所示。</p>
 <p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g84posdw50j30u00xvq8q.jpg" alt=""></p>
       
-      <a class="article-more-link" href="/2019/10/20/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/">阅读更多...</a>
+      <a class="article-more-link" href="/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -752,83 +835,6 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag">JS基础</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-Javascript中的遍历" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/10/19/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/"
-    >Javascript中的遍历</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/10/19/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/" class="article-date">
-  <time datetime="2019-10-18T16:00:00.000Z" itemprop="datePublished">2019-10-19</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/ES6/">ES6</a> / <a class="article-category-link" href="/categories/FE/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>ES5 具有遍历数组功能的有 forEach、map、filter、some、every、reduce、reduceRight</p>
-<h1 id="foreach："><a href="#foreach：" class="headerlink" title="foreach："></a>foreach：</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> sum=<span class="number">0</span>；</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value,index,array</span>)</span>&#123;</span><br><span class="line">    array[index] == value;    <span class="comment">//结果为true</span></span><br><span class="line">    sum+=value;</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="built_in">console</span>.log(sum);    <span class="comment">//结果为 10</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g82mwnsv7zj30kk0qewhk.jpg" alt=""></p>
-      
-      <a class="article-more-link" href="/2019/10/19/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag">JS基础</a></li></ul>
 
 
     </footer>

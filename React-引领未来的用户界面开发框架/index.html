@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    《React——引领未来的用户界面开发框架》总结 |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-React-引领未来的用户界面开发框架" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  《React——引领未来的用户界面开发框架》总结
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="article-date">
+  <time datetime="2020-01-21T16:00:00.000Z" itemprop="datePublished">2020-01-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">2.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">9 min</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>所有代码示例：<a href="http://git.io/vlcpa" target="_blank" rel="noopener">http://git.io/vlcpa</a></p>
+<h1 id="4-数据流"><a href="#4-数据流" class="headerlink" title="4 数据流"></a>4 数据流</h1><h2 id="PropTypes"><a href="#PropTypes" class="headerlink" title="PropTypes"></a>PropTypes</h2><p>提供了一种验证 props 的方式</p>
+<h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><p>千万不能直接修改 this.state，永远记得要通过 this.setState 方法修改</p>
+<p>state 中应只保存最简单的数据，不要保存计算出的值</p>
+<p>不要尝试把 props 复制到 state 中，要尽可能将 props 当作数据源</p>
+<p>当不需要内部状态、refs 和生命周期函数时，将组件变成函数组件可以减少冗余和复杂性</p>
+<a id="more"></a>
+
+<h1 id="8-DOM-操作"><a href="#8-DOM-操作" class="headerlink" title="8 DOM 操作"></a>8 DOM 操作</h1><h2 id="ReactDOM-findDOMNode"><a href="#ReactDOM-findDOMNode" class="headerlink" title="ReactDOM.findDOMNode"></a>ReactDOM.findDOMNode</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line">ReactDOM.findDOMNode(ReactComponent);</span><br></pre></td></tr></table></figure>
+
+<p>在 componentDidMount 执行后，才能用</p>
+<h2 id="this-refs-xxx"><a href="#this-refs-xxx" class="headerlink" title="this.refs.xxx"></a>this.refs.xxx</h2><h2 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h2><h3 id="把要求传达清楚"><a href="#把要求传达清楚" class="headerlink" title="把要求传达清楚"></a>把要求传达清楚</h3><p>placeholder 尽量简短，不要有验证提示，验证提示在输入框外面</p>
+<h3 id="不断地反馈"><a href="#不断地反馈" class="headerlink" title="不断地反馈"></a>不断地反馈</h3><p>用户有时候会没有耐心，但是如果告诉他们程序正在处理他们的请求，他们就会变得耐心。所以要有一些诸如 加载中、进度条、信息提示等进行反馈</p>
+<h3 id="迅速响应"><a href="#迅速响应" class="headerlink" title="迅速响应"></a>迅速响应</h3><p>过渡动画过长，会让用户产生挫败感。</p>
+<p>eg：当用户点击“喜欢”的时候，可以在给服务器发送 AJAX 之前先增加喜欢数。如果 AJAX 调用要花费太长时间，这种方式会让用户感觉不到延迟。不过这种方式在错误处理方面会产生一些问题。</p>
+<h3 id="符合用户的预期"><a href="#符合用户的预期" class="headerlink" title="符合用户的预期"></a>符合用户的预期</h3><p>用户对事物如何工作有自己的预期，这种预期基于他们之前的经验，而不是来自于你的应用。</p>
+<p>如果你的应用长得像用户所在的平台，那么要尽量遵循平台的默认行为。另一种方式是从根本上改变你的用户界面，这样你的应用就不用模仿其他平台了。</p>
+<h3 id="可访问"><a href="#可访问" class="headerlink" title="可访问"></a>可访问</h3><p>视力受损</p>
+<h3 id="减少用户的输入"><a href="#减少用户的输入" class="headerlink" title="减少用户的输入"></a>减少用户的输入</h3><p>自动填充等</p>
+<h1 id="10-动画"><a href="#10-动画" class="headerlink" title="10 动画"></a>10 动画</h1><h2 id="ReactCSSTransitionGroup"><a href="#ReactCSSTransitionGroup" class="headerlink" title="ReactCSSTransitionGroup"></a>ReactCSSTransitionGroup</h2><h2 id="requestAnimationFrame-间隔渲染"><a href="#requestAnimationFrame-间隔渲染" class="headerlink" title="requestAnimationFrame 间隔渲染"></a>requestAnimationFrame 间隔渲染</h2><h2 id="react-motion"><a href="#react-motion" class="headerlink" title="react-motion"></a>react-motion</h2><p>spring animation</p>
+<h1 id="11-性能优化"><a href="#11-性能优化" class="headerlink" title="11 性能优化"></a>11 性能优化</h1><h2 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h2><p>方法会返回一个布尔值，如果返回 false 就是不要调用组件的渲染方法，并使用之前渲染好的虚拟 DOM，如果返回 true 则调用组件的渲染方法并计算出新的虚拟 DOM。（默认返回 true，因此组件总是会调用 render 方法）</p>
+<p>对于给定同样 props 和 state 总是渲染出同样结果的组件，可以用 react-addons-pure-render-mixin 插件来处理 shouldComponentUpdate</p>
+<p>使用 react-mixin 来提供 mixin 的支持，这也是为数不多应该使用 mixin 而不是高阶组件的地方</p>
+<h2 id="key"><a href="#key" class="headerlink" title="key"></a>key</h2><p>如果一个组件的 key 属性发生变化，那么 react 就会跳过 DOM diff，同时完全弃置 div 所有的子元素，并重新从头开始渲染。</p>
+<p>在渲染大型子树避免 diff 运算时，这样做很有用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items = sortBy(<span class="keyword">this</span>.state.sortingAlgorithm, <span class="keyword">this</span>.props.items);</span><br><span class="line"><span class="keyword">return</span> items.map(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;item.src&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果顺序改变，react 会对元素进行 diff 操作并确定最高效的操作时改变其中几个 img 元素的 src，这样可能会导致浏览器查询缓存，甚至会导致新的网络请求。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;item.src&#125;</span> <span class="attr">key</span>=<span class="string">&#123;item.id&#125;</span> /&gt;</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>这样 react 得出的结论就不是改变 src 的属性，而是使用 insertBefore 操作，而这个操作是移动 DOM 节点最高效的方式。</p>
+<blockquote>
+<p>单一级别约束对于指定的父组件，每个子组件的 key 必须是独一无二的。这同时也意味着从一个父组件移动到另一个父组件的情况是不会被处理的。</p>
+</blockquote>
+<p>尽管 key 看似作为一个属性被传入了，但是其实在组件的任何位置都无法实际获取到它</p>
+<h1 id="12-服务端渲染"><a href="#12-服务端渲染" class="headerlink" title="12 服务端渲染"></a>12 服务端渲染</h1><ul>
+<li>seo</li>
+<li>提升性能：因为在加载 js 脚本的时候，浏览器就可以进行页面渲染</li>
+</ul>
+<p>虚拟 DOM 作为内存中的 DOM 表现，为 React 再 Node.js 这类非浏览器环境下的运行提供了可能。</p>
+<p>React 可以从虚拟 DOM 中生成一个字符串，而不是更新真正的 DOM。这使得我们可以在客户端和服务端使用同一个 React 组件。</p>
+<p>React 提供了两个可用于服务端渲染组件的函数：React.renderToString 和 React.renderToStaticMarkup</p>
+<h2 id="渲染函数"><a href="#渲染函数" class="headerlink" title="渲染函数"></a>渲染函数</h2><p>服务端不存在 DOM，所以不能使用 React.render 方法</p>
+<h3 id="React-renderToString"><a href="#React-renderToString" class="headerlink" title="React.renderToString"></a>React.renderToString</h3><p>是一个快速的同步函数</p>
+<h3 id="React-renderToStaticMarkup"><a href="#React-renderToStaticMarkup" class="headerlink" title="React.renderToStaticMarkup"></a>React.renderToStaticMarkup</h3><p>除了不会包含 React 的 data 属性外，和 React.renderToString 没有区别</p>
+<p>当且仅当不打算在客户端渲染这个组件时才用：</p>
+<p>React 可以重用服务端提供的 DOM，所以它可以跳过生成 DOM 节点以及把它们挂载到文档中这两个昂贵的进程。</p>
+<p>渲染客户端的时候，如果 data-react-checksum 不匹配，React 会舍弃服务端提供的 DOM，然后生成新的 DOM 节点，并更新到文档中。此时，React 不再拥有服务器渲染带来的各种性能上的优势。</p>
+<h2 id="服务端组件生命周期"><a href="#服务端组件生命周期" class="headerlink" title="服务端组件生命周期"></a>服务端组件生命周期</h2><p>没有 componentDidMount 和 componentWillUnmount，只有 componentWillMount 在 client 和 server 渲染都有效。</p>
+<p>在 componentWillMount 内注册的所有事件监听器及定时器都有可能潜在地导致服务器内存泄漏。最佳做法是只在 componentDidMount 内部创建事件监听器和定时器，然后在 componentWillUnmount 内清除这两者。</p>
+<h2 id="设计组件"><a href="#设计组件" class="headerlink" title="设计组件"></a>设计组件</h2><ul>
+<li><strong>务必慎重考虑如何将组件的 state 传递到客户端</strong></li>
+<li><strong>在设计组件时，需要保证将同一个 props 传递到组件中时，总会输出相同的初始渲染结果</strong></li>
+</ul>
+<h2 id="异步状态"><a href="#异步状态" class="headerlink" title="异步状态"></a>异步状态</h2><p>问题：因为 React.renderToString 是同步的，所以没办法使用组件的任何一个生命周期方法来抓取异步的数据。</p>
+<p>解决方案：使用 statics 函数来抓取异步数据，然后把数据传递到组件中用于渲染。将 initialState 作为 props 值传递到客户端。使用组件生命周期方法来监听变化，然后使用同一个 statics 函数更新状态。</p>
+<h2 id="同构路由"><a href="#同构路由" class="headerlink" title="同构路由"></a>同构路由</h2><p>为了在服务端渲染出拥有路由的 React 应用，必须确保路由系统支持无 DOM 渲染。</p>
+<p>抓取异步数据是路由系统及其控制器的职责。</p>
+<h1 id="单例、实例及上下文"><a href="#单例、实例及上下文" class="headerlink" title="单例、实例及上下文"></a>单例、实例及上下文</h1><p>在服务端运行代码时，可能存在同一个应用的多个实例在相同作用域内同时运行的情况，就有可能出现两个实例都去更改单例状态的情况，这会导致异常的行为发生。</p>
+<p>Contextify 之类的包准许你在服务端彼此隔离地运行代码。一旦加载完代码，你就可以调用环境中的所有函数。这种方法可以让你随意地使用单例模式，而不用考虑性能上的花销，因为每次请求都对应一个全新的 Node.js V8 实例。</p>
+<p>React 不鼓励在组件树中传递上下文和实例。这种做法会降低组件的可移植性，并且应用内组件依赖的更改会对层级上的所有组件产生联动式影响。</p>
+<h1 id="13-开发工具"><a href="#13-开发工具" class="headerlink" title="13 开发工具"></a>13 开发工具</h1><h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p>当你移除某个组件的时候，他的所有依赖也会自动被移除。这意味着不会再有未被使用的 CSS 或者图片遗留在代码目录中</p>
+<p>多个 loader 通过！连接：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test:<span class="regexp">/\.(css)$/</span>,</span><br><span class="line">    loader:<span class="string">'style-loader!css-loader'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="14-测试"><a href="#14-测试" class="headerlink" title="14 测试"></a>14 测试</h1><p>测试驱动开发（TDD）</p>
+<p>边写代码边测试，就自然而然地被要求遵守<a href="https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html" target="_blank" rel="noopener">单一职责原则</a>，<a href="https://www2.ccs.neu.edu/research/demeter/demeter-method/LawOfDemeter/paper-boy/demeter.pdf" target="_blank" rel="noopener">迪米特法则</a>，并保持代码的模块化。</p>
+<p>自动化测试：单元测试，集成测试，功能测试，性能测试，安全测试 以及 <a href="https://www.youtube.com/watch?v=1wHr-O6gEfc" target="_blank" rel="noopener">视觉测试</a></p>
+<h1 id="16-不可变性"><a href="#16-不可变性" class="headerlink" title="16 不可变性"></a>16 不可变性</h1><h2 id="性能优势"><a href="#性能优势" class="headerlink" title="性能优势"></a>性能优势</h2><p>如果有 shouldComponentUpdate，只需要检查 porps 中的一个字段，就可以返回 true 或者 false。但是如果需要检查很多字段，有的字段还包含对象，性能就会降低。所以，判断两个可变对象的值是否相等就是问题的关键所在。</p>
+<p>这时，如果使用不可变的 state 和 props，就只需简单地比较 oldProps!==newProps 就可以了。（当使用不可变对象来表示 props 时，为了得到全新的 props，无法直接在当前的 props 修改，必须实例化新的不可变对象替代它）</p>
+<h2 id="性能消耗"><a href="#性能消耗" class="headerlink" title="性能消耗"></a>性能消耗</h2><p>可变对象改起来容易但不便做比较，反过来，不可变对象比较起来很快，但是更新就比较慢了。</p>
+<p>不可变类库不能再当前对象上进行变更，最少必须实例化一个新对象，修改它使之与原对象完全一致（除了改变了的这个字段不一样）。不单单更新过程需要花费时间，垃圾回收也需要，毕竟多余的对象必须被回收。权衡起来，对于大多数 React 应用还是值得的。别忘了简单的更新函数通常会调用大量的渲染函数，这些渲染函数在构造返回值的过程中需要实例化很多对象。牺牲一点更新的速度，以换取大量的渲染函数执行的损耗，这从性能的角度上来说是有优势的。</p>
+<p>除了性能，还要付出的一点代价就是无法使用 setState 和 setProp 这两个函数，只能用 replaceState 和 replaceProps 了</p>
+<h2 id="架构优势"><a href="#架构优势" class="headerlink" title="架构优势"></a>架构优势</h2><p>当把可变数据从一个函数传递到另外一个函数的时候，如果期望函数执行完后，数据不会被修改，通常要提前克隆要传递的数据，传递克隆对象。但是并没有不可变数据高效，不可修改的数据可以获得更快的克隆速度。借助贯穿始终的不可变数据将获得一致的可安全传递特性。</p>
+<h2 id="使用-Immutability-Helpers-Addon"><a href="#使用-Immutability-Helpers-Addon" class="headerlink" title="使用 Immutability Helpers Addon"></a>使用 Immutability Helpers Addon</h2><h2 id="使用-seamless-immutable"><a href="#使用-seamless-immutable" class="headerlink" title="使用 seamless-immutable"></a>使用 seamless-immutable</h2><h2 id="使用-Immutable-js"><a href="#使用-Immutable-js" class="headerlink" title="使用 Immutable.js"></a>使用 Immutable.js</h2><p><a href="https://github.com/facebook/immutable-js" target="_blank" rel="noopener">immutable-js</a></p>
+<h3 id="Immutable-Map"><a href="#Immutable-Map" class="headerlink" title="Immutable.Map"></a>Immutable.Map</h3><h3 id="Immutable-Vector"><a href="#Immutable-Vector" class="headerlink" title="Immutable.Vector"></a>Immutable.Vector</h3><h1 id="17-其他使用场景"><a href="#17-其他使用场景" class="headerlink" title="17 其他使用场景"></a>17 其他使用场景</h1><h2 id="桌面应用"><a href="#桌面应用" class="headerlink" title="桌面应用"></a>桌面应用</h2><p><a href="https://electronjs.org/docs" target="_blank" rel="noopener">electronjs</a></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        Donate
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>Copyright： </strong>
+              Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            React中如何避免子组件的循环渲染
+          
+        </div>
+      </a>
+    
+    
+      <a href="/git-%E8%BF%9B%E9%98%B6/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Git 进阶</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'ccNTxVj0sBlfohKD1x5IfyLd-gzGzoHsz',
+        app_key: 'C2FnlKRVOOAiYilY6155uULB',
+        path: window.location.pathname,
+        notify: false,
+        verify: false,
+        avatar: 'monsterid',
+        placeholder: '请洒潘江，各倾陆海云尔',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> Jee
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt=""></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>如果您觉得此文章帮助到了您，请作者喝杯咖啡吧～</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay2.jpeg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechatpay2.jpeg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['桃李不言，下自成蹊', '先行其言而后从之', ''],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- ClickBoom -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":170,"height":170},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+
+</html>
