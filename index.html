@@ -303,6 +303,90 @@
 
 </article>
     
+    <article id="post-console-log失效了？" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/console-log%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/"
+    >console.log失效了？</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/console-log%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/" class="article-date">
+  <time datetime="2020-05-06T16:00:00.000Z" itemprop="datePublished">2020-05-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>console.log 作为前端工程师非常值得信赖的调试工具，居然失效了？？？没想到啊没想到，console.log 这么个浓眉大眼的家伙，居然也…</p>
+<p>先直接上代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Upload &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">const</span> MyUpload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> [fileList, setFile] = useState([]);</span><br><span class="line">	<span class="keyword">const</span> handleChange = <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">999</span>, info);</span><br><span class="line">		<span class="keyword">let</span> newList = info.fileList;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">11</span>, newList);</span><br><span class="line">		newList.push(<span class="number">2</span>);</span><br><span class="line">		newList.push(<span class="number">3</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">222</span>, newList);</span><br><span class="line">		newList = newList.map(<span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (file.response) &#123;</span><br><span class="line">				file.url = file.response.url;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> file;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> props = &#123;</span><br><span class="line">		action: <span class="string">'https://www.mocky.io/'</span>,</span><br><span class="line">		onChange: handleChange,</span><br><span class="line">		multiple: <span class="literal">true</span>,</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;Upload &#123;...props&#125; fileList=&#123;fileList&#125;&gt;</span><br><span class="line">			&lt;Button&gt;Upload&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>Upload&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe0ofl2t3j30vi0n6dqe.jpg" alt=""> 由上图可以看到，无论是 999 还是 11，都输出了它们本不该输出的内容，也就是在<code>console.log(11, newList)</code>之后才 push 的数字 2 和 3。</p>
+<p>于是我打开了 vscode 调试工具，断点调试如下图： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfdxwq42w2j31g30u0qhw.jpg" alt=""> 由图可以看出，在<code>newList.push(2)</code>之前，数组并没有包含 2 这个数字。</p>
+<p>在 Chrome 里面调试也没有问题。 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1culhcoj30ui0t6gsg.jpg" alt=""></p>
+<p>经推测，应该是异步引起的问题（<del>示例代码没有提到异步，由于时间有些久远，原代码和示例代码可能会有一点点出入，我以后要尽量及时整理，抱歉。</del>不过当出现 console.log 与预期不一致的情况下，依旧可以使用本文中提到的方法），方法如下：</p>
+<p>首先检查项目有关 console.log 的地方，有没有被重写，是不是有哪些地方实现了<code>window.console.log</code>；如果没有的话，接下来弃用<code>console.log</code>而使用<code>alert</code>，此次就是在这个地方检查出来了错误。</p>
+<p>直接用 alert 可能会打印不出来数据，出现下面这样的情况： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1jws1oyj306401fmwy.jpg" alt=""></p>
+<p>要用<code>JSON.stringfy</code></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1kuzxmpj30c605qdgd.jpg" alt=""></p>
+<p>所以，问题找到啦，是<code>console.log</code>的问题，可以采用下面这种写法： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1lme8lqj315s0aitah.jpg" alt=""></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-React-引领未来的用户界面开发框架" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -774,93 +858,13 @@
 
 </article>
     
-    <article id="post-New做了什么" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/"
-    >JS中New操作符做了什么</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/" class="article-date">
-  <time datetime="2019-10-21T16:00:00.000Z" itemprop="datePublished">2019-10-22</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="例-1"><a href="#例-1" class="headerlink" title="例 1"></a>例 1</h1><p>由以下两段代码可以看出，new 关键字帮我们做了：</p>
-<ol>
-<li>创建 obj 对象</li>
-<li>把新建的 obj 对象的_ _ proto__指向构造函数 Common 的 prototype</li>
-<li>构造函数的作用域会指向实例本身（新对象），this 也指向新对象</li>
-<li><strong>执行构造函数内部的代码，将属性添加给 person 中的 this 对象。</strong></li>
-<li>不用手动 return，会自动返回新对象
-      
-      <a class="article-more-link" href="/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag">JS基础</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
   
 </section>

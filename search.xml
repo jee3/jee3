@@ -79,6 +79,32 @@
       </tags>
   </entry>
   <entry>
+    <title>console.log失效了？</title>
+    <url>/console-log%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>console.log 作为前端工程师非常值得信赖的调试工具，居然失效了？？？没想到啊没想到，console.log 这么个浓眉大眼的家伙，居然也…</p>
+<p>先直接上代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Upload &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">const</span> MyUpload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> [fileList, setFile] = useState([]);</span><br><span class="line">	<span class="keyword">const</span> handleChange = <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">999</span>, info);</span><br><span class="line">		<span class="keyword">let</span> newList = info.fileList;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">11</span>, newList);</span><br><span class="line">		newList.push(<span class="number">2</span>);</span><br><span class="line">		newList.push(<span class="number">3</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">222</span>, newList);</span><br><span class="line">		newList = newList.map(<span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (file.response) &#123;</span><br><span class="line">				file.url = file.response.url;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> file;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> props = &#123;</span><br><span class="line">		action: <span class="string">'https://www.mocky.io/'</span>,</span><br><span class="line">		onChange: handleChange,</span><br><span class="line">		multiple: <span class="literal">true</span>,</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;Upload &#123;...props&#125; fileList=&#123;fileList&#125;&gt;</span><br><span class="line">			&lt;Button&gt;Upload&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>Upload&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe0ofl2t3j30vi0n6dqe.jpg" alt=""> 由上图可以看到，无论是 999 还是 11，都输出了它们本不该输出的内容，也就是在<code>console.log(11, newList)</code>之后才 push 的数字 2 和 3。</p>
+<p>于是我打开了 vscode 调试工具，断点调试如下图： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfdxwq42w2j31g30u0qhw.jpg" alt=""> 由图可以看出，在<code>newList.push(2)</code>之前，数组并没有包含 2 这个数字。</p>
+<p>在 Chrome 里面调试也没有问题。 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1culhcoj30ui0t6gsg.jpg" alt=""></p>
+<p>经推测，应该是异步引起的问题（<del>示例代码没有提到异步，由于时间有些久远，原代码和示例代码可能会有一点点出入，我以后要尽量及时整理，抱歉。</del>不过当出现 console.log 与预期不一致的情况下，依旧可以使用本文中提到的方法），方法如下：</p>
+<p>首先检查项目有关 console.log 的地方，有没有被重写，是不是有哪些地方实现了<code>window.console.log</code>；如果没有的话，接下来弃用<code>console.log</code>而使用<code>alert</code>，此次就是在这个地方检查出来了错误。</p>
+<p>直接用 alert 可能会打印不出来数据，出现下面这样的情况： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1jws1oyj306401fmwy.jpg" alt=""></p>
+<p>要用<code>JSON.stringfy</code></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1kuzxmpj30c605qdgd.jpg" alt=""></p>
+<p>所以，问题找到啦，是<code>console.log</code>的问题，可以采用下面这种写法： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1lme8lqj315s0aitah.jpg" alt=""></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《React——引领未来的用户界面开发框架》总结</title>
     <url>/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>所有代码示例：<a href="http://git.io/vlcpa" target="_blank" rel="noopener">http://git.io/vlcpa</a></p>
