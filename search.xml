@@ -2,6 +2,36 @@
 <search>
   <entry>
     <title>React中如何避免子组件的循环渲染</title>
+    <url>/React%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文介绍 React 登录登出逻辑的一种实现方法。</p>
+<p>用户在注册页面进行注册表单提交，正确提交信息后，进入登录页面，登录页面检测用户是否已经登录（此处有多种方法，可以检测 cookie，我用的是检测 localStorage 是否有我登录时存的一个值）。</p>
+<p>如果直接在地址栏输入地址，检测到未登录状态，则返回到登录页面。</p>
+<a id="more"></a>
+
+<p>在其他功能页面每次向服务端发送数据请求的时候，都在请求 header 里面加上 token，如果服务端返回 401，则按照下面的 http response 拦截处理，返回登录页面</p>
+<h1 id="axios-拦截"><a href="#axios-拦截" class="headerlink" title="axios 拦截"></a>axios 拦截</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// http request 拦截器</span></span><br><span class="line">axios.interceptors.request.use(</span><br><span class="line">	(config) =&gt; &#123;</span><br><span class="line">		<span class="keyword">if</span> (store.state.token) &#123;</span><br><span class="line">			<span class="comment">// 判断是否存在token，如果存在的话，则每个http header都加上token</span></span><br><span class="line">			config.headers.Authorization = <span class="string">`token <span class="subst">$&#123;store.state.token&#125;</span>`</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> config;</span><br><span class="line">	&#125;,</span><br><span class="line">	(err) =&gt; &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err);</span><br><span class="line">	&#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// http response 拦截器</span></span><br><span class="line">axios.interceptors.response.use(</span><br><span class="line">	(response) =&gt; &#123;</span><br><span class="line">		<span class="keyword">return</span> response;</span><br><span class="line">	&#125;,</span><br><span class="line">	(error) =&gt; &#123;</span><br><span class="line">		<span class="keyword">if</span> (error.response) &#123;</span><br><span class="line">			<span class="keyword">switch</span> (error.response.status) &#123;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">401</span>:</span><br><span class="line">					<span class="comment">// 返回 401 清除token信息并跳转到登录页面</span></span><br><span class="line">					<span class="comment">// message.error('登录超时，请重新登录');</span></span><br><span class="line">					setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">						history.push(<span class="string">'/login'</span>);</span><br><span class="line">					&#125;, <span class="number">1000</span>);</span><br><span class="line">				<span class="keyword">case</span> <span class="number">500</span>:</span><br><span class="line">					history.push(<span class="string">'/servererror'</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error.response.data); <span class="comment">// 返回接口返回的错误信息</span></span><br><span class="line">	&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h1 id="在请求的-url-里面直接加-token"><a href="#在请求的-url-里面直接加-token" class="headerlink" title="在请求的 url 里面直接加 token"></a>在请求的 url 里面直接加 token</h1><p>需求是在 A 系统的页面通过点击事件跳转到 B 系统的页面，所以不能用 router 来做。</p>
+<p>这里前端通过 token 与时间戳拼接加密（用的是 base64 对称加密，方便后端解密），然后将加密后的 token 直接添加到 url 的参数里面。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// A系统</span></span><br><span class="line"><span class="keyword">import</span> Base64 <span class="keyword">from</span> <span class="string">'base-64'</span>;</span><br><span class="line"><span class="keyword">let</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().valueOf();</span><br><span class="line"><span class="keyword">let</span> temp = <span class="built_in">window</span>.localStorage.token + <span class="string">'+'</span> + time;</span><br><span class="line"><span class="keyword">let</span> code = Base64.encode(temp);</span><br><span class="line"><span class="built_in">window</span>.open(<span class="string">`<span class="subst">$&#123;API&#125;</span>/example?token=<span class="subst">$&#123;code&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在 B 系统的首页，先后通过对 url 的拆分、decode 解密、再与时间戳分离，获取到 token，再发请求给后端校验权限，如果没有权限，则跳回到 A 系统的登录界面。</p>
+<p>这样的话，用户就不能通过复制 B 系统链接的方式绕过 A 系统的登录。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// B系统</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">		<span class="keyword">super</span>(props);</span><br><span class="line">		<span class="keyword">this</span>.state = &#123;</span><br><span class="line">			intervalId: <span class="literal">null</span>,</span><br><span class="line">			currentCount: <span class="number">2</span>,</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//组件未挂载前就发送请求，验证身份</span></span><br><span class="line">	componentWillMount() &#123;</span><br><span class="line">		<span class="keyword">const</span> url = <span class="built_in">window</span>.location.href;</span><br><span class="line">		<span class="keyword">const</span> code = url.substring(url.indexOf(<span class="string">'='</span>) + <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">const</span> tokenAndTime = Base64.decode(code);</span><br><span class="line">		<span class="keyword">const</span> token = tokenAndTime.split(<span class="string">'+'</span>)[<span class="number">0</span>];</span><br><span class="line">		localStorage.setItem(<span class="string">'token'</span>, token);</span><br><span class="line">		axios.interceptors.response.use(); <span class="comment">//和上面的response拦截一样</span></span><br><span class="line">		axios(&#123;</span><br><span class="line">			method: <span class="string">'get'</span>,</span><br><span class="line">			url: <span class="string">`https://www.example.com/api`</span>,</span><br><span class="line">			headers: &#123; <span class="attr">Authorization</span>: token &#125;,</span><br><span class="line">		&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">			<span class="comment">//处理返回数据</span></span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//组件挂载后定时执行</span></span><br><span class="line">	componentDidMount() &#123;</span><br><span class="line">		<span class="comment">//50分钟校验一次token有没有过期</span></span><br><span class="line">		<span class="keyword">let</span> intervalId = setInterval(<span class="keyword">this</span>.timer, <span class="number">3000000</span>);</span><br><span class="line">		<span class="keyword">this</span>.setState(&#123; <span class="attr">intervalId</span>: intervalId &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	componentWillUnmount() &#123;</span><br><span class="line">		clearInterval(<span class="keyword">this</span>.state.intervalId);</span><br><span class="line">	&#125;</span><br><span class="line">	timer() &#123;</span><br><span class="line">		<span class="keyword">const</span> storage = <span class="built_in">window</span>.localStorage;</span><br><span class="line">		<span class="keyword">let</span> newCount = <span class="keyword">this</span>.state.currentCount - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (newCount &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">			axios(&#123;</span><br><span class="line">				method: <span class="string">'get'</span>,</span><br><span class="line">				url: <span class="string">`https://www.example.com/api`</span>,</span><br><span class="line">				headers: &#123; <span class="attr">Authorization</span>: storage.token &#125;,</span><br><span class="line">			&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (response.data.code === <span class="number">200</span>) &#123;</span><br><span class="line">					<span class="built_in">console</span>.log(<span class="string">'token有效'</span>);</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="built_in">console</span>.log(<span class="string">'token失效'</span>);</span><br><span class="line">					<span class="built_in">window</span>.location.href = <span class="string">'https://www.A.com'</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">			<span class="keyword">this</span>.setState(&#123; <span class="attr">currentCount</span>: newCount &#125;);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			clearInterval(<span class="keyword">this</span>.state.intervalId);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>应该会有更好的实现方式，这里就算是抛砖引玉了。</p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React中如何避免子组件的循环渲染</title>
     <url>/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在 React 开发中，有时候会遇到子组件循环渲染导致闪屏的问题，那如何避免呢？</p>
 <p>以下代码实现了通过点击父表格某一行的按钮，弹出子表格的模态框以显示子表格及其数据（原代码是父表格有两个按钮，分别弹出不同的子表格，不是本节重点，所以代码没有写那一部分）</p>
@@ -377,6 +407,54 @@
       </tags>
   </entry>
   <entry>
+    <title>Flex布局</title>
+    <url>/Flex%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Flex-基本概念"><a href="#Flex-基本概念" class="headerlink" title="Flex 基本概念"></a>Flex 基本概念</h1><p>flex：弹性布局</p>
+<p>行内元素也可以用 flex，webkit 内核的要加上-webkit</p>
+<p><strong>注意，设为 Flex 布局以后，子元素自动成为 flex item，并且其 float、clear 和 vertical-align 属性将失效。</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89lw0kne6j30fn099dgi.jpg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h1><h2 id="flex-direction-column-reverse-column-row-default-row-reverse"><a href="#flex-direction-column-reverse-column-row-default-row-reverse" class="headerlink" title="flex-direction:column-reverse|column|row(default)|row-reverse"></a>flex-direction:column-reverse|column|row(default)|row-reverse</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89mc8iehlj30m405n74l.jpg" alt=""></p>
+<h2 id="flex-wrap-nowrap-default-wrap-wrap-reverse"><a href="#flex-wrap-nowrap-default-wrap-wrap-reverse" class="headerlink" title="flex-wrap:nowrap(default) | wrap | wrap-reverse;"></a>flex-wrap:nowrap(default) | wrap | wrap-reverse;</h2><p>不换行|换行|换行，第一行在下面</p>
+<h2 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h2><p>flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap。</p>
+<h2 id="justify-content：flex-start-default-flex-end-center-space-between-space-around"><a href="#justify-content：flex-start-default-flex-end-center-space-between-space-around" class="headerlink" title="justify-content：flex-start(default)|flex-end|center|space-between|space-around"></a>justify-content：flex-start(default)|flex-end|center|space-between|space-around</h2><p>定义了项目在<strong>主轴</strong>上的对齐方式 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aamszweyj30hp0l70u3.jpg" alt=""></p>
+<h2 id="align-items：flex-start-flex-end-center-stretch（default-baseline"><a href="#align-items：flex-start-flex-end-center-stretch（default-baseline" class="headerlink" title="align-items：flex-start | flex-end | center | stretch（default)| baseline;"></a>align-items：flex-start | flex-end | center | stretch（default)| baseline;</h2><p>项目在<strong>交叉轴</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aatkq4cgj30h50lujsr.jpg" alt=""> baseline:项目的第一行文字的基线对齐。 stretch：如果项目未设置高度或设为 auto，将占满整个容器的高度。</p>
+<h2 id="align-content-flex-start-flex-end-center-stretch-default-space-between-space-around"><a href="#align-content-flex-start-flex-end-center-stretch-default-space-between-space-around" class="headerlink" title="align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;"></a>align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;</h2><p>项目在<strong>多根轴线</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aavwyo41j30h80ludhq.jpg" alt=""> 多根轴线</p>
+<p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
+<p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
+<h1 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h1><h2 id="order：integer-default-0"><a href="#order：integer-default-0" class="headerlink" title="order：integer(default:0)"></a>order：integer(default:0)</h2><p>数字越小越靠前 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhl5degj30kv0dcmxz.jpg" alt=""></p>
+<h2 id="flex-grow：integer-default-0"><a href="#flex-grow：integer-default-0" class="headerlink" title="flex-grow：integer(default:0)"></a>flex-grow：integer(default:0)</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhfdy55j30ma05v74o.jpg" alt=""> 定义放大比例：如果所有都是 1，则等分，有个项目是 2 的话，即 2 倍距离。</p>
+<p><strong>0 的意思是：即使存在剩余空间，也不放大</strong></p>
+<h2 id="flex-shrink：integer-default-1"><a href="#flex-shrink：integer-default-1" class="headerlink" title="flex-shrink：integer(default:1)"></a>flex-shrink：integer(default:1)</h2><p>定义缩小比例：如果都是 1，则一起缩小；如果有一个是 0，1 缩小，0 不缩小。</p>
+<p><strong>不可取负值</strong></p>
+<p><strong>1 的意思是：若空间不足，则缩小</strong></p>
+<h2 id="flex-basis：-auto"><a href="#flex-basis：-auto" class="headerlink" title="flex-basis：  | auto"></a>flex-basis： <length> | auto</h2><p>定义了：在分配多余空间之前，项目占据主轴空间（main size），默认值为 auto，即项目本来大小。</p>
+<p><strong>它可以设为跟 width 或 height 属性一样的值（比如 350px），则项目将占据固定空间。</strong></p>
+<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><p>flex 属性是 flex-grow、flex-shrink、flex-basis 的简写，默认为 0 1 auto（后两个可选）</p>
+<p>该属性有两个快捷值:auto（1 1 auto）和 none（0 0 auto）</p>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h2 id="align-self：auto-default-flex-start-flex-end-center-baseline-stretch"><a href="#align-self：auto-default-flex-start-flex-end-center-baseline-stretch" class="headerlink" title="align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;"></a>align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;</h2><p>允许自己和其他项目不一样的对齐方式；</p>
+<p>auto:继承父元素的 align-items，如果没有父元素，则等同于 stretch；</p>
+<p>除 auto 外其他属性和 align-items 一样</p>
+<h2 id="flex-垂直居中"><a href="#flex-垂直居中" class="headerlink" title="flex 垂直居中"></a>flex 垂直居中</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">    vertical-align: center;</span><br><span class="line">    flex-wrap: wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实例中网格布局之后的内容 稍后再整理</strong></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">参考阮一峰语法篇</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">参考阮一峰实例篇</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>CSS</category>
+        <category>Flex</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>CSS</tag>
+        <tag>Flex</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS基础</title>
     <url>/CSS%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g870k95k7zj31a60naae8.jpg" alt=""></p>
@@ -437,54 +515,6 @@
       <tags>
         <tag>FE</tag>
         <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Flex布局</title>
-    <url>/Flex%E5%B8%83%E5%B1%80/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Flex-基本概念"><a href="#Flex-基本概念" class="headerlink" title="Flex 基本概念"></a>Flex 基本概念</h1><p>flex：弹性布局</p>
-<p>行内元素也可以用 flex，webkit 内核的要加上-webkit</p>
-<p><strong>注意，设为 Flex 布局以后，子元素自动成为 flex item，并且其 float、clear 和 vertical-align 属性将失效。</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89lw0kne6j30fn099dgi.jpg" alt=""></p>
-<a id="more"></a>
-
-<h1 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h1><h2 id="flex-direction-column-reverse-column-row-default-row-reverse"><a href="#flex-direction-column-reverse-column-row-default-row-reverse" class="headerlink" title="flex-direction:column-reverse|column|row(default)|row-reverse"></a>flex-direction:column-reverse|column|row(default)|row-reverse</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89mc8iehlj30m405n74l.jpg" alt=""></p>
-<h2 id="flex-wrap-nowrap-default-wrap-wrap-reverse"><a href="#flex-wrap-nowrap-default-wrap-wrap-reverse" class="headerlink" title="flex-wrap:nowrap(default) | wrap | wrap-reverse;"></a>flex-wrap:nowrap(default) | wrap | wrap-reverse;</h2><p>不换行|换行|换行，第一行在下面</p>
-<h2 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h2><p>flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap。</p>
-<h2 id="justify-content：flex-start-default-flex-end-center-space-between-space-around"><a href="#justify-content：flex-start-default-flex-end-center-space-between-space-around" class="headerlink" title="justify-content：flex-start(default)|flex-end|center|space-between|space-around"></a>justify-content：flex-start(default)|flex-end|center|space-between|space-around</h2><p>定义了项目在<strong>主轴</strong>上的对齐方式 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aamszweyj30hp0l70u3.jpg" alt=""></p>
-<h2 id="align-items：flex-start-flex-end-center-stretch（default-baseline"><a href="#align-items：flex-start-flex-end-center-stretch（default-baseline" class="headerlink" title="align-items：flex-start | flex-end | center | stretch（default)| baseline;"></a>align-items：flex-start | flex-end | center | stretch（default)| baseline;</h2><p>项目在<strong>交叉轴</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aatkq4cgj30h50lujsr.jpg" alt=""> baseline:项目的第一行文字的基线对齐。 stretch：如果项目未设置高度或设为 auto，将占满整个容器的高度。</p>
-<h2 id="align-content-flex-start-flex-end-center-stretch-default-space-between-space-around"><a href="#align-content-flex-start-flex-end-center-stretch-default-space-between-space-around" class="headerlink" title="align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;"></a>align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;</h2><p>项目在<strong>多根轴线</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aavwyo41j30h80ludhq.jpg" alt=""> 多根轴线</p>
-<p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
-<p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
-<h1 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h1><h2 id="order：integer-default-0"><a href="#order：integer-default-0" class="headerlink" title="order：integer(default:0)"></a>order：integer(default:0)</h2><p>数字越小越靠前 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhl5degj30kv0dcmxz.jpg" alt=""></p>
-<h2 id="flex-grow：integer-default-0"><a href="#flex-grow：integer-default-0" class="headerlink" title="flex-grow：integer(default:0)"></a>flex-grow：integer(default:0)</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhfdy55j30ma05v74o.jpg" alt=""> 定义放大比例：如果所有都是 1，则等分，有个项目是 2 的话，即 2 倍距离。</p>
-<p><strong>0 的意思是：即使存在剩余空间，也不放大</strong></p>
-<h2 id="flex-shrink：integer-default-1"><a href="#flex-shrink：integer-default-1" class="headerlink" title="flex-shrink：integer(default:1)"></a>flex-shrink：integer(default:1)</h2><p>定义缩小比例：如果都是 1，则一起缩小；如果有一个是 0，1 缩小，0 不缩小。</p>
-<p><strong>不可取负值</strong></p>
-<p><strong>1 的意思是：若空间不足，则缩小</strong></p>
-<h2 id="flex-basis：-auto"><a href="#flex-basis：-auto" class="headerlink" title="flex-basis：  | auto"></a>flex-basis： <length> | auto</h2><p>定义了：在分配多余空间之前，项目占据主轴空间（main size），默认值为 auto，即项目本来大小。</p>
-<p><strong>它可以设为跟 width 或 height 属性一样的值（比如 350px），则项目将占据固定空间。</strong></p>
-<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><p>flex 属性是 flex-grow、flex-shrink、flex-basis 的简写，默认为 0 1 auto（后两个可选）</p>
-<p>该属性有两个快捷值:auto（1 1 auto）和 none（0 0 auto）</p>
-<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
-<h2 id="align-self：auto-default-flex-start-flex-end-center-baseline-stretch"><a href="#align-self：auto-default-flex-start-flex-end-center-baseline-stretch" class="headerlink" title="align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;"></a>align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;</h2><p>允许自己和其他项目不一样的对齐方式；</p>
-<p>auto:继承父元素的 align-items，如果没有父元素，则等同于 stretch；</p>
-<p>除 auto 外其他属性和 align-items 一样</p>
-<h2 id="flex-垂直居中"><a href="#flex-垂直居中" class="headerlink" title="flex 垂直居中"></a>flex 垂直居中</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">    vertical-align: center;</span><br><span class="line">    flex-wrap: wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>实例中网格布局之后的内容 稍后再整理</strong></p>
-<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">参考阮一峰语法篇</a></p>
-<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">参考阮一峰实例篇</a></p>
-]]></content>
-      <categories>
-        <category>FE</category>
-        <category>CSS</category>
-        <category>Flex</category>
-      </categories>
-      <tags>
-        <tag>FE</tag>
-        <tag>CSS</tag>
-        <tag>Flex</tag>
       </tags>
   </entry>
   <entry>
@@ -1083,6 +1113,16 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>About Me</title>
+    <url>/about/about/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>A man , not any kind of.</p>
+</blockquote>
+<p>GitHub: <a href="https://github.com/jee3" target="_blank" rel="noopener">Jee3</a></p>
+<p>Email: <a href="mailto:jee24@qq.com">jee24@qq.com</a></p>
 ]]></content>
   </entry>
 </search>

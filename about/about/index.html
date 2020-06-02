@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Git 进阶 |  
+    About Me |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -43,7 +43,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-git-进阶" class="article article-type-post" itemscope
+  <article id="post-about/about" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -51,7 +51,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Git 进阶
+  About Me
 </h1>
  
 
@@ -60,14 +60,10 @@
 
     
     <div class="article-meta">
-      <a href="/git-%E8%BF%9B%E9%98%B6/" class="article-date">
-  <time datetime="2019-12-17T16:00:00.000Z" itemprop="datePublished">2019-12-18</time>
+      <a href="/about/about/" class="article-date">
+  <time datetime="2015-12-31T16:00:00.000Z" itemprop="datePublished">2016-01-01</time>
 </a>
       
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Git/">Git</a>
-  </div>
-
       
       
 <div class="word_count">
@@ -75,7 +71,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1k</span>
+            <span class="post-count">12</span>
         </span>
     </span>
 
@@ -84,7 +80,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
@@ -95,8 +91,6 @@
 
     
     
-    <div class="tocbot"></div>
-
 
 
 
@@ -109,43 +103,11 @@
       
 
       
-      <p>HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。</p>
-<h1 id="fatal-Could-not-read-from-remote-repository-的解决办法"><a href="#fatal-Could-not-read-from-remote-repository-的解决办法" class="headerlink" title="fatal: Could not read from remote repository.的解决办法:"></a>fatal: Could not read from remote repository.的解决办法:</h1><p>查看远端地址 <code>git remote –v</code> 查看配置 <code>git config --list</code> <code>git status</code></p>
-<a id="more"></a>
-
-<h1 id="工作区与暂存区"><a href="#工作区与暂存区" class="headerlink" title="工作区与暂存区"></a>工作区与暂存区</h1><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576" target="_blank" rel="noopener">工作区和暂存区</a> command s ：工作区修改 <code>git add</code>：提交到暂存区 <code>git commit</code>：提交到本地库 <code>git push</code>：提交到远端</p>
-<h1 id="git-bare-init"><a href="#git-bare-init" class="headerlink" title="git -bare init"></a>git -bare init</h1><p><a href="http://blog.haohtml.com/archives/12265" target="_blank" rel="noopener">git -bare init 与 git init 有什么不同</a></p>
-<p>在初始化远程仓库时最好使用 <code>git –bare init</code> 而不要使用：<code>git init</code>。这样在使用 hooks 的时候，会有用处。</p>
-<p>如果使用了 <code>git init</code> 初始化，则远程仓库的目录下，也包含 work tree，当本地仓库向远程仓库 push 时, 如果远程仓库正在 push 的分支上（如果当时不在 push 的分支，就没有问题）, 那么 push 后的结果不会反应在 work tree 上, 也即在远程仓库的目录下对应的文件还是之前的内容，必须得使用 <code>git reset –hard</code> 才能看到 push 后的内容.</p>
-<h1 id="git-rm-xxx-r"><a href="#git-rm-xxx-r" class="headerlink" title="git rm xxx -r"></a>git rm xxx -r</h1><p>删除（递归），没有-r 会提示不安全</p>
-<h1 id="git-checkout-–-xxx"><a href="#git-checkout-–-xxx" class="headerlink" title="git checkout – xxx"></a>git checkout – xxx</h1><p>命令 <code>git checkout -- readme.txt</code> 意思就是，把 readme.txt 文件在工作区的修改全部撤销，这里有两种情况：</p>
-<p>一种是 readme.txt 自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
-<p>一种是 readme.txt 已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
-<p>总之，就是让这个文件回到最近一次 <code>git commit</code> 或 <code>git add</code> 时的状态。</p>
-<h1 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h1><p>创建并切换到新的 dev 分支，可以使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;name&gt;  ||  git switch -c &lt;name&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h1><p>对于所有分支而言， 工作区和暂存区是公共的。因为未 add 的内容不属于任何一个分支，未 commit 的内容也不属于任何一个分支；要想在分支间切换， 又不想又上述影响，可以用 <code>git stash</code>。要注意，在当前分支 <code>git stash</code> 的内容， 在其他分支也可以 <code>git stash pop</code> 出来，为什么？ 因为：<strong>工作区和暂存区是公共的</strong>。</p>
-<h2 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h2><p><code>git stash</code> 将现在的储存起来，<code>git stash list</code> 查看</p>
-<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><p>工作现场还在，Git 把 stash 内容存在某个地方了，但是需要恢复一下，有两个办法：</p>
-<ol>
-<li><p>一是用 <code>git stash apply stash@{xxx}</code>恢复，但是恢复后，stash 内容并不删除，你需要用 <code>git stash drop</code>来删除；</p>
-</li>
-<li><p>另一种方式是用 <code>git stash pop</code>，恢复的同时把 stash 内容也删了</p>
-</li>
-</ol>
-<h1 id="git-merge-–no-ff-–squash"><a href="#git-merge-–no-ff-–squash" class="headerlink" title="git merge (||–no-ff||–squash)"></a>git merge (||–no-ff||–squash)</h1><p>通常，合并分支时，如果可能，Git 会用<strong>Fast forward</strong>模式，但这种模式下，<strong>删除分支后，会丢掉分支信息</strong>。 –no-ff：不使用 fast-forward 方式合并，保留分支的 commit 历史 –squash：使用 squash 方式合并，把多次分支 commit 历史压缩为一次</p>
-<h1 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h1><p>在 master 分支上修复的 bug，想要合并到当前 dev 分支，可以用 <code>git cherry-pick &lt;commit&gt;</code>命令，把 bug 提交的修改“复制”到当前分支，避免重复劳动。</p>
-<h1 id="git-branch-D"><a href="#git-branch-D" class="headerlink" title="git branch -D"></a>git branch -D</h1><p>如果要丢弃一个没有被合并过的分支，可以通过 <code>git branch -D &lt;name&gt;</code>强行删除</p>
-<h1 id="git-checkout-b-dev-origin-dev"><a href="#git-checkout-b-dev-origin-dev" class="headerlink" title="git checkout -b dev origin/dev"></a>git checkout -b dev origin/dev</h1><p>创建远程 origin 的 dev 到本地 dev</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --<span class="built_in">set</span>-upstream-to=origin/dev dev</span><br></pre></td></tr></table></figure>
-
-<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>rebase 操作前后，最终的提交内容是一致的。</p>
-<p>把分叉的提交历史“整理”成一条直线，看上去更直观。缺点是本地的分叉提交已经被修改过了。</p>
-<p>rebase 操作可以把本地未 push 的分叉提交历史整理成直线；从不对已推送至别处的提交执行变基操作。 因为 rebase 会改变提交历史记录，这会影响到别人使用这一远程仓库。</p>
-<p>rebase 的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
-<p><a href="https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf" target="_blank" rel="noopener">git 列表</a></p>
-<p><a href="https://git-scm.com/" target="_blank" rel="noopener">Git 英文官网</a></p>
+      <blockquote>
+<p>A man , not any kind of.</p>
+</blockquote>
+<p>GitHub: <a href="https://github.com/jee3" target="_blank" rel="noopener">Jee3</a></p>
+<p>Email: <a href="mailto:jee24@qq.com">jee24@qq.com</a></p>
 
       
       <!-- reward -->
@@ -214,15 +176,13 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/git-%E8%BF%9B%E9%98%B6/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/about/about/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
-
 
     </footer>
 
@@ -232,20 +192,15 @@
   
   <nav class="article-nav">
     
-      <a href="/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="article-nav-link">
+      <a href="/hello-world/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            《React——引领未来的用户界面开发框架》总结
+            Hello World
           
         </div>
       </a>
     
-    
-      <a href="/JS%E9%AB%98%E7%A8%8B/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">《Javascript高级程序设计》总结</div>
-      </a>
     
   </nav>
 

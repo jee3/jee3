@@ -6,10 +6,12 @@
 
 <head>
   <meta charset="utf-8" />
-    
+   
+  <meta name="keywords" content="React 多个系统 登录登出," />
+   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Git 进阶 |  
+    React中如何避免子组件的循环渲染 |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -43,7 +45,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-git-进阶" class="article article-type-post" itemscope
+  <article id="post-React多个系统之间登录登出逻辑的实现" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -51,7 +53,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Git 进阶
+  React中如何避免子组件的循环渲染
 </h1>
  
 
@@ -60,12 +62,12 @@
 
     
     <div class="article-meta">
-      <a href="/git-%E8%BF%9B%E9%98%B6/" class="article-date">
-  <time datetime="2019-12-17T16:00:00.000Z" itemprop="datePublished">2019-12-18</time>
+      <a href="/React%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="article-date">
+  <time datetime="2020-06-02T02:12:55.000Z" itemprop="datePublished">2020-06-02</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Git/">Git</a>
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
   </div>
 
       
@@ -75,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1k</span>
+            <span class="post-count">796</span>
         </span>
     </span>
 
@@ -84,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -109,43 +111,23 @@
       
 
       
-      <p>HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。</p>
-<h1 id="fatal-Could-not-read-from-remote-repository-的解决办法"><a href="#fatal-Could-not-read-from-remote-repository-的解决办法" class="headerlink" title="fatal: Could not read from remote repository.的解决办法:"></a>fatal: Could not read from remote repository.的解决办法:</h1><p>查看远端地址 <code>git remote –v</code> 查看配置 <code>git config --list</code> <code>git status</code></p>
+      <p>本文介绍 React 登录登出逻辑的一种实现方法。</p>
+<p>用户在注册页面进行注册表单提交，正确提交信息后，进入登录页面，登录页面检测用户是否已经登录（此处有多种方法，可以检测 cookie，我用的是检测 localStorage 是否有我登录时存的一个值）。</p>
+<p>如果直接在地址栏输入地址，检测到未登录状态，则返回到登录页面。</p>
 <a id="more"></a>
 
-<h1 id="工作区与暂存区"><a href="#工作区与暂存区" class="headerlink" title="工作区与暂存区"></a>工作区与暂存区</h1><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576" target="_blank" rel="noopener">工作区和暂存区</a> command s ：工作区修改 <code>git add</code>：提交到暂存区 <code>git commit</code>：提交到本地库 <code>git push</code>：提交到远端</p>
-<h1 id="git-bare-init"><a href="#git-bare-init" class="headerlink" title="git -bare init"></a>git -bare init</h1><p><a href="http://blog.haohtml.com/archives/12265" target="_blank" rel="noopener">git -bare init 与 git init 有什么不同</a></p>
-<p>在初始化远程仓库时最好使用 <code>git –bare init</code> 而不要使用：<code>git init</code>。这样在使用 hooks 的时候，会有用处。</p>
-<p>如果使用了 <code>git init</code> 初始化，则远程仓库的目录下，也包含 work tree，当本地仓库向远程仓库 push 时, 如果远程仓库正在 push 的分支上（如果当时不在 push 的分支，就没有问题）, 那么 push 后的结果不会反应在 work tree 上, 也即在远程仓库的目录下对应的文件还是之前的内容，必须得使用 <code>git reset –hard</code> 才能看到 push 后的内容.</p>
-<h1 id="git-rm-xxx-r"><a href="#git-rm-xxx-r" class="headerlink" title="git rm xxx -r"></a>git rm xxx -r</h1><p>删除（递归），没有-r 会提示不安全</p>
-<h1 id="git-checkout-–-xxx"><a href="#git-checkout-–-xxx" class="headerlink" title="git checkout – xxx"></a>git checkout – xxx</h1><p>命令 <code>git checkout -- readme.txt</code> 意思就是，把 readme.txt 文件在工作区的修改全部撤销，这里有两种情况：</p>
-<p>一种是 readme.txt 自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
-<p>一种是 readme.txt 已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
-<p>总之，就是让这个文件回到最近一次 <code>git commit</code> 或 <code>git add</code> 时的状态。</p>
-<h1 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h1><p>创建并切换到新的 dev 分支，可以使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;name&gt;  ||  git switch -c &lt;name&gt;</span><br></pre></td></tr></table></figure>
+<p>在其他功能页面每次向服务端发送数据请求的时候，都在请求 header 里面加上 token，如果服务端返回 401，则按照下面的 http response 拦截处理，返回登录页面</p>
+<h1 id="axios-拦截"><a href="#axios-拦截" class="headerlink" title="axios 拦截"></a>axios 拦截</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// http request 拦截器</span></span><br><span class="line">axios.interceptors.request.use(</span><br><span class="line">	(config) =&gt; &#123;</span><br><span class="line">		<span class="keyword">if</span> (store.state.token) &#123;</span><br><span class="line">			<span class="comment">// 判断是否存在token，如果存在的话，则每个http header都加上token</span></span><br><span class="line">			config.headers.Authorization = <span class="string">`token <span class="subst">$&#123;store.state.token&#125;</span>`</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> config;</span><br><span class="line">	&#125;,</span><br><span class="line">	(err) =&gt; &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err);</span><br><span class="line">	&#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// http response 拦截器</span></span><br><span class="line">axios.interceptors.response.use(</span><br><span class="line">	(response) =&gt; &#123;</span><br><span class="line">		<span class="keyword">return</span> response;</span><br><span class="line">	&#125;,</span><br><span class="line">	(error) =&gt; &#123;</span><br><span class="line">		<span class="keyword">if</span> (error.response) &#123;</span><br><span class="line">			<span class="keyword">switch</span> (error.response.status) &#123;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">401</span>:</span><br><span class="line">					<span class="comment">// 返回 401 清除token信息并跳转到登录页面</span></span><br><span class="line">					<span class="comment">// message.error('登录超时，请重新登录');</span></span><br><span class="line">					setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">						history.push(<span class="string">'/login'</span>);</span><br><span class="line">					&#125;, <span class="number">1000</span>);</span><br><span class="line">				<span class="keyword">case</span> <span class="number">500</span>:</span><br><span class="line">					history.push(<span class="string">'/servererror'</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error.response.data); <span class="comment">// 返回接口返回的错误信息</span></span><br><span class="line">	&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
-<h1 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h1><p>对于所有分支而言， 工作区和暂存区是公共的。因为未 add 的内容不属于任何一个分支，未 commit 的内容也不属于任何一个分支；要想在分支间切换， 又不想又上述影响，可以用 <code>git stash</code>。要注意，在当前分支 <code>git stash</code> 的内容， 在其他分支也可以 <code>git stash pop</code> 出来，为什么？ 因为：<strong>工作区和暂存区是公共的</strong>。</p>
-<h2 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h2><p><code>git stash</code> 将现在的储存起来，<code>git stash list</code> 查看</p>
-<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><p>工作现场还在，Git 把 stash 内容存在某个地方了，但是需要恢复一下，有两个办法：</p>
-<ol>
-<li><p>一是用 <code>git stash apply stash@{xxx}</code>恢复，但是恢复后，stash 内容并不删除，你需要用 <code>git stash drop</code>来删除；</p>
-</li>
-<li><p>另一种方式是用 <code>git stash pop</code>，恢复的同时把 stash 内容也删了</p>
-</li>
-</ol>
-<h1 id="git-merge-–no-ff-–squash"><a href="#git-merge-–no-ff-–squash" class="headerlink" title="git merge (||–no-ff||–squash)"></a>git merge (||–no-ff||–squash)</h1><p>通常，合并分支时，如果可能，Git 会用<strong>Fast forward</strong>模式，但这种模式下，<strong>删除分支后，会丢掉分支信息</strong>。 –no-ff：不使用 fast-forward 方式合并，保留分支的 commit 历史 –squash：使用 squash 方式合并，把多次分支 commit 历史压缩为一次</p>
-<h1 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h1><p>在 master 分支上修复的 bug，想要合并到当前 dev 分支，可以用 <code>git cherry-pick &lt;commit&gt;</code>命令，把 bug 提交的修改“复制”到当前分支，避免重复劳动。</p>
-<h1 id="git-branch-D"><a href="#git-branch-D" class="headerlink" title="git branch -D"></a>git branch -D</h1><p>如果要丢弃一个没有被合并过的分支，可以通过 <code>git branch -D &lt;name&gt;</code>强行删除</p>
-<h1 id="git-checkout-b-dev-origin-dev"><a href="#git-checkout-b-dev-origin-dev" class="headerlink" title="git checkout -b dev origin/dev"></a>git checkout -b dev origin/dev</h1><p>创建远程 origin 的 dev 到本地 dev</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --<span class="built_in">set</span>-upstream-to=origin/dev dev</span><br></pre></td></tr></table></figure>
+<h1 id="在请求的-url-里面直接加-token"><a href="#在请求的-url-里面直接加-token" class="headerlink" title="在请求的 url 里面直接加 token"></a>在请求的 url 里面直接加 token</h1><p>需求是在 A 系统的页面通过点击事件跳转到 B 系统的页面，所以不能用 router 来做。</p>
+<p>这里前端通过 token 与时间戳拼接加密（用的是 base64 对称加密，方便后端解密），然后将加密后的 token 直接添加到 url 的参数里面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A系统</span></span><br><span class="line"><span class="keyword">import</span> Base64 <span class="keyword">from</span> <span class="string">'base-64'</span>;</span><br><span class="line"><span class="keyword">let</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().valueOf();</span><br><span class="line"><span class="keyword">let</span> temp = <span class="built_in">window</span>.localStorage.token + <span class="string">'+'</span> + time;</span><br><span class="line"><span class="keyword">let</span> code = Base64.encode(temp);</span><br><span class="line"><span class="built_in">window</span>.open(<span class="string">`<span class="subst">$&#123;API&#125;</span>/example?token=<span class="subst">$&#123;code&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
 
-<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>rebase 操作前后，最终的提交内容是一致的。</p>
-<p>把分叉的提交历史“整理”成一条直线，看上去更直观。缺点是本地的分叉提交已经被修改过了。</p>
-<p>rebase 操作可以把本地未 push 的分叉提交历史整理成直线；从不对已推送至别处的提交执行变基操作。 因为 rebase 会改变提交历史记录，这会影响到别人使用这一远程仓库。</p>
-<p>rebase 的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
-<p><a href="https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf" target="_blank" rel="noopener">git 列表</a></p>
-<p><a href="https://git-scm.com/" target="_blank" rel="noopener">Git 英文官网</a></p>
+<p>在 B 系统的首页，先后通过对 url 的拆分、decode 解密、再与时间戳分离，获取到 token，再发请求给后端校验权限，如果没有权限，则跳回到 A 系统的登录界面。</p>
+<p>这样的话，用户就不能通过复制 B 系统链接的方式绕过 A 系统的登录。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// B系统</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">		<span class="keyword">super</span>(props);</span><br><span class="line">		<span class="keyword">this</span>.state = &#123;</span><br><span class="line">			intervalId: <span class="literal">null</span>,</span><br><span class="line">			currentCount: <span class="number">2</span>,</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//组件未挂载前就发送请求，验证身份</span></span><br><span class="line">	componentWillMount() &#123;</span><br><span class="line">		<span class="keyword">const</span> url = <span class="built_in">window</span>.location.href;</span><br><span class="line">		<span class="keyword">const</span> code = url.substring(url.indexOf(<span class="string">'='</span>) + <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">const</span> tokenAndTime = Base64.decode(code);</span><br><span class="line">		<span class="keyword">const</span> token = tokenAndTime.split(<span class="string">'+'</span>)[<span class="number">0</span>];</span><br><span class="line">		localStorage.setItem(<span class="string">'token'</span>, token);</span><br><span class="line">		axios.interceptors.response.use(); <span class="comment">//和上面的response拦截一样</span></span><br><span class="line">		axios(&#123;</span><br><span class="line">			method: <span class="string">'get'</span>,</span><br><span class="line">			url: <span class="string">`https://www.example.com/api`</span>,</span><br><span class="line">			headers: &#123; <span class="attr">Authorization</span>: token &#125;,</span><br><span class="line">		&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">			<span class="comment">//处理返回数据</span></span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//组件挂载后定时执行</span></span><br><span class="line">	componentDidMount() &#123;</span><br><span class="line">		<span class="comment">//50分钟校验一次token有没有过期</span></span><br><span class="line">		<span class="keyword">let</span> intervalId = setInterval(<span class="keyword">this</span>.timer, <span class="number">3000000</span>);</span><br><span class="line">		<span class="keyword">this</span>.setState(&#123; <span class="attr">intervalId</span>: intervalId &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	componentWillUnmount() &#123;</span><br><span class="line">		clearInterval(<span class="keyword">this</span>.state.intervalId);</span><br><span class="line">	&#125;</span><br><span class="line">	timer() &#123;</span><br><span class="line">		<span class="keyword">const</span> storage = <span class="built_in">window</span>.localStorage;</span><br><span class="line">		<span class="keyword">let</span> newCount = <span class="keyword">this</span>.state.currentCount - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (newCount &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">			axios(&#123;</span><br><span class="line">				method: <span class="string">'get'</span>,</span><br><span class="line">				url: <span class="string">`https://www.example.com/api`</span>,</span><br><span class="line">				headers: &#123; <span class="attr">Authorization</span>: storage.token &#125;,</span><br><span class="line">			&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (response.data.code === <span class="number">200</span>) &#123;</span><br><span class="line">					<span class="built_in">console</span>.log(<span class="string">'token有效'</span>);</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="built_in">console</span>.log(<span class="string">'token失效'</span>);</span><br><span class="line">					<span class="built_in">window</span>.location.href = <span class="string">'https://www.A.com'</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">			<span class="keyword">this</span>.setState(&#123; <span class="attr">currentCount</span>: newCount &#125;);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			clearInterval(<span class="keyword">this</span>.state.intervalId);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>应该会有更好的实现方式，这里就算是抛砖引玉了。</p>
 
       
       <!-- reward -->
@@ -214,14 +196,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/git-%E8%BF%9B%E9%98%B6/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/React%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
 
 
     </footer>
@@ -232,19 +214,10 @@
   
   <nav class="article-nav">
     
-      <a href="/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            《React——引领未来的用户界面开发框架》总结
-          
-        </div>
-      </a>
     
-    
-      <a href="/JS%E9%AB%98%E7%A8%8B/" class="article-nav-link">
+      <a href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">《Javascript高级程序设计》总结</div>
+        <div class="article-nav-title">React中如何避免子组件的循环渲染</div>
       </a>
     
   </nav>
