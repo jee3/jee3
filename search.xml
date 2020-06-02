@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>React中如何避免子组件的循环渲染</title>
+    <title>[object Object]</title>
+    <url>/Ant-design%E8%B8%A9%E8%BF%87%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ant-design 是 React 项目中主流的前端 UI 框架，虽然文档较为全面，但是在使用中还是有很多坑的，本文就集中整理一下。</p>
+<h1 id="按需加载"><a href="#按需加载" class="headerlink" title="按需加载"></a>按需加载</h1><p>.babelrc 文件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">"plugins"</span>: [</span><br><span class="line">    <span class="string">"@babel/plugin-proposal-class-properties"</span>,</span><br><span class="line">    [</span><br><span class="line">        <span class="string">"import"</span>,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"libraryName"</span>: <span class="string">"antd"</span>,</span><br><span class="line">            <span class="string">"libraryDirectory"</span>: <span class="string">"es"</span>,</span><br><span class="line">            <span class="string">"style"</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h1 id="Cascader"><a href="#Cascader" class="headerlink" title="Cascader"></a>Cascader</h1><p>级联选择器是一个很常用的组件，通过递归的数据结构，就可以渲染出来了，比如： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe5k2s9twj30d70dadgn.jpg" alt=""></p>
+<p>不过此次需求只有两个一级菜单，若干二级菜单。而且数据是从后端返回的，键名无法由前端定义，这样就需要前端做一下转换。代码如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> options = [</span><br><span class="line">	&#123; <span class="attr">code</span>: <span class="string">'valueA'</span>, <span class="attr">name</span>: <span class="string">'labelA'</span>, <span class="attr">items</span>: [] &#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		code: <span class="string">'valueB'</span>,</span><br><span class="line">		name: <span class="string">'labelB'</span>,</span><br><span class="line">		items: [],</span><br><span class="line">	&#125;,</span><br><span class="line">];</span><br><span class="line">axios(&#123;</span><br><span class="line">	<span class="comment">//your request</span></span><br><span class="line">&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="comment">//数据用filter做一下筛选，并将每个对象push进数组</span></span><br><span class="line">	response.data.data</span><br><span class="line">		.filter(<span class="function">(<span class="params">item</span>) =&gt;</span> item.someProperty === <span class="number">0</span>)</span><br><span class="line">		.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">			options[<span class="number">0</span>].items.push(&#123;</span><br><span class="line">				code: item.name,</span><br><span class="line">				name: item.age,</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	response.data.data</span><br><span class="line">		.filter(<span class="function">(<span class="params">item</span>) =&gt;</span> item.someProperty === <span class="number">1</span>)</span><br><span class="line">		.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">			options[<span class="number">1</span>].items.push(&#123;</span><br><span class="line">				code: item.name,</span><br><span class="line">				name: item.age,</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//重点来了，此处的value:'code'和label:'name'中的code和name一定不能用value和label，也就是说 不能和规定的属性同名</span></span><br><span class="line">&lt;Cascader</span><br><span class="line">	fieldNames=&#123;&#123;</span><br><span class="line">		children: <span class="string">'items'</span>,</span><br><span class="line">		value: <span class="string">'code'</span>,</span><br><span class="line">		label: <span class="string">'name'</span>,</span><br><span class="line">	&#125;&#125;</span><br><span class="line">	options=&#123;options&#125;</span><br><span class="line">/&gt;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Spin-加载"><a href="#Spin-加载" class="headerlink" title="Spin 加载"></a>Spin 加载</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> antIcon = <span class="xml"><span class="tag">&lt;<span class="name">LoadingOutlined</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">fontSize:</span> <span class="attr">24</span> &#125;&#125; <span class="attr">spin</span> /&gt;</span></span>;</span><br><span class="line">&lt;Spin indicator=&#123;antIcon&#125; tip=“Loading...<span class="string">" spinning=&#123;fileSpinVisible&#125;&gt;</span></span><br><span class="line"><span class="string">    &lt;div&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/Spin&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Popover"><a href="#Popover" class="headerlink" title="Popover"></a>Popover</h1><p>用 overlayStyle 对样式进行简单的修改</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;Popover overlayStyle=&#123;&#123; <span class="attr">width</span>: <span class="number">88</span> &#125;&#125;&gt;</span><br><span class="line">	&lt;div className=<span class="string">"avatar"</span>&gt;<span class="number">123456</span>&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>Popover&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="evernotecid://D2FA04CE-24BF-478C-9996-C883AB8C2834/appyinxiangcom/7213637/ENResource/p226" alt="bc3288b24f7fac6641b42f6b33466ff8.png"></p>
+<p>给 popover 添加类名，然后通过 css 文件的子元素进行样式修改</p>
+<p><img src="evernotecid://D2FA04CE-24BF-478C-9996-C883AB8C2834/appyinxiangcom/7213637/ENResource/p227" alt="c83a380fdfc5a3780208efcc9916112e.png"></p>
+<p>比如一个很常见的需求，要求 popover 展开的时候，鼠标 hover 不同行，相应的行要有样式变化，那么就要去掉 antd 自带的 padding，代码如下</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.avatar-popover</span> &#123;</span><br><span class="line">	div &#123;</span><br><span class="line">		//ant-popover-content</span><br><span class="line">		<span class="selector-tag">div</span> &#123;</span><br><span class="line">			//ant-popover-inner</span><br><span class="line">			<span class="selector-tag">div</span> &#123;</span><br><span class="line">				div &#123;</span><br><span class="line">					//ant-popover-inner-content</span><br><span class="line">					<span class="selector-tag">padding</span>: 0;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h1><p>自定义 select：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">appearance</span>: <span class="selector-tag">none</span>;</span><br><span class="line">background: url('../img/select_arrow.png') 230px center no-repeat;</span><br><span class="line"><span class="selector-tag">background-size</span>: 12<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>React多个系统之间登录登出逻辑的实现</title>
     <url>/React%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文介绍 React 登录登出逻辑的一种实现方法。</p>
 <p>用户在注册页面进行注册表单提交，正确提交信息后，进入登录页面，登录页面检测用户是否已经登录（此处有多种方法，可以检测 cookie，我用的是检测 localStorage 是否有我登录时存的一个值）。</p>
@@ -83,6 +109,8 @@
     <url>/console-log%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>console.log 作为前端工程师非常值得信赖的调试工具，居然失效了？？？没想到啊没想到，console.log 这么个浓眉大眼的家伙，居然也…</p>
 <p>先直接上代码</p>
+<a id="more"></a>
+
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Upload &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">const</span> MyUpload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> [fileList, setFile] = useState([]);</span><br><span class="line">	<span class="keyword">const</span> handleChange = <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">999</span>, info);</span><br><span class="line">		<span class="keyword">let</span> newList = info.fileList;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">11</span>, newList);</span><br><span class="line">		newList.push(<span class="number">2</span>);</span><br><span class="line">		newList.push(<span class="number">3</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">222</span>, newList);</span><br><span class="line">		newList = newList.map(<span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (file.response) &#123;</span><br><span class="line">				file.url = file.response.url;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> file;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> props = &#123;</span><br><span class="line">		action: <span class="string">'https://www.mocky.io/'</span>,</span><br><span class="line">		onChange: handleChange,</span><br><span class="line">		multiple: <span class="literal">true</span>,</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;Upload &#123;...props&#125; fileList=&#123;fileList&#125;&gt;</span><br><span class="line">			&lt;Button&gt;Upload&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>Upload&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe0ofl2t3j30vi0n6dqe.jpg" alt=""> 由上图可以看到，无论是 999 还是 11，都输出了它们本不该输出的内容，也就是在<code>console.log(11, newList)</code>之后才 push 的数字 2 和 3。</p>
@@ -433,54 +461,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Flex布局</title>
-    <url>/Flex%E5%B8%83%E5%B1%80/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Flex-基本概念"><a href="#Flex-基本概念" class="headerlink" title="Flex 基本概念"></a>Flex 基本概念</h1><p>flex：弹性布局</p>
-<p>行内元素也可以用 flex，webkit 内核的要加上-webkit</p>
-<p><strong>注意，设为 Flex 布局以后，子元素自动成为 flex item，并且其 float、clear 和 vertical-align 属性将失效。</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89lw0kne6j30fn099dgi.jpg" alt=""></p>
-<a id="more"></a>
-
-<h1 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h1><h2 id="flex-direction-column-reverse-column-row-default-row-reverse"><a href="#flex-direction-column-reverse-column-row-default-row-reverse" class="headerlink" title="flex-direction:column-reverse|column|row(default)|row-reverse"></a>flex-direction:column-reverse|column|row(default)|row-reverse</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89mc8iehlj30m405n74l.jpg" alt=""></p>
-<h2 id="flex-wrap-nowrap-default-wrap-wrap-reverse"><a href="#flex-wrap-nowrap-default-wrap-wrap-reverse" class="headerlink" title="flex-wrap:nowrap(default) | wrap | wrap-reverse;"></a>flex-wrap:nowrap(default) | wrap | wrap-reverse;</h2><p>不换行|换行|换行，第一行在下面</p>
-<h2 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h2><p>flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap。</p>
-<h2 id="justify-content：flex-start-default-flex-end-center-space-between-space-around"><a href="#justify-content：flex-start-default-flex-end-center-space-between-space-around" class="headerlink" title="justify-content：flex-start(default)|flex-end|center|space-between|space-around"></a>justify-content：flex-start(default)|flex-end|center|space-between|space-around</h2><p>定义了项目在<strong>主轴</strong>上的对齐方式 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aamszweyj30hp0l70u3.jpg" alt=""></p>
-<h2 id="align-items：flex-start-flex-end-center-stretch（default-baseline"><a href="#align-items：flex-start-flex-end-center-stretch（default-baseline" class="headerlink" title="align-items：flex-start | flex-end | center | stretch（default)| baseline;"></a>align-items：flex-start | flex-end | center | stretch（default)| baseline;</h2><p>项目在<strong>交叉轴</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aatkq4cgj30h50lujsr.jpg" alt=""> baseline:项目的第一行文字的基线对齐。 stretch：如果项目未设置高度或设为 auto，将占满整个容器的高度。</p>
-<h2 id="align-content-flex-start-flex-end-center-stretch-default-space-between-space-around"><a href="#align-content-flex-start-flex-end-center-stretch-default-space-between-space-around" class="headerlink" title="align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;"></a>align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;</h2><p>项目在<strong>多根轴线</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aavwyo41j30h80ludhq.jpg" alt=""> 多根轴线</p>
-<p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
-<p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
-<h1 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h1><h2 id="order：integer-default-0"><a href="#order：integer-default-0" class="headerlink" title="order：integer(default:0)"></a>order：integer(default:0)</h2><p>数字越小越靠前 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhl5degj30kv0dcmxz.jpg" alt=""></p>
-<h2 id="flex-grow：integer-default-0"><a href="#flex-grow：integer-default-0" class="headerlink" title="flex-grow：integer(default:0)"></a>flex-grow：integer(default:0)</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhfdy55j30ma05v74o.jpg" alt=""> 定义放大比例：如果所有都是 1，则等分，有个项目是 2 的话，即 2 倍距离。</p>
-<p><strong>0 的意思是：即使存在剩余空间，也不放大</strong></p>
-<h2 id="flex-shrink：integer-default-1"><a href="#flex-shrink：integer-default-1" class="headerlink" title="flex-shrink：integer(default:1)"></a>flex-shrink：integer(default:1)</h2><p>定义缩小比例：如果都是 1，则一起缩小；如果有一个是 0，1 缩小，0 不缩小。</p>
-<p><strong>不可取负值</strong></p>
-<p><strong>1 的意思是：若空间不足，则缩小</strong></p>
-<h2 id="flex-basis：-auto"><a href="#flex-basis：-auto" class="headerlink" title="flex-basis：  | auto"></a>flex-basis： <length> | auto</h2><p>定义了：在分配多余空间之前，项目占据主轴空间（main size），默认值为 auto，即项目本来大小。</p>
-<p><strong>它可以设为跟 width 或 height 属性一样的值（比如 350px），则项目将占据固定空间。</strong></p>
-<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><p>flex 属性是 flex-grow、flex-shrink、flex-basis 的简写，默认为 0 1 auto（后两个可选）</p>
-<p>该属性有两个快捷值:auto（1 1 auto）和 none（0 0 auto）</p>
-<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
-<h2 id="align-self：auto-default-flex-start-flex-end-center-baseline-stretch"><a href="#align-self：auto-default-flex-start-flex-end-center-baseline-stretch" class="headerlink" title="align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;"></a>align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;</h2><p>允许自己和其他项目不一样的对齐方式；</p>
-<p>auto:继承父元素的 align-items，如果没有父元素，则等同于 stretch；</p>
-<p>除 auto 外其他属性和 align-items 一样</p>
-<h2 id="flex-垂直居中"><a href="#flex-垂直居中" class="headerlink" title="flex 垂直居中"></a>flex 垂直居中</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">    vertical-align: center;</span><br><span class="line">    flex-wrap: wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>实例中网格布局之后的内容 稍后再整理</strong></p>
-<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">参考阮一峰语法篇</a></p>
-<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">参考阮一峰实例篇</a></p>
-]]></content>
-      <categories>
-        <category>FE</category>
-        <category>CSS</category>
-        <category>Flex</category>
-      </categories>
-      <tags>
-        <tag>FE</tag>
-        <tag>CSS</tag>
-        <tag>Flex</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS基础</title>
     <url>/CSS%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g870k95k7zj31a60naae8.jpg" alt=""></p>
@@ -541,6 +521,54 @@
       <tags>
         <tag>FE</tag>
         <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flex布局</title>
+    <url>/Flex%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Flex-基本概念"><a href="#Flex-基本概念" class="headerlink" title="Flex 基本概念"></a>Flex 基本概念</h1><p>flex：弹性布局</p>
+<p>行内元素也可以用 flex，webkit 内核的要加上-webkit</p>
+<p><strong>注意，设为 Flex 布局以后，子元素自动成为 flex item，并且其 float、clear 和 vertical-align 属性将失效。</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89lw0kne6j30fn099dgi.jpg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h1><h2 id="flex-direction-column-reverse-column-row-default-row-reverse"><a href="#flex-direction-column-reverse-column-row-default-row-reverse" class="headerlink" title="flex-direction:column-reverse|column|row(default)|row-reverse"></a>flex-direction:column-reverse|column|row(default)|row-reverse</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g89mc8iehlj30m405n74l.jpg" alt=""></p>
+<h2 id="flex-wrap-nowrap-default-wrap-wrap-reverse"><a href="#flex-wrap-nowrap-default-wrap-wrap-reverse" class="headerlink" title="flex-wrap:nowrap(default) | wrap | wrap-reverse;"></a>flex-wrap:nowrap(default) | wrap | wrap-reverse;</h2><p>不换行|换行|换行，第一行在下面</p>
+<h2 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h2><p>flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap。</p>
+<h2 id="justify-content：flex-start-default-flex-end-center-space-between-space-around"><a href="#justify-content：flex-start-default-flex-end-center-space-between-space-around" class="headerlink" title="justify-content：flex-start(default)|flex-end|center|space-between|space-around"></a>justify-content：flex-start(default)|flex-end|center|space-between|space-around</h2><p>定义了项目在<strong>主轴</strong>上的对齐方式 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aamszweyj30hp0l70u3.jpg" alt=""></p>
+<h2 id="align-items：flex-start-flex-end-center-stretch（default-baseline"><a href="#align-items：flex-start-flex-end-center-stretch（default-baseline" class="headerlink" title="align-items：flex-start | flex-end | center | stretch（default)| baseline;"></a>align-items：flex-start | flex-end | center | stretch（default)| baseline;</h2><p>项目在<strong>交叉轴</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aatkq4cgj30h50lujsr.jpg" alt=""> baseline:项目的第一行文字的基线对齐。 stretch：如果项目未设置高度或设为 auto，将占满整个容器的高度。</p>
+<h2 id="align-content-flex-start-flex-end-center-stretch-default-space-between-space-around"><a href="#align-content-flex-start-flex-end-center-stretch-default-space-between-space-around" class="headerlink" title="align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;"></a>align-content:flex-start | flex-end | center | stretch(default)|space-between | space-around ;</h2><p>项目在<strong>多根轴线</strong>上如何对齐 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8aavwyo41j30h80ludhq.jpg" alt=""> 多根轴线</p>
+<p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
+<p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
+<h1 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h1><h2 id="order：integer-default-0"><a href="#order：integer-default-0" class="headerlink" title="order：integer(default:0)"></a>order：integer(default:0)</h2><p>数字越小越靠前 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhl5degj30kv0dcmxz.jpg" alt=""></p>
+<h2 id="flex-grow：integer-default-0"><a href="#flex-grow：integer-default-0" class="headerlink" title="flex-grow：integer(default:0)"></a>flex-grow：integer(default:0)</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8abhfdy55j30ma05v74o.jpg" alt=""> 定义放大比例：如果所有都是 1，则等分，有个项目是 2 的话，即 2 倍距离。</p>
+<p><strong>0 的意思是：即使存在剩余空间，也不放大</strong></p>
+<h2 id="flex-shrink：integer-default-1"><a href="#flex-shrink：integer-default-1" class="headerlink" title="flex-shrink：integer(default:1)"></a>flex-shrink：integer(default:1)</h2><p>定义缩小比例：如果都是 1，则一起缩小；如果有一个是 0，1 缩小，0 不缩小。</p>
+<p><strong>不可取负值</strong></p>
+<p><strong>1 的意思是：若空间不足，则缩小</strong></p>
+<h2 id="flex-basis：-auto"><a href="#flex-basis：-auto" class="headerlink" title="flex-basis：  | auto"></a>flex-basis： <length> | auto</h2><p>定义了：在分配多余空间之前，项目占据主轴空间（main size），默认值为 auto，即项目本来大小。</p>
+<p><strong>它可以设为跟 width 或 height 属性一样的值（比如 350px），则项目将占据固定空间。</strong></p>
+<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><p>flex 属性是 flex-grow、flex-shrink、flex-basis 的简写，默认为 0 1 auto（后两个可选）</p>
+<p>该属性有两个快捷值:auto（1 1 auto）和 none（0 0 auto）</p>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h2 id="align-self：auto-default-flex-start-flex-end-center-baseline-stretch"><a href="#align-self：auto-default-flex-start-flex-end-center-baseline-stretch" class="headerlink" title="align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;"></a>align-self：auto(default)| flex-start | flex-end | center | baseline | stretch;</h2><p>允许自己和其他项目不一样的对齐方式；</p>
+<p>auto:继承父元素的 align-items，如果没有父元素，则等同于 stretch；</p>
+<p>除 auto 外其他属性和 align-items 一样</p>
+<h2 id="flex-垂直居中"><a href="#flex-垂直居中" class="headerlink" title="flex 垂直居中"></a>flex 垂直居中</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    justify-content: center;</span><br><span class="line">    align-content: center;</span><br><span class="line">    align-items: center;</span><br><span class="line">    vertical-align: center;</span><br><span class="line">    flex-wrap: wrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实例中网格布局之后的内容 稍后再整理</strong></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">参考阮一峰语法篇</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">参考阮一峰实例篇</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>CSS</category>
+        <category>Flex</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>CSS</tag>
+        <tag>Flex</tag>
       </tags>
   </entry>
   <entry>

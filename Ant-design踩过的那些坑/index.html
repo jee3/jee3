@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    CSS单位 |  
+    [object Object] |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -43,7 +43,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-CSS单位" class="article article-type-post" itemscope
+  <article id="post-Ant-design踩过的那些坑" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -51,7 +51,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  CSS单位
+  [object Object]
 </h1>
  
 
@@ -60,14 +60,10 @@
 
     
     <div class="article-meta">
-      <a href="/CSS%E5%8D%95%E4%BD%8D/" class="article-date">
-  <time datetime="2019-11-02T16:00:00.000Z" itemprop="datePublished">2019-11-03</time>
+      <a href="/Ant-design%E8%B8%A9%E8%BF%87%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" class="article-date">
+  <time datetime="2020-06-02T11:31:33.273Z" itemprop="datePublished">2020-06-02</time>
 </a>
       
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/CSS/">CSS</a>
-  </div>
-
       
       
 <div class="word_count">
@@ -75,7 +71,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">131</span>
+            <span class="post-count">503</span>
         </span>
     </span>
 
@@ -84,7 +80,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -109,20 +105,27 @@
       
 
       
-      <h1 id="px"><a href="#px" class="headerlink" title="px"></a>px</h1><p>像素</p>
-<h1 id="em"><a href="#em" class="headerlink" title="em"></a>em</h1><p>参考物是父元素的 font-size（浏览器默认是 16px），如果自身定义了 font-size，就按自身的来算。</p>
-<h1 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h1><p>相对于根元素（html）</p>
-<h1 id=""><a href="#" class="headerlink" title="%"></a>%</h1><ul>
-<li>对于普通元素：相对于父元素</li>
-<li>对于 position: absolute 的元素：相对于已定位的父元素</li>
-<li>对于 position: fixed 的元素：相对于 ViewPort（可视窗口）</li>
-</ul>
-<h1 id="vw-amp-vh"><a href="#vw-amp-vh" class="headerlink" title="vw &amp; vh"></a>vw &amp; vh</h1><p>css3 新元素，view width 和 view height（可视宽高）</p>
-<p>浏览器宽度 1200px，1vw=1200px/100=12px</p>
-<blockquote>
-<p>如何使 1rem=10px？在设置 HTML{font-size：62.5%；}即可</p>
-</blockquote>
-<p><a href="https://blog.csdn.net/weixin_42192534/article/details/80289782" target="_blank" rel="noopener">参考</a></p>
+      <p>Ant-design 是 React 项目中主流的前端 UI 框架，虽然文档较为全面，但是在使用中还是有很多坑的，本文就集中整理一下。</p>
+<h1 id="按需加载"><a href="#按需加载" class="headerlink" title="按需加载"></a>按需加载</h1><p>.babelrc 文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"plugins"</span>: [</span><br><span class="line">    <span class="string">"@babel/plugin-proposal-class-properties"</span>,</span><br><span class="line">    [</span><br><span class="line">        <span class="string">"import"</span>,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"libraryName"</span>: <span class="string">"antd"</span>,</span><br><span class="line">            <span class="string">"libraryDirectory"</span>: <span class="string">"es"</span>,</span><br><span class="line">            <span class="string">"style"</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h1 id="Cascader"><a href="#Cascader" class="headerlink" title="Cascader"></a>Cascader</h1><p>级联选择器是一个很常用的组件，通过递归的数据结构，就可以渲染出来了，比如： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe5k2s9twj30d70dadgn.jpg" alt=""></p>
+<p>不过此次需求只有两个一级菜单，若干二级菜单。而且数据是从后端返回的，键名无法由前端定义，这样就需要前端做一下转换。代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> options = [</span><br><span class="line">	&#123; <span class="attr">code</span>: <span class="string">'valueA'</span>, <span class="attr">name</span>: <span class="string">'labelA'</span>, <span class="attr">items</span>: [] &#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		code: <span class="string">'valueB'</span>,</span><br><span class="line">		name: <span class="string">'labelB'</span>,</span><br><span class="line">		items: [],</span><br><span class="line">	&#125;,</span><br><span class="line">];</span><br><span class="line">axios(&#123;</span><br><span class="line">	<span class="comment">//your request</span></span><br><span class="line">&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="comment">//数据用filter做一下筛选，并将每个对象push进数组</span></span><br><span class="line">	response.data.data</span><br><span class="line">		.filter(<span class="function">(<span class="params">item</span>) =&gt;</span> item.someProperty === <span class="number">0</span>)</span><br><span class="line">		.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">			options[<span class="number">0</span>].items.push(&#123;</span><br><span class="line">				code: item.name,</span><br><span class="line">				name: item.age,</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	response.data.data</span><br><span class="line">		.filter(<span class="function">(<span class="params">item</span>) =&gt;</span> item.someProperty === <span class="number">1</span>)</span><br><span class="line">		.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">			options[<span class="number">1</span>].items.push(&#123;</span><br><span class="line">				code: item.name,</span><br><span class="line">				name: item.age,</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//重点来了，此处的value:'code'和label:'name'中的code和name一定不能用value和label，也就是说 不能和规定的属性同名</span></span><br><span class="line">&lt;Cascader</span><br><span class="line">	fieldNames=&#123;&#123;</span><br><span class="line">		children: <span class="string">'items'</span>,</span><br><span class="line">		value: <span class="string">'code'</span>,</span><br><span class="line">		label: <span class="string">'name'</span>,</span><br><span class="line">	&#125;&#125;</span><br><span class="line">	options=&#123;options&#125;</span><br><span class="line">/&gt;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Spin-加载"><a href="#Spin-加载" class="headerlink" title="Spin 加载"></a>Spin 加载</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> antIcon = <span class="xml"><span class="tag">&lt;<span class="name">LoadingOutlined</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">fontSize:</span> <span class="attr">24</span> &#125;&#125; <span class="attr">spin</span> /&gt;</span></span>;</span><br><span class="line">&lt;Spin indicator=&#123;antIcon&#125; tip=“Loading...<span class="string">" spinning=&#123;fileSpinVisible&#125;&gt;</span></span><br><span class="line"><span class="string">    &lt;div&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/Spin&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Popover"><a href="#Popover" class="headerlink" title="Popover"></a>Popover</h1><p>用 overlayStyle 对样式进行简单的修改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Popover overlayStyle=&#123;&#123; <span class="attr">width</span>: <span class="number">88</span> &#125;&#125;&gt;</span><br><span class="line">	&lt;div className=<span class="string">"avatar"</span>&gt;<span class="number">123456</span>&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>Popover&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="evernotecid://D2FA04CE-24BF-478C-9996-C883AB8C2834/appyinxiangcom/7213637/ENResource/p226" alt="bc3288b24f7fac6641b42f6b33466ff8.png"></p>
+<p>给 popover 添加类名，然后通过 css 文件的子元素进行样式修改</p>
+<p><img src="evernotecid://D2FA04CE-24BF-478C-9996-C883AB8C2834/appyinxiangcom/7213637/ENResource/p227" alt="c83a380fdfc5a3780208efcc9916112e.png"></p>
+<p>比如一个很常见的需求，要求 popover 展开的时候，鼠标 hover 不同行，相应的行要有样式变化，那么就要去掉 antd 自带的 padding，代码如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.avatar-popover</span> &#123;</span><br><span class="line">	div &#123;</span><br><span class="line">		//ant-popover-content</span><br><span class="line">		<span class="selector-tag">div</span> &#123;</span><br><span class="line">			//ant-popover-inner</span><br><span class="line">			<span class="selector-tag">div</span> &#123;</span><br><span class="line">				div &#123;</span><br><span class="line">					//ant-popover-inner-content</span><br><span class="line">					<span class="selector-tag">padding</span>: 0;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h1><p>自定义 select：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">appearance</span>: <span class="selector-tag">none</span>;</span><br><span class="line">background: url('../img/select_arrow.png') 230px center no-repeat;</span><br><span class="line"><span class="selector-tag">background-size</span>: 12<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -191,15 +194,13 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/CSS%E5%8D%95%E4%BD%8D/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/Ant-design%E8%B8%A9%E8%BF%87%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li></ul>
-
 
     </footer>
 
@@ -209,19 +210,10 @@
   
   <nav class="article-nav">
     
-      <a href="/JS%E9%AB%98%E7%A8%8B/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            《Javascript高级程序设计》总结
-          
-        </div>
-      </a>
     
-    
-      <a href="/CSS%E5%9F%BA%E7%A1%80/" class="article-nav-link">
+      <a href="/React%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">CSS基础</div>
+        <div class="article-nav-title">React多个系统之间登录登出逻辑的实现</div>
       </a>
     
   </nav>
