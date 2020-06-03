@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jee3.github.io/"/>
-  <updated>2020-06-02T11:32:06.090Z</updated>
+  <updated>2020-06-02T08:56:10.500Z</updated>
   <id>http://jee3.github.io/</id>
   
   <author>
@@ -15,29 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>[object Object]</title>
-    <link href="http://jee3.github.io/Ant-design%E8%B8%A9%E8%BF%87%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/"/>
-    <id>http://jee3.github.io/Ant-design%E8%B8%A9%E8%BF%87%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/</id>
-    <published>2020-06-02T11:31:33.273Z</published>
-    <updated>2020-06-02T11:32:06.090Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>React多个系统之间登录登出逻辑的实现</title>
@@ -67,11 +44,46 @@
   </entry>
   
   <entry>
+    <title>React优化首屏加载时间之异步加载</title>
+    <link href="http://jee3.github.io/React-first-screen-loading-optimization/"/>
+    <id>http://jee3.github.io/React-first-screen-loading-optimization/</id>
+    <published>2020-05-18T01:00:00.000Z</published>
+    <updated>2020-06-03T03:32:07.477Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
+    
+      <category term="React" scheme="http://jee3.github.io/categories/FE/React/"/>
+    
+      <category term="性能优化" scheme="http://jee3.github.io/categories/FE/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
+    
+      <category term="React" scheme="http://jee3.github.io/tags/React/"/>
+    
+      <category term="性能优化" scheme="http://jee3.github.io/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>React中如何避免子组件的循环渲染</title>
     <link href="http://jee3.github.io/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/"/>
     <id>http://jee3.github.io/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/</id>
     <published>2020-05-12T02:12:55.000Z</published>
-    <updated>2020-06-01T08:11:40.304Z</updated>
+    <updated>2020-06-03T03:33:14.569Z</updated>
     
     <summary type="html">
     
@@ -83,16 +95,16 @@
     
       <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
     
-      <category term="React" scheme="http://jee3.github.io/categories/FE/React/"/>
+      <category term="Ant-design" scheme="http://jee3.github.io/categories/FE/Ant-design/"/>
     
-      <category term="Antd" scheme="http://jee3.github.io/categories/FE/Antd/"/>
+      <category term="React" scheme="http://jee3.github.io/categories/FE/React/"/>
     
     
       <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
     
-      <category term="React" scheme="http://jee3.github.io/tags/React/"/>
+      <category term="Ant-design" scheme="http://jee3.github.io/tags/Ant-design/"/>
     
-      <category term="Antd" scheme="http://jee3.github.io/tags/Antd/"/>
+      <category term="React" scheme="http://jee3.github.io/tags/React/"/>
     
   </entry>
   
@@ -101,7 +113,7 @@
     <link href="http://jee3.github.io/Upload%E7%BB%84%E4%BB%B6-%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E4%B8%8A%E4%BC%A0/"/>
     <id>http://jee3.github.io/Upload%E7%BB%84%E4%BB%B6-%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E4%B8%8A%E4%BC%A0/</id>
     <published>2020-05-07T07:53:37.000Z</published>
-    <updated>2020-06-01T08:09:37.055Z</updated>
+    <updated>2020-06-03T03:33:14.582Z</updated>
     
     <summary type="html">
     
@@ -113,16 +125,16 @@
     
       <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
     
-      <category term="React" scheme="http://jee3.github.io/categories/FE/React/"/>
+      <category term="Ant-design" scheme="http://jee3.github.io/categories/FE/Ant-design/"/>
     
-      <category term="Antd" scheme="http://jee3.github.io/categories/FE/Antd/"/>
+      <category term="React" scheme="http://jee3.github.io/categories/FE/React/"/>
     
     
       <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
     
-      <category term="React" scheme="http://jee3.github.io/tags/React/"/>
+      <category term="Ant-design" scheme="http://jee3.github.io/tags/Ant-design/"/>
     
-      <category term="Antd" scheme="http://jee3.github.io/tags/Antd/"/>
+      <category term="React" scheme="http://jee3.github.io/tags/React/"/>
     
   </entry>
   
@@ -149,6 +161,33 @@
       <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
     
       <category term="React" scheme="http://jee3.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ant-design踩过的那些坑</title>
+    <link href="http://jee3.github.io/Ant-design%E8%B8%A9%E8%BF%87%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/"/>
+    <id>http://jee3.github.io/Ant-design%E8%B8%A9%E8%BF%87%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/</id>
+    <published>2020-02-19T16:00:00.000Z</published>
+    <updated>2020-06-03T03:33:14.569Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Ant-design 是 React 项目中主流的前端 UI 框架，虽然文档较为全面，但是在使用中还是有很多坑的，本文就集中整理一下。&lt;/p&gt;
+&lt;h1 id=&quot;按需加载&quot;&gt;&lt;a href=&quot;#按需加载&quot; class=&quot;headerlink&quot; title=&quot;按需加载&quot;&gt;&lt;/a&gt;按需加载&lt;/h1&gt;&lt;p&gt;.babelrc 文件&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&quot;plugins&quot;&lt;/span&gt;: [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;@babel/plugin-proposal-class-properties&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&quot;import&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;string&quot;&gt;&quot;libraryName&quot;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&quot;antd&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;string&quot;&gt;&quot;libraryDirectory&quot;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&quot;es&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;string&quot;&gt;&quot;style&quot;&lt;/span&gt;: &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
+    
+      <category term="Ant-design" scheme="http://jee3.github.io/categories/FE/Ant-design/"/>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
+    
+      <category term="Ant-design" scheme="http://jee3.github.io/tags/Ant-design/"/>
     
   </entry>
   
@@ -184,10 +223,10 @@
   
   <entry>
     <title>Git 进阶</title>
-    <link href="http://jee3.github.io/git-%E8%BF%9B%E9%98%B6/"/>
-    <id>http://jee3.github.io/git-%E8%BF%9B%E9%98%B6/</id>
+    <link href="http://jee3.github.io/git-pro/"/>
+    <id>http://jee3.github.io/git-pro/</id>
     <published>2019-12-17T16:00:00.000Z</published>
-    <updated>2020-06-01T02:26:52.067Z</updated>
+    <updated>2020-06-02T12:09:23.057Z</updated>
     
     <summary type="html">
     
@@ -236,10 +275,10 @@
   
   <entry>
     <title>CSS单位</title>
-    <link href="http://jee3.github.io/CSS%E5%8D%95%E4%BD%8D/"/>
-    <id>http://jee3.github.io/CSS%E5%8D%95%E4%BD%8D/</id>
+    <link href="http://jee3.github.io/css-unit/"/>
+    <id>http://jee3.github.io/css-unit/</id>
     <published>2019-11-02T16:00:00.000Z</published>
-    <updated>2019-11-03T08:49:05.024Z</updated>
+    <updated>2020-06-02T12:04:37.678Z</updated>
     
     <summary type="html">
     
@@ -250,33 +289,6 @@
           &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
         
       
-    
-    </summary>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
-    
-      <category term="CSS" scheme="http://jee3.github.io/categories/FE/CSS/"/>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
-    
-      <category term="CSS" scheme="http://jee3.github.io/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSS基础</title>
-    <link href="http://jee3.github.io/CSS%E5%9F%BA%E7%A1%80/"/>
-    <id>http://jee3.github.io/CSS%E5%9F%BA%E7%A1%80/</id>
-    <published>2019-10-27T16:00:00.000Z</published>
-    <updated>2019-10-28T08:58:01.546Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;position&quot;&gt;&lt;a href=&quot;#position&quot; class=&quot;headerlink&quot; title=&quot;position&quot;&gt;&lt;/a&gt;position&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g870k95k7zj31a60naae8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;盒模型&quot;&gt;&lt;a href=&quot;#盒模型&quot; class=&quot;headerlink&quot; title=&quot;盒模型&quot;&gt;&lt;/a&gt;盒模型&lt;/h1&gt;&lt;h2 id=&quot;IE-盒模型&quot;&gt;&lt;a href=&quot;#IE-盒模型&quot; class=&quot;headerlink&quot; title=&quot;IE 盒模型&quot;&gt;&lt;/a&gt;IE 盒模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g8beap40nbj30xw0lewgw.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;标准盒模型&quot;&gt;&lt;a href=&quot;#标准盒模型&quot; class=&quot;headerlink&quot; title=&quot;标准盒模型&quot;&gt;&lt;/a&gt;标准盒模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g8beaz5fvzj30zk0l1tb5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -325,11 +337,38 @@
   </entry>
   
   <entry>
+    <title>CSS基础</title>
+    <link href="http://jee3.github.io/css-base/"/>
+    <id>http://jee3.github.io/css-base/</id>
+    <published>2019-10-27T16:00:00.000Z</published>
+    <updated>2020-06-02T12:04:30.972Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;position&quot;&gt;&lt;a href=&quot;#position&quot; class=&quot;headerlink&quot; title=&quot;position&quot;&gt;&lt;/a&gt;position&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g870k95k7zj31a60naae8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;盒模型&quot;&gt;&lt;a href=&quot;#盒模型&quot; class=&quot;headerlink&quot; title=&quot;盒模型&quot;&gt;&lt;/a&gt;盒模型&lt;/h1&gt;&lt;h2 id=&quot;IE-盒模型&quot;&gt;&lt;a href=&quot;#IE-盒模型&quot; class=&quot;headerlink&quot; title=&quot;IE 盒模型&quot;&gt;&lt;/a&gt;IE 盒模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g8beap40nbj30xw0lewgw.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;标准盒模型&quot;&gt;&lt;a href=&quot;#标准盒模型&quot; class=&quot;headerlink&quot; title=&quot;标准盒模型&quot;&gt;&lt;/a&gt;标准盒模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g8beaz5fvzj30zk0l1tb5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
+    
+      <category term="CSS" scheme="http://jee3.github.io/categories/FE/CSS/"/>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
+    
+      <category term="CSS" scheme="http://jee3.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JS中New操作符做了什么</title>
-    <link href="http://jee3.github.io/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/"/>
-    <id>http://jee3.github.io/New%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/</id>
+    <link href="http://jee3.github.io/what-did-NEW-do/"/>
+    <id>http://jee3.github.io/what-did-NEW-do/</id>
     <published>2019-10-21T16:00:00.000Z</published>
-    <updated>2019-10-23T13:10:34.008Z</updated>
+    <updated>2020-06-02T12:07:39.149Z</updated>
     
     <summary type="html">
     
@@ -416,11 +455,11 @@
   </entry>
   
   <entry>
-    <title>《大话数据结构》</title>
-    <link href="http://jee3.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    <id>http://jee3.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</id>
+    <title>《大话数据结构》总结</title>
+    <link href="http://jee3.github.io/data-structure/"/>
+    <id>http://jee3.github.io/data-structure/</id>
     <published>2019-09-26T16:00:00.000Z</published>
-    <updated>2020-06-01T06:34:50.420Z</updated>
+    <updated>2020-06-02T12:03:57.139Z</updated>
     
     <summary type="html">
     
@@ -500,10 +539,10 @@
   
   <entry>
     <title>Git常用命令</title>
-    <link href="http://jee3.github.io/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    <id>http://jee3.github.io/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
+    <link href="http://jee3.github.io/git-commands/"/>
+    <id>http://jee3.github.io/git-commands/</id>
     <published>2018-09-05T16:00:00.000Z</published>
-    <updated>2020-06-01T02:26:56.165Z</updated>
+    <updated>2020-06-02T12:06:13.544Z</updated>
     
     <summary type="html">
     
@@ -548,29 +587,6 @@
       <category term="Vue" scheme="http://jee3.github.io/tags/Vue/"/>
     
       <category term="Webpack" scheme="http://jee3.github.io/tags/Webpack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS 常用函数</title>
-    <link href="http://jee3.github.io/JS%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/"/>
-    <id>http://jee3.github.io/JS%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</id>
-    <published>2018-08-06T16:00:00.000Z</published>
-    <updated>2019-10-22T06:32:48.026Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;string&quot;&gt;&lt;a href=&quot;#string&quot; class=&quot;headerlink&quot; title=&quot;string&quot;&gt;&lt;/a&gt;string&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6ly1g769vgqkhpj31950u0nib.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
-    
-      <category term="JS基础" scheme="http://jee3.github.io/categories/FE/JS%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
     
   </entry>
   

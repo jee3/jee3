@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    CSS基础 |  
+    JS 常用函数 |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -43,7 +43,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-CSS基础" class="article article-type-post" itemscope
+  <article id="post-methods-in-js" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -51,7 +51,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  CSS基础
+  JS 常用函数
 </h1>
  
 
@@ -60,12 +60,12 @@
 
     
     <div class="article-meta">
-      <a href="/CSS%E5%9F%BA%E7%A1%80/" class="article-date">
-  <time datetime="2019-10-27T16:00:00.000Z" itemprop="datePublished">2019-10-28</time>
+      <a href="/methods-in-js/" class="article-date">
+  <time datetime="2018-08-06T16:00:00.000Z" itemprop="datePublished">2018-08-07</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/CSS/">CSS</a>
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
   </div>
 
       
@@ -75,7 +75,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">991</span>
+            <span class="post-count">154</span>
         </span>
     </span>
 
@@ -84,7 +84,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
@@ -109,57 +109,20 @@
       
 
       
-      <h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g870k95k7zj31a60naae8.jpg" alt=""></p>
-<h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1><h2 id="IE-盒模型"><a href="#IE-盒模型" class="headerlink" title="IE 盒模型"></a>IE 盒模型</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8beap40nbj30xw0lewgw.jpg" alt=""></p>
-<h2 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a>标准盒模型</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8beaz5fvzj30zk0l1tb5.jpg" alt=""></p>
+      <h1 id="string"><a href="#string" class="headerlink" title="string"></a>string</h1><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g769vgqkhpj31950u0nib.jpg" alt=""></p>
 <a id="more"></a>
 
-<h2 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h2><p>box-sizing：content-box（默认：标准盒模型）</p>
-<p>box-sizing：border-box（怪异模式：width = border + padding + 内容的 width）</p>
-<blockquote>
-<p>当你想让两个子容器 float:left，宽度各 50%，然后给一点 padding，最后让子容器并排充满父容器，一切想的挺美好，然而结果并不是这样。</p>
-<p>因为子容器的盒子宽度已经超出了父容器的一半，导致了折行，于是，width 就不能 50%了，只能是 50%再减去 padding 的像素值</p>
-</blockquote>
-<h2 id="弹性盒模型"><a href="#弹性盒模型" class="headerlink" title="弹性盒模型"></a>弹性盒模型</h2><p>弹性盒子由弹性容器和弹性子元素组成；</p>
-<p>通过 display：flex 或者 inline-flex 定义为弹性</p>
-<h1 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h1><p><code>animation: name duration timing-function delay iteration-count direction;</code></p>
-<h2 id="animation-name-绑定到选择器的-keyframe-名称"><a href="#animation-name-绑定到选择器的-keyframe-名称" class="headerlink" title="animation-name:绑定到选择器的 keyframe 名称;"></a>animation-name:绑定到选择器的 keyframe 名称;</h2><h2 id="animation-duration-规定完成动画所花费的时间，以秒或毫秒计"><a href="#animation-duration-规定完成动画所花费的时间，以秒或毫秒计" class="headerlink" title="animation-duration:规定完成动画所花费的时间，以秒或毫秒计;"></a>animation-duration:规定完成动画所花费的时间，以秒或毫秒计;</h2><h2 id="animation-timing-function-规定动画的速度曲线。"><a href="#animation-timing-function-规定动画的速度曲线。" class="headerlink" title="animation-timing-function:规定动画的速度曲线。"></a>animation-timing-function:规定动画的速度曲线。</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8728e1epzj319u0ni0wv.jpg" alt=""></p>
-<h2 id="animation-delay-规定在动画开始之前的延迟。"><a href="#animation-delay-规定在动画开始之前的延迟。" class="headerlink" title="animation-delay:规定在动画开始之前的延迟。"></a>animation-delay:规定在动画开始之前的延迟。</h2><p>注意：允许负值，-2s 使动画马上开始，但跳过 2 秒进入动画。</p>
-<p>注意：此处虽然跳过 2 秒，但同样是完整的动画，不是从动画的 2s 处开始执行</p>
-<h2 id="animation-iteration-count-规定动画应该播放的次数。"><a href="#animation-iteration-count-规定动画应该播放的次数。" class="headerlink" title="animation-iteration-count:规定动画应该播放的次数。"></a>animation-iteration-count:规定动画应该播放的次数。</h2><p>infinite:无限次</p>
-<h2 id="animation-direction-规定是否应该轮流反向播放动画。"><a href="#animation-direction-规定是否应该轮流反向播放动画。" class="headerlink" title="animation-direction:规定是否应该轮流反向播放动画。"></a>animation-direction:规定是否应该轮流反向播放动画。</h2><p>animation-direction: normal|alternate;//正|反</p>
-<h2 id="animation-play-state：暂停-播放"><a href="#animation-play-state：暂停-播放" class="headerlink" title="animation-play-state：暂停/播放"></a>animation-play-state：暂停/播放</h2><p>paused, running</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">div</span><br><span class="line">&#123;</span><br><span class="line">width:100px;</span><br><span class="line">height:100px;</span><br><span class="line">background:red;</span><br><span class="line">position:relative;</span><br><span class="line">animation:mymove 2s infinite;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@keyframes mymove</span><br><span class="line">&#123;</span><br><span class="line">0% &#123;left:0px;&#125;</span><br><span class="line">50% &#123;left:200px;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="string-trim"><a href="#string-trim" class="headerlink" title="string.trim()"></a>string.trim()</h2><p>trim() 方法用于删除字符串的头尾空格</p>
+<p>trim() 方法不会改变原始字符串</p>
+<hr>
+<h1 id="array"><a href="#array" class="headerlink" title="array"></a>array</h1><h2 id="array-find"><a href="#array-find" class="headerlink" title="array.find()"></a>array.find()</h2><p>array.find() <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g769uup4gcj30x20pljv3.jpg" alt=""></p>
+<h2 id="arrayObject-reverse-用于颠倒数组中元素的顺序"><a href="#arrayObject-reverse-用于颠倒数组中元素的顺序" class="headerlink" title="arrayObject.reverse() 用于颠倒数组中元素的顺序"></a>arrayObject.reverse() 用于颠倒数组中元素的顺序</h2><hr>
+<h1 id="url"><a href="#url" class="headerlink" title="url"></a>url</h1><h2 id="url-parse-urlStr-parseQueryString-slashesDenoteHost"><a href="#url-parse-urlStr-parseQueryString-slashesDenoteHost" class="headerlink" title="url.parse(urlStr,[parseQueryString],[slashesDenoteHost])"></a>url.parse(urlStr,[parseQueryString],[slashesDenoteHost])</h2><p>将 url 字符串变成 url 对象</p>
+<h2 id="url-format-urlObj"><a href="#url-format-urlObj" class="headerlink" title="url.format(urlObj)"></a>url.format(urlObj)</h2><p>将 url 对象变成字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">var</span> urlStr = <span class="string">'http://user:pass@host.com:80/resource/path:query=string#hash'</span>;</span><br><span class="line"><span class="keyword">var</span> urlObj = url.parse(urlStr, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">urlString = url.format(urlObj);</span><br></pre></td></tr></table></figure>
 
-<p>在动画进行到 50%的时候，进行 200px 位移，这里的 50%就是上面定义动画时的 2s 的 50%，也就是 1s。</p>
-<h1 id="CSS-Sprite"><a href="#CSS-Sprite" class="headerlink" title="CSS Sprite"></a>CSS Sprite</h1><p><a href="https://css-tricks.com/css-sprites/" target="_blank" rel="noopener">使用 css Sprite</a></p>
-<p><a href="https://www.npmjs.com/package/sprity" target="_blank" rel="noopener">npm 的 cssSprite 库 sprity</a></p>
-<p>用 gulp 的话：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var gulp &#x3D; require(&#39;gulp&#39;);</span><br><span class="line">var gulpif &#x3D; require(&#39;gulp-if&#39;);</span><br><span class="line">var sprity &#x3D; require(&#39;sprity&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; generate sprite.png and _sprite.scss</span><br><span class="line">gulp.task(&#39;sprites&#39;, function () &#123;</span><br><span class="line">  return sprity.src(&#123;</span><br><span class="line">    src: &#39;.&#x2F;src&#x2F;images&#x2F;**&#x2F;*.&#123;png,jpg&#125;&#39;,</span><br><span class="line">    style: &#39;.&#x2F;sprite.css&#39;,</span><br><span class="line">    &#x2F;&#x2F; ... other optional options</span><br><span class="line">    &#x2F;&#x2F; for example if you want to generate scss instead of css</span><br><span class="line">    processor: &#39;sass&#39;, &#x2F;&#x2F; make sure you have installed sprity-sass</span><br><span class="line">  &#125;)</span><br><span class="line">  .pipe(gulpif(&#39;*.png&#39;, gulp.dest(&#39;.&#x2F;dist&#x2F;img&#x2F;&#39;), gulp.dest(&#39;.&#x2F;dist&#x2F;css&#x2F;&#39;)))</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h1 id="伪类和伪元素"><a href="#伪类和伪元素" class="headerlink" title="伪类和伪元素"></a>伪类和伪元素</h1><blockquote>
-<p>MDN：伪类连同伪元素一起，他们允许你不仅仅是根据文档 DOM 树中的内容对元素应用样式，而且还允许你根据诸如像导航历史这样的外部因素来应用样式（例如 :visited），同样的，可以根据内容的状态（例如在一些表单元素上的 :checked），或者鼠标的位置（例如 :hover 让你知道是否鼠标在一个元素上悬浮）来应用样式。</p>
-</blockquote>
-<blockquote>
-<p>注意： 与伪类相反，伪元素可被用于为一个元素的<strong>特定部分</strong>应用样式。</p>
-</blockquote>
-<blockquote>
-<p>注意：与伪元素比较，伪类能够根据状态改变元素样式。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">selector::pseudo-element &#123;</span><br><span class="line">  property: value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：一个选择器中只能使用一个伪元素。伪元素必须紧跟在语句中的简单选择器/基础选择器之后。</p>
-<p>注意：按照规范，伪类用单冒号，伪元素用双冒号</p>
-<p>之所以叫伪元素，是因为他修饰不在文档树中的部分；不是真实存在的。</p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g885erl98hj30k00abwfb.jpg" alt=""></p>
-<h2 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h2><p><strong>如果一个父元素的所有子元素如果都是浮动的，那么这个父元素是没有高度的，但是父元素并没有脱离正常的文档流，仍然占据正常文档流的空间</strong> 那么：</p>
-<ol>
-<li>如果这个父元素的<strong>相邻元素是行内元素</strong>，那么这个行内元素将会在这个父元素的区域内见缝插针，找到一块放得下它的地方</li>
-<li>如果相邻的元素<strong>是一个块级元素</strong>，那么设置这个块级元素的 margin-top 将会以这个<strong>父元素的起始位置作为起点</strong>。</li>
-</ol>
-<p><a href="https://zhuanlan.zhihu.com/p/31256701" target="_blank" rel="noopener">参考 1:伪元素实用小技巧</a></p>
-<p><a href="https://juejin.im/post/5c6d6c566fb9a049aa6faba7" target="_blank" rel="noopener">参考 2:前端盒模型</a></p>
-
+<h2 id="url-resolve-from-to-解析到新的位置"><a href="#url-resolve-from-to-解析到新的位置" class="headerlink" title="url.resolve(from,to) 解析到新的位置"></a>url.resolve(from,to) 解析到新的位置</h2><hr>
+<h1 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h1><h2 id="Math-round-四舍五入"><a href="#Math-round-四舍五入" class="headerlink" title="Math.round() 四舍五入"></a>Math.round() 四舍五入</h2><h2 id="Math-ceil-向上取整"><a href="#Math-ceil-向上取整" class="headerlink" title="Math.ceil() 向上取整"></a>Math.ceil() 向上取整</h2><h2 id="Math-floor-向下取整"><a href="#Math-floor-向下取整" class="headerlink" title="Math.floor() 向下取整"></a>Math.floor() 向下取整</h2><h2 id="Math-trunc-方法会将数字的小数部分去掉，只保留整数部分。"><a href="#Math-trunc-方法会将数字的小数部分去掉，只保留整数部分。" class="headerlink" title="Math.trunc() 方法会将数字的小数部分去掉，只保留整数部分。"></a>Math.trunc() 方法会将数字的小数部分去掉，只保留整数部分。</h2>
       
       <!-- reward -->
       
@@ -227,14 +190,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/CSS%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/methods-in-js/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li></ul>
 
 
     </footer>
@@ -245,19 +208,19 @@
   
   <nav class="article-nav">
     
-      <a href="/CSS%E5%8D%95%E4%BD%8D/" class="article-nav-link">
+      <a href="/vue-cli3-0%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            CSS单位
+            Vue-cli 3.0 新特性及各参数详解
           
         </div>
       </a>
     
     
-      <a href="/Flex%E5%B8%83%E5%B1%80/" class="article-nav-link">
+      <a href="/hello-world/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Flex布局</div>
+        <div class="article-nav-title">Hello World</div>
       </a>
     
   </nav>
