@@ -135,6 +135,27 @@
       </tags>
   </entry>
   <entry>
+    <title>React优化首屏加载时间之异步加载</title>
+    <url>/React-first-screen-loading-optimization/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>首屏白屏时间过长一直是前端优化的主要内容之一，此次优化采用了异步加载的方法。也就是用户输入网址进入首页的时候，只加载首页内容。其他页面等用户进入的时候再加载。</p>
+<a id="more"></a>
+
+<h2 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//异步组件</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncComponent</span>(<span class="params">importComponent</span>) </span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">AsyncComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">		<span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">			<span class="keyword">super</span>(props);</span><br><span class="line">			<span class="keyword">this</span>.state = &#123;</span><br><span class="line">				component: <span class="literal">null</span>,</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">async</span> componentDidMount() &#123;</span><br><span class="line">			<span class="keyword">const</span> &#123; <span class="attr">default</span>: component &#125; = <span class="keyword">await</span> importComponent();</span><br><span class="line">			<span class="keyword">this</span>.setState(&#123;</span><br><span class="line">				component: component,</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		render() &#123;</span><br><span class="line">			<span class="keyword">const</span> C = <span class="keyword">this</span>.state.component;</span><br><span class="line">			<span class="keyword">return</span> C ? <span class="xml"><span class="tag">&lt;<span class="name">C</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span> : <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> AsyncComponent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> asyncComponent <span class="keyword">from</span> <span class="string">'@/components/AsyncComponent'</span>;</span><br><span class="line"><span class="keyword">const</span> AsyncMain = asyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./Main'</span>));</span><br><span class="line"><span class="keyword">const</span> AsyncChildA = asyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./ChildA'</span>));</span><br><span class="line"><span class="keyword">const</span> AsyncChildB = asyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./ChildB'</span>));</span><br><span class="line"><span class="keyword">const</span> AsyncChildC = asyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./ChildC'</span>));</span><br><span class="line">&lt;Switch&gt;</span><br><span class="line">	&#123;&lt;Route exact path=<span class="string">"/main"</span> component=&#123;AsyncMain&#125; /&gt;&#125;</span><br><span class="line">	&#123;&lt;Route exact path=<span class="string">"/childa"</span> component=&#123;AsyncChildA&#125; /&gt;&#125;</span><br><span class="line">	&#123;&lt;Route exact path=<span class="string">"/childb"</span> component=&#123;AsyncChildB&#125; /&gt;&#125;</span><br><span class="line">	&#123;&lt;Route exact path=<span class="string">"/childc"</span> component=&#123;AsyncChildC&#125; /&gt;&#125;</span><br><span class="line">&lt;<span class="regexp">/Switch&gt;;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>React</category>
+        <category>性能优化</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>React</tag>
+        <tag>性能优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《Javascript高级程序设计》总结</title>
     <url>/JS%E9%AB%98%E7%A8%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>复制基本类型值的时候，会新创建一个。复制引用类型值的时候，只是复制指针，指针指向堆中同一个对象。</p>
@@ -392,22 +413,28 @@
       </tags>
   </entry>
   <entry>
-    <title>React优化首屏加载时间之异步加载</title>
-    <url>/React-first-screen-loading-optimization/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>首屏白屏时间过长一直是前端优化的主要内容之一，此次优化采用了异步加载的方法。也就是用户输入网址进入首页的时候，只加载首页内容。其他页面等用户进入的时候再加载。</p>
-<h2 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//异步组件</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncComponent</span>(<span class="params">importComponent</span>) </span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">AsyncComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">		<span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">			<span class="keyword">super</span>(props);</span><br><span class="line">			<span class="keyword">this</span>.state = &#123;</span><br><span class="line">				component: <span class="literal">null</span>,</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">async</span> componentDidMount() &#123;</span><br><span class="line">			<span class="keyword">const</span> &#123; <span class="attr">default</span>: component &#125; = <span class="keyword">await</span> importComponent();</span><br><span class="line">			<span class="keyword">this</span>.setState(&#123;</span><br><span class="line">				component: component,</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		render() &#123;</span><br><span class="line">			<span class="keyword">const</span> C = <span class="keyword">this</span>.state.component;</span><br><span class="line">			<span class="keyword">return</span> C ? <span class="xml"><span class="tag">&lt;<span class="name">C</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span> : <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> AsyncComponent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>React中如何避免子组件的循环渲染</title>
+    <url>/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在 React 开发中，有时候会遇到子组件循环渲染导致闪屏的问题，那如何避免呢？</p>
+<p>以下代码实现了通过点击父表格某一行的按钮，弹出子表格的模态框以显示子表格及其数据（原代码是父表格有两个按钮，分别弹出不同的子表格，不是本节重点，所以代码没有写那一部分）</p>
+<a id="more"></a>
 
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> asyncComponent <span class="keyword">from</span> <span class="string">'@/components/AsyncComponent'</span>;</span><br><span class="line"><span class="keyword">const</span> AsyncMain = asyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./Main'</span>));</span><br><span class="line"><span class="keyword">const</span> AsyncChildA = asyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./ChildA'</span>));</span><br><span class="line"><span class="keyword">const</span> AsyncChildB = asyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./ChildB'</span>));</span><br><span class="line"><span class="keyword">const</span> AsyncChildC = asyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./ChildC'</span>));</span><br><span class="line">&lt;Switch&gt;</span><br><span class="line">	&#123;&lt;Route exact path=<span class="string">"/main"</span> component=&#123;AsyncMain&#125; /&gt;&#125;</span><br><span class="line">	&#123;&lt;Route exact path=<span class="string">"/childa"</span> component=&#123;AsyncChildA&#125; /&gt;&#125;</span><br><span class="line">	&#123;&lt;Route exact path=<span class="string">"/childb"</span> component=&#123;AsyncChildB&#125; /&gt;&#125;</span><br><span class="line">	&#123;&lt;Route exact path=<span class="string">"/childc"</span> component=&#123;AsyncChildC&#125; /&gt;&#125;</span><br><span class="line">&lt;<span class="regexp">/Switch&gt;;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; useImmer &#125; <span class="keyword">from</span> <span class="string">'use-immer'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Table, Modal &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line"><span class="keyword">const</span> ChildTable = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> [state, setState] = useImmer(&#123;</span><br><span class="line">		childTableData: [],</span><br><span class="line">		childTableVisible: <span class="literal">false</span>,</span><br><span class="line">	&#125;);</span><br><span class="line">	useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">let</span> responseData = [];</span><br><span class="line">		<span class="comment">//通过传参获取到父表格点击的哪一行</span></span><br><span class="line">		modelId.modelId = props.row;</span><br><span class="line">		<span class="keyword">let</span> getAllModel = axios(&#123;</span><br><span class="line">			<span class="comment">//your request</span></span><br><span class="line">		&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">			responseData = response.data.data;</span><br><span class="line">			setState(<span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">				state.childTableData = [...responseData];</span><br><span class="line">				<span class="keyword">if</span> (props.row != <span class="number">0</span>) &#123;</span><br><span class="line">					state.childTableVisible = <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;, [props.row]);</span><br><span class="line">	<span class="comment">// 子表格通过模态框呈现</span></span><br><span class="line">	<span class="keyword">const</span> childTableColumns = [&#123;&#125;, &#123;&#125;];</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;Modal visible=&#123;state.verifyTableVisible&#125; footer=&#123;<span class="literal">null</span>&#125;&gt;</span><br><span class="line">			&lt;Table</span><br><span class="line">				columns=&#123;expandedColumns&#125;</span><br><span class="line">				dataSource=&#123;state.verifyData&#125;</span><br><span class="line">				pagination=&#123;<span class="literal">false</span>&#125;</span><br><span class="line">			/&gt;</span><br><span class="line">		&lt;<span class="regexp">/Modal&gt;</span></span><br><span class="line"><span class="regexp">	);</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">const ParentTable = () =&gt; &#123;</span></span><br><span class="line"><span class="regexp">	const [state, setState] = useImmer(&#123;</span></span><br><span class="line"><span class="regexp">		data: [],</span></span><br><span class="line"><span class="regexp">		rowId: 0,</span></span><br><span class="line"><span class="regexp">	&#125;);</span></span><br><span class="line"><span class="regexp">	/</span><span class="regexp">/请求父表格数据</span></span><br><span class="line"><span class="regexp">	useEffect(() =&gt; &#123;</span></span><br><span class="line"><span class="regexp">		let getParentTableData = axios(&#123;</span></span><br><span class="line"><span class="regexp">			/</span><span class="regexp">/your request</span></span><br><span class="line"><span class="regexp">		&#125;).then((response) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">			let responseData = response.data.data;</span></span><br><span class="line"><span class="regexp">			setState((state) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">				state.data = [...responseData];</span></span><br><span class="line"><span class="regexp">			&#125;);</span></span><br><span class="line"><span class="regexp">		&#125;);</span></span><br><span class="line"><span class="regexp">	&#125;, []);</span></span><br><span class="line"><span class="regexp">	/</span><span class="regexp">/ParentTable colums</span></span><br><span class="line"><span class="regexp">	const parentTableColumns = [&#123;&#125;, &#123;&#125;];</span></span><br><span class="line"><span class="regexp">	return (</span></span><br><span class="line"><span class="regexp">		&lt;div className="container"&gt;</span></span><br><span class="line"><span class="regexp">			&lt;Table</span></span><br><span class="line"><span class="regexp">				columns=&#123;parentTableColumns&#125;</span></span><br><span class="line"><span class="regexp">				dataSource=&#123;state.data&#125;</span></span><br><span class="line"><span class="regexp">				onRow=&#123;(record) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">					return &#123;</span></span><br><span class="line"><span class="regexp">						onClick: () =&gt; &#123;</span></span><br><span class="line"><span class="regexp">							setState((state) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">								state.rowId = record.id;</span></span><br><span class="line"><span class="regexp">							&#125;);</span></span><br><span class="line"><span class="regexp">						&#125;,</span></span><br><span class="line"><span class="regexp">					&#125;;</span></span><br><span class="line"><span class="regexp">				&#125;&#125;</span></span><br><span class="line"><span class="regexp">			/</span>&gt;</span><br><span class="line">			&lt;ChildTable row=&#123;state.rowId&#125; /&gt;</span><br><span class="line">		&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">	);</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">export default ParentTable;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的代码实际上定义了两个组件，父组件 ParentTable 和子组件 ChildTable，也可以分成两个文件来写。</p>
+<p>不过一定<strong>不能把 ChildTable 函数写在 ParentTable 函数里面</strong>，如果这样的话，子表格请求数据，拿到数据之后如果写在固定数组里面，渲染不出数据，如果写在 setState 里面，又会循环渲染（因为更新 state 会触发渲染，渲染里面又有数据请求，就会又更新 state，死循环下去）。</p>
+<p>所以<strong>网络请求不要放在渲染的方法里面</strong>，网络请求要么放用户触发的回调里面要么放初始化的地方（useEffect）。所以最后代码实现如上，子组件要用自己的 state，而不是父组件的，传递参数用 props。</p>
+<p><del>最开始的需求是点击表格的某一行，弹出一个 popover，popover 里面有两个不同的按钮，点击相应的按钮会在父表格的这一行下面显示子表格。如果只有一个子表格比较容易，直接用 expandable 相关的 api 就可以，但是两个的话就比较麻烦了，试了条件渲染也不行，而且需求是不要展开的按钮，而 antd 子表格展开的动作就是由点击展开按钮 onExpand 触发的。后来想了一种思路是做 3 个表格，一个是只有父表格，一个是父表格加子表格 a，一个是父表格加子表格 b，根据按钮点击进行相应的渲染。最后觉得这种呈现方式不是很好，最终使用点击弹出模态框的呈现方式。</del></p>
 ]]></content>
       <categories>
         <category>FE</category>
         <category>React</category>
-        <category>性能优化</category>
+        <category>Ant-design</category>
       </categories>
       <tags>
         <tag>FE</tag>
+        <tag>Ant-design</tag>
         <tag>React</tag>
-        <tag>性能优化</tag>
       </tags>
   </entry>
   <entry>
@@ -500,54 +527,6 @@
       </tags>
   </entry>
   <entry>
-    <title>React中如何避免子组件的循环渲染</title>
-    <url>/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在 React 开发中，有时候会遇到子组件循环渲染导致闪屏的问题，那如何避免呢？</p>
-<p>以下代码实现了通过点击父表格某一行的按钮，弹出子表格的模态框以显示子表格及其数据（原代码是父表格有两个按钮，分别弹出不同的子表格，不是本节重点，所以代码没有写那一部分）</p>
-<a id="more"></a>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; useImmer &#125; <span class="keyword">from</span> <span class="string">'use-immer'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Table, Modal &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line"><span class="keyword">const</span> ChildTable = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> [state, setState] = useImmer(&#123;</span><br><span class="line">		childTableData: [],</span><br><span class="line">		childTableVisible: <span class="literal">false</span>,</span><br><span class="line">	&#125;);</span><br><span class="line">	useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">let</span> responseData = [];</span><br><span class="line">		<span class="comment">//通过传参获取到父表格点击的哪一行</span></span><br><span class="line">		modelId.modelId = props.row;</span><br><span class="line">		<span class="keyword">let</span> getAllModel = axios(&#123;</span><br><span class="line">			<span class="comment">//your request</span></span><br><span class="line">		&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">			responseData = response.data.data;</span><br><span class="line">			setState(<span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">				state.childTableData = [...responseData];</span><br><span class="line">				<span class="keyword">if</span> (props.row != <span class="number">0</span>) &#123;</span><br><span class="line">					state.childTableVisible = <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;, [props.row]);</span><br><span class="line">	<span class="comment">// 子表格通过模态框呈现</span></span><br><span class="line">	<span class="keyword">const</span> childTableColumns = [&#123;&#125;, &#123;&#125;];</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;Modal visible=&#123;state.verifyTableVisible&#125; footer=&#123;<span class="literal">null</span>&#125;&gt;</span><br><span class="line">			&lt;Table</span><br><span class="line">				columns=&#123;expandedColumns&#125;</span><br><span class="line">				dataSource=&#123;state.verifyData&#125;</span><br><span class="line">				pagination=&#123;<span class="literal">false</span>&#125;</span><br><span class="line">			/&gt;</span><br><span class="line">		&lt;<span class="regexp">/Modal&gt;</span></span><br><span class="line"><span class="regexp">	);</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">const ParentTable = () =&gt; &#123;</span></span><br><span class="line"><span class="regexp">	const [state, setState] = useImmer(&#123;</span></span><br><span class="line"><span class="regexp">		data: [],</span></span><br><span class="line"><span class="regexp">		rowId: 0,</span></span><br><span class="line"><span class="regexp">	&#125;);</span></span><br><span class="line"><span class="regexp">	/</span><span class="regexp">/请求父表格数据</span></span><br><span class="line"><span class="regexp">	useEffect(() =&gt; &#123;</span></span><br><span class="line"><span class="regexp">		let getParentTableData = axios(&#123;</span></span><br><span class="line"><span class="regexp">			/</span><span class="regexp">/your request</span></span><br><span class="line"><span class="regexp">		&#125;).then((response) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">			let responseData = response.data.data;</span></span><br><span class="line"><span class="regexp">			setState((state) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">				state.data = [...responseData];</span></span><br><span class="line"><span class="regexp">			&#125;);</span></span><br><span class="line"><span class="regexp">		&#125;);</span></span><br><span class="line"><span class="regexp">	&#125;, []);</span></span><br><span class="line"><span class="regexp">	/</span><span class="regexp">/ParentTable colums</span></span><br><span class="line"><span class="regexp">	const parentTableColumns = [&#123;&#125;, &#123;&#125;];</span></span><br><span class="line"><span class="regexp">	return (</span></span><br><span class="line"><span class="regexp">		&lt;div className="container"&gt;</span></span><br><span class="line"><span class="regexp">			&lt;Table</span></span><br><span class="line"><span class="regexp">				columns=&#123;parentTableColumns&#125;</span></span><br><span class="line"><span class="regexp">				dataSource=&#123;state.data&#125;</span></span><br><span class="line"><span class="regexp">				onRow=&#123;(record) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">					return &#123;</span></span><br><span class="line"><span class="regexp">						onClick: () =&gt; &#123;</span></span><br><span class="line"><span class="regexp">							setState((state) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">								state.rowId = record.id;</span></span><br><span class="line"><span class="regexp">							&#125;);</span></span><br><span class="line"><span class="regexp">						&#125;,</span></span><br><span class="line"><span class="regexp">					&#125;;</span></span><br><span class="line"><span class="regexp">				&#125;&#125;</span></span><br><span class="line"><span class="regexp">			/</span>&gt;</span><br><span class="line">			&lt;ChildTable row=&#123;state.rowId&#125; /&gt;</span><br><span class="line">		&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">	);</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">export default ParentTable;</span></span><br></pre></td></tr></table></figure>
-
-<p>上面的代码实际上定义了两个组件，父组件 ParentTable 和子组件 ChildTable，也可以分成两个文件来写。</p>
-<p>不过一定<strong>不能把 ChildTable 函数写在 ParentTable 函数里面</strong>，如果这样的话，子表格请求数据，拿到数据之后如果写在固定数组里面，渲染不出数据，如果写在 setState 里面，又会循环渲染（因为更新 state 会触发渲染，渲染里面又有数据请求，就会又更新 state，死循环下去）。</p>
-<p>所以<strong>网络请求不要放在渲染的方法里面</strong>，网络请求要么放用户触发的回调里面要么放初始化的地方（useEffect）。所以最后代码实现如上，子组件要用自己的 state，而不是父组件的，传递参数用 props。</p>
-<p><del>最开始的需求是点击表格的某一行，弹出一个 popover，popover 里面有两个不同的按钮，点击相应的按钮会在父表格的这一行下面显示子表格。如果只有一个子表格比较容易，直接用 expandable 相关的 api 就可以，但是两个的话就比较麻烦了，试了条件渲染也不行，而且需求是不要展开的按钮，而 antd 子表格展开的动作就是由点击展开按钮 onExpand 触发的。后来想了一种思路是做 3 个表格，一个是只有父表格，一个是父表格加子表格 a，一个是父表格加子表格 b，根据按钮点击进行相应的渲染。最后觉得这种呈现方式不是很好，最终使用点击弹出模态框的呈现方式。</del></p>
-]]></content>
-      <categories>
-        <category>FE</category>
-        <category>Ant-design</category>
-        <category>React</category>
-      </categories>
-      <tags>
-        <tag>FE</tag>
-        <tag>Ant-design</tag>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Upload组件-文件选择后不立即上传</title>
-    <url>/Upload%E7%BB%84%E4%BB%B6-%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E4%B8%8A%E4%BC%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>很多时候我们在用 Upload 组件上传文件的时候，选择文件后<strong>并不想立刻上传</strong>，而是要<strong>等待其他表单内容一起上传</strong>。方法就是不在 action 里面写上传地址，先将文件对象存起来，等 submit 按钮点击事件触发的时候再一起提交到请求地址里面。</p>
-<p>直接上代码</p>
-<a id="more"></a>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Form, Button, Upload, message &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">const</span> app = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="comment">//限制文件类型和大小</span></span><br><span class="line">	<span class="keyword">const</span> beforeUpload = <span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">const</span> fileName = file.name;</span><br><span class="line">		<span class="comment">//因为会有example.test.zip文件形式存在，所以要用lastIndexOf</span></span><br><span class="line">		<span class="keyword">const</span> fileType = fileName.substring(fileName.lastIndexOf(<span class="string">'.'</span>));</span><br><span class="line">		<span class="keyword">if</span> (fileType !== <span class="string">'.zip'</span>) &#123;</span><br><span class="line">			message.error(<span class="string">'请上传zip文件'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">const</span> isLt100M = file.size / <span class="number">1024</span> / <span class="number">1024</span> &lt; <span class="number">100</span>;</span><br><span class="line">		<span class="keyword">if</span> (!isLt100M) &#123;</span><br><span class="line">			message.error(<span class="string">'文件大小需小于 100MB!'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> fileType === <span class="string">'.zip'</span> &amp;&amp; isLt100M;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> normFile = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'Upload event:'</span>, e);</span><br><span class="line">		<span class="keyword">return</span> e.file; <span class="comment">//返回文件</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> onFinish = <span class="function">(<span class="params">values</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="comment">//含文件的数据提交要用到formdata</span></span><br><span class="line">		<span class="keyword">const</span> formData = <span class="keyword">new</span> FormData();</span><br><span class="line">		<span class="keyword">let</span> payload = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">		payload = [</span><br><span class="line">			[<span class="string">'File'</span>, values.uploadModel.originFileObj], <span class="comment">//文件</span></span><br><span class="line">			[<span class="string">'name'</span>, values.name],</span><br><span class="line">			[<span class="string">'age'</span>, values.age],</span><br><span class="line">		];</span><br><span class="line">		<span class="comment">//用append方法插入到formdata里面</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> payload) &#123;</span><br><span class="line">			formData.append(key, value);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> [form] = Form.useForm();</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;div&gt;</span><br><span class="line">			&lt;Form form=&#123;form&#125; onFinish=&#123;onFinish&#125;&gt;</span><br><span class="line">				&lt;Form.Item</span><br><span class="line">					name=<span class="string">"uploadModel"</span></span><br><span class="line">					<span class="comment">// getValueFromEvent 设置如何将 event 的值转换成字段值</span></span><br><span class="line">					getValueFromEvent=&#123;normFile&#125;</span><br><span class="line">					label=<span class="string">"上传文件"</span></span><br><span class="line">				&gt;</span><br><span class="line">					&lt;Upload.Dragger beforeUpload=&#123;beforeUpload&#125;&gt;</span><br><span class="line">						&lt;p className=<span class="string">"ant-upload-text"</span>&gt;点击或将文件拖拽到这里上传&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">					&lt;/</span>Upload.Dragger&gt;</span><br><span class="line">				&lt;<span class="regexp">/Form.Item&gt;</span></span><br><span class="line"><span class="regexp">				&#123;/</span>* 还有若干Form.Item *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">				&lt;Form.Item&gt;</span></span><br><span class="line"><span class="regexp">					&lt;Button type="primary" htmlType="submit"&gt;</span></span><br><span class="line"><span class="regexp">						提交</span></span><br><span class="line"><span class="regexp">					&lt;/</span>Button&gt;</span><br><span class="line">				&lt;<span class="regexp">/Form.Item&gt;</span></span><br><span class="line"><span class="regexp">			&lt;/</span>Form&gt;</span><br><span class="line">		&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">	);</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">export default app;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="file-type-和-file-name"><a href="#file-type-和-file-name" class="headerlink" title="file.type 和 file.name"></a>file.type 和 file.name</h1><p>项目中我开发的时候用<code>file.type=&#39;application/zip&#39;</code>来判断是否是 zip 文件，但是同事的电脑上却没有效果，于是我想到了是操作系统的问题，于是查了一下，确实如此。 windows 系统中的浏览器（支持 html5 的），不能用 file.type 来判断文件类型，mac 可以。所以要兼容两种操作系统的浏览器时，要通过 file.name 获取后缀名来判断。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> beforeUpload = <span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> fileName = file.name;</span><br><span class="line">	<span class="keyword">const</span> fileType = fileName.substring(fileName.lastIndexOf(<span class="string">'.'</span>));</span><br><span class="line">	<span class="keyword">if</span> (fileType !== <span class="string">'.zip'</span>) &#123;</span><br><span class="line">		message.error(<span class="string">'请上传zip文件'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//false 为阻断上传事件</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>FE</category>
-        <category>Ant-design</category>
-        <category>React</category>
-      </categories>
-      <tags>
-        <tag>FE</tag>
-        <tag>Ant-design</tag>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>React多个系统之间登录登出逻辑的实现</title>
     <url>/React%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文介绍 React 登录登出逻辑的一种实现方法。</p>
@@ -630,6 +609,29 @@
       </tags>
   </entry>
   <entry>
+    <title>Upload组件-文件选择后不立即上传</title>
+    <url>/Upload%E7%BB%84%E4%BB%B6-%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E4%B8%8A%E4%BC%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>很多时候我们在用 Upload 组件上传文件的时候，选择文件后<strong>并不想立刻上传</strong>，而是要<strong>等待其他表单内容一起上传</strong>。方法就是不在 action 里面写上传地址，先将文件对象存起来，等 submit 按钮点击事件触发的时候再一起提交到请求地址里面。</p>
+<p>直接上代码</p>
+<a id="more"></a>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Form, Button, Upload, message &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">const</span> app = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="comment">//限制文件类型和大小</span></span><br><span class="line">	<span class="keyword">const</span> beforeUpload = <span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">const</span> fileName = file.name;</span><br><span class="line">		<span class="comment">//因为会有example.test.zip文件形式存在，所以要用lastIndexOf</span></span><br><span class="line">		<span class="keyword">const</span> fileType = fileName.substring(fileName.lastIndexOf(<span class="string">'.'</span>));</span><br><span class="line">		<span class="keyword">if</span> (fileType !== <span class="string">'.zip'</span>) &#123;</span><br><span class="line">			message.error(<span class="string">'请上传zip文件'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">const</span> isLt100M = file.size / <span class="number">1024</span> / <span class="number">1024</span> &lt; <span class="number">100</span>;</span><br><span class="line">		<span class="keyword">if</span> (!isLt100M) &#123;</span><br><span class="line">			message.error(<span class="string">'文件大小需小于 100MB!'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> fileType === <span class="string">'.zip'</span> &amp;&amp; isLt100M;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> normFile = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'Upload event:'</span>, e);</span><br><span class="line">		<span class="keyword">return</span> e.file; <span class="comment">//返回文件</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> onFinish = <span class="function">(<span class="params">values</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="comment">//含文件的数据提交要用到formdata</span></span><br><span class="line">		<span class="keyword">const</span> formData = <span class="keyword">new</span> FormData();</span><br><span class="line">		<span class="keyword">let</span> payload = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">		payload = [</span><br><span class="line">			[<span class="string">'File'</span>, values.uploadModel.originFileObj], <span class="comment">//文件</span></span><br><span class="line">			[<span class="string">'name'</span>, values.name],</span><br><span class="line">			[<span class="string">'age'</span>, values.age],</span><br><span class="line">		];</span><br><span class="line">		<span class="comment">//用append方法插入到formdata里面</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> payload) &#123;</span><br><span class="line">			formData.append(key, value);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> [form] = Form.useForm();</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;div&gt;</span><br><span class="line">			&lt;Form form=&#123;form&#125; onFinish=&#123;onFinish&#125;&gt;</span><br><span class="line">				&lt;Form.Item</span><br><span class="line">					name=<span class="string">"uploadModel"</span></span><br><span class="line">					<span class="comment">// getValueFromEvent 设置如何将 event 的值转换成字段值</span></span><br><span class="line">					getValueFromEvent=&#123;normFile&#125;</span><br><span class="line">					label=<span class="string">"上传文件"</span></span><br><span class="line">				&gt;</span><br><span class="line">					&lt;Upload.Dragger beforeUpload=&#123;beforeUpload&#125;&gt;</span><br><span class="line">						&lt;p className=<span class="string">"ant-upload-text"</span>&gt;点击或将文件拖拽到这里上传&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">					&lt;/</span>Upload.Dragger&gt;</span><br><span class="line">				&lt;<span class="regexp">/Form.Item&gt;</span></span><br><span class="line"><span class="regexp">				&#123;/</span>* 还有若干Form.Item *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">				&lt;Form.Item&gt;</span></span><br><span class="line"><span class="regexp">					&lt;Button type="primary" htmlType="submit"&gt;</span></span><br><span class="line"><span class="regexp">						提交</span></span><br><span class="line"><span class="regexp">					&lt;/</span>Button&gt;</span><br><span class="line">				&lt;<span class="regexp">/Form.Item&gt;</span></span><br><span class="line"><span class="regexp">			&lt;/</span>Form&gt;</span><br><span class="line">		&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">	);</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">export default app;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="file-type-和-file-name"><a href="#file-type-和-file-name" class="headerlink" title="file.type 和 file.name"></a>file.type 和 file.name</h1><p>项目中我开发的时候用<code>file.type=&#39;application/zip&#39;</code>来判断是否是 zip 文件，但是同事的电脑上却没有效果，于是我想到了是操作系统的问题，于是查了一下，确实如此。 windows 系统中的浏览器（支持 html5 的），不能用 file.type 来判断文件类型，mac 可以。所以要兼容两种操作系统的浏览器时，要通过 file.name 获取后缀名来判断。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> beforeUpload = <span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> fileName = file.name;</span><br><span class="line">	<span class="keyword">const</span> fileType = fileName.substring(fileName.lastIndexOf(<span class="string">'.'</span>));</span><br><span class="line">	<span class="keyword">if</span> (fileType !== <span class="string">'.zip'</span>) &#123;</span><br><span class="line">		message.error(<span class="string">'请上传zip文件'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">//false 为阻断上传事件</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>React</category>
+        <category>Ant-design</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>Ant-design</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>console.log失效了？</title>
     <url>/console-log%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>console.log 作为前端工程师非常值得信赖的调试工具，居然失效了？？？没想到啊没想到，console.log 这么个浓眉大眼的家伙，居然也…</p>
@@ -655,6 +657,33 @@
       <tags>
         <tag>FE</tag>
         <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS单位</title>
+    <url>/css-unit/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="px"><a href="#px" class="headerlink" title="px"></a>px</h1><p>像素</p>
+<h1 id="em"><a href="#em" class="headerlink" title="em"></a>em</h1><p>参考物是父元素的 font-size（浏览器默认是 16px），如果自身定义了 font-size，就按自身的来算。</p>
+<h1 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h1><p>相对于根元素（html）</p>
+<h1 id=""><a href="#" class="headerlink" title="%"></a>%</h1><ul>
+<li>对于普通元素：相对于父元素</li>
+<li>对于 position: absolute 的元素：相对于已定位的父元素</li>
+<li>对于 position: fixed 的元素：相对于 ViewPort（可视窗口）</li>
+</ul>
+<h1 id="vw-amp-vh"><a href="#vw-amp-vh" class="headerlink" title="vw &amp; vh"></a>vw &amp; vh</h1><p>css3 新元素，view width 和 view height（可视宽高）</p>
+<p>浏览器宽度 1200px，1vw=1200px/100=12px</p>
+<blockquote>
+<p>如何使 1rem=10px？在设置 HTML{font-size：62.5%；}即可</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/weixin_42192534/article/details/80289782" target="_blank" rel="noopener">参考</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -721,30 +750,51 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS单位</title>
-    <url>/css-unit/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="px"><a href="#px" class="headerlink" title="px"></a>px</h1><p>像素</p>
-<h1 id="em"><a href="#em" class="headerlink" title="em"></a>em</h1><p>参考物是父元素的 font-size（浏览器默认是 16px），如果自身定义了 font-size，就按自身的来算。</p>
-<h1 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h1><p>相对于根元素（html）</p>
-<h1 id=""><a href="#" class="headerlink" title="%"></a>%</h1><ul>
-<li>对于普通元素：相对于父元素</li>
-<li>对于 position: absolute 的元素：相对于已定位的父元素</li>
-<li>对于 position: fixed 的元素：相对于 ViewPort（可视窗口）</li>
-</ul>
-<h1 id="vw-amp-vh"><a href="#vw-amp-vh" class="headerlink" title="vw &amp; vh"></a>vw &amp; vh</h1><p>css3 新元素，view width 和 view height（可视宽高）</p>
-<p>浏览器宽度 1200px，1vw=1200px/100=12px</p>
-<blockquote>
-<p>如何使 1rem=10px？在设置 HTML{font-size：62.5%；}即可</p>
-</blockquote>
-<p><a href="https://blog.csdn.net/weixin_42192534/article/details/80289782" target="_blank" rel="noopener">参考</a></p>
+    <title>Git 进阶</title>
+    <url>/git-pro/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。</p>
+<h1 id="fatal-Could-not-read-from-remote-repository-的解决办法"><a href="#fatal-Could-not-read-from-remote-repository-的解决办法" class="headerlink" title="fatal: Could not read from remote repository.的解决办法:"></a>fatal: Could not read from remote repository.的解决办法:</h1><p>查看远端地址 <code>git remote –v</code> 查看配置 <code>git config --list</code> <code>git status</code></p>
+<a id="more"></a>
+
+<h1 id="工作区与暂存区"><a href="#工作区与暂存区" class="headerlink" title="工作区与暂存区"></a>工作区与暂存区</h1><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576" target="_blank" rel="noopener">工作区和暂存区</a> command s ：工作区修改 <code>git add</code>：提交到暂存区 <code>git commit</code>：提交到本地库 <code>git push</code>：提交到远端</p>
+<h1 id="git-bare-init"><a href="#git-bare-init" class="headerlink" title="git -bare init"></a>git -bare init</h1><p><a href="http://blog.haohtml.com/archives/12265" target="_blank" rel="noopener">git -bare init 与 git init 有什么不同</a></p>
+<p>在初始化远程仓库时最好使用 <code>git –bare init</code> 而不要使用：<code>git init</code>。这样在使用 hooks 的时候，会有用处。</p>
+<p>如果使用了 <code>git init</code> 初始化，则远程仓库的目录下，也包含 work tree，当本地仓库向远程仓库 push 时, 如果远程仓库正在 push 的分支上（如果当时不在 push 的分支，就没有问题）, 那么 push 后的结果不会反应在 work tree 上, 也即在远程仓库的目录下对应的文件还是之前的内容，必须得使用 <code>git reset –hard</code> 才能看到 push 后的内容.</p>
+<h1 id="git-rm-xxx-r"><a href="#git-rm-xxx-r" class="headerlink" title="git rm xxx -r"></a>git rm xxx -r</h1><p>删除（递归），没有-r 会提示不安全</p>
+<h1 id="git-checkout-–-xxx"><a href="#git-checkout-–-xxx" class="headerlink" title="git checkout – xxx"></a>git checkout – xxx</h1><p>命令 <code>git checkout -- readme.txt</code> 意思就是，把 readme.txt 文件在工作区的修改全部撤销，这里有两种情况：</p>
+<p>一种是 readme.txt 自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
+<p>一种是 readme.txt 已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
+<p>总之，就是让这个文件回到最近一次 <code>git commit</code> 或 <code>git add</code> 时的状态。</p>
+<h1 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h1><p>创建并切换到新的 dev 分支，可以使用：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b &lt;name&gt;  ||  git switch -c &lt;name&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h1><p>对于所有分支而言， 工作区和暂存区是公共的。因为未 add 的内容不属于任何一个分支，未 commit 的内容也不属于任何一个分支；要想在分支间切换， 又不想又上述影响，可以用 <code>git stash</code>。要注意，在当前分支 <code>git stash</code> 的内容， 在其他分支也可以 <code>git stash pop</code> 出来，为什么？ 因为：<strong>工作区和暂存区是公共的</strong>。</p>
+<h2 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h2><p><code>git stash</code> 将现在的储存起来，<code>git stash list</code> 查看</p>
+<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><p>工作现场还在，Git 把 stash 内容存在某个地方了，但是需要恢复一下，有两个办法：</p>
+<ol>
+<li><p>一是用 <code>git stash apply stash@{xxx}</code>恢复，但是恢复后，stash 内容并不删除，你需要用 <code>git stash drop</code>来删除；</p>
+</li>
+<li><p>另一种方式是用 <code>git stash pop</code>，恢复的同时把 stash 内容也删了</p>
+</li>
+</ol>
+<h1 id="git-merge-–no-ff-–squash"><a href="#git-merge-–no-ff-–squash" class="headerlink" title="git merge (||–no-ff||–squash)"></a>git merge (||–no-ff||–squash)</h1><p>通常，合并分支时，如果可能，Git 会用<strong>Fast forward</strong>模式，但这种模式下，<strong>删除分支后，会丢掉分支信息</strong>。 –no-ff：不使用 fast-forward 方式合并，保留分支的 commit 历史 –squash：使用 squash 方式合并，把多次分支 commit 历史压缩为一次</p>
+<h1 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h1><p>在 master 分支上修复的 bug，想要合并到当前 dev 分支，可以用 <code>git cherry-pick &lt;commit&gt;</code>命令，把 bug 提交的修改“复制”到当前分支，避免重复劳动。</p>
+<h1 id="git-branch-D"><a href="#git-branch-D" class="headerlink" title="git branch -D"></a>git branch -D</h1><p>如果要丢弃一个没有被合并过的分支，可以通过 <code>git branch -D &lt;name&gt;</code>强行删除</p>
+<h1 id="git-checkout-b-dev-origin-dev"><a href="#git-checkout-b-dev-origin-dev" class="headerlink" title="git checkout -b dev origin/dev"></a>git checkout -b dev origin/dev</h1><p>创建远程 origin 的 dev 到本地 dev</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch --<span class="built_in">set</span>-upstream-to=origin/dev dev</span><br></pre></td></tr></table></figure>
+
+<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>rebase 操作前后，最终的提交内容是一致的。</p>
+<p>把分叉的提交历史“整理”成一条直线，看上去更直观。缺点是本地的分叉提交已经被修改过了。</p>
+<p>rebase 操作可以把本地未 push 的分叉提交历史整理成直线；从不对已推送至别处的提交执行变基操作。 因为 rebase 会改变提交历史记录，这会影响到别人使用这一远程仓库。</p>
+<p>rebase 的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
+<p><a href="https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf" target="_blank" rel="noopener">git 列表</a></p>
+<p><a href="https://git-scm.com/" target="_blank" rel="noopener">Git 英文官网</a></p>
 ]]></content>
       <categories>
-        <category>FE</category>
-        <category>CSS</category>
+        <category>Git</category>
       </categories>
       <tags>
-        <tag>FE</tag>
-        <tag>CSS</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -910,6 +960,43 @@
       </tags>
   </entry>
   <entry>
+    <title>React-router-dom的原理和使用介绍</title>
+    <url>/react-router-dom-introduction/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>路由配置一直是单页面应用里面很重要的一部分，本文就简单介绍一下</p>
+<h1 id="basename-为所有地址添加基础路径"><a href="#basename-为所有地址添加基础路径" class="headerlink" title="basename 为所有地址添加基础路径"></a>basename 为所有地址添加基础路径</h1><p>这是一个很常见的需求，当产品要上线的时候，一个域名下有多个系统，那就需要在不同系统下分别统一路径。比如<code>www.example.com/A/testA/</code>与<code>www.example.com/B/testB/</code>，这样后端部署的时候也会很容易。</p>
+<p>配置也很简单，只需要在<code>BrowserRouter</code>加上<code>basename</code>属性就行了</p>
+<a id="more"></a>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserRouter &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">	&lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">		&lt;BrowserRouter basename=<span class="string">"/yourbasename/"</span>&gt;</span><br><span class="line">			&lt;App /&gt;</span><br><span class="line">		&lt;<span class="regexp">/BrowserRouter&gt;</span></span><br><span class="line"><span class="regexp">	&lt;/</span>Provider&gt;,</span><br><span class="line">	<span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：图片等文件等引入要用<strong>相对路径</strong>而不是绝对路径！</p>
+</blockquote>
+<h1 id="HashRouter-和-BrowserRouter"><a href="#HashRouter-和-BrowserRouter" class="headerlink" title="HashRouter 和 BrowserRouter"></a>HashRouter 和 BrowserRouter</h1><p><code>HashRouter</code>是利用 url 里面的<code>#</code>去创建路由，当用户进入到<code>www.example.com</code>的时候，实际上看到的是<code>www.example.com/#/</code></p>
+<p>使用<code>BrowserRouter</code>时，则是指向真实的资源路径的。</p>
+<h1 id="Route-的-exact-属性"><a href="#Route-的-exact-属性" class="headerlink" title="Route 的 exact 属性"></a>Route 的 exact 属性</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;Route path=<span class="string">'/'</span> component=&#123;Home&#125; /&gt;</span><br><span class="line">&lt;Route path=<span class="string">'/page'</span> component=&#123;Page&#125;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果代码像上面这样，如果路由匹配到<code>path=&#39;/page&#39;</code>，那么会把<code>Home</code>也会展示出来。</p>
+<p>也就是说路由<code>path=&#39;/page&#39;</code>会匹配路由<code>path=&#39;/&#39;</code>和路由<code>path=&#39;/page&#39;</code></p>
+<p>那么该如何实现我们想要的效果呢？代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;Route exact path=<span class="string">'/'</span> component=&#123;Home&#125; /&gt;</span><br><span class="line">&lt;Route path=<span class="string">'/page'</span> component=&#123;Page&#125; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>很简单，只需要加上 exact 属性就可以了。这样路由匹配到<code>path=&#39;/page&#39;</code>，只会匹配到<code>Page</code>组件。</p>
+<h1 id="useHistory"><a href="#useHistory" class="headerlink" title="useHistory"></a>useHistory</h1><p>useHistory 的使用方法也很简单：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useHistory &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line"><span class="keyword">let</span> history = useHistory();</span><br><span class="line">history.push(<span class="string">'/home'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>以后遇到路由方面的问题还会持续更新…</p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git常用命令</title>
     <url>/git-commands/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="git-常用命令"><a href="#git-常用命令" class="headerlink" title="git 常用命令"></a>git 常用命令</h1><p>git 命令备忘录(文末有彩蛋!!!)</p>
@@ -1051,54 +1138,6 @@
       </categories>
       <tags>
         <tag>FE</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 进阶</title>
-    <url>/git-pro/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。</p>
-<h1 id="fatal-Could-not-read-from-remote-repository-的解决办法"><a href="#fatal-Could-not-read-from-remote-repository-的解决办法" class="headerlink" title="fatal: Could not read from remote repository.的解决办法:"></a>fatal: Could not read from remote repository.的解决办法:</h1><p>查看远端地址 <code>git remote –v</code> 查看配置 <code>git config --list</code> <code>git status</code></p>
-<a id="more"></a>
-
-<h1 id="工作区与暂存区"><a href="#工作区与暂存区" class="headerlink" title="工作区与暂存区"></a>工作区与暂存区</h1><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576" target="_blank" rel="noopener">工作区和暂存区</a> command s ：工作区修改 <code>git add</code>：提交到暂存区 <code>git commit</code>：提交到本地库 <code>git push</code>：提交到远端</p>
-<h1 id="git-bare-init"><a href="#git-bare-init" class="headerlink" title="git -bare init"></a>git -bare init</h1><p><a href="http://blog.haohtml.com/archives/12265" target="_blank" rel="noopener">git -bare init 与 git init 有什么不同</a></p>
-<p>在初始化远程仓库时最好使用 <code>git –bare init</code> 而不要使用：<code>git init</code>。这样在使用 hooks 的时候，会有用处。</p>
-<p>如果使用了 <code>git init</code> 初始化，则远程仓库的目录下，也包含 work tree，当本地仓库向远程仓库 push 时, 如果远程仓库正在 push 的分支上（如果当时不在 push 的分支，就没有问题）, 那么 push 后的结果不会反应在 work tree 上, 也即在远程仓库的目录下对应的文件还是之前的内容，必须得使用 <code>git reset –hard</code> 才能看到 push 后的内容.</p>
-<h1 id="git-rm-xxx-r"><a href="#git-rm-xxx-r" class="headerlink" title="git rm xxx -r"></a>git rm xxx -r</h1><p>删除（递归），没有-r 会提示不安全</p>
-<h1 id="git-checkout-–-xxx"><a href="#git-checkout-–-xxx" class="headerlink" title="git checkout – xxx"></a>git checkout – xxx</h1><p>命令 <code>git checkout -- readme.txt</code> 意思就是，把 readme.txt 文件在工作区的修改全部撤销，这里有两种情况：</p>
-<p>一种是 readme.txt 自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
-<p>一种是 readme.txt 已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
-<p>总之，就是让这个文件回到最近一次 <code>git commit</code> 或 <code>git add</code> 时的状态。</p>
-<h1 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h1><p>创建并切换到新的 dev 分支，可以使用：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b &lt;name&gt;  ||  git switch -c &lt;name&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h1><p>对于所有分支而言， 工作区和暂存区是公共的。因为未 add 的内容不属于任何一个分支，未 commit 的内容也不属于任何一个分支；要想在分支间切换， 又不想又上述影响，可以用 <code>git stash</code>。要注意，在当前分支 <code>git stash</code> 的内容， 在其他分支也可以 <code>git stash pop</code> 出来，为什么？ 因为：<strong>工作区和暂存区是公共的</strong>。</p>
-<h2 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h2><p><code>git stash</code> 将现在的储存起来，<code>git stash list</code> 查看</p>
-<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><p>工作现场还在，Git 把 stash 内容存在某个地方了，但是需要恢复一下，有两个办法：</p>
-<ol>
-<li><p>一是用 <code>git stash apply stash@{xxx}</code>恢复，但是恢复后，stash 内容并不删除，你需要用 <code>git stash drop</code>来删除；</p>
-</li>
-<li><p>另一种方式是用 <code>git stash pop</code>，恢复的同时把 stash 内容也删了</p>
-</li>
-</ol>
-<h1 id="git-merge-–no-ff-–squash"><a href="#git-merge-–no-ff-–squash" class="headerlink" title="git merge (||–no-ff||–squash)"></a>git merge (||–no-ff||–squash)</h1><p>通常，合并分支时，如果可能，Git 会用<strong>Fast forward</strong>模式，但这种模式下，<strong>删除分支后，会丢掉分支信息</strong>。 –no-ff：不使用 fast-forward 方式合并，保留分支的 commit 历史 –squash：使用 squash 方式合并，把多次分支 commit 历史压缩为一次</p>
-<h1 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h1><p>在 master 分支上修复的 bug，想要合并到当前 dev 分支，可以用 <code>git cherry-pick &lt;commit&gt;</code>命令，把 bug 提交的修改“复制”到当前分支，避免重复劳动。</p>
-<h1 id="git-branch-D"><a href="#git-branch-D" class="headerlink" title="git branch -D"></a>git branch -D</h1><p>如果要丢弃一个没有被合并过的分支，可以通过 <code>git branch -D &lt;name&gt;</code>强行删除</p>
-<h1 id="git-checkout-b-dev-origin-dev"><a href="#git-checkout-b-dev-origin-dev" class="headerlink" title="git checkout -b dev origin/dev"></a>git checkout -b dev origin/dev</h1><p>创建远程 origin 的 dev 到本地 dev</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch --<span class="built_in">set</span>-upstream-to=origin/dev dev</span><br></pre></td></tr></table></figure>
-
-<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>rebase 操作前后，最终的提交内容是一致的。</p>
-<p>把分叉的提交历史“整理”成一条直线，看上去更直观。缺点是本地的分叉提交已经被修改过了。</p>
-<p>rebase 操作可以把本地未 push 的分叉提交历史整理成直线；从不对已推送至别处的提交执行变基操作。 因为 rebase 会改变提交历史记录，这会影响到别人使用这一远程仓库。</p>
-<p>rebase 的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
-<p><a href="https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf" target="_blank" rel="noopener">git 列表</a></p>
-<p><a href="https://git-scm.com/" target="_blank" rel="noopener">Git 英文官网</a></p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>

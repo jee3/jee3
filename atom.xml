@@ -48,17 +48,11 @@
     <link href="http://jee3.github.io/React-first-screen-loading-optimization/"/>
     <id>http://jee3.github.io/React-first-screen-loading-optimization/</id>
     <published>2020-05-18T01:00:00.000Z</published>
-    <updated>2020-06-03T03:32:07.477Z</updated>
+    <updated>2020-06-03T05:41:41.951Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
+      &lt;p&gt;首屏白屏时间过长一直是前端优化的主要内容之一，此次优化采用了异步加载的方法。也就是用户输入网址进入首页的时候，只加载首页内容。其他页面等用户进入的时候再加载。&lt;/p&gt;
     
     </summary>
     
@@ -79,6 +73,33 @@
   </entry>
   
   <entry>
+    <title>React-router-dom的原理和使用介绍</title>
+    <link href="http://jee3.github.io/react-router-dom-introduction/"/>
+    <id>http://jee3.github.io/react-router-dom-introduction/</id>
+    <published>2020-05-14T01:00:00.000Z</published>
+    <updated>2020-06-03T05:41:52.807Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;路由配置一直是单页面应用里面很重要的一部分，本文就简单介绍一下&lt;/p&gt;
+&lt;h1 id=&quot;basename-为所有地址添加基础路径&quot;&gt;&lt;a href=&quot;#basename-为所有地址添加基础路径&quot; class=&quot;headerlink&quot; title=&quot;basename 为所有地址添加基础路径&quot;&gt;&lt;/a&gt;basename 为所有地址添加基础路径&lt;/h1&gt;&lt;p&gt;这是一个很常见的需求，当产品要上线的时候，一个域名下有多个系统，那就需要在不同系统下分别统一路径。比如&lt;code&gt;www.example.com/A/testA/&lt;/code&gt;与&lt;code&gt;www.example.com/B/testB/&lt;/code&gt;，这样后端部署的时候也会很容易。&lt;/p&gt;
+&lt;p&gt;配置也很简单，只需要在&lt;code&gt;BrowserRouter&lt;/code&gt;加上&lt;code&gt;basename&lt;/code&gt;属性就行了&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
+    
+      <category term="React" scheme="http://jee3.github.io/categories/FE/React/"/>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
+    
+      <category term="React" scheme="http://jee3.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
     <title>React中如何避免子组件的循环渲染</title>
     <link href="http://jee3.github.io/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/"/>
     <id>http://jee3.github.io/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/</id>
@@ -95,9 +116,9 @@
     
       <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
     
-      <category term="Ant-design" scheme="http://jee3.github.io/categories/FE/Ant-design/"/>
-    
       <category term="React" scheme="http://jee3.github.io/categories/FE/React/"/>
+    
+      <category term="Ant-design" scheme="http://jee3.github.io/categories/FE/Ant-design/"/>
     
     
       <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
@@ -125,9 +146,9 @@
     
       <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
     
-      <category term="Ant-design" scheme="http://jee3.github.io/categories/FE/Ant-design/"/>
-    
       <category term="React" scheme="http://jee3.github.io/categories/FE/React/"/>
+    
+      <category term="Ant-design" scheme="http://jee3.github.io/categories/FE/Ant-design/"/>
     
     
       <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
@@ -556,37 +577,6 @@
     
     
       <category term="Git" scheme="http://jee3.github.io/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vue-cli 3.0 新特性及各参数详解</title>
-    <link href="http://jee3.github.io/vue-cli3-0%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://jee3.github.io/vue-cli3-0%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</id>
-    <published>2018-09-01T16:00:00.000Z</published>
-    <updated>2020-06-01T02:27:16.220Z</updated>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;最近公司任务让我研究一下 vue-cli3.0，我就顺势简单写一些。vue-cli 3.0 相比于 2.0，最为直观的就是“0 配置”了，没有 build 和 config，使用 vue.config.js 来进行配置。下图是 3.0 与 2.0 项目目录对比：&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6ly1g6s1vmrbfdj31ey0riadg.jpg&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
-    
-      <category term="Vue" scheme="http://jee3.github.io/categories/FE/Vue/"/>
-    
-      <category term="Webpack" scheme="http://jee3.github.io/categories/FE/Webpack/"/>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
-    
-      <category term="Vue" scheme="http://jee3.github.io/tags/Vue/"/>
-    
-      <category term="Webpack" scheme="http://jee3.github.io/tags/Webpack/"/>
     
   </entry>
   
