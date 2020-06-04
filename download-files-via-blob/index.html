@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">529</span>
+            <span class="post-count">519</span>
         </span>
     </span>
 
@@ -110,8 +110,8 @@
 
       
       <p>不用<code>&lt;a&gt;</code>标签怎么实现下载功能呢？</p>
-<p>我们知道，一般情况下，前端要去请求下载一个文件，一般是直接把地址写在<code>&lt;a&gt;</code>标签里面，权限的情况由后端控制，那除此之外还有其他方法吗？如果我想在发送请求的时候就直接携带 tokne 校验身份呢？</p>
-<p>答案是肯定的，本文就来介绍一种利用<code>Blob</code>来实现下载功能的方式。</p>
+<p>我们知道，一般情况下，前端要去请求下载一个文件，一般是直接把地址写在<code>&lt;a&gt;</code>标签里面，可是如果我想在发送请求的时候就直接携带 tokne 校验身份呢？</p>
+<p>本文就来介绍一种利用<code>Blob</code>来实现下载功能的方式。</p>
 <p>直接上代码</p>
 <a id="more"></a>
 
@@ -122,7 +122,7 @@
 <p>拿到返回的响应数据，将其封装为<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" target="_blank" rel="noopener">Blob 对象</a>，本例中文件类型是 zip 文件，记得要把数据转成<code>utf-8</code>格式。</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gffbilciv5j317y0cctd9.jpg" alt=""> 根据上图的响应内容<del>（我就不打码了）</del>，把需要的文件名通过提取<code>response.headers[&#39;content-disposition&#39;]</code>（有连字符的属性要用[]来读)头部信息，然后截取字符串再转码，就获得了想要的文件名。</p>
 <p>最后用代码开头安装的<code>file-saver</code>将文件存起来，此时的效果就是一个文件下载的弹窗，和<code>&lt;a&gt;</code>标签的效果一样，但是却完成了权限的校验。</p>
-<p>要实现本文开头的需求，还可以用 一文提到的 把 token 加密追加到 url 里面的写法，有兴趣的可以查看文章了解。</p>
+<p>要实现本文开头的需求，还可以用 《React 多个系统之间登录登出逻辑的实现》一文提到的 把 token 加密追加到 url 里面的写法，有兴趣的可以查看文章了解。</p>
 
       
       <!-- reward -->

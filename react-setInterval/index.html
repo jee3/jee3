@@ -7,11 +7,11 @@
 <head>
   <meta charset="utf-8" />
    
-  <meta name="keywords" content="console.log alert JSON.stringfy," />
+  <meta name="keywords" content="倒计时 生命周期 setInterval," />
    
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    console.log失效了？ |  
+    React倒计时 |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -45,7 +45,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-console-log失效了？" class="article article-type-post" itemscope
+  <article id="post-react-setInterval" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -53,7 +53,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  console.log失效了？
+  React倒计时
 </h1>
  
 
@@ -62,8 +62,8 @@
 
     
     <div class="article-meta">
-      <a href="/console-log%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/" class="article-date">
-  <time datetime="2020-05-20T01:00:00.000Z" itemprop="datePublished">2020-05-20</time>
+      <a href="/react-setInterval/" class="article-date">
+  <time datetime="2020-02-12T01:00:00.000Z" itemprop="datePublished">2020-02-12</time>
 </a>
       
   <div class="article-category">
@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">464</span>
+            <span class="post-count">394</span>
         </span>
     </span>
 
@@ -109,21 +109,12 @@
       
 
       
-      <p>console.log 作为前端工程师非常值得信赖的调试工具，居然失效了？？？没想到啊没想到，console.log 这么个浓眉大眼的家伙，居然也…</p>
-<p>先直接上代码</p>
+      <p>在开发中，我们常会遇到倒计时的需求，今天用 react 写一个倒计时，实现在某个系统中，定时检验 token 是否有效，适用于试用帐户等场景。</p>
+<p>代码很简单，只不过要注意区分 React 的生命周期，在组件未挂载的时候，也就是<code>componentWillMount</code>生命周期中，发送请求，并添加相应的响应拦截。在<code>componentDidMount</code>生命周期中不断发送请求，在<code>componentWillUnmount</code>生命周期中<code>clearInterval</code></p>
+<p>直接上代码</p>
 <a id="more"></a>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Upload &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">const</span> MyUpload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> [fileList, setFile] = useState([]);</span><br><span class="line">	<span class="keyword">const</span> handleChange = <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">999</span>, info);</span><br><span class="line">		<span class="keyword">let</span> newList = info.fileList;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">11</span>, newList);</span><br><span class="line">		newList.push(<span class="number">2</span>);</span><br><span class="line">		newList.push(<span class="number">3</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">222</span>, newList);</span><br><span class="line">		newList = newList.map(<span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (file.response) &#123;</span><br><span class="line">				file.url = file.response.url;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> file;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> props = &#123;</span><br><span class="line">		action: <span class="string">'https://www.mocky.io/'</span>,</span><br><span class="line">		onChange: handleChange,</span><br><span class="line">		multiple: <span class="literal">true</span>,</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;Upload &#123;...props&#125; fileList=&#123;fileList&#125;&gt;</span><br><span class="line">			&lt;Button&gt;Upload&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>Upload&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe0ofl2t3j30vi0n6dqe.jpg" alt=""> 由上图可以看到，无论是 999 还是 11，都输出了它们本不该输出的内容，也就是在<code>console.log(11, newList)</code>之后才 push 的数字 2 和 3。</p>
-<p>于是我打开了 vscode 调试工具，断点调试如下图： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfdxwq42w2j31g30u0qhw.jpg" alt=""> 由图可以看出，在<code>newList.push(2)</code>之前，数组并没有包含 2 这个数字。</p>
-<p>在 Chrome 里面调试也没有问题。 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1culhcoj30ui0t6gsg.jpg" alt=""></p>
-<p>经推测，应该是异步引起的问题（<del>示例代码没有提到异步，由于时间有些久远，原代码和示例代码可能会有一点点出入，我以后要尽量及时整理，抱歉。</del>不过当出现 console.log 与预期不一致的情况下，依旧可以使用本文中提到的方法），方法如下：</p>
-<p>首先检查项目有关 console.log 的地方，有没有被重写，是不是有哪些地方实现了<code>window.console.log</code>；如果没有的话，接下来弃用<code>console.log</code>而使用<code>alert</code>，此次就是在这个地方检查出来了错误。</p>
-<p>直接用 alert 可能会打印不出来数据，出现下面这样的情况： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1jws1oyj306401fmwy.jpg" alt=""></p>
-<p>要用<code>JSON.stringfy</code></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1kuzxmpj30c605qdgd.jpg" alt=""></p>
-<p>所以，问题找到啦，是<code>console.log</code>的问题，可以采用下面这种写法： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1lme8lqj315s0aitah.jpg" alt=""></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Dashboard</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">		<span class="keyword">super</span>(props);</span><br><span class="line">		<span class="keyword">this</span>.state = &#123;</span><br><span class="line">			intervalId: <span class="literal">null</span>,</span><br><span class="line">			currentCount: <span class="number">20</span>,</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="keyword">this</span>.timer = <span class="keyword">this</span>.timer.bind(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	componentWillMount() &#123;</span><br><span class="line">		<span class="keyword">const</span> code = <span class="built_in">window</span>.location.href.substring(</span><br><span class="line">			<span class="built_in">window</span>.location.href.indexOf(<span class="string">'='</span>) + <span class="number">1</span></span><br><span class="line">		);</span><br><span class="line">		<span class="keyword">const</span> tokenAndTime = Base64.decode(code);</span><br><span class="line">		<span class="keyword">const</span> token = tokenAndTime.split(<span class="string">'+'</span>)[<span class="number">0</span>];</span><br><span class="line">		localStorage.setItem(<span class="string">'token'</span>, token);</span><br><span class="line">		axios.interceptors.response.use(</span><br><span class="line">			(response) =&gt; &#123;</span><br><span class="line">				<span class="keyword">return</span> response;</span><br><span class="line">			&#125;,</span><br><span class="line">			(error) =&gt; &#123;</span><br><span class="line">				<span class="keyword">if</span> (error.response) &#123;</span><br><span class="line">					<span class="keyword">switch</span> (error.response.status) &#123;</span><br><span class="line">						<span class="keyword">case</span> <span class="number">401</span>:</span><br><span class="line">							<span class="comment">// 返回 401 清除token信息并跳转到登录页面</span></span><br><span class="line">							<span class="built_in">window</span>.location.href = <span class="string">'#'</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error.response.data); <span class="comment">// 返回接口返回的错误信息</span></span><br><span class="line">			&#125;</span><br><span class="line">		);</span><br><span class="line">		axios(&#123;</span><br><span class="line">			method: <span class="string">'get'</span>,</span><br><span class="line">			url: <span class="string">`#`</span>,</span><br><span class="line">			headers: &#123; <span class="attr">token</span>: token &#125;,</span><br><span class="line">		&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (response.data.code === <span class="number">200</span>) &#123;</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="string">'登录成功'</span>);</span><br><span class="line">				localStorage.setItem(<span class="string">'name'</span>, response.data.data.name);</span><br><span class="line">				localStorage.setItem(<span class="string">'teacher'</span>, response.data.data.teacherName);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="string">'登录失败'</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	componentDidMount() &#123;</span><br><span class="line">		<span class="keyword">var</span> intervalId = setInterval(<span class="keyword">this</span>.timer, <span class="number">3000000</span>);</span><br><span class="line">		<span class="keyword">this</span>.setState(&#123; <span class="attr">intervalId</span>: intervalId &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	componentWillUnmount() &#123;</span><br><span class="line">		clearInterval(<span class="keyword">this</span>.state.intervalId);</span><br><span class="line">	&#125;</span><br><span class="line">	timer() &#123;</span><br><span class="line">		<span class="keyword">const</span> storage = <span class="built_in">window</span>.localStorage;</span><br><span class="line">		<span class="keyword">var</span> newCount = <span class="keyword">this</span>.state.currentCount - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (newCount &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">			axios(&#123;</span><br><span class="line">				method: <span class="string">'get'</span>,</span><br><span class="line">				url: <span class="string">`#`</span>,</span><br><span class="line">				headers: &#123; <span class="attr">Authorization</span>: storage.token &#125;,</span><br><span class="line">			&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (response.data.code === <span class="number">200</span>) &#123;</span><br><span class="line">					<span class="built_in">console</span>.log(<span class="string">'token有效'</span>);</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="built_in">console</span>.log(<span class="string">'token失效'</span>);</span><br><span class="line">					<span class="built_in">window</span>.location.href = <span class="string">'#'</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">			<span class="keyword">this</span>.setState(&#123; <span class="attr">currentCount</span>: newCount &#125;);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			clearInterval(<span class="keyword">this</span>.state.intervalId);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -192,7 +183,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/console-log%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/react-setInterval/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -210,19 +201,19 @@
   
   <nav class="article-nav">
     
-      <a href="/one-axios-two-requests/" class="article-nav-link">
+      <a href="/Ant-design%E8%B8%A9%E8%BF%87%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            一次axios为什么会发两次请求？
+            Ant-design踩过的那些坑
           
         </div>
       </a>
     
     
-      <a href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/" class="article-nav-link">
+      <a href="/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">React中如何避免子组件的循环渲染</div>
+        <div class="article-nav-title">《React——引领未来的用户界面开发框架》总结</div>
       </a>
     
   </nav>

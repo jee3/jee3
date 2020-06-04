@@ -63,7 +63,7 @@
     
     <div class="article-meta">
       <a href="/webpack-optimization/" class="article-date">
-  <time datetime="2020-05-12T01:00:00.000Z" itemprop="datePublished">2020-05-12</time>
+  <time datetime="2020-05-09T01:00:00.000Z" itemprop="datePublished">2020-05-09</time>
 </a>
       
   <div class="article-category">
@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.2k</span>
+            <span class="post-count">1.3k</span>
         </span>
     </span>
 
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">5 min</span>
         </span>
     </span>
 </div>
@@ -145,6 +145,8 @@
 </ul>
 <p><strong>缓存组也有默认配置 default ，default 的配置会覆盖 splitChunks 中的默认配置，并且其它缓存组的 minSize 的优先级低于 default 缓存组的优先级，所以默认配置最好还是在 splitChunks 配置，不要在缓存组配置</strong></p>
 <p><a href="https://blog.csdn.net/zy444263/article/details/85303964" target="_blank" rel="noopener">参考链接</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cacheGroups: &#123;</span><br><span class="line">	commons: &#123;</span><br><span class="line">		test: <span class="regexp">/[\\/]node_modules[\\/]/</span>,</span><br><span class="line">		<span class="comment">// cacheGroupKey here is `commons` as the key of the cacheGroup</span></span><br><span class="line">		name(<span class="built_in">module</span>, chunks, cacheGroupKey) &#123;</span><br><span class="line">			<span class="keyword">const</span> moduleFileName = <span class="built_in">module</span></span><br><span class="line">				.identifier()</span><br><span class="line">				.split(<span class="string">'/'</span>)</span><br><span class="line">				.reduceRight(<span class="function">(<span class="params">item</span>) =&gt;</span> item);</span><br><span class="line">			<span class="keyword">const</span> allChunksNames = chunks.map(<span class="function">(<span class="params">item</span>) =&gt;</span> item.name).join(<span class="string">'~'</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;cacheGroupKey&#125;</span>-<span class="subst">$&#123;allChunksNames&#125;</span>-<span class="subst">$&#123;moduleFileName&#125;</span>`</span>;</span><br><span class="line">		&#125;,</span><br><span class="line">		chunks: <span class="string">'all'</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
 <h1 id="output"><a href="#output" class="headerlink" title="output"></a>output</h1><p>output 中的配置<code>filename: &#39;[name].[hash].js&#39;,</code>很重要，要把打包出来的 js 文件名用 hash 表示，这样在开发人员更新代码并部署到服务器之后，用户在浏览器使用的时候，不需要清空缓存的操作，浏览器就会向服务端获取最新的代码。否则，浏览器在检测到 js 名称没有改变，就不会去服务器拉取最新的代码。</p>
 
       

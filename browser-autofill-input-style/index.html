@@ -7,11 +7,11 @@
 <head>
   <meta charset="utf-8" />
    
-  <meta name="keywords" content="console.log alert JSON.stringfy," />
+  <meta name="keywords" content="自动填充 autofill animation keyframes," />
    
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    console.log失效了？ |  
+    自定义浏览器自动填充input框的样式 |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -45,7 +45,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-console-log失效了？" class="article article-type-post" itemscope
+  <article id="post-browser-autofill-input-style" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -53,7 +53,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  console.log失效了？
+  自定义浏览器自动填充input框的样式
 </h1>
  
 
@@ -62,12 +62,12 @@
 
     
     <div class="article-meta">
-      <a href="/console-log%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/" class="article-date">
-  <time datetime="2020-05-20T01:00:00.000Z" itemprop="datePublished">2020-05-20</time>
+      <a href="/browser-autofill-input-style/" class="article-date">
+  <time datetime="2020-03-20T01:00:00.000Z" itemprop="datePublished">2020-03-20</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/CSS/">CSS</a>
   </div>
 
       
@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">464</span>
+            <span class="post-count">399</span>
         </span>
     </span>
 
@@ -109,21 +109,18 @@
       
 
       
-      <p>console.log 作为前端工程师非常值得信赖的调试工具，居然失效了？？？没想到啊没想到，console.log 这么个浓眉大眼的家伙，居然也…</p>
-<p>先直接上代码</p>
+      <p>无论我们在用 Antd 的<code>Input</code>组件，还是原生的 input 标签，都会遇到这样一个问题：我们在设置好了普通的 input 样式的时候，在<strong>浏览器自动填充用户名和密码</strong>的时候，input 框出现了非预期的样式（Antd 是灰色背景，原生的是黄色背景）。</p>
+<p>那么，怎么才能实现想要的效果呢？</p>
+<p>直接上代码：</p>
 <a id="more"></a>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Upload &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">const</span> MyUpload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> [fileList, setFile] = useState([]);</span><br><span class="line">	<span class="keyword">const</span> handleChange = <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">999</span>, info);</span><br><span class="line">		<span class="keyword">let</span> newList = info.fileList;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">11</span>, newList);</span><br><span class="line">		newList.push(<span class="number">2</span>);</span><br><span class="line">		newList.push(<span class="number">3</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">222</span>, newList);</span><br><span class="line">		newList = newList.map(<span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (file.response) &#123;</span><br><span class="line">				file.url = file.response.url;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> file;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> props = &#123;</span><br><span class="line">		action: <span class="string">'https://www.mocky.io/'</span>,</span><br><span class="line">		onChange: handleChange,</span><br><span class="line">		multiple: <span class="literal">true</span>,</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;Upload &#123;...props&#125; fileList=&#123;fileList&#125;&gt;</span><br><span class="line">			&lt;Button&gt;Upload&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>Upload&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这是网上比较常见的代码，后文有我自己写的更符合实际情况的代码</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:-webkit-autofill</span>,</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:-webkit-autofill</span><span class="selector-pseudo">:hover</span>,</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:-webkit-autofill</span><span class="selector-pseudo">:focus</span>,</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:-webkit-autofill</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">	<span class="attribute">-webkit-transition-delay</span>: <span class="number">99999s</span>;</span><br><span class="line">	<span class="attribute">-webkit-transition</span>: color <span class="number">99999s</span> ease-out, background-color <span class="number">99999s</span> ease-out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe0ofl2t3j30vi0n6dqe.jpg" alt=""> 由上图可以看到，无论是 999 还是 11，都输出了它们本不该输出的内容，也就是在<code>console.log(11, newList)</code>之后才 push 的数字 2 和 3。</p>
-<p>于是我打开了 vscode 调试工具，断点调试如下图： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfdxwq42w2j31g30u0qhw.jpg" alt=""> 由图可以看出，在<code>newList.push(2)</code>之前，数组并没有包含 2 这个数字。</p>
-<p>在 Chrome 里面调试也没有问题。 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1culhcoj30ui0t6gsg.jpg" alt=""></p>
-<p>经推测，应该是异步引起的问题（<del>示例代码没有提到异步，由于时间有些久远，原代码和示例代码可能会有一点点出入，我以后要尽量及时整理，抱歉。</del>不过当出现 console.log 与预期不一致的情况下，依旧可以使用本文中提到的方法），方法如下：</p>
-<p>首先检查项目有关 console.log 的地方，有没有被重写，是不是有哪些地方实现了<code>window.console.log</code>；如果没有的话，接下来弃用<code>console.log</code>而使用<code>alert</code>，此次就是在这个地方检查出来了错误。</p>
-<p>直接用 alert 可能会打印不出来数据，出现下面这样的情况： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1jws1oyj306401fmwy.jpg" alt=""></p>
-<p>要用<code>JSON.stringfy</code></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1kuzxmpj30c605qdgd.jpg" alt=""></p>
-<p>所以，问题找到啦，是<code>console.log</code>的问题，可以采用下面这种写法： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1lme8lqj315s0aitah.jpg" alt=""></p>
+<p>以上代码仅仅实现了只有单个 input 框的情况，但是很多时候，我们需要在 input 框里面放上设计师做的<code>Icon</code>，那么上面的代码就无法实现需求了，来看下面的代码：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.password</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">	<span class="attribute">outline</span>: none;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">263px</span>;</span><br><span class="line">	<span class="attribute">padding-left</span>: <span class="number">52px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">35px</span>;</span><br><span class="line">	<span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> solid rgba(<span class="number">175</span>, <span class="number">192</span>, <span class="number">209</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">	<span class="attribute">font-weight</span>: <span class="number">400</span>;</span><br><span class="line">	<span class="attribute">color</span>: rgba(<span class="number">175</span>, <span class="number">192</span>, <span class="number">209</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="attribute">line-height</span>: <span class="number">14px</span>;</span><br><span class="line">	<span class="attribute">background-image</span>: url(<span class="string">'./icon-normal.svg'</span>) no-repeat;</span><br><span class="line">	<span class="attribute">background-position</span>: <span class="number">20px</span> <span class="number">7px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.password</span> <span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">	<span class="attribute">border</span>: <span class="number">1px</span> solid rgba(<span class="number">0</span>, <span class="number">122</span>, <span class="number">255</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="attribute">background-image</span>: url(<span class="string">'./icon-focus.svg'</span>);</span><br><span class="line">	<span class="attribute">color</span>: rgba(<span class="number">67</span>, <span class="number">92</span>, <span class="number">112</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">2px</span> <span class="number">4px</span> <span class="number">0px</span> rgba(<span class="number">32</span>, <span class="number">146</span>, <span class="number">255</span>, <span class="number">0.3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.password</span> <span class="selector-pseudo">:-webkit-autofill</span> &#123;</span><br><span class="line">	<span class="attribute">animation</span>: password-fix <span class="number">1s</span> infinite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@keyframes</span> password-fix &#123;</span><br><span class="line">	<span class="selector-tag">from</span> &#123;</span><br><span class="line">		<span class="attribute">background-image</span>: url(<span class="string">'./icon-normal.svg'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">to</span> &#123;</span><br><span class="line">		<span class="attribute">background-image</span>: url(<span class="string">'./icon-focus.svg'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码还是很容易理解的，加上了<code>:-webkit-autofill</code>属性而已，在其内部，有 animation 做过渡效果，用了常用的<code>@keyframes</code>来命名过渡效果 css 的写法。</p>
 
       
       <!-- reward -->
@@ -192,14 +189,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/console-log%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/browser-autofill-input-style/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li></ul>
 
 
     </footer>
@@ -210,19 +207,19 @@
   
   <nav class="article-nav">
     
-      <a href="/one-axios-two-requests/" class="article-nav-link">
+      <a href="/react-router-dom-introduction/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            一次axios为什么会发两次请求？
+            React-router-dom的原理和使用介绍
           
         </div>
       </a>
     
     
-      <a href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/" class="article-nav-link">
+      <a href="/Ant-design%E8%B8%A9%E8%BF%87%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">React中如何避免子组件的循环渲染</div>
+        <div class="article-nav-title">Ant-design踩过的那些坑</div>
       </a>
     
   </nav>

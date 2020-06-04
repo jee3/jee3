@@ -7,11 +7,11 @@
 <head>
   <meta charset="utf-8" />
    
-  <meta name="keywords" content="console.log alert JSON.stringfy," />
+  <meta name="keywords" content="react-spring," />
    
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    console.log失效了？ |  
+    用react-spring做伸缩动画特效 |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -45,7 +45,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-console-log失效了？" class="article article-type-post" itemscope
+  <article id="post-react-spring" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -53,7 +53,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  console.log失效了？
+  用react-spring做伸缩动画特效
 </h1>
  
 
@@ -62,8 +62,8 @@
 
     
     <div class="article-meta">
-      <a href="/console-log%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/" class="article-date">
-  <time datetime="2020-05-20T01:00:00.000Z" itemprop="datePublished">2020-05-20</time>
+      <a href="/react-spring/" class="article-date">
+  <time datetime="2020-01-15T01:00:00.000Z" itemprop="datePublished">2020-01-15</time>
 </a>
       
   <div class="article-category">
@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">464</span>
+            <span class="post-count">759</span>
         </span>
     </span>
 
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -97,6 +97,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -109,21 +111,23 @@
       
 
       
-      <p>console.log 作为前端工程师非常值得信赖的调试工具，居然失效了？？？没想到啊没想到，console.log 这么个浓眉大眼的家伙，居然也…</p>
-<p>先直接上代码</p>
+      <p>本文主要讲一下<code>react-spring</code>的用法，顺便说一下如何实现比浏览器规定的最小字体还要小的字体～</p>
+<p>在开发中前端经常需要写一些特效，而伸缩特效又是其中较为常见的。但是单纯的伸缩特效又不够有吸引力，很直白，很僵硬。所以我们会采用<strong>spring</strong>这种弹簧特效，会更加生动。比如说，你要将一个 div 放大到 1.5 倍，spring 在放大过程中会放大到 1.6（你可以自己设定），然后在 1.5 上下波动，逐渐稳定到 1.5。</p>
+<p>在 react 中也有一个库，叫 react-spring，一起来看看吧～</p>
 <a id="more"></a>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Upload &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">const</span> MyUpload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> [fileList, setFile] = useState([]);</span><br><span class="line">	<span class="keyword">const</span> handleChange = <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">999</span>, info);</span><br><span class="line">		<span class="keyword">let</span> newList = info.fileList;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">11</span>, newList);</span><br><span class="line">		newList.push(<span class="number">2</span>);</span><br><span class="line">		newList.push(<span class="number">3</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">222</span>, newList);</span><br><span class="line">		newList = newList.map(<span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (file.response) &#123;</span><br><span class="line">				file.url = file.response.url;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> file;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">const</span> props = &#123;</span><br><span class="line">		action: <span class="string">'https://www.mocky.io/'</span>,</span><br><span class="line">		onChange: handleChange,</span><br><span class="line">		multiple: <span class="literal">true</span>,</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;Upload &#123;...props&#125; fileList=&#123;fileList&#125;&gt;</span><br><span class="line">			&lt;Button&gt;Upload&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>Upload&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="react-spring"><a href="#react-spring" class="headerlink" title="react-spring"></a>react-spring</h1><p>从<code>react-spring</code>引入<code>useSpring</code>和<code>animated</code>，</p>
+<p>渲染模板部分（<code>return()</code>）通过 useSpring 配置参数，加入到 animated.xxx 中，内部是个 icon 和一个图表容器。icon 是随着点击状态改变的，（即点击 ⊕ 的 icon，icon 变成－的 icon，反之同理）</p>
+<p>style 里面的<code>transformOrigin</code>属性是要从哪里进行缩放，本例中<code>&#39;right bottom&#39;</code>就是从右下往左上进行缩放。</p>
+<p><code>transform</code>属性实际上就是下面这几行代码的设定了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [transProps, <span class="keyword">set</span>] = useSpring(() =&gt; (&#123;</span><br><span class="line">	scale: <span class="number">1</span>,</span><br><span class="line">	config: &#123; <span class="attr">mass</span>: <span class="number">5</span>, <span class="attr">tension</span>: <span class="number">850</span>, <span class="attr">friction</span>: <span class="number">70</span> &#125;,</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe0ofl2t3j30vi0n6dqe.jpg" alt=""> 由上图可以看到，无论是 999 还是 11，都输出了它们本不该输出的内容，也就是在<code>console.log(11, newList)</code>之后才 push 的数字 2 和 3。</p>
-<p>于是我打开了 vscode 调试工具，断点调试如下图： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfdxwq42w2j31g30u0qhw.jpg" alt=""> 由图可以看出，在<code>newList.push(2)</code>之前，数组并没有包含 2 这个数字。</p>
-<p>在 Chrome 里面调试也没有问题。 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1culhcoj30ui0t6gsg.jpg" alt=""></p>
-<p>经推测，应该是异步引起的问题（<del>示例代码没有提到异步，由于时间有些久远，原代码和示例代码可能会有一点点出入，我以后要尽量及时整理，抱歉。</del>不过当出现 console.log 与预期不一致的情况下，依旧可以使用本文中提到的方法），方法如下：</p>
-<p>首先检查项目有关 console.log 的地方，有没有被重写，是不是有哪些地方实现了<code>window.console.log</code>；如果没有的话，接下来弃用<code>console.log</code>而使用<code>alert</code>，此次就是在这个地方检查出来了错误。</p>
-<p>直接用 alert 可能会打印不出来数据，出现下面这样的情况： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1jws1oyj306401fmwy.jpg" alt=""></p>
-<p>要用<code>JSON.stringfy</code></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1kuzxmpj30c605qdgd.jpg" alt=""></p>
-<p>所以，问题找到啦，是<code>console.log</code>的问题，可以采用下面这种写法： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfe1lme8lqj315s0aitah.jpg" alt=""></p>
+<p>这里要注意的是，spring 并不会像我前文举的例子那样，通过参数设定到原来大小的 1.5 或者其他数值，刚刚只是为了便于理解。实际上 spring 设定的三个参数是物理数值，也就是真实的弹簧模型的数值，是不是很神奇～</p>
+<p><code>mass</code>是质量，质量越大，其保持原有运动状态的势能越大；<code>tension</code>是张力，就是使物体改变其原始运动状态（静止）的力的大小；<code>friction</code>是摩擦力，受到的摩擦力越大，能量消耗越快，也就越容易停下来～（哈哈哈，物理知识～）</p>
+<p>全文代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; useSpring, animated &#125; <span class="keyword">from</span> <span class="string">'react-spring'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> DataMonitor = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> trans = <span class="function">(<span class="params">s</span>) =&gt;</span> <span class="string">`scale(<span class="subst">$&#123;s&#125;</span>)`</span>;</span><br><span class="line">	<span class="keyword">const</span> [transProps, <span class="keyword">set</span>] = useSpring(() =&gt; (&#123;</span><br><span class="line">		scale: <span class="number">1</span>,</span><br><span class="line">		config: &#123; <span class="attr">mass</span>: <span class="number">5</span>, <span class="attr">tension</span>: <span class="number">850</span>, <span class="attr">friction</span>: <span class="number">70</span> &#125;,</span><br><span class="line">	&#125;));</span><br><span class="line">	<span class="keyword">const</span> [isZoomed, setZoomState] = useState(props.zoomState);</span><br><span class="line">	<span class="keyword">const</span> typeStr = props.type ? props.type + <span class="string">' '</span> : <span class="string">''</span>;</span><br><span class="line">	<span class="keyword">const</span> divClass = <span class="string">'data-monitor'</span> + typeStr + (isZoomed ? <span class="string">'zoomed'</span> : <span class="string">''</span>);</span><br><span class="line">	<span class="keyword">const</span> onZoomIn = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (props.onZoomIn) &#123;</span><br><span class="line">			props.onZoomIn();</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		setZoomState(!isZoomed);</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">set</span>(&#123; scale: <span class="number">1.5</span> &#125;);</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> onZoomOut = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (props.onZoomOut) &#123;</span><br><span class="line">			props.onZoomOut();</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		setZoomState(!isZoomed);</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">set</span>(&#123; scale: <span class="number">1</span> &#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;animated.div</span><br><span class="line">			className=&#123;divClass&#125;</span><br><span class="line">			style=&#123;&#123;</span><br><span class="line">				transform: transProps.scale.interpolate(trans),</span><br><span class="line">				transformOrigin: <span class="string">'right bottom'</span>,</span><br><span class="line">			&#125;&#125;</span><br><span class="line">		&gt;</span><br><span class="line">			&lt;div className=<span class="string">"head"</span>&gt;</span><br><span class="line">				&#123;isZoomed ? (</span><br><span class="line">					&lt;span className=<span class="string">"zoom"</span> onClick=&#123;onZoomOut&#125;&gt;</span><br><span class="line">						&lt;img src=<span class="string">"/static/img/zoom-out.svg"</span>&gt;&lt;<span class="regexp">/img&gt;</span></span><br><span class="line"><span class="regexp">					&lt;/</span>span&gt;</span><br><span class="line">				) : (</span><br><span class="line">					&lt;span className=<span class="string">"zoom"</span> onClick=&#123;onZoomIn&#125;&gt;</span><br><span class="line">						&lt;img src=<span class="string">"/static/img/zoom-in.svg"</span>&gt;&lt;<span class="regexp">/img&gt;</span></span><br><span class="line"><span class="regexp">					&lt;/</span>span&gt;</span><br><span class="line">				)&#125;</span><br><span class="line">				&lt;div className=<span class="string">"title"</span>&gt;&#123;props.title&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">			&lt;/</span>div&gt;</span><br><span class="line">			&lt;div className=&#123;<span class="string">'chart-container'</span>&#125;&gt;</span><br><span class="line">				&lt;props.chart zoom=&#123;isZoomed&#125; &#123;...props.chartProps&#125; /&gt;</span><br><span class="line">			&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>animated.div&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="transform-scale"><a href="#transform-scale" class="headerlink" title="transform:scale"></a>transform:scale</h1><p>我们知道浏览器最小的字号是 12px，如果想更小呢？那就可以用 scale 缩放来控制，聪明的你一定想到了～</p>
 
       
       <!-- reward -->
@@ -192,7 +196,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/console-log%E5%A4%B1%E6%95%88%E4%BA%86%EF%BC%9F/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/react-spring/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -210,19 +214,19 @@
   
   <nav class="article-nav">
     
-      <a href="/one-axios-two-requests/" class="article-nav-link">
+      <a href="/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            一次axios为什么会发两次请求？
+            《React——引领未来的用户界面开发框架》总结
           
         </div>
       </a>
     
     
-      <a href="/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/" class="article-nav-link">
+      <a href="/git-pro/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">React中如何避免子组件的循环渲染</div>
+        <div class="article-nav-title">Git 进阶</div>
       </a>
     
   </nav>
