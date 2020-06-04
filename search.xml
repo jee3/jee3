@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[object Object]</title>
+    <url>/FE-interview-base/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+  </entry>
+  <entry>
     <title>利用Blob类文件对象进行有权限校验的文件下载</title>
     <url>/download-files-via-blob/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>不用<code>&lt;a&gt;</code>标签怎么实现下载功能呢？</p>
@@ -464,6 +469,57 @@
       </tags>
   </entry>
   <entry>
+    <title>Redux和React-redux小结</title>
+    <url>/redux-and-react-redux/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近学习了 Redux 和 React-redux，摘录和总结一下。</p>
+<h1 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h1><h2 id="action"><a href="#action" class="headerlink" title="action"></a>action</h2><p><strong>强制使用 action 来描述所有变化</strong>带来的好处是可以清晰地知道应用中到底发生了什么。如果一些东西改变了，就可以知道为什么变。action 就像是描述发生了什么的指示器。最终，<strong>为了把 action 和 state 串起来，开发一些函数，这就是 reducer</strong>。再次地，没有任何魔法，<code>reducer 只是一个接收 state 和 action，并返回新的 state 的函数</code>。</p>
+<p><code>Action 就是一个普通 JavaScript 对象</code>（注意到没，这儿没有任何魔法？）用来描述发生了什么。</p>
+<p>对于小应用来说，使用字符串做 action type 更方便些。不过，在大型应用中把它们显式地定义成常量还是利大于弊的。</p>
+<p><code>记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 state。</code></p>
+<p>开发复杂的应用时，不可避免会有一些数据相互引用。建议你尽可能地把 state 范式化，不存在嵌套。把所有数据放到一个对象里，每个数据以 ID 为主键，不同实体或列表间通过 ID 相互引用数据。把应用的 state 想像成数据库。这种方法在 normalizr 文档里有详细阐述。例如，实际开发中，在 state 里同时存放 todosById: { id -&gt; todo } 和 todos: array<id> 是比较好的方式，本文中为了保持示例简单没有这样处理。</p>
+<h2 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h2><p>永远不要在 reducer 里做这些操作：</p>
+<ul>
+<li>修改传入参数；</li>
+<li>执行有副作用的操作，如 API 请求和路由跳转；</li>
+<li>调用非纯函数，如 Date.now() 或 Math.random()。</li>
+</ul>
+<p><code>纯函数：函数的返回结果只依赖于它的参数。</code></p>
+<p>函数执行过程里面没有副作用。</p>
+<blockquote>
+<p>注意: 不要修改 state。 使用 Object.assign() 新建了一个副本。不能这样使用 Object.assign(state, { visibilityFilter: action.filter })，因为它会改变第一个参数的值。你必须把第一个参数设置为空对象。你也可以开启对 ES7 提案对象展开运算符的支持, 从而使用 { …state, …newState } 达到相同的目的。</p>
+<p>在 default 情况下返回旧的 state。遇到未知的 action 时，一定要返回旧的 state。</p>
+</blockquote>
+<p>我们需要修改数组中指定的数据项而又不希望导致突变, 因此我们的做法是在创建一个新的数组后, 将那些无需修改的项原封不动移入, 接着对需修改的项用新生成的对象替换。(译者注：Javascript 中的对象存储时均是由值和指向值的引用两个部分构成。此处突变指直接修改引用所指向的值, 而引用本身保持不变。) 最后，时刻谨记永远不要在克隆 state 前修改它。</p>
+<p>关于 reducer 合成，它是开发 Redux 应用最基础的模式，使用<code>combineReducers()</code></p>
+<h2 id="store"><a href="#store" class="headerlink" title="store"></a>store</h2><p>Store 就是把它们联系到一起的对象。Store 有以下职责：</p>
+<ol>
+<li>维持应用的 state；</li>
+<li>提供 getState() 方法获取 state；</li>
+<li>提供 dispatch(action) 方法更新 state；</li>
+<li>通过 subscribe(listener) 注册监听器;</li>
+<li>通过 subscribe(listener) 返回的函数注销监听器。</li>
+</ol>
+<h2 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h2><p>Redux 应用中数据的生命周期遵循下面 4 个步骤：</p>
+<ol>
+<li>调用 store.dispatch(action)。</li>
+<li>Redux store 调用传入的 reducer 函数(Store 会把两个参数传入 reducer:<code>当前的state树和action</code>)</li>
+<li>根 reducer 应该把多个子 reducer 输出合并成一个单一的 state 树。</li>
+<li>Redux store 保存了根 reducer 返回的完整 state 树(所有订阅 store.subscribe(listener) 的监听器都将被调用；监听器里可以调用 <code>store.getState()</code>获得当前 state)</li>
+</ol>
+<p><code>注意 reducer 是纯函数。它仅仅用于计算下一个 state</code>。它应该是完全可预测的：多次传入相同的输入必须产生相同的输出。<code>它不应做有副作用的操作，如 API 调用或路由跳转。这些应该在 dispatch action 前发生。</code></p>
+<h1 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h1><h2 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h2><p>connect 有 4 个参数，常用的有前两个，mapStateToProps 和 mapDispatchToProps，前者用于从 store 获取状态 更新 UI 视图，后者用于事件发送到 store</p>
+<h2 id="mapStateToProps"><a href="#mapStateToProps" class="headerlink" title="mapStateToProps"></a>mapStateToProps</h2><h2 id="mapDispatchToProps"><a href="#mapDispatchToProps" class="headerlink" title="mapDispatchToProps"></a>mapDispatchToProps</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; getString &#125; <span class="keyword">from</span> <span class="string">'../../../utils/i18n'</span>;</span><br><span class="line"><span class="keyword">const</span> mapStateToProps = <span class="function">(<span class="params">state, ownProps</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">const</span> appState = state.currentState.appState;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		className: styleByState(appState, ownProps.operationType),</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> styleByState = <span class="function">(<span class="params">state, operationType</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">switch</span> (operationType) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'train'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'predict'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'stop'</span>:</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> mapDispatchToProps = <span class="function">(<span class="params">dispatch, ownProps</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		clickBtn: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (ownProps.operationType == <span class="string">'predict'</span>) &#123;</span><br><span class="line">				clickPredict = <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			dispatch(ownProps.action);</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ActionButtonBasic = (&#123;</span><br><span class="line">	clickBtn,</span><br><span class="line">	operationType,</span><br><span class="line">	trainState,</span><br><span class="line">	className,</span><br><span class="line">&#125;) =&gt; &#123;</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;div</span><br><span class="line">			className=&#123;<span class="string">`action-button <span class="subst">$&#123;operationType&#125;</span> <span class="subst">$&#123;trainState&#125;</span> <span class="subst">$&#123;className&#125;</span>`</span>&#125;</span><br><span class="line">			onClick=&#123;clickBtn&#125;</span><br><span class="line">		&gt;</span><br><span class="line">			&lt;div className=<span class="string">"action-icon"</span> /&gt;</span><br><span class="line">			&lt;div className=<span class="string">"action-text"</span>&gt;&#123;getString(operationType)&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">		&lt;/</span>div&gt;</span><br><span class="line">	);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ActionButton = connect(</span><br><span class="line">	mapStateToProps,</span><br><span class="line">	mapDispatchToProps</span><br><span class="line">)(ActionButtonBasic);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>React</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git 进阶</title>
     <url>/git-pro/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。</p>
@@ -509,6 +565,54 @@
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript执行机制</title>
+    <url>/javascript-execution-mechanism/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="JavaScript-执行（一）：Promise-里的代码为什么比-setTimeout-先执行？"><a href="#JavaScript-执行（一）：Promise-里的代码为什么比-setTimeout-先执行？" class="headerlink" title="JavaScript 执行（一）：Promise 里的代码为什么比 setTimeout 先执行？"></a>JavaScript 执行（一）：Promise 里的代码为什么比 setTimeout 先执行？</h1><p>宏观任务的队列就相当于事件循环。在宏观任务中，JavaScript 的 Promise 还会产生异步代码，JavaScript 必须保证这些异步代码在一个宏观任务中完成，因此，每个宏观任务中又包含了一个微观任务队列</p>
+<p>Promise 永远在队列尾部添加微观任务。setTimeout 等宿主 API，则会添加宏观任务。</p>
+<p>Event Loop <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g7ucnloq68j30vw0qo41x.jpg" alt=""></p>
+<a id="more"></a>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> r = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'a'</span>);</span><br><span class="line">	resolve();</span><br><span class="line">&#125;);</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'d'</span>), <span class="number">0</span>);</span><br><span class="line">r.then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'c'</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'b'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>//输出 a b c d 我们发现，不论代码顺序如何，d 必定发生在 c 之后，因为 Promise 产生的是 JavaScript 引擎内部的微任务，而 setTimeout 是浏览器 API，它产生宏任务。</p>
+<p>异步执行的顺序：首先我们分析有多少个宏任务；在每个宏任务中，分析有多少个微任务；根据调用次序，确定宏任务中的微任务执行次序；根据宏任务的触发规则和调用次序，确定宏任务的执行次序；确定整个顺序。</p>
+<p>宏任务：setTimeout 是浏览器 API，它产生宏任务。</p>
+<p>微任务：Promise 永远在队列尾部添加微观任务。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">duration</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'b'</span>);</span><br><span class="line">		setTimeout(resolve, duration);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a'</span>);</span><br><span class="line">sleep(<span class="number">5000</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'c'</span>));</span><br></pre></td></tr></table></figure>
+
+<p>setTimeout 把整个代码分割成了 2 个宏观任务。</p>
+<p>第一个宏观任务中，包含了先后同步执行的 console.log(“a”); 和 console.log(“b”);。</p>
+<p>setTimeout 后，第二个宏观任务执行调用了 resolve，然后 then 中的代码异步得到执行，最终输出的顺序才是： a b c。</p>
+<h2 id="新特性：async-await"><a href="#新特性：async-await" class="headerlink" title="新特性：async/await"></a>新特性：async/await</h2><p>async 函数必定返回 Promise，我们把所有返回 Promise 的函数都可以认为是异步函数。 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8fhih5pboj30va0u0tha.jpg" alt=""></p>
+<p>async 表示函数里有异步操作； await 表示紧跟在后面的表达式需要等待结果。</p>
+<p>async 返回一个 Promise 对象，可以用 then 来添加回调函数，</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g7wf0giolgj30yy0tmq67.jpg" alt=""></p>
+<h1 id="JavaScript-执行（三）：你知道现在有多少种函数吗？"><a href="#JavaScript-执行（三）：你知道现在有多少种函数吗？" class="headerlink" title="JavaScript 执行（三）：你知道现在有多少种函数吗？"></a>JavaScript 执行（三）：你知道现在有多少种函数吗？</h1><h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>调用函数时使用的引用，决定了函数执行时刻的 this 值。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showThis</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">	showThis: showThis,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">showThis(); <span class="comment">// global</span></span><br><span class="line">o.showThis(); <span class="comment">// o</span></span><br></pre></td></tr></table></figure>
+
+<p>改为箭头函数后，不论用什么引用来调用它，都不影响它的 this 值</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> showThis = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">	showThis: showThis,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">showThis(); <span class="comment">// global</span></span><br><span class="line">o.showThis(); <span class="comment">// global</span></span><br></pre></td></tr></table></figure>
+
+<p>生成器函数、异步生成器函数和异步普通函数跟普通函数行为是一致的，异步箭头函数与箭头函数行为是一致的。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">	showThis() &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> C();</span><br><span class="line"><span class="keyword">var</span> showThis = o.showThis;</span><br><span class="line"></span><br><span class="line">showThis(); <span class="comment">// undefined</span></span><br><span class="line">o.showThis(); <span class="comment">// o</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="evernotecid://D2FA04CE-24BF-478C-9996-C883AB8C2834/appyinxiangcom/7213637/ENResource/p123" alt="0334b3bc171a489654ea5a37f47c34d8.png"> <img src="evernotecid://D2FA04CE-24BF-478C-9996-C883AB8C2834/appyinxiangcom/7213637/ENResource/p124" alt="8c7bd55633bb59c3a3547e41c14ac876.png"></p>
+<p>极客时间版权所有: <a href="https://time.geekbang.org/column/article/88538" target="_blank" rel="noopener">https://time.geekbang.org/column/article/88538</a></p>
+<ul>
+<li>symbol</li>
+</ul>
+<p><a href="https://juejin.im/post/59e85eebf265da430d571f89" target="_blank" rel="noopener">掘金文章</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>JS原理</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>JS原理</tag>
       </tags>
   </entry>
   <entry>
@@ -668,11 +772,11 @@
 ]]></content>
       <categories>
         <category>FE</category>
-        <category>JS基础</category>
+        <category>JS原理</category>
       </categories>
       <tags>
         <tag>FE</tag>
-        <tag>JS基础</tag>
+        <tag>JS原理</tag>
       </tags>
   </entry>
   <entry>
@@ -700,6 +804,68 @@
       <tags>
         <tag>FE</tag>
         <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>this指向的问题</title>
+    <url>/this/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近复习的时候又遇到 this 指向的问题了，摘录一道经典例题，研究一下</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'window'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	name: <span class="string">'person1'</span>,</span><br><span class="line">	show1: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;,</span><br><span class="line">	show2: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.name),</span><br><span class="line">	show3: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;,</span><br><span class="line">	show4: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> person2 = &#123; <span class="attr">name</span>: <span class="string">'person2'</span> &#125;;</span><br><span class="line"></span><br><span class="line">person1.show1();</span><br><span class="line">person1.show1.call(person2);</span><br><span class="line"></span><br><span class="line">person1.show2();</span><br><span class="line">person1.show2.call(person2);</span><br><span class="line"></span><br><span class="line">person1.show3()();</span><br><span class="line">person1.show3().call(person2);</span><br><span class="line">person1.show3.call(person2)();</span><br><span class="line"></span><br><span class="line">person1.show4()();</span><br><span class="line">person1.show4().call(person2);</span><br><span class="line">person1.show4.call(person2)();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>person1.show1()</code><br>很显然，this 指向 person1，输出 person1</p>
+</li>
+<li><p><code>person1.show1.call(person2)</code> 更改 this 指向到 person2，输出 person2</p>
+</li>
+<li><p><code>person1.show2()</code> show2 时箭头函数，箭头函数没有 this 值，它保存到是外部的 this 值，所以输出是 window</p>
+</li>
+<li><p><code>person1.show2.call(person2)</code> this 值都没了，传 person2 也没用，所以还是 window</p>
+</li>
+<li><p><code>person1.show3()()</code> show3 是多次调用函数，等价于</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> temp = person1.show3();</span><br><span class="line">temp();</span><br></pre></td></tr></table></figure>
+
+<p>这样执行环境就是全局了，输出 window</p>
+<ul>
+<li><code>person1.show3().call(person2)</code> 等价于</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> temp = person1.show3();</span><br><span class="line">temp.call(person2);</span><br></pre></td></tr></table></figure>
+
+<p>输出 person2</p>
+<ul>
+<li><code>person1.show3.call(person2)()</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> temp = person1.show3.call(person2);</span><br><span class="line">temp();</span><br></pre></td></tr></table></figure>
+
+<p>执行环境还是全局，输出 window</p>
+<ul>
+<li><code>person1.show4()()</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">	name: <span class="string">'person1'</span>,</span><br><span class="line">	show4: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(self.name);</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> temp = person1.show4();</span><br><span class="line">temp();</span><br></pre></td></tr></table></figure>
+
+<p>在 person1.show4(),执行时，self = this 指向就是 person1,之后再执行 temp()，时，self 是不会再改变了，所以输出的是 person1</p>
+<ul>
+<li><code>person1.show4().call(person2)</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> temp = person1.show4();</span><br><span class="line">temp.call(person2);</span><br></pre></td></tr></table></figure>
+
+<p>所以， 还是输出 person1</p>
+<ul>
+<li><code>person1.show4.call(person2)()</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> temp = person1.show4.call(person2);</span><br><span class="line">temp();</span><br></pre></td></tr></table></figure>
+
+<p>这次不一样了，self = this 指向的是 person2 所以输出的是 person2</p>
+<p><strong>函数调用指向全局 如果想改写的话，只需要用 var self = this 来保存当前的上下文即可</strong></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>JS原理</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>JS原理</tag>
       </tags>
   </entry>
   <entry>
@@ -814,6 +980,51 @@
       </tags>
   </entry>
   <entry>
+    <title>闭包小结</title>
+    <url>/closure/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>闭包可以说是前端最常见的一个名词了，本文就来简单举个例子说一下。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> secret = <span class="string">'secret'</span>;</span><br><span class="line">	<span class="comment">//'闭包'内的函数可以访问secret变量，而secret变量对于外部却是隐藏的</span></span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		get_secret: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="comment">//通过定义的接口来访问secret</span></span><br><span class="line">			<span class="keyword">return</span> secret;</span><br><span class="line">		&#125;,</span><br><span class="line">		new_secret: <span class="function"><span class="keyword">function</span> (<span class="params">new_secret</span>) </span>&#123;</span><br><span class="line">			<span class="comment">//通过定义的接口来修改secret</span></span><br><span class="line">			secret = new_secret;</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;)();</span><br><span class="line">foo.get_secret(); <span class="comment">//得到'secret'</span></span><br><span class="line">foo.secret; <span class="comment">//Type error，不能访问</span></span><br><span class="line">foo.new_secret(<span class="string">'a new secret'</span>); <span class="comment">//通过函数接口，我们访问并修改了secret变量</span></span><br><span class="line">foo.get_secret(); <span class="comment">//得到'a new secret'</span></span><br></pre></td></tr></table></figure>
+
+<p>闭包通常用来创建内部变量，使得这些变量不能被外部随意修改，同时又可以通过指定的函数接口来操作。</p>
+<a id="more"></a>
+
+<p>参考：</p>
+<p><a href="https://juejin.im/entry/58f424d5570c3500563d7541" target="_blank" rel="noopener">闭包 1</a></p>
+<p><a href="https://juejin.im/post/5b1f36e6f265da6e1a603e34" target="_blank" rel="noopener">闭包 2</a></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>JS原理</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>JS原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue中父子组件通信</title>
+    <url>/vue-parent-child-communication/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我们在使用 Vue 的过程中，父子组件通信几乎是一个必会的知识点，本文就来说一下 Vue 中的父子组件通信</p>
+<h1 id="props-emit"><a href="#props-emit" class="headerlink" title="props/$emit"></a>props/$emit</h1><p>父向子：组件 A 通过 props 的方式向子组件 B 传递；</p>
+<p>子向父：在子组件 B 中用$emit, 父组件 A 中 v-on 的方式实现</p>
+<p><code>this.\$emit(&#39;methodInParentComponent&#39;,&#39;value&#39;);</code></p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">		&lt;HelloWorld v-on:titleChanged&#x3D;&quot;updateTitle&quot;&gt;&lt;&#x2F;HelloWorld&gt;</span><br><span class="line">		&lt;h2&gt;&#123;&#123; title &#125;&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">	&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import HelloWorld from &#39;.&#x2F;components&#x2F;HelloWorld&#39;;</span><br><span class="line">export default &#123;</span><br><span class="line">	name: &#39;App&#39;,</span><br><span class="line">	data() &#123;</span><br><span class="line">		return &#123;</span><br><span class="line">			title: &#39;传递的是一个值&#39;,</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;,</span><br><span class="line">	methods: &#123;</span><br><span class="line">		updateTitle(e) &#123;</span><br><span class="line">			&#x2F;&#x2F;声明这个函数</span><br><span class="line">			this.title &#x3D; e;</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;,</span><br><span class="line">	components: &#123;</span><br><span class="line">		HelloWorld: HelloWorld,</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>子组件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;header&gt;</span><br><span class="line">		&lt;h1 @click&#x3D;&quot;changeTitle&quot;&gt;&#123;&#123; title &#125;&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">	&lt;&#x2F;header&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">	name: &#39;HelloWorld&#39;,</span><br><span class="line">	data() &#123;</span><br><span class="line">		return &#123;</span><br><span class="line">			title: &#39;Vue.js Demo&#39;,</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;,</span><br><span class="line">	methods: &#123;</span><br><span class="line">		changeTitle() &#123;</span><br><span class="line">			this.$emit(&#39;titleChanged&#39;, &#39;子向父组件传值&#39;); &#x2F;&#x2F;自定义事件  传递值“子向父组件传值”</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS中New操作符做了什么</title>
     <url>/what-did-NEW-do/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="例-1"><a href="#例-1" class="headerlink" title="例 1"></a>例 1</h1><p>由以下两段代码可以看出，new 关键字帮我们做了：</p>
@@ -854,11 +1065,11 @@
 ]]></content>
       <categories>
         <category>FE</category>
-        <category>JS基础</category>
+        <category>JS原理</category>
       </categories>
       <tags>
         <tag>FE</tag>
-        <tag>JS基础</tag>
+        <tag>JS原理</tag>
       </tags>
   </entry>
   <entry>
@@ -906,11 +1117,11 @@
 ]]></content>
       <categories>
         <category>FE</category>
-        <category>JS基础</category>
+        <category>JS原理</category>
       </categories>
       <tags>
         <tag>FE</tag>
-        <tag>JS基础</tag>
+        <tag>JS原理</tag>
       </tags>
   </entry>
   <entry>
@@ -949,12 +1160,12 @@
 ]]></content>
       <categories>
         <category>FE</category>
-        <category>JS基础</category>
+        <category>JS原理</category>
         <category>ES6</category>
       </categories>
       <tags>
         <tag>FE</tag>
-        <tag>JS基础</tag>
+        <tag>JS原理</tag>
         <tag>ES6</tag>
       </tags>
   </entry>
@@ -1161,11 +1372,11 @@
 ]]></content>
       <categories>
         <category>FE</category>
-        <category>JS基础</category>
+        <category>JS原理</category>
       </categories>
       <tags>
         <tag>FE</tag>
-        <tag>JS基础</tag>
+        <tag>JS原理</tag>
       </tags>
   </entry>
   <entry>
@@ -1386,7 +1597,7 @@
 <h1 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h1><h2 id="Math-round-四舍五入"><a href="#Math-round-四舍五入" class="headerlink" title="Math.round() 四舍五入"></a>Math.round() 四舍五入</h2><h2 id="Math-ceil-向上取整"><a href="#Math-ceil-向上取整" class="headerlink" title="Math.ceil() 向上取整"></a>Math.ceil() 向上取整</h2><h2 id="Math-floor-向下取整"><a href="#Math-floor-向下取整" class="headerlink" title="Math.floor() 向下取整"></a>Math.floor() 向下取整</h2><h2 id="Math-trunc-方法会将数字的小数部分去掉，只保留整数部分。"><a href="#Math-trunc-方法会将数字的小数部分去掉，只保留整数部分。" class="headerlink" title="Math.trunc() 方法会将数字的小数部分去掉，只保留整数部分。"></a>Math.trunc() 方法会将数字的小数部分去掉，只保留整数部分。</h2>]]></content>
       <categories>
         <category>FE</category>
-        <category>JS基础</category>
+        <category>JS原理</category>
       </categories>
       <tags>
         <tag>FE</tag>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jee3.github.io/"/>
-  <updated>2020-06-04T07:42:52.333Z</updated>
+  <updated>2020-06-04T11:37:18.599Z</updated>
   <id>http://jee3.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[object Object]</title>
+    <link href="http://jee3.github.io/FE-interview-base/"/>
+    <id>http://jee3.github.io/FE-interview-base/</id>
+    <published>2020-06-04T11:37:18.599Z</published>
+    <updated>2020-06-04T11:37:18.599Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>利用Blob类文件对象进行有权限校验的文件下载</title>
@@ -405,6 +428,37 @@
   </entry>
   
   <entry>
+    <title>Redux和React-redux小结</title>
+    <link href="http://jee3.github.io/redux-and-react-redux/"/>
+    <id>http://jee3.github.io/redux-and-react-redux/</id>
+    <published>2019-12-26T01:00:00.000Z</published>
+    <updated>2020-06-04T11:30:33.985Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
+    
+      <category term="React" scheme="http://jee3.github.io/categories/FE/React/"/>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
+    
+      <category term="React" scheme="http://jee3.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Git 进阶</title>
     <link href="http://jee3.github.io/git-pro/"/>
     <id>http://jee3.github.io/git-pro/</id>
@@ -427,11 +481,38 @@
   </entry>
   
   <entry>
+    <title>JavaScript执行机制</title>
+    <link href="http://jee3.github.io/javascript-execution-mechanism/"/>
+    <id>http://jee3.github.io/javascript-execution-mechanism/</id>
+    <published>2019-11-23T01:00:00.000Z</published>
+    <updated>2020-06-04T11:15:36.260Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;JavaScript-执行（一）：Promise-里的代码为什么比-setTimeout-先执行？&quot;&gt;&lt;a href=&quot;#JavaScript-执行（一）：Promise-里的代码为什么比-setTimeout-先执行？&quot; class=&quot;headerlink&quot; title=&quot;JavaScript 执行（一）：Promise 里的代码为什么比 setTimeout 先执行？&quot;&gt;&lt;/a&gt;JavaScript 执行（一）：Promise 里的代码为什么比 setTimeout 先执行？&lt;/h1&gt;&lt;p&gt;宏观任务的队列就相当于事件循环。在宏观任务中，JavaScript 的 Promise 还会产生异步代码，JavaScript 必须保证这些异步代码在一个宏观任务中完成，因此，每个宏观任务中又包含了一个微观任务队列&lt;/p&gt;
+&lt;p&gt;Promise 永远在队列尾部添加微观任务。setTimeout 等宿主 API，则会添加宏观任务。&lt;/p&gt;
+&lt;p&gt;Event Loop &lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g7ucnloq68j30vw0qo41x.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
+    
+      <category term="JS原理" scheme="http://jee3.github.io/categories/FE/JS%E5%8E%9F%E7%90%86/"/>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
+    
+      <category term="JS原理" scheme="http://jee3.github.io/tags/JS%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>《Javascript高级程序设计》总结</title>
     <link href="http://jee3.github.io/JS%E9%AB%98%E7%A8%8B/"/>
     <id>http://jee3.github.io/JS%E9%AB%98%E7%A8%8B/</id>
     <published>2019-11-22T16:00:00.000Z</published>
-    <updated>2020-05-27T11:25:12.862Z</updated>
+    <updated>2020-06-04T10:42:46.625Z</updated>
     
     <summary type="html">
     
@@ -447,12 +528,12 @@
     
       <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
     
-      <category term="JS基础" scheme="http://jee3.github.io/categories/FE/JS%E5%9F%BA%E7%A1%80/"/>
+      <category term="JS原理" scheme="http://jee3.github.io/categories/FE/JS%E5%8E%9F%E7%90%86/"/>
     
     
       <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
     
-      <category term="JS基础" scheme="http://jee3.github.io/tags/JS%E5%9F%BA%E7%A1%80/"/>
+      <category term="JS原理" scheme="http://jee3.github.io/tags/JS%E5%8E%9F%E7%90%86/"/>
     
   </entry>
   
@@ -484,96 +565,6 @@
       <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
     
       <category term="CSS" scheme="http://jee3.github.io/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Flex布局</title>
-    <link href="http://jee3.github.io/Flex%E5%B8%83%E5%B1%80/"/>
-    <id>http://jee3.github.io/Flex%E5%B8%83%E5%B1%80/</id>
-    <published>2019-10-27T16:00:00.000Z</published>
-    <updated>2019-12-22T06:43:18.274Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Flex-基本概念&quot;&gt;&lt;a href=&quot;#Flex-基本概念&quot; class=&quot;headerlink&quot; title=&quot;Flex 基本概念&quot;&gt;&lt;/a&gt;Flex 基本概念&lt;/h1&gt;&lt;p&gt;flex：弹性布局&lt;/p&gt;
-&lt;p&gt;行内元素也可以用 flex，webkit 内核的要加上-webkit&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意，设为 Flex 布局以后，子元素自动成为 flex item，并且其 float、clear 和 vertical-align 属性将失效。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g89lw0kne6j30fn099dgi.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
-    
-      <category term="CSS" scheme="http://jee3.github.io/categories/FE/CSS/"/>
-    
-      <category term="Flex" scheme="http://jee3.github.io/categories/FE/CSS/Flex/"/>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
-    
-      <category term="CSS" scheme="http://jee3.github.io/tags/CSS/"/>
-    
-      <category term="Flex" scheme="http://jee3.github.io/tags/Flex/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSS基础</title>
-    <link href="http://jee3.github.io/css-base/"/>
-    <id>http://jee3.github.io/css-base/</id>
-    <published>2019-10-27T16:00:00.000Z</published>
-    <updated>2020-06-02T12:04:30.972Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;position&quot;&gt;&lt;a href=&quot;#position&quot; class=&quot;headerlink&quot; title=&quot;position&quot;&gt;&lt;/a&gt;position&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g870k95k7zj31a60naae8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;盒模型&quot;&gt;&lt;a href=&quot;#盒模型&quot; class=&quot;headerlink&quot; title=&quot;盒模型&quot;&gt;&lt;/a&gt;盒模型&lt;/h1&gt;&lt;h2 id=&quot;IE-盒模型&quot;&gt;&lt;a href=&quot;#IE-盒模型&quot; class=&quot;headerlink&quot; title=&quot;IE 盒模型&quot;&gt;&lt;/a&gt;IE 盒模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g8beap40nbj30xw0lewgw.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;标准盒模型&quot;&gt;&lt;a href=&quot;#标准盒模型&quot; class=&quot;headerlink&quot; title=&quot;标准盒模型&quot;&gt;&lt;/a&gt;标准盒模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g8beaz5fvzj30zk0l1tb5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
-    
-      <category term="CSS" scheme="http://jee3.github.io/categories/FE/CSS/"/>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
-    
-      <category term="CSS" scheme="http://jee3.github.io/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS中New操作符做了什么</title>
-    <link href="http://jee3.github.io/what-did-NEW-do/"/>
-    <id>http://jee3.github.io/what-did-NEW-do/</id>
-    <published>2019-10-21T16:00:00.000Z</published>
-    <updated>2020-06-02T12:07:39.149Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;例-1&quot;&gt;&lt;a href=&quot;#例-1&quot; class=&quot;headerlink&quot; title=&quot;例 1&quot;&gt;&lt;/a&gt;例 1&lt;/h1&gt;&lt;p&gt;由以下两段代码可以看出，new 关键字帮我们做了：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;创建 obj 对象&lt;/li&gt;
-&lt;li&gt;把新建的 obj 对象的_ _ proto__指向构造函数 Common 的 prototype&lt;/li&gt;
-&lt;li&gt;构造函数的作用域会指向实例本身（新对象），this 也指向新对象&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;执行构造函数内部的代码，将属性添加给 person 中的 this 对象。&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;不用手动 return，会自动返回新对象
-    
-    </summary>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
-    
-      <category term="JS基础" scheme="http://jee3.github.io/categories/FE/JS%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
-    
-      <category term="JS基础" scheme="http://jee3.github.io/tags/JS%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   

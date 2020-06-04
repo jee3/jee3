@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://jee3.github.io/FE-interview-base/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/this/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/redux-and-react-redux/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/closure/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/javascript-execution-mechanism/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/vue-parent-child-communication/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/JS%E9%AB%98%E7%A8%8B/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/what-did-NEW-do/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/methods-in-js/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/JavaScript%E4%B8%AD%E7%9A%84%E5%8F%8C%E6%B3%A2%E6%B5%AA%E7%BA%BF/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
     <loc>http://jee3.github.io/react-spring/</loc>
     <lastmod>2020-06-04</lastmod>
   </url>  <url>
@@ -40,12 +76,6 @@
     <loc>http://jee3.github.io/git-pro/</loc>
     <lastmod>2020-06-02</lastmod>
   </url>  <url>
-    <loc>http://jee3.github.io/what-did-NEW-do/</loc>
-    <lastmod>2020-06-02</lastmod>
-  </url>  <url>
-    <loc>http://jee3.github.io/methods-in-js/</loc>
-    <lastmod>2020-06-02</lastmod>
-  </url>  <url>
     <loc>http://jee3.github.io/git-commands/</loc>
     <lastmod>2020-06-02</lastmod>
   </url>  <url>
@@ -70,23 +100,11 @@
     <loc>http://jee3.github.io/vue-cli3-0%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/</loc>
     <lastmod>2020-06-01</lastmod>
   </url>  <url>
-    <loc>http://jee3.github.io/JS%E9%AB%98%E7%A8%8B/</loc>
-    <lastmod>2020-05-27</lastmod>
-  </url>  <url>
     <loc>http://jee3.github.io/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/</loc>
     <lastmod>2020-05-27</lastmod>
   </url>  <url>
     <loc>http://jee3.github.io/Flex%E5%B8%83%E5%B1%80/</loc>
     <lastmod>2019-12-22</lastmod>
-  </url>  <url>
-    <loc>http://jee3.github.io/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/</loc>
-    <lastmod>2019-12-22</lastmod>
-  </url>  <url>
-    <loc>http://jee3.github.io/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/</loc>
-    <lastmod>2019-10-24</lastmod>
-  </url>  <url>
-    <loc>http://jee3.github.io/JavaScript%E4%B8%AD%E7%9A%84%E5%8F%8C%E6%B3%A2%E6%B5%AA%E7%BA%BF/</loc>
-    <lastmod>2019-10-22</lastmod>
   </url>  <url>
     <loc>http://jee3.github.io/hello-world/</loc>
     <lastmod>2019-09-07</lastmod>
