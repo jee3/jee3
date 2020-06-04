@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jee3.github.io/"/>
-  <updated>2020-06-02T08:56:10.500Z</updated>
+  <updated>2020-06-04T05:37:29.987Z</updated>
   <id>http://jee3.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>利用Blob类文件对象进行有权限校验的文件下载</title>
+    <link href="http://jee3.github.io/download-files-via-blob/"/>
+    <id>http://jee3.github.io/download-files-via-blob/</id>
+    <published>2020-06-04T01:00:00.000Z</published>
+    <updated>2020-06-04T05:37:29.987Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;不用&lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt;标签怎么实现下载功能呢？&lt;/p&gt;
+&lt;p&gt;我们知道，一般情况下，前端要去请求下载一个文件，一般是直接把地址写在&lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt;标签里面，权限的情况由后端控制，那除此之外还有其他方法吗？如果我想在发送请求的时候就直接携带 tokne 校验身份呢？&lt;/p&gt;
+&lt;p&gt;答案是肯定的，本文就来介绍一种利用&lt;code&gt;Blob&lt;/code&gt;来实现下载功能的方式。&lt;/p&gt;
+&lt;p&gt;直接上代码&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
+    
+      <category term="Axios" scheme="http://jee3.github.io/categories/FE/Axios/"/>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
+    
+      <category term="Axios" scheme="http://jee3.github.io/tags/Axios/"/>
+    
+  </entry>
   
   <entry>
     <title>React多个系统之间登录登出逻辑的实现</title>
@@ -40,6 +68,33 @@
       <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
     
       <category term="React" scheme="http://jee3.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一次axios为什么会发两次请求？</title>
+    <link href="http://jee3.github.io/one-axios-two-requests/"/>
+    <id>http://jee3.github.io/one-axios-two-requests/</id>
+    <published>2020-06-02T01:00:00.000Z</published>
+    <updated>2020-06-04T05:36:21.741Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在开发过程中，可能会遇到代码里面只有一个 axios，但是打开控制台的网络，却发现有两次请求，如下图所示： &lt;img src=&quot;https://tva1.sinaimg.cn/large/007S8ZIlgy1gffb2sgqadj30zo0sugsu.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;点击其中一个请求，发现&lt;code&gt;method&lt;/code&gt;并不是指定的&lt;code&gt;GET&lt;/code&gt;请求，而是&lt;code&gt;OPTIONS&lt;/code&gt;，那是为什么呢？&lt;/p&gt;
+&lt;p&gt;原来, 允许跨域的时候, 不只是服务端设置&lt;code&gt;Access-Control-Allow-Origin: *&lt;/code&gt;，这是普通的请求，除此之外, 还一种叫请求叫&lt;strong&gt;preflighted request&lt;/strong&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
+    
+      <category term="Axios" scheme="http://jee3.github.io/categories/FE/Axios/"/>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
+    
+      <category term="Axios" scheme="http://jee3.github.io/tags/Axios/"/>
     
   </entry>
   
@@ -126,6 +181,32 @@
       <category term="Ant-design" scheme="http://jee3.github.io/tags/Ant-design/"/>
     
       <category term="React" scheme="http://jee3.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Webpack打包优化</title>
+    <link href="http://jee3.github.io/webpack-optimization/"/>
+    <id>http://jee3.github.io/webpack-optimization/</id>
+    <published>2020-05-12T01:00:00.000Z</published>
+    <updated>2020-06-04T05:36:05.923Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前端有一个很常见的需求，就是要把 js 打的包切割，这样用户在访问的时候，可以并行加载多个 js 包，大大提高访问速度，缩短首屏白屏时间。&lt;/p&gt;
+&lt;h1 id=&quot;optimization-splitChunks&quot;&gt;&lt;a href=&quot;#optimization-splitChunks&quot; class=&quot;headerlink&quot; title=&quot;optimization.splitChunks&quot;&gt;&lt;/a&gt;optimization.splitChunks&lt;/h1&gt;&lt;p&gt;直接上代码&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
+    
+      <category term="Webpack" scheme="http://jee3.github.io/categories/FE/Webpack/"/>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
+    
+      <category term="Webpack" scheme="http://jee3.github.io/tags/Webpack/"/>
     
   </entry>
   
@@ -497,86 +578,6 @@
       <category term="计算机主修课程" scheme="http://jee3.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%BB%E4%BF%AE%E8%AF%BE%E7%A8%8B/"/>
     
       <category term="数据结构" scheme="http://jee3.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript中的双波浪线是什么意思？</title>
-    <link href="http://jee3.github.io/JavaScript%E4%B8%AD%E7%9A%84%E5%8F%8C%E6%B3%A2%E6%B5%AA%E7%BA%BF/"/>
-    <id>http://jee3.github.io/JavaScript%E4%B8%AD%E7%9A%84%E5%8F%8C%E6%B3%A2%E6%B5%AA%E7%BA%BF/</id>
-    <published>2019-09-23T16:00:00.000Z</published>
-    <updated>2019-10-22T06:32:48.026Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;按位操作符&quot;&gt;&lt;a href=&quot;#按位操作符&quot; class=&quot;headerlink&quot; title=&quot;按位操作符&quot;&gt;&lt;/a&gt;按位操作符&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;按位操作符的 MDN 讲解&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;按位操作符（Bitwise operators）将其操作数（operands）当作 32 位的比特序列（由 0 和 1 组成），而不是十进制、十六进制或八进制数值。例如，十进制数 9，用二进制表示则为 1001。按位操作符操作数字的二进制形式，但是返回值依然是标准的 JavaScript 数值。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6ly1g7avoqt54fj32fr0u0qgz.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;tips：异或 ⊕ 和同或 ⨀ 是反函数（异或是俩不一样为 1，同或就是俩一样为 1）&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;OR 或，AND 与，XOR 异或，NOR 或非，NAND 与非，XNOR 异或非&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
-    
-      <category term="JS基础" scheme="http://jee3.github.io/categories/FE/JS%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
-    
-      <category term="JS基础" scheme="http://jee3.github.io/tags/JS%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>assetsPublicPath</title>
-    <link href="http://jee3.github.io/assets-public-path/"/>
-    <id>http://jee3.github.io/assets-public-path/</id>
-    <published>2019-08-06T16:00:00.000Z</published>
-    <updated>2020-06-01T08:10:26.898Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;assetsPublicPath-相关配置&quot;&gt;&lt;a href=&quot;#assetsPublicPath-相关配置&quot; class=&quot;headerlink&quot; title=&quot;assetsPublicPath 相关配置&quot;&gt;&lt;/a&gt;assetsPublicPath 相关配置&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;当打包之后页面空白，字体图标和 mock 数据无法正常加载时，可能是 assetsPublicPath:’/‘的问题，先来了解一下配置属性的基本含义&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
-    
-      <category term="Vue" scheme="http://jee3.github.io/categories/FE/Vue/"/>
-    
-      <category term="Webpack" scheme="http://jee3.github.io/categories/FE/Webpack/"/>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
-    
-      <category term="Vue" scheme="http://jee3.github.io/tags/Vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git常用命令</title>
-    <link href="http://jee3.github.io/git-commands/"/>
-    <id>http://jee3.github.io/git-commands/</id>
-    <published>2018-09-05T16:00:00.000Z</published>
-    <updated>2020-06-02T12:06:13.544Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;git-常用命令&quot;&gt;&lt;a href=&quot;#git-常用命令&quot; class=&quot;headerlink&quot; title=&quot;git 常用命令&quot;&gt;&lt;/a&gt;git 常用命令&lt;/h1&gt;&lt;p&gt;git 命令备忘录(文末有彩蛋!!!)&lt;/p&gt;
-&lt;h2 id=&quot;git-设置&quot;&gt;&lt;a href=&quot;#git-设置&quot; class=&quot;headerlink&quot; title=&quot;git 设置&quot;&gt;&lt;/a&gt;git 设置&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git config --global user.name &lt;span class=&quot;string&quot;&gt;&quot;Your Name&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ git config --global user.email &lt;span class=&quot;string&quot;&gt;&quot;email@example.com&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="Git" scheme="http://jee3.github.io/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="http://jee3.github.io/tags/Git/"/>
     
   </entry>
   

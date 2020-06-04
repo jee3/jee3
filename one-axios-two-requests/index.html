@@ -7,11 +7,11 @@
 <head>
   <meta charset="utf-8" />
    
-  <meta name="keywords" content="React 多个系统 登录登出," />
+  <meta name="keywords" content="preflighted request  OPTIONS," />
    
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    React多个系统之间登录登出逻辑的实现 |  
+    一次axios为什么会发两次请求？ |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -45,7 +45,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-React多个系统之间登录登出逻辑的实现" class="article article-type-post" itemscope
+  <article id="post-one-axios-two-requests" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -53,7 +53,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  React多个系统之间登录登出逻辑的实现
+  一次axios为什么会发两次请求？
 </h1>
  
 
@@ -62,12 +62,12 @@
 
     
     <div class="article-meta">
-      <a href="/React%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="article-date">
-  <time datetime="2020-06-02T02:12:55.000Z" itemprop="datePublished">2020-06-02</time>
+      <a href="/one-axios-two-requests/" class="article-date">
+  <time datetime="2020-06-02T01:00:00.000Z" itemprop="datePublished">2020-06-02</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/Axios/">Axios</a>
   </div>
 
       
@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">796</span>
+            <span class="post-count">247</span>
         </span>
     </span>
 
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">3 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
@@ -97,8 +97,6 @@
 
     
     
-    <div class="tocbot"></div>
-
 
 
 
@@ -111,23 +109,18 @@
       
 
       
-      <p>本文介绍 React 登录登出逻辑的一种实现方法。</p>
-<p>用户在注册页面进行注册表单提交，正确提交信息后，进入登录页面，登录页面检测用户是否已经登录（此处有多种方法，可以检测 cookie，我用的是检测 localStorage 是否有我登录时存的一个值）。</p>
-<p>如果直接在地址栏输入地址，检测到未登录状态，则返回到登录页面。</p>
+      <p>在开发过程中，可能会遇到代码里面只有一个 axios，但是打开控制台的网络，却发现有两次请求，如下图所示： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gffb2sgqadj30zo0sugsu.jpg" alt=""></p>
+<p>点击其中一个请求，发现<code>method</code>并不是指定的<code>GET</code>请求，而是<code>OPTIONS</code>，那是为什么呢？</p>
+<p>原来, 允许跨域的时候, 不只是服务端设置<code>Access-Control-Allow-Origin: *</code>，这是普通的请求，除此之外, 还一种叫请求叫<strong>preflighted request</strong>。</p>
 <a id="more"></a>
 
-<p>在其他功能页面每次向服务端发送数据请求的时候，都在请求 header 里面加上 token，如果服务端返回 401，则按照下面的 http response 拦截处理，返回登录页面</p>
-<h1 id="axios-拦截"><a href="#axios-拦截" class="headerlink" title="axios 拦截"></a>axios 拦截</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// http request 拦截器</span></span><br><span class="line">axios.interceptors.request.use(</span><br><span class="line">	(config) =&gt; &#123;</span><br><span class="line">		<span class="keyword">if</span> (store.state.token) &#123;</span><br><span class="line">			<span class="comment">// 判断是否存在token，如果存在的话，则每个http header都加上token</span></span><br><span class="line">			config.headers.Authorization = <span class="string">`token <span class="subst">$&#123;store.state.token&#125;</span>`</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> config;</span><br><span class="line">	&#125;,</span><br><span class="line">	(err) =&gt; &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err);</span><br><span class="line">	&#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// http response 拦截器</span></span><br><span class="line">axios.interceptors.response.use(</span><br><span class="line">	(response) =&gt; &#123;</span><br><span class="line">		<span class="keyword">return</span> response;</span><br><span class="line">	&#125;,</span><br><span class="line">	(error) =&gt; &#123;</span><br><span class="line">		<span class="keyword">if</span> (error.response) &#123;</span><br><span class="line">			<span class="keyword">switch</span> (error.response.status) &#123;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">401</span>:</span><br><span class="line">					<span class="comment">// 返回 401 清除token信息并跳转到登录页面</span></span><br><span class="line">					<span class="comment">// message.error('登录超时，请重新登录');</span></span><br><span class="line">					setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">						history.push(<span class="string">'/login'</span>);</span><br><span class="line">					&#125;, <span class="number">1000</span>);</span><br><span class="line">				<span class="keyword">case</span> <span class="number">500</span>:</span><br><span class="line">					history.push(<span class="string">'/servererror'</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error.response.data); <span class="comment">// 返回接口返回的错误信息</span></span><br><span class="line">	&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h1 id="在请求的-url-里面直接加-token"><a href="#在请求的-url-里面直接加-token" class="headerlink" title="在请求的 url 里面直接加 token"></a>在请求的 url 里面直接加 token</h1><p>需求是在 A 系统的页面通过点击事件跳转到 B 系统的页面，所以不能用 router 来做。</p>
-<p>这里前端通过 token 与时间戳拼接加密（用的是 base64 对称加密，方便后端解密），然后将加密后的 token 直接添加到 url 的参数里面。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A系统</span></span><br><span class="line"><span class="keyword">import</span> Base64 <span class="keyword">from</span> <span class="string">'base-64'</span>;</span><br><span class="line"><span class="keyword">let</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().valueOf();</span><br><span class="line"><span class="keyword">let</span> temp = <span class="built_in">window</span>.localStorage.token + <span class="string">'+'</span> + time;</span><br><span class="line"><span class="keyword">let</span> code = Base64.encode(temp);</span><br><span class="line"><span class="built_in">window</span>.open(<span class="string">`<span class="subst">$&#123;API&#125;</span>/example?token=<span class="subst">$&#123;code&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
-
-<p>在 B 系统的首页，先后通过对 url 的拆分、decode 解密、再与时间戳分离，获取到 token，再发请求给后端校验权限，如果没有权限，则跳回到 A 系统的登录界面。</p>
-<p>这样的话，用户就不能通过复制 B 系统链接的方式绕过 A 系统的登录。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// B系统</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">		<span class="keyword">super</span>(props);</span><br><span class="line">		<span class="keyword">this</span>.state = &#123;</span><br><span class="line">			intervalId: <span class="literal">null</span>,</span><br><span class="line">			currentCount: <span class="number">2</span>,</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//组件未挂载前就发送请求，验证身份</span></span><br><span class="line">	componentWillMount() &#123;</span><br><span class="line">		<span class="keyword">const</span> url = <span class="built_in">window</span>.location.href;</span><br><span class="line">		<span class="keyword">const</span> code = url.substring(url.indexOf(<span class="string">'='</span>) + <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">const</span> tokenAndTime = Base64.decode(code);</span><br><span class="line">		<span class="keyword">const</span> token = tokenAndTime.split(<span class="string">'+'</span>)[<span class="number">0</span>];</span><br><span class="line">		localStorage.setItem(<span class="string">'token'</span>, token);</span><br><span class="line">		axios.interceptors.response.use(); <span class="comment">//和上面的response拦截一样</span></span><br><span class="line">		axios(&#123;</span><br><span class="line">			method: <span class="string">'get'</span>,</span><br><span class="line">			url: <span class="string">`https://www.example.com/api`</span>,</span><br><span class="line">			headers: &#123; <span class="attr">Authorization</span>: token &#125;,</span><br><span class="line">		&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">			<span class="comment">//处理返回数据</span></span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//组件挂载后定时执行</span></span><br><span class="line">	componentDidMount() &#123;</span><br><span class="line">		<span class="comment">//50分钟校验一次token有没有过期</span></span><br><span class="line">		<span class="keyword">let</span> intervalId = setInterval(<span class="keyword">this</span>.timer, <span class="number">3000000</span>);</span><br><span class="line">		<span class="keyword">this</span>.setState(&#123; <span class="attr">intervalId</span>: intervalId &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	componentWillUnmount() &#123;</span><br><span class="line">		clearInterval(<span class="keyword">this</span>.state.intervalId);</span><br><span class="line">	&#125;</span><br><span class="line">	timer() &#123;</span><br><span class="line">		<span class="keyword">const</span> storage = <span class="built_in">window</span>.localStorage;</span><br><span class="line">		<span class="keyword">let</span> newCount = <span class="keyword">this</span>.state.currentCount - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (newCount &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">			axios(&#123;</span><br><span class="line">				method: <span class="string">'get'</span>,</span><br><span class="line">				url: <span class="string">`https://www.example.com/api`</span>,</span><br><span class="line">				headers: &#123; <span class="attr">Authorization</span>: storage.token &#125;,</span><br><span class="line">			&#125;).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (response.data.code === <span class="number">200</span>) &#123;</span><br><span class="line">					<span class="built_in">console</span>.log(<span class="string">'token有效'</span>);</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="built_in">console</span>.log(<span class="string">'token失效'</span>);</span><br><span class="line">					<span class="built_in">window</span>.location.href = <span class="string">'https://www.A.com'</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">			<span class="keyword">this</span>.setState(&#123; <span class="attr">currentCount</span>: newCount &#125;);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			clearInterval(<span class="keyword">this</span>.state.intervalId);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>应该会有更好的实现方式，这里就算是抛砖引玉了。</p>
+<p><code>preflighted request</code>在发送真正的请求前, 会先发送一个方法为<code>OPTIONS</code>的预请求(preflight request), 用于试探服务端是否能接受真正的请求，如果<code>OPTIONS</code>获得的回应是拒绝性质的，比如 404\403\500 等 http 状态，就会停止 post、put 等请求的发出。</p>
+<p>那么，什么情况下请求会变成 preflighted request 呢?</p>
+<p>**1. 请求方法不是 GET/HEAD/POST</p>
+<ol start="2">
+<li>POST 请求的 Content-Type 并非 application/x-www-form-urlencoded, multipart/form-data, 或 text/plain</li>
+<li>请求设置了自定义的 header 字段**</li>
+</ol>
 
       
       <!-- reward -->
@@ -196,14 +189,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/React%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/one-axios-two-requests/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Axios/" rel="tag">Axios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li></ul>
 
 
     </footer>
@@ -214,19 +207,19 @@
   
   <nav class="article-nav">
     
-      <a href="/download-files-via-blob/" class="article-nav-link">
+      <a href="/React%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E9%80%BB%E8%BE%91%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            利用Blob类文件对象进行有权限校验的文件下载
+            React多个系统之间登录登出逻辑的实现
           
         </div>
       </a>
     
     
-      <a href="/one-axios-two-requests/" class="article-nav-link">
+      <a href="/React-first-screen-loading-optimization/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">一次axios为什么会发两次请求？</div>
+        <div class="article-nav-title">React优化首屏加载时间之异步加载</div>
       </a>
     
   </nav>

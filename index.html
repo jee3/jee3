@@ -77,6 +77,83 @@
     
     
     
+    <article id="post-download-files-via-blob" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/download-files-via-blob/"
+    >利用Blob类文件对象进行有权限校验的文件下载</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/download-files-via-blob/" class="article-date">
+  <time datetime="2020-06-04T01:00:00.000Z" itemprop="datePublished">2020-06-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/Axios/">Axios</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>不用<code>&lt;a&gt;</code>标签怎么实现下载功能呢？</p>
+<p>我们知道，一般情况下，前端要去请求下载一个文件，一般是直接把地址写在<code>&lt;a&gt;</code>标签里面，权限的情况由后端控制，那除此之外还有其他方法吗？如果我想在发送请求的时候就直接携带 tokne 校验身份呢？</p>
+<p>答案是肯定的，本文就来介绍一种利用<code>Blob</code>来实现下载功能的方式。</p>
+<p>直接上代码</p>
+      
+      <a class="article-more-link" href="/download-files-via-blob/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Axios/" rel="tag">Axios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-React多个系统之间登录登出逻辑的实现" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -135,6 +212,82 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-one-axios-two-requests" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/one-axios-two-requests/"
+    >一次axios为什么会发两次请求？</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/one-axios-two-requests/" class="article-date">
+  <time datetime="2020-06-02T01:00:00.000Z" itemprop="datePublished">2020-06-02</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/Axios/">Axios</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>在开发过程中，可能会遇到代码里面只有一个 axios，但是打开控制台的网络，却发现有两次请求，如下图所示： <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gffb2sgqadj30zo0sugsu.jpg" alt=""></p>
+<p>点击其中一个请求，发现<code>method</code>并不是指定的<code>GET</code>请求，而是<code>OPTIONS</code>，那是为什么呢？</p>
+<p>原来, 允许跨域的时候, 不只是服务端设置<code>Access-Control-Allow-Origin: *</code>，这是普通的请求，除此之外, 还一种叫请求叫<strong>preflighted request</strong>。</p>
+      
+      <a class="article-more-link" href="/one-axios-two-requests/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Axios/" rel="tag">Axios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li></ul>
 
 
     </footer>
@@ -378,6 +531,81 @@
 
 </article>
     
+    <article id="post-webpack-optimization" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/webpack-optimization/"
+    >Webpack打包优化</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/webpack-optimization/" class="article-date">
+  <time datetime="2020-05-12T01:00:00.000Z" itemprop="datePublished">2020-05-12</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/Webpack/">Webpack</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>前端有一个很常见的需求，就是要把 js 打的包切割，这样用户在访问的时候，可以并行加载多个 js 包，大大提高访问速度，缩短首屏白屏时间。</p>
+<h1 id="optimization-splitChunks"><a href="#optimization-splitChunks" class="headerlink" title="optimization.splitChunks"></a>optimization.splitChunks</h1><p>直接上代码</p>
+      
+      <a class="article-more-link" href="/webpack-optimization/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webpack/" rel="tag">Webpack</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-Upload组件-文件选择后不立即上传" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -586,239 +814,6 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ant-design/" rel="tag">Ant-design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-React-引领未来的用户界面开发框架" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/"
-    >《React——引领未来的用户界面开发框架》总结</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" class="article-date">
-  <time datetime="2020-01-21T16:00:00.000Z" itemprop="datePublished">2020-01-22</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/React/">React</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>所有代码示例：<a href="http://git.io/vlcpa" target="_blank" rel="noopener">http://git.io/vlcpa</a></p>
-<h1 id="4-数据流"><a href="#4-数据流" class="headerlink" title="4 数据流"></a>4 数据流</h1><h2 id="PropTypes"><a href="#PropTypes" class="headerlink" title="PropTypes"></a>PropTypes</h2><p>提供了一种验证 props 的方式</p>
-<h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><p>千万不能直接修改 this.state，永远记得要通过 this.setState 方法修改</p>
-<p>state 中应只保存最简单的数据，不要保存计算出的值</p>
-<p>不要尝试把 props 复制到 state 中，要尽可能将 props 当作数据源</p>
-<p>当不需要内部状态、refs 和生命周期函数时，将组件变成函数组件可以减少冗余和复杂性</p>
-      
-      <a class="article-more-link" href="/React-%E5%BC%95%E9%A2%86%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-git-pro" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/git-pro/"
-    >Git 进阶</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/git-pro/" class="article-date">
-  <time datetime="2019-12-17T16:00:00.000Z" itemprop="datePublished">2019-12-18</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Git/">Git</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。</p>
-<h1 id="fatal-Could-not-read-from-remote-repository-的解决办法"><a href="#fatal-Could-not-read-from-remote-repository-的解决办法" class="headerlink" title="fatal: Could not read from remote repository.的解决办法:"></a>fatal: Could not read from remote repository.的解决办法:</h1><p>查看远端地址 <code>git remote –v</code> 查看配置 <code>git config --list</code> <code>git status</code></p>
-      
-      <a class="article-more-link" href="/git-pro/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-JS高程" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/JS%E9%AB%98%E7%A8%8B/"
-    >《Javascript高级程序设计》总结</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/JS%E9%AB%98%E7%A8%8B/" class="article-date">
-  <time datetime="2019-11-22T16:00:00.000Z" itemprop="datePublished">2019-11-23</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>复制基本类型值的时候，会新创建一个。复制引用类型值的时候，只是复制指针，指针指向堆中同一个对象。</p>
-<h1 id="5-引用类型"><a href="#5-引用类型" class="headerlink" title="5 引用类型"></a>5 引用类型</h1><p>到底是不是数组，可以用.isArray()，instanceof 在多个框架（两个以上全局执行环境）就不好用了</p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8mz1tcg1mj30ew0dg75n.jpg" alt=""></p>
-<p>array.push():添加到数组末尾，返回新长度 array.pop():返回数组最后一一项 array.shift():移除并返回第一项 array.unshift():前端添加任意项，返回新长度</p>
-<p>sort()排序会将‘15’放在‘5’前面，因为比较第一个字符。可以接收一个用于比较的函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1, value2</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> value2 - value1;</span><br><span class="line">&#125;</span><br><span class="line">arr.sort(compare);</span><br></pre></td></tr></table></figure>
-      
-      <a class="article-more-link" href="/JS%E9%AB%98%E7%A8%8B/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag">JS基础</a></li></ul>
 
 
     </footer>
