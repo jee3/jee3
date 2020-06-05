@@ -565,6 +565,128 @@
       </tags>
   </entry>
   <entry>
+    <title>《ES6标准入门》学习总结</title>
+    <url>/ES6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>《ES6 标准入门》学习总结</p>
+<h1 id="3-变量的解构赋值"><a href="#3-变量的解构赋值" class="headerlink" title="3 变量的解构赋值"></a>3 变量的解构赋值</h1><h1 id="3-4-数值和布尔值的解构"><a href="#3-4-数值和布尔值的解构" class="headerlink" title="3.4 数值和布尔值的解构"></a>3.4 数值和布尔值的解构</h1><p>解构赋值的规则：只要等号右边的值不是对象或者数组，就先将其转为对象。</p>
+<a id="more"></a>
+
+<h1 id="4-字符串的扩展"><a href="#4-字符串的扩展" class="headerlink" title="4 字符串的扩展"></a>4 字符串的扩展</h1><h2 id="4-7-includes-startsWith-endsWith"><a href="#4-7-includes-startsWith-endsWith" class="headerlink" title="4.7 includes(),startsWith(),endsWith()"></a>4.7 includes(),startsWith(),endsWith()</h2><h2 id="4-8-repeat"><a href="#4-8-repeat" class="headerlink" title="4.8 repeat()"></a>4.8 repeat()</h2><h2 id="4-9-padStart-padEnd"><a href="#4-9-padStart-padEnd" class="headerlink" title="4.9 padStart(),padEnd()"></a>4.9 padStart(),padEnd()</h2><p>补全</p>
+<h2 id="4-12-标签模板"><a href="#4-12-标签模板" class="headerlink" title="4.12 标签模板"></a>4.12 标签模板</h2><p>可以过滤 HTML 字符串，防止用户输入恶意内容</p>
+<h2 id="4-13-String-raw"><a href="#4-13-String-raw" class="headerlink" title="4.13 String.raw()"></a>4.13 String.raw()</h2><p>返回一个反斜线都会被转义的字符串，对应替换变量后的模板字符串</p>
+<h1 id="5-正则的扩展"><a href="#5-正则的扩展" class="headerlink" title="5 正则的扩展"></a>5 正则的扩展</h1><h2 id="5-3-u-修饰符"><a href="#5-3-u-修饰符" class="headerlink" title="5.3 u 修饰符"></a>5.3 u 修饰符</h2><h3 id="预定义模式"><a href="#预定义模式" class="headerlink" title="预定义模式"></a>预定义模式</h3><h2 id="5-4-y-修饰符"><a href="#5-4-y-修饰符" class="headerlink" title="5.4 y 修饰符"></a>5.4 y 修饰符</h2><h2 id="5-8-后行断言"><a href="#5-8-后行断言" class="headerlink" title="5.8 后行断言"></a>5.8 后行断言</h2><p>JavaScript 语言只支持先行断言（和先行否定断言），不支持后行断言。</p>
+<p>先行断言：x 只有在 y 前面才匹配，/x(?=y)/</p>
+<p>先行否定断言：x 只有不在 y 前面才匹配，/x(?!y)/</p>
+<p>后行断言：x 只有在 y 后面才匹配，/(?&lt;=y)x/</p>
+<p>后行否定断言：x 只有不在 y 后面才匹配，/(?&lt;!y)x/</p>
+<h2 id="5-9-Unicode-属性类"><a href="#5-9-Unicode-属性类" class="headerlink" title="5.9 Unicode 属性类"></a>5.9 Unicode 属性类</h2><h1 id="6-数值的扩展"><a href="#6-数值的扩展" class="headerlink" title="6 数值的扩展"></a>6 数值的扩展</h1><h2 id="6-7-Math-对象的扩展"><a href="#6-7-Math-对象的扩展" class="headerlink" title="6.7 Math 对象的扩展"></a>6.7 Math 对象的扩展</h2><h3 id="6-7-1-Math-trunc"><a href="#6-7-1-Math-trunc" class="headerlink" title="6.7.1 Math.trunc()"></a>6.7.1 Math.trunc()</h3><p>去掉小数部分</p>
+<h3 id="6-7-1-Math-sign"><a href="#6-7-1-Math-sign" class="headerlink" title="6.7.1 Math.sign()"></a>6.7.1 Math.sign()</h3><p>判断一个数到底是正数、负数、还是零</p>
+<h3 id="6-7-8-对数方法"><a href="#6-7-8-对数方法" class="headerlink" title="6.7.8 对数方法"></a>6.7.8 对数方法</h3><h2 id="6-8-Math-signbit"><a href="#6-8-Math-signbit" class="headerlink" title="6.8 Math.signbit()"></a>6.8 Math.signbit()</h2><h2 id="6-9-指数运算符"><a href="#6-9-指数运算符" class="headerlink" title="6.9 指数运算符"></a>6.9 指数运算符</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="number">4</span>;</span><br><span class="line">b **= <span class="number">3</span>; <span class="comment">// b=b*b*b</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="7-函数的扩展"><a href="#7-函数的扩展" class="headerlink" title="7 函数的扩展"></a>7 函数的扩展</h1><h3 id="7-1-3-参数默认值的位置"><a href="#7-1-3-参数默认值的位置" class="headerlink" title="7.1.3 参数默认值的位置"></a>7.1.3 参数默认值的位置</h3><p>通常情况下，定义了默认值的参数应该是函数的尾参数，如果非尾部的参数设置默认值，实际上这个参数是无法省略</p>
+<h2 id="7-5-箭头函数"><a href="#7-5-箭头函数" class="headerlink" title="7.5 箭头函数"></a>7.5 箭头函数</h2><p>=&gt;后面就是函数，如果只是变量和表达式，就代表是 return 值。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> sum = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> num1 + num2;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span> (<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>如果有{}，则代表函数体多于一行的代码块；如果要返回对象，则用<code>({ id: id, name: &quot;Temp&quot; })</code>表示对象</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8phrw5mfgj30iq0liq4z.jpg" alt=""></p>
+<h3 id="7-5-2-注意事项"><a href="#7-5-2-注意事项" class="headerlink" title="7.5.2 注意事项"></a>7.5.2 注意事项</h3><ol>
+<li>函数体内的 this 对象就是定义时所在的对象，而不是使用时所在的对象</li>
+<li>不可以当作构造函数。也就是说，不可以使用 new 命令，否则会抛出错误</li>
+<li>不可以使用 arguments 对象，因为不存在。如果要用，可以用 rest 参数代替</li>
+<li>不可以使用 yield 命令，因此箭头函数不能用作 Generator 函数</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'id:'</span>, <span class="keyword">this</span>.id);</span><br><span class="line">	&#125;, <span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> id = <span class="number">21</span>;</span><br><span class="line">foo.call(&#123; <span class="attr">id</span>: <span class="number">42</span> &#125;); <span class="comment">//id:42</span></span><br></pre></td></tr></table></figure>
+
+<p>如果是普通函数，执行时 this 应该指向全局对象 window，应该输出 21.但是箭头函数的 this 总是指向函数定义生效时的对象（42）</p>
+<p><strong>this 指向的固定化的根本原因是：箭头函数根本没有自己的 this，导致内部的 this 就是外层代码块的 this。也正是因为它没有 this，所以不能用作构造函数</strong></p>
+<h3 id="7-5-3-嵌套的箭头函数"><a href="#7-5-3-嵌套的箭头函数" class="headerlink" title="7.5.3 嵌套的箭头函数"></a>7.5.3 嵌套的箭头函数</h3><p><strong>箭头函数部署管道机制（pipeline），还可以改写 λ 演算</strong></p>
+<h2 id="7-6-绑定-this"><a href="#7-6-绑定-this" class="headerlink" title="7.6 绑定 this"></a>7.6 绑定 this</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">foo::bar;</span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line">bar.bind(foo);</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-7-尾调用优化"><a href="#7-7-尾调用优化" class="headerlink" title="7.7 尾调用优化"></a>7.7 尾调用优化</h2><h3 id="7-7-2-尾调用优化（只在严格模式下开启）·"><a href="#7-7-2-尾调用优化（只在严格模式下开启）·" class="headerlink" title="7.7.2 尾调用优化（只在严格模式下开启）·"></a>7.7.2 尾调用优化（只在严格模式下开启）·</h3><p>函数调用会在内存形成一个“调用帧“（call frame），保存调用位置和内部变量等信息。如果在函数 A 的内部调用函数 B，那么在 A 的调用帧上方还会形成一个 B 的调用帧，等到 B 运行结束，将结果返回到 A，B 的调用帧才会消失。</p>
+<p>所有的调用帧就形成了调用栈（call stack）</p>
+<p><strong>只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行“尾调用优化”</strong></p>
+<h3 id="7-7-3-尾递归"><a href="#7-7-3-尾递归" class="headerlink" title="7.7.3 尾递归"></a>7.7.3 尾递归</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> Fibonacci(n - <span class="number">1</span>) + Fibonacci(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci2</span>(<span class="params">n, ac1 = <span class="number">1</span>, ac2 = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> ac2;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> Fibonacci2(n - <span class="number">1</span>, ac2, ac1 + ac2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在 ES6 中，只要使用尾递归，就永远不会发生栈溢出（stack overflow），相对节省内存。</strong></p>
+<p><strong>柯里化（currying），将多参数的函数转化成单函数的形式</strong></p>
+<h3 id="7-7-6-尾递归优化的实现"><a href="#7-7-6-尾递归优化的实现" class="headerlink" title="7.7.6 尾递归优化的实现"></a>7.7.6 <strong>尾递归优化的实现</strong></h3><p>尾递归优化只在严格模式下生效。</p>
+<p>其他模式可以用“循环”替换“递归“，蹦床函数可以完成（trampoline）</p>
+<h1 id="8-数组的扩展"><a href="#8-数组的扩展" class="headerlink" title="8 数组的扩展"></a>8 数组的扩展</h1><p>扩展（spread）运算符：…</p>
+<h2 id="8-2-Array-from"><a href="#8-2-Array-from" class="headerlink" title="8.2 Array.from()"></a>8.2 Array.from()</h2><p>将两类对象转为真正的数组：类似数组的对象（array-like） 和 可遍历对象（iterable）</p>
+<h2 id="8-3-Array-of"><a href="#8-3-Array-of" class="headerlink" title="8.3 Array.of()"></a>8.3 Array.of()</h2><p>代替 Array()方法</p>
+<p><code>Array.of(3)</code>是<code>//[3]</code> <code>Array(3)</code>是<code>//[,,]</code></p>
+<h2 id="8-4-Array-copyWithin-target-start-0-end-this-length"><a href="#8-4-Array-copyWithin-target-start-0-end-this-length" class="headerlink" title="8.4 Array.copyWithin(target,start=0,end=this.length)"></a>8.4 Array.copyWithin(target,start=0,end=this.length)</h2><p>数组内复制替换</p>
+<h2 id="8-5-Array-find-fn-Array-findIndex-fn"><a href="#8-5-Array-find-fn-Array-findIndex-fn" class="headerlink" title="8.5 Array.find(fn) Array.findIndex(fn)"></a>8.5 Array.find(fn) Array.findIndex(fn)</h2><h2 id="8-6-Array-fill-value-start-end"><a href="#8-6-Array-fill-value-start-end" class="headerlink" title="8.6 Array.fill(value,start,end)"></a>8.6 Array.fill(value,start,end)</h2><h2 id="8-7-Array-entries-keys-values"><a href="#8-7-Array-entries-keys-values" class="headerlink" title="8.7 Array.entries() keys() values()"></a>8.7 Array.entries() keys() values()</h2><p>分别用于对数组键名、键值、键值对的遍历</p>
+<h2 id="8-8-Array-includes"><a href="#8-8-Array-includes" class="headerlink" title="8.8 Array.includes()"></a>8.8 Array.includes()</h2><p>注意与 Map 和 Set 的 has 方法区分。Map 的 has 是用来找键名的，Set 的 has 是找值的</p>
+<h2 id="8-9-数组的空位"><a href="#8-9-数组的空位" class="headerlink" title="8.9 数组的空位"></a>8.9 数组的空位</h2><ul>
+<li>es5 对空位的处理：</li>
+<li>forEach() filter() every() some()都会跳过空位</li>
+<li>map()会跳过空位，但是会保留这个值</li>
+<li>join() toString()会将空位视为 undefined，而 undefined 和 null 会被处理成空字符串</li>
+<li><strong>es6 则明确将空位转为 undefined</strong></li>
+</ul>
+<h1 id="9-对象的扩展"><a href="#9-对象的扩展" class="headerlink" title="9 对象的扩展"></a>9 对象的扩展</h1><h2 id="9-4-Object-is"><a href="#9-4-Object-is" class="headerlink" title="9.4 Object.is()"></a>9.4 Object.is()</h2><p>和===基本一致，不同之处： Object.is(+0,-0) //false Object.is(NaN,NaN) //true</p>
+<h2 id="9-5-Object-assign-target-source1-source2"><a href="#9-5-Object-assign-target-source1-source2" class="headerlink" title="9.5 Object.assign(target,source1,source2)"></a>9.5 Object.assign(target,source1,source2)</h2><p>只有字符串的包装对象会产生可枚举属性</p>
+<h1 id="10-Symbol"><a href="#10-Symbol" class="headerlink" title="10 Symbol"></a>10 Symbol</h1><h2 id="作为属性名的-Symbol"><a href="#作为属性名的-Symbol" class="headerlink" title="作为属性名的 Symbol"></a>作为属性名的 Symbol</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mySymbol = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line">a[mySymbol] = <span class="string">'hello'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123; [mySymbol]: <span class="string">'hello'</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, mySymbol, &#123; <span class="attr">value</span>: <span class="string">'hello'</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上三种方法都可以，但是不能用点运算。</p>
+<p>因为点运算符后面总是字符串</p>
+<p><strong>只有 Object.getOwnPropertySymbols 才能获取指定对象的所有 Symbol 属性名</strong></p>
+<p><strong>Reflect.ownKeys 返回所有键名</strong></p>
+<p>symbol.for(‘a’)：如果有 a，则使用，没有才创建</p>
+<p>Symbol.for(‘b’)===Symbol.for(‘b’)</p>
+<h1 id="11-Set-和-Map"><a href="#11-Set-和-Map" class="headerlink" title="11 Set 和 Map"></a>11 Set 和 Map</h1><p><a href="https://codeburst.io/javascript-es6-the-spread-syntax-f5c35525f754" target="_blank" rel="noopener">…运算符</a></p>
+<p><strong><a href="https://www.cnblogs.com/jf-67/p/8440758.html" target="_blank" rel="noopener">array.from</a></strong> set 实例四个方法：add(value),delete(value),has(value),clear()</p>
+<p>四个遍历：keys(),values(),entries(),forEach() 键名，键值，键值对，每个成员</p>
+<p>数组去重：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">3</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">let</span> unique = [...new <span class="built_in">Set</span>(arr)];</span><br></pre></td></tr></table></figure>
+
+<p>…运算符内部使用 for-of</p>
+<p><strong>unique 已经是数组了，不是 Set</strong></p>
+<p>用 set 实现交并差集 <code>let union=new Set([...a,...b])</code> <code>let interest=new Set([...a].filter(x=&gt;b.has(x)))</code> <code>let difference=new Set([...a].filter(x=&gt;!b.has(x)))</code></p>
+<p>适用 WeakMap 场景：</p>
+<ol>
+<li>注册监听事件的 listener 对象（dom 消失，绑定的监听函数也自动消失）</li>
+<li>部署私有属性</li>
+</ol>
+<p><strong>WeakMap 弱引用的只是键名而不是键值，键值是正常引用的</strong></p>
+<p><strong>forEach 可以接受第二个参数，用于绑定 this</strong></p>
+<h1 id="14-Promise-对象"><a href="#14-Promise-对象" class="headerlink" title="14 Promise 对象"></a>14 Promise 对象</h1><p>Promise 缺点：</p>
+<ol>
+<li>无法取消，一旦设定就会立即执行</li>
+<li>如果不写回调，错误不会抛出到外部</li>
+<li>执行期间不知道是刚开始还是快要结束</li>
+</ol>
+<p><strong>如果事件不断发生，应该采用<a href="https://nodejs.org/api/stream.html" target="_blank" rel="noopener">stream</a></strong></p>
+<h2 id="14-3-基本用法"><a href="#14-3-基本用法" class="headerlink" title="14.3 基本用法"></a>14.3 基本用法</h2><p>setTimeout(code, milliseconds, param1, param2, …) setTimeout(function, milliseconds, param1, param2, …)</p>
+<p>后面的 param 是传递给执行函数的其他参数</p>
+<p>then 的参数：第一个是 Resolved 的回调（必选），第二个是 Rejected 的回调（可选）</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g93nmh3wegj311z0u0ahf.jpg" alt=""></p>
+<h2 id="14-3-Promise-prototype-then"><a href="#14-3-Promise-prototype-then" class="headerlink" title="14.3 Promise.prototype.then()"></a>14.3 Promise.prototype.then()</h2><h2 id="14-4-Promise-prototype-catch"><a href="#14-4-Promise-prototype-catch" class="headerlink" title="14.4 Promise.prototype.catch()"></a>14.4 Promise.prototype.catch()</h2><h2 id="14-5-Promise-all"><a href="#14-5-Promise-all" class="headerlink" title="14.5 Promise.all()"></a>14.5 Promise.all()</h2><h2 id="14-6-Promise-race"><a href="#14-6-Promise-race" class="headerlink" title="14.6 Promise.race()"></a>14.6 Promise.race()</h2><h2 id="14-7-Promise-resolve"><a href="#14-7-Promise-resolve" class="headerlink" title="14.7 Promise.resolve()"></a>14.7 Promise.resolve()</h2><h2 id="14-8-Promise-reject"><a href="#14-8-Promise-reject" class="headerlink" title="14.8 Promise.reject()"></a>14.8 Promise.reject()</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> thenable = &#123;</span><br><span class="line">	then(resolve, reject) &#123;</span><br><span class="line">		reject(<span class="string">'出错了'</span>);</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Promise</span>.reject(thenable).catch(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(e === thenable);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="14-9-部署-done-finally"><a href="#14-9-部署-done-finally" class="headerlink" title="14.9 部署.done() .finally()"></a>14.9 部署.done() .finally()</h2><h2 id="14-11-Promise-try"><a href="#14-11-Promise-try" class="headerlink" title="14.11 Promise.try()"></a>14.11 Promise.try()</h2><h1 id="18-async-函数"><a href="#18-async-函数" class="headerlink" title="18 async 函数"></a>18 async 函数</h1><h2 id="18-3-语法"><a href="#18-3-语法" class="headerlink" title="18.3 语法"></a>18.3 语法</h2><p>async 函数返回的 Promise 对象必须等到内部所有 await 命令后面的 Promise 对象执行完毕才会发生状态改变，<strong>除非遇到 return 语句或者抛出错误</strong>，也就是说，<strong>只有 async 函数内部的异步操作执行完，才会执行 then 方法指定的回调函数</strong></p>
+<p>只要有一个 await 语句的 Promise 变为 reject，那么 async 函数就不会再继续执行</p>
+<p>错误处理：可以把 await 放在 try…catch 的 try 里面</p>
+<h1 id="import-as"><a href="#import-as" class="headerlink" title="import * as"></a>import * as</h1><p>import * as abc from ‘xxx’: 把 xxx 里面的“export a“和”export b“导出的内容组合成一个对象返回。</p>
+<p>import bcd from ‘xxx’：（export default bcd）只会导出这个默认的对象作为一个对象。</p>
+<h1 id="19-Class-的基本语法"><a href="#19-Class-的基本语法" class="headerlink" title="19 Class 的基本语法"></a>19 Class 的基本语法</h1><h2 id="19-1-简介"><a href="#19-1-简介" class="headerlink" title="19.1 简介"></a>19.1 简介</h2><p><strong>类的数据类型就是函数，类本身就指向构造函数</strong></p>
+<p><strong>类的所有方法都定义在类的 prototype 属性上</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> B();</span><br><span class="line"></span><br><span class="line">b.constructor === B.prototype.constructor; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>上述代码中，b 是 B 的实例，它的 constructor 方法就是 B 类原型的 constructor 方法。</p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>ES6+</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>ES6+</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript执行机制</title>
     <url>/javascript-execution-mechanism/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="JavaScript-执行（一）：Promise-里的代码为什么比-setTimeout-先执行？"><a href="#JavaScript-执行（一）：Promise-里的代码为什么比-setTimeout-先执行？" class="headerlink" title="JavaScript 执行（一）：Promise 里的代码为什么比 setTimeout 先执行？"></a>JavaScript 执行（一）：Promise 里的代码为什么比 setTimeout 先执行？</h1><p>宏观任务的队列就相当于事件循环。在宏观任务中，JavaScript 的 Promise 还会产生异步代码，JavaScript 必须保证这些异步代码在一个宏观任务中完成，因此，每个宏观任务中又包含了一个微观任务队列</p>
@@ -766,6 +888,142 @@
 <h1 id="25-新兴的-API"><a href="#25-新兴的-API" class="headerlink" title="25 新兴的 API"></a>25 新兴的 API</h1><h2 id="25-2-Page-Visibility-API"><a href="#25-2-Page-Visibility-API" class="headerlink" title="25.2 Page Visibility API"></a>25.2 Page Visibility API</h2><p>document.hidden document.visibilityState</p>
 <h2 id="25-3-Geolocation-API"><a href="#25-3-Geolocation-API" class="headerlink" title="25.3 Geolocation API"></a>25.3 Geolocation API</h2><p>navigator.geolocation 对象，包含 3 个方法 getCurrentPosition()</p>
 <h2 id="25-4-File-API"><a href="#25-4-File-API" class="headerlink" title="25.4 File API"></a>25.4 File API</h2><h3 id="FileReader-类型"><a href="#FileReader-类型" class="headerlink" title="FileReader 类型"></a>FileReader 类型</h3><h3 id="webkitSlice-读取部分内容"><a href="#webkitSlice-读取部分内容" class="headerlink" title="webkitSlice() 读取部分内容"></a>webkitSlice() 读取部分内容</h3><h3 id="用-XHR-上传文件"><a href="#用-XHR-上传文件" class="headerlink" title="用 XHR 上传文件"></a>用 XHR 上传文件</h3><h2 id="Web-Timing"><a href="#Web-Timing" class="headerlink" title="Web Timing"></a>Web Timing</h2><h2 id="Web-Worker"><a href="#Web-Worker" class="headerlink" title="Web Worker"></a>Web Worker</h2><p><code>var worker=new Worker(&#39;stufftodo.js&#39;)</code></p>
+]]></content>
+      <categories>
+        <category>FE</category>
+        <category>JS原理</category>
+      </categories>
+      <tags>
+        <tag>FE</tag>
+        <tag>JS原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端面试之前端基础2</title>
+    <url>/FE-interview-base2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="null-undefined"><a href="#null-undefined" class="headerlink" title="null===undefined?"></a>null===undefined?</h1><p>[]==’’ !![] !!’’</p>
+<p>==会转换类型再比较，===直接比较、不是同一类型就是 false <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g912bouuhsj31ou0ms44b.jpg" alt=""></p>
+<a id="more"></a>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	valueOf: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		x = <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj == <span class="number">0</span>, x);</span><br></pre></td></tr></table></figure>
+
+<p>输出 true,2</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	valueOf: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">	&#125;,</span><br><span class="line">	toString: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>抛出了异常: Uncaught TypeError: Cannot convert object to primitive value。复合类型的数据（比如对象、数组、函数等）之间的比较不是比较他们的值是否相等，而是比较他们引用的对象是否一样，因此也不难明白，为什么 [] === [] 判断为 false 了</p>
+<p><a href="https://www.jb51.net/article/117815.htm" target="_blank" rel="noopener">参考</a></p>
+<hr>
+<p><img src="evernotecid://D2FA04CE-24BF-478C-9996-C883AB8C2834/appyinxiangcom/7213637/ENResource/p152" alt="f2cb070ec1654b4393e105d4e6d66f32.png"></p>
+<hr>
+<h1 id="Cookie-的类别"><a href="#Cookie-的类别" class="headerlink" title="Cookie 的类别"></a>Cookie 的类别</h1><ol>
+<li>Session Cookie</li>
+</ol>
+<p>这个类型的 cookie 只在会话期间内有效，即当关闭浏览器的时候，它会被浏览器删除。设置 session cookie 的办法是：在创建 cookie 不设置 Expires 即可。</p>
+<ol start="2">
+<li>Persistent Cookie</li>
+</ol>
+<p>持久型 cookie 顾名思义就是会长期在用户会话中生效。当你设置 cookie 的属性 Max-Age 为 1 个月的话，那么在这个月里每个相关 URL 的 http 请求中都会带有这个 cookie。所以它可以记录很多用户初始化或自定义化的信息，比如什么时候第一次登录及弱登录态等。</p>
+<ol start="3">
+<li>Secure cookie</li>
+</ol>
+<p>安全 cookie 是在 https 访问下的 cookie 形态，以确保 cookie 在从客户端传递到 Server 的过程中始终加密的。这样做大大的降低的 cookie 内容直接暴露在黑客面前及被盗取的概率。</p>
+<ol start="4">
+<li>HttpOnly Cookie</li>
+</ol>
+<p>目前主流的浏览器已经都支持了 httponly cookie。1.IE5+ 2.Firefox 1.0+ 3.Opera 8.0+ 4.Safari/Chrome。在支持 httponly 的浏览器上，设置成 httponly 的 cookie 只能在 http(https)请求上传递。也就是说 httponly cookie 对客户端脚本语言(JavaScript)无效，从而避免了跨站攻击时 JS 偷取 cookie 的情况。当你使用 javascript 在设置同样名字的 cookie 时，只有原来的 httponly 值会传送到服务器。</p>
+<ol start="5">
+<li>3rd-party cookie</li>
+</ol>
+<p>第一方 cookie 是 cookie 种植在浏览器地址栏的域名或子域名下的。第三方 cookie 则是种植在不同于浏览器地址栏的域名下。例如：用户访问 a.com 时，在 ad.google.com 设置了个 cookie，在访问 b.com 的时候，也在 ad.google.com 设置了一个 cookie。这种场景经常出现在 google adsense，阿里妈妈之类的广告服务商。广告商就可以采集用户的一些习惯和访问历史。</p>
+<ol start="6">
+<li>Super Cookie</li>
+</ol>
+<p>超级 cookie 是设置公共域名前缀上的 cookie。通常 a.b.com 的 cookie 可以设置在 a.b.com 和 b.com，而不允许设置在.com 上，但是很不幸的是历史上一些老版本的浏览器因为对新增后缀过滤不足导致过超级 cookie 的产生。</p>
+<h1 id="vue-什么时候用-computed-watch"><a href="#vue-什么时候用-computed-watch" class="headerlink" title="vue 什么时候用 computed watch"></a>vue 什么时候用 computed watch</h1><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line">	&#123;&#123; message.split('').reverse().join('') &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个地方，模板不再是简单的声明式逻辑。你必须看一段时间才能意识到，这里是想要显示变量 message 的翻转字符串。当你想要在模板中多次引用此处的翻转字符串时，就会更加难以处理。</p>
+<p>所以，<strong>对于任何复杂逻辑，你都应当使用计算属性</strong>。</p>
+<p>使用 watch 选项允许我们</p>
+<ol>
+<li>执行异步操作 (访问一个 API)，</li>
+<li>限制我们执行该操作的频率，</li>
+<li>并在我们得到最终结果前，设置中间状态。</li>
+</ol>
+<p>这些都是计算属性无法做到的。</p>
+<h2 id="computed-和-methods"><a href="#computed-和-methods" class="headerlink" title="computed 和 methods"></a>computed 和 methods</h2><p><strong>计算属性是基于它们的响应式依赖进行缓存的</strong>，只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。</p>
+<h1 id="style"><a href="#style" class="headerlink" title="style"></a>style</h1><p>比较链接方式和导入方式链接方式（下面用 link 代替）和导入方式（下面用 @import 代替）都是引入外部的 CSS 文件的方式，下面我们来比较这两种方式，并且说明为什么不推荐使用 @import。</p>
+<ul>
+<li>link 属于 HTML，通过 <link> 标签中的 href 属性来引入外部文件，而 @import 属于 CSS，所以导入语句应写在 CSS 中，要注意的是导入语句应写在样式表的开头，否则无法正确导入外部文件；</li>
+<li>@import 是 CSS2.1 才出现的概念，所以如果浏览器版本较低，无法正确导入外部样式文件；</li>
+<li>当 HTML 文件被加载时，link 引用的文件会同时被加载，而 @import 引用的文件则会等页面全部下载完毕再被加载；</li>
+</ul>
+<h1 id="header"><a href="#header" class="headerlink" title="header"></a>header</h1><head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Document</title>
+  <meta name="generator" content="hexo-theme-ayer">
+<link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+</head>
+下面这些标签可用在 head 部分：<base>, <link>, <meta>, <script>, <style>, 以及 <title>。
+<title> 定义文档的标题，它是 head 部分中唯一必需的元素。
+# meta
+https://www.runoob.com/w3cnote/meta.html
+# 块级元素和行内元素
+## 块级元素
+1. 总是在新行上开始；
+2. 高度，行高以及外边距和内边距都可控制；
+3. 宽度缺省是它的容器的100%，除非设定一个宽度。
+4. 它可以容纳内联元素和其他块元素
+## 行内元素？
+1. 和其他元素都在一行上；
+2. 高，行高及外边距和内边距不可改变；
+3. 宽度就是它的文字或图片的宽度，不可改变
+4. 内联元素只能容纳文本或者其他内联元素
+
+<h2 id="对行内元素，需要注意如下："><a href="#对行内元素，需要注意如下：" class="headerlink" title="对行内元素，需要注意如下："></a>对行内元素，需要注意如下：</h2><ol>
+<li>设置宽度 width 无效。</li>
+<li>设置高度 height 无效，可以通过 line-height 来设置。</li>
+<li>设置 margin 只有左右 margin 有效，上下无效。</li>
+<li>设置 padding 只有左右 padding 有效，上下则无效。注意元素范围是增大了，但是对元素周围的内容是没影响的。</li>
+</ol>
+<h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>absolute</td>
+<td>生成绝对定位的元素，相对于 static 定位以外的<strong>第一个父元素</strong>进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>生成绝对定位的元素，相对于<strong>浏览器窗口</strong>进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+</tr>
+<tr>
+<td>relative</td>
+<td>生成相对定位的元素，相对于其<strong>正常位置</strong>进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。</td>
+</tr>
+<tr>
+<td>static</td>
+<td>默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 position 属性的值。</td>
+</tr>
+</tbody></table>
+<h1 id="P-和-div-的区别："><a href="#P-和-div-的区别：" class="headerlink" title="P 和 div 的区别："></a>P 和 div 的区别：</h1><p>首先第一个区别：语义。p 标签的语言是段落（paragraph），而 div 是没有语义的，只是一块用来方便设置样式排版的。</p>
+<p>第二个区别：就是 p 标签有默认样式，段落前后都会有一行空白区域，当然你用 div 自己设置也是可以的。div 的添加如果没有什么 css 修改的话对样式没有影响。</p>
+<h1 id="vue-中-style-加载"><a href="#vue-中-style-加载" class="headerlink" title="vue 中 style 加载"></a>vue 中 style 加载</h1><p><a href="https://www.jianshu.com/p/4af980c7d77c" target="_blank" rel="noopener">https://www.jianshu.com/p/4af980c7d77c</a></p>
+<p>如果加了 scoped，打包时会在该类中增加一个 data-v-xxxxxx 的编码作为限定属性，通过这个属性屏蔽父组件的相同类。但如果父组件中定义的样式，子组件没有覆盖，则子组件会继承该样式。</p>
+<p>通过 main.js 控制的样式都在 head 标签中显示，由此就可以知道，如果我在 body 内定义样式，是可以把 head 标签内的同名样式覆盖掉的。</p>
+<p>但要注意的是，在 body 内引入的样式，因为已经不在 main.js 控制范围内，也就是不参与打包，所以必须定义在 static 静态资源目录内。</p>
+<p>同时要注意，在 body 引入的样式不在 src 文件夹内，没有热更新的功能，所以每次更改后需要手动刷新页面。</p>
+<h1 id="dirname"><a href="#dirname" class="headerlink" title="__dirname"></a>__dirname</h1><p>Node.js 中，__dirname 总是指向被执行 js 文件的绝对路径</p>
+<h1 id="Vue-的-getter-和-setter"><a href="#Vue-的-getter-和-setter" class="headerlink" title="Vue 的 getter 和 setter"></a>Vue 的 getter 和 setter</h1><p><a href="https://cn.vuejs.org/v2/guide/reactivity.html#%E5%A6%82%E4%BD%95%E8%BF%BD%E8%B8%AA%E5%8F%98%E5%8C%96" target="_blank" rel="noopener">vue 的 getter 与 setter</a></p>
 ]]></content>
       <categories>
         <category>FE</category>

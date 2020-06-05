@@ -6,10 +6,12 @@
 
 <head>
   <meta charset="utf-8" />
-    
+   
+  <meta name="keywords" content="面试 JS原理," />
+   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Git 进阶 |  
+    前端面试之前端基础2 |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -43,7 +45,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-git-pro" class="article article-type-post" itemscope
+  <article id="post-FE-interview-base2" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -51,7 +53,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Git 进阶
+  前端面试之前端基础2
 </h1>
  
 
@@ -60,12 +62,12 @@
 
     
     <div class="article-meta">
-      <a href="/git-pro/" class="article-date">
-  <time datetime="2019-12-17T16:00:00.000Z" itemprop="datePublished">2019-12-18</time>
+      <a href="/FE-interview-base2/" class="article-date">
+  <time datetime="2019-11-11T01:00:00.000Z" itemprop="datePublished">2019-11-11</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Git/">Git</a>
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/JS%E5%8E%9F%E7%90%86/">JS原理</a>
   </div>
 
       
@@ -75,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1k</span>
+            <span class="post-count">2k</span>
         </span>
     </span>
 
@@ -84,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">7 min</span>
         </span>
     </span>
 </div>
@@ -109,43 +111,129 @@
       
 
       
-      <p>HEAD 严格来说不是指向提交，而是指向 master，master 才是指向提交的，所以，HEAD 指向的就是当前分支。</p>
-<h1 id="fatal-Could-not-read-from-remote-repository-的解决办法"><a href="#fatal-Could-not-read-from-remote-repository-的解决办法" class="headerlink" title="fatal: Could not read from remote repository.的解决办法:"></a>fatal: Could not read from remote repository.的解决办法:</h1><p>查看远端地址 <code>git remote –v</code> 查看配置 <code>git config --list</code> <code>git status</code></p>
+      <h1 id="null-undefined"><a href="#null-undefined" class="headerlink" title="null===undefined?"></a>null===undefined?</h1><p>[]==’’ !![] !!’’</p>
+<p>==会转换类型再比较，===直接比较、不是同一类型就是 false <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g912bouuhsj31ou0ms44b.jpg" alt=""></p>
 <a id="more"></a>
 
-<h1 id="工作区与暂存区"><a href="#工作区与暂存区" class="headerlink" title="工作区与暂存区"></a>工作区与暂存区</h1><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576" target="_blank" rel="noopener">工作区和暂存区</a> command s ：工作区修改 <code>git add</code>：提交到暂存区 <code>git commit</code>：提交到本地库 <code>git push</code>：提交到远端</p>
-<h1 id="git-bare-init"><a href="#git-bare-init" class="headerlink" title="git -bare init"></a>git -bare init</h1><p><a href="http://blog.haohtml.com/archives/12265" target="_blank" rel="noopener">git -bare init 与 git init 有什么不同</a></p>
-<p>在初始化远程仓库时最好使用 <code>git –bare init</code> 而不要使用：<code>git init</code>。这样在使用 hooks 的时候，会有用处。</p>
-<p>如果使用了 <code>git init</code> 初始化，则远程仓库的目录下，也包含 work tree，当本地仓库向远程仓库 push 时, 如果远程仓库正在 push 的分支上（如果当时不在 push 的分支，就没有问题）, 那么 push 后的结果不会反应在 work tree 上, 也即在远程仓库的目录下对应的文件还是之前的内容，必须得使用 <code>git reset –hard</code> 才能看到 push 后的内容.</p>
-<h1 id="git-rm-xxx-r"><a href="#git-rm-xxx-r" class="headerlink" title="git rm xxx -r"></a>git rm xxx -r</h1><p>删除（递归），没有-r 会提示不安全</p>
-<h1 id="git-checkout-–-xxx"><a href="#git-checkout-–-xxx" class="headerlink" title="git checkout – xxx"></a>git checkout – xxx</h1><p>命令 <code>git checkout -- readme.txt</code> 意思就是，把 readme.txt 文件在工作区的修改全部撤销，这里有两种情况：</p>
-<p>一种是 readme.txt 自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
-<p>一种是 readme.txt 已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
-<p>总之，就是让这个文件回到最近一次 <code>git commit</code> 或 <code>git add</code> 时的状态。</p>
-<h1 id="git-switch"><a href="#git-switch" class="headerlink" title="git switch"></a>git switch</h1><p>创建并切换到新的 dev 分支，可以使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;name&gt;  ||  git switch -c &lt;name&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	valueOf: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		x = <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj == <span class="number">0</span>, x);</span><br></pre></td></tr></table></figure>
 
-<h1 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h1><p>对于所有分支而言， 工作区和暂存区是公共的。因为未 add 的内容不属于任何一个分支，未 commit 的内容也不属于任何一个分支；要想在分支间切换， 又不想又上述影响，可以用 <code>git stash</code>。要注意，在当前分支 <code>git stash</code> 的内容， 在其他分支也可以 <code>git stash pop</code> 出来，为什么？ 因为：<strong>工作区和暂存区是公共的</strong>。</p>
-<h2 id="git-stash-list"><a href="#git-stash-list" class="headerlink" title="git stash list"></a>git stash list</h2><p><code>git stash</code> 将现在的储存起来，<code>git stash list</code> 查看</p>
-<h2 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h2><p>工作现场还在，Git 把 stash 内容存在某个地方了，但是需要恢复一下，有两个办法：</p>
-<ol>
-<li><p>一是用 <code>git stash apply stash@{xxx}</code>恢复，但是恢复后，stash 内容并不删除，你需要用 <code>git stash drop</code>来删除；</p>
-</li>
-<li><p>另一种方式是用 <code>git stash pop</code>，恢复的同时把 stash 内容也删了</p>
-</li>
+<p>输出 true,2</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	valueOf: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">	&#125;,</span><br><span class="line">	toString: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>抛出了异常: Uncaught TypeError: Cannot convert object to primitive value。复合类型的数据（比如对象、数组、函数等）之间的比较不是比较他们的值是否相等，而是比较他们引用的对象是否一样，因此也不难明白，为什么 [] === [] 判断为 false 了</p>
+<p><a href="https://www.jb51.net/article/117815.htm" target="_blank" rel="noopener">参考</a></p>
+<hr>
+<p><img src="evernotecid://D2FA04CE-24BF-478C-9996-C883AB8C2834/appyinxiangcom/7213637/ENResource/p152" alt="f2cb070ec1654b4393e105d4e6d66f32.png"></p>
+<hr>
+<h1 id="Cookie-的类别"><a href="#Cookie-的类别" class="headerlink" title="Cookie 的类别"></a>Cookie 的类别</h1><ol>
+<li>Session Cookie</li>
 </ol>
-<h1 id="git-merge-–no-ff-–squash"><a href="#git-merge-–no-ff-–squash" class="headerlink" title="git merge (||–no-ff||–squash)"></a>git merge (||–no-ff||–squash)</h1><p>通常，合并分支时，如果可能，Git 会用<strong>Fast forward</strong>模式，但这种模式下，<strong>删除分支后，会丢掉分支信息</strong>。 –no-ff：不使用 fast-forward 方式合并，保留分支的 commit 历史 –squash：使用 squash 方式合并，把多次分支 commit 历史压缩为一次</p>
-<h1 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h1><p>在 master 分支上修复的 bug，想要合并到当前 dev 分支，可以用 <code>git cherry-pick &lt;commit&gt;</code>命令，把 bug 提交的修改“复制”到当前分支，避免重复劳动。</p>
-<h1 id="git-branch-D"><a href="#git-branch-D" class="headerlink" title="git branch -D"></a>git branch -D</h1><p>如果要丢弃一个没有被合并过的分支，可以通过 <code>git branch -D &lt;name&gt;</code>强行删除</p>
-<h1 id="git-checkout-b-dev-origin-dev"><a href="#git-checkout-b-dev-origin-dev" class="headerlink" title="git checkout -b dev origin/dev"></a>git checkout -b dev origin/dev</h1><p>创建远程 origin 的 dev 到本地 dev</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --<span class="built_in">set</span>-upstream-to=origin/dev dev</span><br></pre></td></tr></table></figure>
+<p>这个类型的 cookie 只在会话期间内有效，即当关闭浏览器的时候，它会被浏览器删除。设置 session cookie 的办法是：在创建 cookie 不设置 Expires 即可。</p>
+<ol start="2">
+<li>Persistent Cookie</li>
+</ol>
+<p>持久型 cookie 顾名思义就是会长期在用户会话中生效。当你设置 cookie 的属性 Max-Age 为 1 个月的话，那么在这个月里每个相关 URL 的 http 请求中都会带有这个 cookie。所以它可以记录很多用户初始化或自定义化的信息，比如什么时候第一次登录及弱登录态等。</p>
+<ol start="3">
+<li>Secure cookie</li>
+</ol>
+<p>安全 cookie 是在 https 访问下的 cookie 形态，以确保 cookie 在从客户端传递到 Server 的过程中始终加密的。这样做大大的降低的 cookie 内容直接暴露在黑客面前及被盗取的概率。</p>
+<ol start="4">
+<li>HttpOnly Cookie</li>
+</ol>
+<p>目前主流的浏览器已经都支持了 httponly cookie。1.IE5+ 2.Firefox 1.0+ 3.Opera 8.0+ 4.Safari/Chrome。在支持 httponly 的浏览器上，设置成 httponly 的 cookie 只能在 http(https)请求上传递。也就是说 httponly cookie 对客户端脚本语言(JavaScript)无效，从而避免了跨站攻击时 JS 偷取 cookie 的情况。当你使用 javascript 在设置同样名字的 cookie 时，只有原来的 httponly 值会传送到服务器。</p>
+<ol start="5">
+<li>3rd-party cookie</li>
+</ol>
+<p>第一方 cookie 是 cookie 种植在浏览器地址栏的域名或子域名下的。第三方 cookie 则是种植在不同于浏览器地址栏的域名下。例如：用户访问 a.com 时，在 ad.google.com 设置了个 cookie，在访问 b.com 的时候，也在 ad.google.com 设置了一个 cookie。这种场景经常出现在 google adsense，阿里妈妈之类的广告服务商。广告商就可以采集用户的一些习惯和访问历史。</p>
+<ol start="6">
+<li>Super Cookie</li>
+</ol>
+<p>超级 cookie 是设置公共域名前缀上的 cookie。通常 a.b.com 的 cookie 可以设置在 a.b.com 和 b.com，而不允许设置在.com 上，但是很不幸的是历史上一些老版本的浏览器因为对新增后缀过滤不足导致过超级 cookie 的产生。</p>
+<h1 id="vue-什么时候用-computed-watch"><a href="#vue-什么时候用-computed-watch" class="headerlink" title="vue 什么时候用 computed watch"></a>vue 什么时候用 computed watch</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span></span><br><span class="line">	&#123;&#123; message.split('').reverse().join('') &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h1><p>rebase 操作前后，最终的提交内容是一致的。</p>
-<p>把分叉的提交历史“整理”成一条直线，看上去更直观。缺点是本地的分叉提交已经被修改过了。</p>
-<p>rebase 操作可以把本地未 push 的分叉提交历史整理成直线；从不对已推送至别处的提交执行变基操作。 因为 rebase 会改变提交历史记录，这会影响到别人使用这一远程仓库。</p>
-<p>rebase 的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
-<p><a href="https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf" target="_blank" rel="noopener">git 列表</a></p>
-<p><a href="https://git-scm.com/" target="_blank" rel="noopener">Git 英文官网</a></p>
+<p>在这个地方，模板不再是简单的声明式逻辑。你必须看一段时间才能意识到，这里是想要显示变量 message 的翻转字符串。当你想要在模板中多次引用此处的翻转字符串时，就会更加难以处理。</p>
+<p>所以，<strong>对于任何复杂逻辑，你都应当使用计算属性</strong>。</p>
+<p>使用 watch 选项允许我们</p>
+<ol>
+<li>执行异步操作 (访问一个 API)，</li>
+<li>限制我们执行该操作的频率，</li>
+<li>并在我们得到最终结果前，设置中间状态。</li>
+</ol>
+<p>这些都是计算属性无法做到的。</p>
+<h2 id="computed-和-methods"><a href="#computed-和-methods" class="headerlink" title="computed 和 methods"></a>computed 和 methods</h2><p><strong>计算属性是基于它们的响应式依赖进行缓存的</strong>，只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。</p>
+<h1 id="style"><a href="#style" class="headerlink" title="style"></a>style</h1><p>比较链接方式和导入方式链接方式（下面用 link 代替）和导入方式（下面用 @import 代替）都是引入外部的 CSS 文件的方式，下面我们来比较这两种方式，并且说明为什么不推荐使用 @import。</p>
+<ul>
+<li>link 属于 HTML，通过 <link> 标签中的 href 属性来引入外部文件，而 @import 属于 CSS，所以导入语句应写在 CSS 中，要注意的是导入语句应写在样式表的开头，否则无法正确导入外部文件；</li>
+<li>@import 是 CSS2.1 才出现的概念，所以如果浏览器版本较低，无法正确导入外部样式文件；</li>
+<li>当 HTML 文件被加载时，link 引用的文件会同时被加载，而 @import 引用的文件则会等页面全部下载完毕再被加载；</li>
+</ul>
+<h1 id="header"><a href="#header" class="headerlink" title="header"></a>header</h1><head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Document</title>
+  <meta name="generator" content="hexo-theme-ayer">
+<link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+</head>
+下面这些标签可用在 head 部分：<base>, <link>, <meta>, <script>, <style>, 以及 <title>。
+<title> 定义文档的标题，它是 head 部分中唯一必需的元素。
+# meta
+https://www.runoob.com/w3cnote/meta.html
+# 块级元素和行内元素
+## 块级元素
+1. 总是在新行上开始；
+2. 高度，行高以及外边距和内边距都可控制；
+3. 宽度缺省是它的容器的100%，除非设定一个宽度。
+4. 它可以容纳内联元素和其他块元素
+## 行内元素？
+1. 和其他元素都在一行上；
+2. 高，行高及外边距和内边距不可改变；
+3. 宽度就是它的文字或图片的宽度，不可改变
+4. 内联元素只能容纳文本或者其他内联元素
+
+<h2 id="对行内元素，需要注意如下："><a href="#对行内元素，需要注意如下：" class="headerlink" title="对行内元素，需要注意如下："></a>对行内元素，需要注意如下：</h2><ol>
+<li>设置宽度 width 无效。</li>
+<li>设置高度 height 无效，可以通过 line-height 来设置。</li>
+<li>设置 margin 只有左右 margin 有效，上下无效。</li>
+<li>设置 padding 只有左右 padding 有效，上下则无效。注意元素范围是增大了，但是对元素周围的内容是没影响的。</li>
+</ol>
+<h1 id="position"><a href="#position" class="headerlink" title="position"></a>position</h1><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>absolute</td>
+<td>生成绝对定位的元素，相对于 static 定位以外的<strong>第一个父元素</strong>进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>生成绝对定位的元素，相对于<strong>浏览器窗口</strong>进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+</tr>
+<tr>
+<td>relative</td>
+<td>生成相对定位的元素，相对于其<strong>正常位置</strong>进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。</td>
+</tr>
+<tr>
+<td>static</td>
+<td>默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 position 属性的值。</td>
+</tr>
+</tbody></table>
+<h1 id="P-和-div-的区别："><a href="#P-和-div-的区别：" class="headerlink" title="P 和 div 的区别："></a>P 和 div 的区别：</h1><p>首先第一个区别：语义。p 标签的语言是段落（paragraph），而 div 是没有语义的，只是一块用来方便设置样式排版的。</p>
+<p>第二个区别：就是 p 标签有默认样式，段落前后都会有一行空白区域，当然你用 div 自己设置也是可以的。div 的添加如果没有什么 css 修改的话对样式没有影响。</p>
+<h1 id="vue-中-style-加载"><a href="#vue-中-style-加载" class="headerlink" title="vue 中 style 加载"></a>vue 中 style 加载</h1><p><a href="https://www.jianshu.com/p/4af980c7d77c" target="_blank" rel="noopener">https://www.jianshu.com/p/4af980c7d77c</a></p>
+<p>如果加了 scoped，打包时会在该类中增加一个 data-v-xxxxxx 的编码作为限定属性，通过这个属性屏蔽父组件的相同类。但如果父组件中定义的样式，子组件没有覆盖，则子组件会继承该样式。</p>
+<p>通过 main.js 控制的样式都在 head 标签中显示，由此就可以知道，如果我在 body 内定义样式，是可以把 head 标签内的同名样式覆盖掉的。</p>
+<p>但要注意的是，在 body 内引入的样式，因为已经不在 main.js 控制范围内，也就是不参与打包，所以必须定义在 static 静态资源目录内。</p>
+<p>同时要注意，在 body 引入的样式不在 src 文件夹内，没有热更新的功能，所以每次更改后需要手动刷新页面。</p>
+<h1 id="dirname"><a href="#dirname" class="headerlink" title="__dirname"></a>__dirname</h1><p>Node.js 中，__dirname 总是指向被执行 js 文件的绝对路径</p>
+<h1 id="Vue-的-getter-和-setter"><a href="#Vue-的-getter-和-setter" class="headerlink" title="Vue 的 getter 和 setter"></a>Vue 的 getter 和 setter</h1><p><a href="https://cn.vuejs.org/v2/guide/reactivity.html#%E5%A6%82%E4%BD%95%E8%BF%BD%E8%B8%AA%E5%8F%98%E5%8C%96" target="_blank" rel="noopener">vue 的 getter 与 setter</a></p>
 
       
       <!-- reward -->
@@ -214,14 +302,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/git-pro/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://jee3.github.io/FE-interview-base2/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E5%8E%9F%E7%90%86/" rel="tag">JS原理</a></li></ul>
 
 
     </footer>
@@ -232,19 +320,19 @@
   
   <nav class="article-nav">
     
-      <a href="/redux-and-react-redux/" class="article-nav-link">
+      <a href="/JS%E9%AB%98%E7%A8%8B/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            Redux和React-redux小结
+            《Javascript高级程序设计》总结
           
         </div>
       </a>
     
     
-      <a href="/ES6/" class="article-nav-link">
+      <a href="/FE-interview-base/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">《ES6标准入门》学习总结</div>
+        <div class="article-nav-title">前端面试之前端基础小结</div>
       </a>
     
   </nav>

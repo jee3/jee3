@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jee3.github.io/ES6/</loc>
+    
+    <lastmod>2020-06-05T02:41:34.611Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jee3.github.io/FE-interview-base2/</loc>
+    
+    <lastmod>2020-06-05T02:32:50.220Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jee3.github.io/FE-interview-base/</loc>
     
     <lastmod>2020-06-05T02:24:51.853Z</lastmod>

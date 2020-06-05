@@ -453,6 +453,32 @@
   </entry>
   
   <entry>
+    <title>《ES6标准入门》学习总结</title>
+    <link href="http://jee3.github.io/ES6/"/>
+    <id>http://jee3.github.io/ES6/</id>
+    <published>2019-12-12T01:00:00.000Z</published>
+    <updated>2020-06-05T02:41:34.611Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;《ES6 标准入门》学习总结&lt;/p&gt;
+&lt;h1 id=&quot;3-变量的解构赋值&quot;&gt;&lt;a href=&quot;#3-变量的解构赋值&quot; class=&quot;headerlink&quot; title=&quot;3 变量的解构赋值&quot;&gt;&lt;/a&gt;3 变量的解构赋值&lt;/h1&gt;&lt;h1 id=&quot;3-4-数值和布尔值的解构&quot;&gt;&lt;a href=&quot;#3-4-数值和布尔值的解构&quot; class=&quot;headerlink&quot; title=&quot;3.4 数值和布尔值的解构&quot;&gt;&lt;/a&gt;3.4 数值和布尔值的解构&lt;/h1&gt;&lt;p&gt;解构赋值的规则：只要等号右边的值不是对象或者数组，就先将其转为对象。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
+    
+      <category term="ES6+" scheme="http://jee3.github.io/categories/FE/ES6/"/>
+    
+    
+      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
+    
+      <category term="ES6+" scheme="http://jee3.github.io/tags/ES6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JavaScript执行机制</title>
     <link href="http://jee3.github.io/javascript-execution-mechanism/"/>
     <id>http://jee3.github.io/javascript-execution-mechanism/</id>
@@ -510,19 +536,16 @@
   </entry>
   
   <entry>
-    <title>前端面试之前端基础小结</title>
-    <link href="http://jee3.github.io/FE-interview-base/"/>
-    <id>http://jee3.github.io/FE-interview-base/</id>
-    <published>2019-11-10T01:00:00.000Z</published>
-    <updated>2020-06-05T02:24:51.853Z</updated>
+    <title>前端面试之前端基础2</title>
+    <link href="http://jee3.github.io/FE-interview-base2/"/>
+    <id>http://jee3.github.io/FE-interview-base2/</id>
+    <published>2019-11-11T01:00:00.000Z</published>
+    <updated>2020-06-05T02:32:50.220Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;js-基本数据类型&quot;&gt;&lt;a href=&quot;#js-基本数据类型&quot; class=&quot;headerlink&quot; title=&quot;js 基本数据类型&quot;&gt;&lt;/a&gt;js 基本数据类型&lt;/h1&gt;&lt;p&gt;undefined,null,boolean,number,string&lt;/p&gt;
-&lt;p&gt;ES2015 新增 symbol&lt;/p&gt;
-&lt;h2 id=&quot;js-有几种类型的值&quot;&gt;&lt;a href=&quot;#js-有几种类型的值&quot; class=&quot;headerlink&quot; title=&quot;js 有几种类型的值&quot;&gt;&lt;/a&gt;js 有几种类型的值&lt;/h2&gt;&lt;p&gt;栈：原始数据类型（基本数据类型）&lt;/p&gt;
-&lt;p&gt;堆：引用数据类型（对象，数组，函数）&lt;/p&gt;
-&lt;p&gt;两种类型的区别：存储的位置不同 &lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g93omyx8h0j308w0cgwez.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      &lt;h1 id=&quot;null-undefined&quot;&gt;&lt;a href=&quot;#null-undefined&quot; class=&quot;headerlink&quot; title=&quot;null===undefined?&quot;&gt;&lt;/a&gt;null===undefined?&lt;/h1&gt;&lt;p&gt;[]==’’ !![] !!’’&lt;/p&gt;
+&lt;p&gt;==会转换类型再比较，===直接比较、不是同一类型就是 false &lt;img src=&quot;https://tva1.sinaimg.cn/large/006y8mN6gy1g912bouuhsj31ou0ms44b.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -535,37 +558,6 @@
       <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
     
       <category term="JS原理" scheme="http://jee3.github.io/tags/JS%E5%8E%9F%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSS单位</title>
-    <link href="http://jee3.github.io/css-unit/"/>
-    <id>http://jee3.github.io/css-unit/</id>
-    <published>2019-11-02T16:00:00.000Z</published>
-    <updated>2020-06-02T12:04:37.678Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/categories/FE/"/>
-    
-      <category term="CSS" scheme="http://jee3.github.io/categories/FE/CSS/"/>
-    
-    
-      <category term="FE" scheme="http://jee3.github.io/tags/FE/"/>
-    
-      <category term="CSS" scheme="http://jee3.github.io/tags/CSS/"/>
     
   </entry>
   
