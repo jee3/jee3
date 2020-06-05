@@ -6,10 +6,12 @@
 
 <head>
   <meta charset="utf-8" />
-    
+   
+  <meta name="keywords" content="面试 JS原理," />
+   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    [object Object] |  
+    前端面试之前端基础小结 |  
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -51,7 +53,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  [object Object]
+  前端面试之前端基础小结
 </h1>
  
 
@@ -61,9 +63,13 @@
     
     <div class="article-meta">
       <a href="/FE-interview-base/" class="article-date">
-  <time datetime="2020-06-04T11:37:18.599Z" itemprop="datePublished">2020-06-04</time>
+  <time datetime="2019-11-10T01:00:00.000Z" itemprop="datePublished">2019-11-10</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/FE/">FE</a> / <a class="article-category-link" href="/categories/FE/JS%E5%8E%9F%E7%90%86/">JS原理</a>
+  </div>
+
       
       
 <div class="word_count">
@@ -71,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">0</span>
+            <span class="post-count">965</span>
         </span>
     </span>
 
@@ -80,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -91,6 +97,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -103,7 +111,58 @@
       
 
       
-      
+      <h1 id="js-基本数据类型"><a href="#js-基本数据类型" class="headerlink" title="js 基本数据类型"></a>js 基本数据类型</h1><p>undefined,null,boolean,number,string</p>
+<p>ES2015 新增 symbol</p>
+<h2 id="js-有几种类型的值"><a href="#js-有几种类型的值" class="headerlink" title="js 有几种类型的值"></a>js 有几种类型的值</h2><p>栈：原始数据类型（基本数据类型）</p>
+<p>堆：引用数据类型（对象，数组，函数）</p>
+<p>两种类型的区别：存储的位置不同 <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g93omyx8h0j308w0cgwez.jpg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="js-内置对象"><a href="#js-内置对象" class="headerlink" title="js 内置对象"></a>js 内置对象</h1><p>数据封装对象：object,array,boolean,number,string</p>
+<p>其他对象：Function,Arguments,Math,Date,RegExp,Error</p>
+<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><p>是一种基于<strong>proto</strong>向上查找的机制，当我们操作实例的某个属性或者方法的时候，首先找到自己空间中私有的属性或者方法</p>
+<p>1.找到了，则结束查找，使用自己的私有即可</p>
+<p>2.没有找到，则基于<strong>proto</strong>找所属类的 prototype,如果找到了就用这个公有的，如果没找到，基于原型上的<strong>proto</strong>继续向上查找，一直找到 Object.prototype 的原型为止，如果还是没有，操作的属性或者方法不存在。<a href="https://blog.csdn.net/nowchange/article/details/93549420" target="_blank" rel="noopener">原型链详解</a></p>
+<h1 id="JavaScript-的继承"><a href="#JavaScript-的继承" class="headerlink" title="JavaScript 的继承"></a>JavaScript 的继承</h1><h2 id="构造继承"><a href="#构造继承" class="headerlink" title="构造继承"></a>构造继承</h2><p>(借助 call 或者 apply 把父类中的函数通过 this 指复制到子类创建的实例中)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;</span><br></pre></td></tr></table></figure>
+
+<h1 id="JavaScript-中的-call、apply、bind"><a href="#JavaScript-中的-call、apply、bind" class="headerlink" title="JavaScript 中的 call、apply、bind"></a>JavaScript 中的 call、apply、bind</h1><p>参考：<a href="https://www.runoob.com/w3cnote/js-call-apply-bind.html" target="_blank" rel="noopener">Call,apply,bind 最清晰的讲解</a></p>
+<p><a href="https://www.jianshu.com/p/00dc4ad9b83f" target="_blank" rel="noopener">JavaScript 中的 call、apply、bind 深入理解</a></p>
+<h1 id="GET-和-POST"><a href="#GET-和-POST" class="headerlink" title="GET 和 POST"></a>GET 和 POST</h1><p>HTTP 协议 未规定 GET 和 POST 的长度限制</p>
+<p>GET 的最大长度显示是因为 浏览器和 web 服务器限制了 URI 的长度</p>
+<p>get 请求类似于查找的过程，用户获取数据，可以不用每次都与数据库连接，所以可以使用缓存。</p>
+<p>post 不同，post 做的一般是修改和删除的工作，所以必须与数据库交互，所以不能使用缓存。因此 get 请求适合于请求缓存。</p>
+<h1 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h1><p>commonjs 不适用于浏览器环境，require 操作是同步的，模块放在服务器端，网速慢要等很久，module.exports 暴露，require 引入,NODE 自带的模块化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var fs &#x3D; require(&#39;fs&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>AMD 则是异步加载，require.js，依赖前置，提前执行。但是代码阅读和书写困难，依赖必须提前声明好。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(&#39;.&#x2F;index.js&#39;,function(code)&#123;</span><br><span class="line">    &#x2F;&#x2F; code 就是index.js 返回的内容</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>cmd 用于浏览器，加载是异步的，sea.js，依赖就近，延迟执行，支持动态引入依赖文件。但依赖 spm 打包，模块加载逻辑偏重</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line">  var indexCode &#x3D; require(&#39;.&#x2F;index.js&#39;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>ES Modules：ES6 引入的模块化，支持 import 来引入另一个 js。思想是尽量静态化，使得编译时就能确定模块依赖关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import a from &#39;a&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>commonjs 输出的是值的拷贝 只会在运行时加载一次 es6 动态引用，不会缓存值。js 引擎对脚本静态分析的时候，遇到 import 会生成一个只读引用，脚本真正执行的时候，到被加载那个模块里面去取值</p>
+<h1 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h1><ul>
+<li>字面量</li>
+<li>Object 对象</li>
+<li>工厂模式</li>
+<li>构造函数</li>
+</ul>
+<h1 id="Q：写-React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？"><a href="#Q：写-React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？" class="headerlink" title="Q：写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？"></a>Q：写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</h1><p>A：<a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/1#issuecomment-465847432" target="_blank" rel="noopener">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/1#issuecomment-465847432</a> A：<a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/1#issue-401165995" target="_blank" rel="noopener">https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/1#issue-401165995</a></p>
+<h1 id="深拷贝浅拷贝"><a href="#深拷贝浅拷贝" class="headerlink" title="深拷贝浅拷贝"></a>深拷贝浅拷贝</h1><p><a href="https://www.cnblogs.com/echolun/p/7889848.html" target="_blank" rel="noopener">参考 1</a></p>
+<p><a href="https://segmentfault.com/a/1190000016672263" target="_blank" rel="noopener">参考 2sf.gg</a></p>
+<h1 id="Question-1"><a href="#Question-1" class="headerlink" title="Question 1"></a>Question 1</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">a</span>: <span class="number">0</span> &#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">	obj.a = <span class="number">1</span>;</span><br><span class="line">	obj = &#123; <span class="attr">a</span>: <span class="number">2</span> &#125;;</span><br><span class="line">	obj.b = <span class="number">3</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(obj);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> object = &#123;&#125;;</span><br><span class="line">fun(object);</span><br><span class="line"><span class="built_in">console</span>.log(object);</span><br></pre></td></tr></table></figure>
+
+<p>一开始，obj 和 object 都是 undefined，很好理解</p>
+<p>第一行运行完： <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8ietr077jj30ug0lq0wt.jpg" alt=""></p>
+<p>第 8 行运行完，object 也变成 Object{}</p>
+<p>当进入到 fun 函数中，object 变成不可用： <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8ievdf40aj30uc0lmjvf.jpg" alt=""></p>
+<p>最后是： <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8iexbu3s6j30tw0o8431.jpg" alt=""></p>
+<p>我的理解是：刚开始 obj 也指向 object 指向的那个对象，然后 obj.a 把那个对象增加了个属性 a，然后 obj 指向了另一个对象{a：2}，后面的 b 就加不到 object 指向的那个对象里了。</p>
+
       
       <!-- reward -->
       
@@ -178,6 +237,8 @@
 <div id="share-mask"></div>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/" rel="tag">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E5%8E%9F%E7%90%86/" rel="tag">JS原理</a></li></ul>
+
 
     </footer>
 
@@ -187,10 +248,19 @@
   
   <nav class="article-nav">
     
+      <a href="/JS%E9%AB%98%E7%A8%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            《Javascript高级程序设计》总结
+          
+        </div>
+      </a>
     
-      <a href="/download-files-via-blob/" class="article-nav-link">
+    
+      <a href="/css-unit/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">利用Blob类文件对象进行有权限校验的文件下载</div>
+        <div class="article-nav-title">CSS单位</div>
       </a>
     
   </nav>

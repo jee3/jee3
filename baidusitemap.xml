@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://jee3.github.io/redux-and-react-redux/</loc>
-    <lastmod>2020-06-04</lastmod>
-  </url>  <url>
     <loc>http://jee3.github.io/FE-interview-base/</loc>
+    <lastmod>2020-06-05</lastmod>
+  </url>  <url>
+    <loc>http://jee3.github.io/redux-and-react-redux/</loc>
     <lastmod>2020-06-04</lastmod>
   </url>  <url>
     <loc>http://jee3.github.io/this/</loc>
@@ -25,13 +25,13 @@
     <loc>http://jee3.github.io/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/</loc>
     <lastmod>2020-06-04</lastmod>
   </url>  <url>
+    <loc>http://jee3.github.io/what-did-NEW-do/</loc>
+    <lastmod>2020-06-04</lastmod>
+  </url>  <url>
     <loc>http://jee3.github.io/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/</loc>
     <lastmod>2020-06-04</lastmod>
   </url>  <url>
     <loc>http://jee3.github.io/methods-in-js/</loc>
-    <lastmod>2020-06-04</lastmod>
-  </url>  <url>
-    <loc>http://jee3.github.io/what-did-NEW-do/</loc>
     <lastmod>2020-06-04</lastmod>
   </url>  <url>
     <loc>http://jee3.github.io/JavaScript%E4%B8%AD%E7%9A%84%E5%8F%8C%E6%B3%A2%E6%B5%AA%E7%BA%BF/</loc>
@@ -67,10 +67,10 @@
     <loc>http://jee3.github.io/Upload%E7%BB%84%E4%BB%B6-%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%90%8E%E4%B8%8D%E7%AB%8B%E5%8D%B3%E4%B8%8A%E4%BC%A0/</loc>
     <lastmod>2020-06-03</lastmod>
   </url>  <url>
-    <loc>http://jee3.github.io/Ant-design%E8%B8%A9%E8%BF%87%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/</loc>
+    <loc>http://jee3.github.io/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/</loc>
     <lastmod>2020-06-03</lastmod>
   </url>  <url>
-    <loc>http://jee3.github.io/React%E4%B8%AD%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%B8%B2%E6%9F%93/</loc>
+    <loc>http://jee3.github.io/Ant-design%E8%B8%A9%E8%BF%87%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/</loc>
     <lastmod>2020-06-03</lastmod>
   </url>  <url>
     <loc>http://jee3.github.io/git-pro/</loc>
