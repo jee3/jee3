@@ -112,7 +112,9 @@
 
       
       <p>最近学习了 Redux 和 React-redux，摘录和总结一下。</p>
-<h1 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h1><h2 id="action"><a href="#action" class="headerlink" title="action"></a>action</h2><p><strong>强制使用 action 来描述所有变化</strong>带来的好处是可以清晰地知道应用中到底发生了什么。如果一些东西改变了，就可以知道为什么变。action 就像是描述发生了什么的指示器。最终，<strong>为了把 action 和 state 串起来，开发一些函数，这就是 reducer</strong>。再次地，没有任何魔法，<code>reducer 只是一个接收 state 和 action，并返回新的 state 的函数</code>。</p>
+<h1 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h1><h2 id="action"><a href="#action" class="headerlink" title="action"></a>action</h2><p><strong>强制使用 action 来描述所有变化</strong>带来的好处是可以清晰地知道应用中到底发生了什么。如果一些东西改变了，就可以知道为什么变。action 就像是描述发生了什么的指示器。最终，<strong>为了把 action 和 state 串起来，开发一些函数，这就是 reducer</strong>。<code>reducer 只是一个接收 state 和 action，并返回新的 state 的函数</code>。</p>
+<a id="more"></a>
+
 <p><code>Action 就是一个普通 JavaScript 对象</code>（注意到没，这儿没有任何魔法？）用来描述发生了什么。</p>
 <p>对于小应用来说，使用字符串做 action type 更方便些。不过，在大型应用中把它们显式地定义成常量还是利大于弊的。</p>
 <p><code>记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 state。</code></p>

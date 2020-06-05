@@ -432,17 +432,12 @@
     <link href="http://jee3.github.io/redux-and-react-redux/"/>
     <id>http://jee3.github.io/redux-and-react-redux/</id>
     <published>2019-12-26T01:00:00.000Z</published>
-    <updated>2020-06-04T11:30:33.985Z</updated>
+    <updated>2020-06-04T12:12:30.987Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
+      &lt;p&gt;最近学习了 Redux 和 React-redux，摘录和总结一下。&lt;/p&gt;
+&lt;h1 id=&quot;Redux&quot;&gt;&lt;a href=&quot;#Redux&quot; class=&quot;headerlink&quot; title=&quot;Redux&quot;&gt;&lt;/a&gt;Redux&lt;/h1&gt;&lt;h2 id=&quot;action&quot;&gt;&lt;a href=&quot;#action&quot; class=&quot;headerlink&quot; title=&quot;action&quot;&gt;&lt;/a&gt;action&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;强制使用 action 来描述所有变化&lt;/strong&gt;带来的好处是可以清晰地知道应用中到底发生了什么。如果一些东西改变了，就可以知道为什么变。action 就像是描述发生了什么的指示器。最终，&lt;strong&gt;为了把 action 和 state 串起来，开发一些函数，这就是 reducer&lt;/strong&gt;。&lt;code&gt;reducer 只是一个接收 state 和 action，并返回新的 state 的函数&lt;/code&gt;。&lt;/p&gt;
     
     </summary>
     
