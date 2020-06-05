@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://jee3.github.io/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/</loc>
+    <lastmod>2020-06-05</lastmod>
+  </url>  <url>
     <loc>http://jee3.github.io/ES6/</loc>
     <lastmod>2020-06-05</lastmod>
   </url>  <url>
@@ -32,9 +35,6 @@
     <lastmod>2020-06-04</lastmod>
   </url>  <url>
     <loc>http://jee3.github.io/what-did-NEW-do/</loc>
-    <lastmod>2020-06-04</lastmod>
-  </url>  <url>
-    <loc>http://jee3.github.io/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/</loc>
     <lastmod>2020-06-04</lastmod>
   </url>  <url>
     <loc>http://jee3.github.io/methods-in-js/</loc>

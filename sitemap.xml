@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jee3.github.io/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/</loc>
+    
+    <lastmod>2020-06-05T09:34:45.303Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jee3.github.io/ES6/</loc>
     
     <lastmod>2020-06-05T02:41:34.611Z</lastmod>
@@ -73,13 +80,6 @@
   
   <url>
     <loc>http://jee3.github.io/what-did-NEW-do/</loc>
-    
-    <lastmod>2020-06-04T10:42:44.526Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jee3.github.io/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/</loc>
     
     <lastmod>2020-06-04T10:42:44.526Z</lastmod>
     
