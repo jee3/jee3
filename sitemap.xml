@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jee3.github.io/navicat-fails-to-connect-mysql/</loc>
+    
+    <lastmod>2020-06-22T11:52:07.835Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jee3.github.io/closure/</loc>
+    
+    <lastmod>2020-06-10T08:36:52.808Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jee3.github.io/Javascript%E4%B8%AD%E7%9A%84%E9%81%8D%E5%8E%86/</loc>
     
     <lastmod>2020-06-05T09:34:45.303Z</lastmod>
@@ -40,13 +54,6 @@
     <loc>http://jee3.github.io/this/</loc>
     
     <lastmod>2020-06-04T11:35:06.579Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jee3.github.io/closure/</loc>
-    
-    <lastmod>2020-06-04T11:16:18.657Z</lastmod>
     
   </url>
   
