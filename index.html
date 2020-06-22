@@ -120,13 +120,9 @@
       <p>步骤：在 mysql 官网下了 macOS 的 dmg 安装包，无脑下一步，完成安装。navicat 用的是网上搜到的 15 版本。启动 mysql 之后，用 navicat 连接，报错<code>1045 - Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password: YES)</code></p>
 <p>经排查是权限的问题，使用命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO<span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'mypassword'</span> WITH GRANT OPTION;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-<p>报错： <code>ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;identified by &#39;mypassword&#39; with grant option&#39; at line 1</code></p>
-<p>最后采用直接修改 mysql 字段</p>
-<p><code>use mysql; select host,user from user; update user set host=&#39;%&#39; where user=&#39;root&#39;;</code></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gg1b2eib66j30t60pgtih.jpg" alt=""></p>
-<p>重启 mysql 服务，在“系统偏好设置”-&gt;“网络”-&gt;“高级”里面查看 ip 地址，将 navicat 的主机改成这个 ip 地址，就 OK 啦</p>
-
+      
+      <a class="article-more-link" href="/navicat-fails-to-connect-mysql/">阅读更多...</a>
+      
       
       <!-- reward -->
       

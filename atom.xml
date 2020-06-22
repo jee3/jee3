@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jee3.github.io/"/>
-  <updated>2020-06-22T11:52:07.835Z</updated>
+  <updated>2020-06-22T11:52:27.103Z</updated>
   <id>http://jee3.github.io/</id>
   
   <author>
@@ -21,17 +21,13 @@
     <link href="http://jee3.github.io/navicat-fails-to-connect-mysql/"/>
     <id>http://jee3.github.io/navicat-fails-to-connect-mysql/</id>
     <published>2020-06-20T01:00:00.000Z</published>
-    <updated>2020-06-22T11:52:07.835Z</updated>
+    <updated>2020-06-22T11:52:27.103Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
+      &lt;p&gt;步骤：在 mysql 官网下了 macOS 的 dmg 安装包，无脑下一步，完成安装。navicat 用的是网上搜到的 15 版本。启动 mysql 之后，用 navicat 连接，报错&lt;code&gt;1045 - Access denied for user &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; (using password: YES)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;经排查是权限的问题，使用命令&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;GRANT ALL PRIVILEGES ON *.* TO&lt;span class=&quot;string&quot;&gt;&#39;root&#39;&lt;/span&gt;@&lt;span class=&quot;string&quot;&gt;&#39;%&#39;&lt;/span&gt; IDENTIFIED BY &lt;span class=&quot;string&quot;&gt;&#39;mypassword&#39;&lt;/span&gt; WITH GRANT OPTION;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;flush privileges;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     

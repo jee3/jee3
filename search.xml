@@ -7,6 +7,8 @@
 <p>经排查是权限的问题，使用命令</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO<span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'mypassword'</span> WITH GRANT OPTION;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
+
 <p>报错： <code>ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;identified by &#39;mypassword&#39; with grant option&#39; at line 1</code></p>
 <p>最后采用直接修改 mysql 字段</p>
 <p><code>use mysql; select host,user from user; update user set host=&#39;%&#39; where user=&#39;root&#39;;</code></p>
